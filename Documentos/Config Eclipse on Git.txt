@@ -1,0 +1,8 @@
+Teste configuração do Eclipse + Plugin GitHub - Teste OK
+
+1 - install eclipse
+2 - download plugin help -> Eclipse Marketplace -> Eclipse Egit
+3 - rightBotton in Project-> import... -> Projects from Git -> paste URL
+4 - Finish.
+
+by FerNaNdo
