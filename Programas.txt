@@ -1,0 +1,4 @@
+Git 1.8
+wamp 2.2+
+DBDesigner 4
+Editor de texto qualquer.
