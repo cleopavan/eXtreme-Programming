@@ -1,0 +1,17 @@
+webSite: www.projeto1.comxa.com
+
+acesso ao servidor:
+
+http://members.000webhost.com/login.php
+
+acesso principal:
+usuario: fernandonesi@gmail.com
+senha: 000webhost
+
+
+acesso FTP:
+host: ftp.projeto1.comxa.com
+user: a6233819
+passwd: 000webhost
+
+acesso DBA:
