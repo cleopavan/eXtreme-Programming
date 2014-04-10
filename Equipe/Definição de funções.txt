@@ -1,0 +1,11 @@
+Funções: 
+
+1 - Fernando (Analista, Desenvolvedor, DBA) 
+
+2 - Andrey (Desenvolvedor regras de negocio)
+
+3 - Patrick (Desenvolvedor regras de negocio)
+
+4 - Isac (Desenvolvedor layout)
+
+5 - Thiago (Analista, Pesquisas, Conversas com cliente)
