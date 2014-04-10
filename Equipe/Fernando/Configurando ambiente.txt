@@ -1,0 +1,39 @@
+Configuração do ambiente de trabalho
+
+******Criação de contas externas******
+
+Github (gerenciar arquivos e versões)
+github.com/Patiqundead/eXtreme-Programming
+
+Trello (gerenciar tarefas)
+trello.com/b/CbzcxLiH/definicao-do-projeto
+
+000webhost (disponibilizar link online - html - php - database - ftp)
+www.000webhost.com
+www.projeto1.comxa.com
+
+******Instalação dos aplicativos******
+
+* Eclipse versão Java EE
+* Java JDK
+* EGit plugin git para eclipse
+* Xampp (servidor local html - php - database) 
+* FileZilla (postar arquivos no servidor)
+
+******Configuração dos aplicativos******
+**Configurar Xampp**
+1 - Só instalar e startar Apache php e MySql
+
+**Configurar Eclipse + Plugin GitHub**
+1 - install eclipse + java JDK
+2 - download plugin help -> Eclipse Marketplace -> Eclipse Egit
+3 - rightBotton in Project -> import... -> Projects from Git -> paste URL
+4 - salvar o projeto na pasta do xampp -> next -> next -> finish.
+
+**Configurar FileZilla**
+1 - Site manager -> new site ->
+host: ftp.projeto1.comxa.com
+user: a6233819
+passwd: 000webhost
+
+by FerNaNdo
