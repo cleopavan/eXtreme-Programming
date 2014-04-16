@@ -13,8 +13,8 @@ Fernando teste 100%
 alteração
 
 *** - Chocolate - ***
-Andrey: 5,10 (16/04)
+Andrey: 4,75 (16/04) - Bis Branco
 Fernando: :)
-Isac: 4,75 (14/04)
+Isac: 4,75 (14/04) - Bis Branco
 Patrick : :)
 Thiago: :)
