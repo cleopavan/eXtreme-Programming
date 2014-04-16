@@ -11,3 +11,10 @@ Patrick teste =D
 Fernando teste 100%
 
 alteração
+
+*** - Chocolate - ***
+Andrey: 5,10 (16/04)
+Fernando: :)
+Isac: 4,75 (14/04)
+Patrick : :)
+Thiago: :)
