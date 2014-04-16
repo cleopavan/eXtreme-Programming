@@ -16,5 +16,6 @@ alteração
 Andrey: 4,75 (16/04) - Bis Branco
 Fernando: :)
 Isac: 4,75 (14/04) - Bis Branco
+		+0,8 cents
 Patrick : :)
 Thiago: :)
