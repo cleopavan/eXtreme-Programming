@@ -18,4 +18,4 @@ Fernando: :)
 Isac: 4,75 (14/04) - Bis Branco
 		+0,8 cents
 Patrick : :)
-Thiago: :)
+Thiago: 4,75 (28/04) - Bis Branco
