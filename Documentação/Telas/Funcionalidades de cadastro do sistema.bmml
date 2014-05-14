@@ -1,0 +1,14 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="875" measuredH="414" mockupW="450" mockupH="400">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="425" y="14" w="-1" h="-1" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tela%20Administrador%0Ahttp%3A//</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="427" y="87" w="446" h="295" measuredW="200" measuredH="212" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Emiss%F5es%20de%20Documentos%0AServidor%0ACurso%0APermiss%F5es%0ASair</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
