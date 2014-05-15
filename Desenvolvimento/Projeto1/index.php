@@ -11,7 +11,15 @@
 			echo "$nome";
 		}
 	}
+	echo '<br/><br/><br/><br/>';
 	
+	$r = chamaCadastroFuncao("faz nada");
+	echo "valor da index -> $r <-<br/>";
+	if($r){
+		echo 'deu certo<br/>';
+	}else{
+		echo 'deu errado<br/>';
+	}
 	out();
 ?>
 	

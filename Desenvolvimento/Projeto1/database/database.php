@@ -1,7 +1,7 @@
 <?php
 
 	/*
-	$host = "mysql9.000webhost.com";
+	$host = "ftp.projeto1.comxa.com";
 	$user = "a6233819_000web";
 	$pass = "000webhost";
 	*/
@@ -9,7 +9,7 @@
 	$user = "root";
 	$pass = "";
 	$app = "a6233819_000web";
-	
+
 	mysql_connect($host, $user, $pass);
 	mysql_select_db($app);
 
