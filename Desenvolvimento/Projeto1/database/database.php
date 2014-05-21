@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 	/*
 	$host = "ftp.projeto1.comxa.com";
 =======
@@ -16,7 +15,7 @@
 	$user = "root";
 	$pass = "";
 
-	$app = "a6233819_000web";
+	$app = "controleacademico";
 
 	/*
 	$app = "projeto1";

@@ -22,99 +22,164 @@
 		echo '	</body>';
 		echo '</html>';
 	}
-
-	function callTest(){//teste de consulta banco
-		$r = test();
-		return $r;
-	}
 	
 	function chamaCadastroFuncao($funcao){
 		$r = getIdTabelaFuncao();
-		
-		echo "linhas -> ". mysql_num_rows($r) . "<br/>";
+		$id = 0;
+		echo "Funcao -> ". mysql_num_rows($r) . "<br/>";
 		if(mysql_num_rows($r) > 0){
 			while($row = mysql_fetch_assoc($r)){
 				$id = $row['idFuncao'];
 			}
 		}
 		
-		$funcao = addslashes($funcao);
-		$id++;
+		$id = $id + 1;
 		$dados = Array();
 		$dados['id'] = $id;
-		$dados['funcao'] = $funcao;
-		$r = cadastroFruncao($dados);
+		$dados['funcao'] = addslashes($funcao);
+		$dados['regValido'] = 1;
+		$r = cadastroFuncao($dados);
 		return $r;
 	}
-	function chamaCadastroServidoresFuncao(){
-		
+	
+	function chamaCadastroServidoresFuncao($idFuncao, $siape, $dataInicio, $dataSaida, $cargaHoraria){
+		$dados = Array();
+		$dados['idFuncao'] = addslashes($idFuncao);
+		$dados['siape'] = addslashes($siape);
+		$dados['dataInicio'] = addslashes($dataInicio);
+		$dados['dataSaida'] = addslashes($dataSaida);
+		$dados['cargaHoraria'] = addslashes($cargaHoraria);
+		$dados['regValido'] = 1;
+		$r = cadastroServidoresFuncao($dados);
+		return $r;
 	}
-	function chamaCadastroCargos(){
+	
+	function chamaCadastroCargos($cargo){
 		$r = getIdTabelaCargos();
-		
-		echo "linhas -> ". mysql_num_rows($r) . "<br/>";
+		$id = 0;
+		echo "Cargos -> ". mysql_num_rows($r) . "<br/>";
 		if(mysql_num_rows($r) > 0){
 			while($row = mysql_fetch_assoc($r)){
-				$id = $row['idCargo'];
+				$id = $row['idCargos'];
 			}
 		}
 		
-		$funcao = addslashes($cargo);
-		$id++;
+		$id = $id + 1;
 		$dados = Array();
 		$dados['id'] = $id;
-		$dados['cargo'] = $cargo;
-		$r = cadastroFruncao($dados);
+		$dados['cargo'] = addslashes($cargo);
+		$dados['regValido'] = 1;
+		
+		$r = cadastroCargos($dados);
+		
 		return $r;
 	}
-	function chamaCadastroSituacaoServidor(){
+	
+	function chamaCadastroSituacaoServidor($situacao, $dataEntrada, $dataSaida){
+		$r = getIdTabelaSituacaoServidor();
+		$id = 0;
+		echo "SituacaoServidor -> ". mysql_num_rows($r) . "<br/>";
+		if(mysql_num_rows($r) > 0){
+			while($row = mysql_fetch_assoc($r)){
+				$id = $row['idSituacaoServidor'];
+			}
+		}
+		
+		$id = $id + 1;
+		$dados = Array();
+		$dados['id'] = $id;
+		$dados['situacao'] = addslashes($situacao);
+		$dados['dataEntrada'] = addslashes($dataEntrada);
+		$dados['dataSaida'] = addslashes($dataSaida);
+		$dados['regValido'] = 1;
+		
+		$r = cadastroSituacaoServidor($dados);
+		
+		return $r;
+	}
+	
+	function chamaCadastroJornada($jornada){
+		$r = getIdTabelaJornada();
+		$id = 0;
+		echo "Jornada -> ". mysql_num_rows($r) . "<br/>";
+		if(mysql_num_rows($r) > 0){
+			while($row = mysql_fetch_assoc($r)){
+				$id = $row['idJornada'];
+			}
+		}
+		
+		$id = $id + 1;
+		$dados = Array();
+		$dados['id'] = $id;
+		$dados['jornada'] = addslashes($jornada);
+		$dados['regValido'] = 1;
+		
+		$r = cadastroJornada($dados);
+		
+		return $r;
+	}
+	
+	function chamaCadastroNivelServidor(){
 		
 	}
-	function chamaCadastroJornada(){
-		
-	}
-	function chamaCadastroNivel(){
-		
-	}
+	
 	function chamaCadastroNivelCursos(){
 		
 	}
+	
 	function chamaCadastroCursos(){
 		
 	}
+	
 	function chamaCadastroDominios(){
 		
 	}
+	
 	function chamaCadastroCcrs(){
 		
 	}
+	
 	function chamaCadastroCursosCcrs(){
 		
 	}
+	
 	function chamaCadastroDiaSemana(){
 		
 	}
+	
 	function chamaCadastroPeriodos(){
 		
 	}
+	
 	function chamaCadastroHorarios(){
 		
 	}
+	
 	function chamaCadastroSalas(){
 		
 	}
+	
 	function chamaCadastroAlocacao(){
 		
 	}
+	
 	function chamaCadastroServidorCursoCcr(){
 		
 	}
+	
 	function chamaCadastroServidores(){
 		
 	}
 	
-	
 	function popularTabelas(){
-	
+		chamaCadastroFuncao("Cadastro de Funcao");
+		chamaCadastroCargos("Cadastro de Cargos");
+		chamaCadastroJornada("Cadastro de Jornada");
+		//chamaCadastroServidoresFuncao(2, 'charDe7', '1999-12-15 00:00:00', 40);
+		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", NULL, NULL);
+		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", '1999-12-15 12:13:15', NULL);
+		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", NULL, '1999-12-15 12:13:15');
+		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", '1999-12-15 15:13:15', '1999-12-16 20:13:15');
+		return true;
 	}
 ?>
