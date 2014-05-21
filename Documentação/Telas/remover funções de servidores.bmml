@@ -10,44 +10,38 @@
         <text>Relat%F3rios%0AServidor%0ACurso%0APermisso%F5s%0ASair</text>
       </controlProperties>
     </control>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::Canvas" x="60" y="91" w="474" h="55" measuredW="100" measuredH="70" zOrder="4" locked="false" isInGroup="-1"/>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Canvas" x="60" y="91" w="474" h="55" measuredW="100" measuredH="70" zOrder="3" locked="false" isInGroup="-1"/>
     <control controlID="3" controlTypeID="com.balsamiq.mockups::TabBar" x="136" y="151" w="398" h="432" measuredW="321" measuredH="100" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Buscar%2C%20Cadastrar%2C%20%7Bcolor%3A%23FF0000%7D%20Fun%E7%E3o%20do%20Servidor%20%7Bcolor%7D</text>
       </controlProperties>
     </control>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="75" y="107" w="295" h="-1" measuredW="288" measuredH="23" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="75" y="107" w="295" h="-1" measuredW="288" measuredH="23" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <size>20</size>
         <text>Servidor%20-%3E%20Fun%E7%E3o%20do%20servidor</text>
       </controlProperties>
     </control>
-    <control controlID="49" controlTypeID="com.balsamiq.mockups::TextInput" x="161" y="244" w="113" h="-1" measuredW="79" measuredH="26" zOrder="6" locked="false" isInGroup="-1"/>
-    <control controlID="50" controlTypeID="com.balsamiq.mockups::SubTitle" x="161" y="211" w="-1" h="-1" measuredW="62" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="49" controlTypeID="com.balsamiq.mockups::TextInput" x="161" y="244" w="113" h="-1" measuredW="79" measuredH="26" zOrder="5" locked="false" isInGroup="-1"/>
+    <control controlID="50" controlTypeID="com.balsamiq.mockups::SubTitle" x="161" y="211" w="-1" h="-1" measuredW="62" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Siape</text>
       </controlProperties>
     </control>
-    <control controlID="57" controlTypeID="com.balsamiq.mockups::Button" x="352" y="500" w="-1" h="-1" measuredW="130" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Exluir%20selecionado</text>
-      </controlProperties>
-    </control>
-    <control controlID="58" controlTypeID="com.balsamiq.mockups::Button" x="274" y="500" w="-1" h="-1" measuredW="47" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="58" controlTypeID="com.balsamiq.mockups::Button" x="463" y="496" w="-1" h="-1" measuredW="47" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Sair</text>
       </controlProperties>
     </control>
-    <control controlID="60" controlTypeID="com.balsamiq.mockups::FieldSet" x="146" y="185" w="379" h="383" measuredW="200" measuredH="170" zOrder="3" locked="false" isInGroup="-1"/>
-    <control controlID="61" controlTypeID="com.balsamiq.mockups::Button" x="289" y="244" w="31" h="27" measuredW="46" measuredH="27" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="61" controlTypeID="com.balsamiq.mockups::Button" x="289" y="244" w="31" h="27" measuredW="46" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>SearchIcon%7Csmall</icon>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="62" controlTypeID="com.balsamiq.mockups::DataGrid" x="154" y="311" w="362" h="171" measuredW="379" measuredH="171" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="62" controlTypeID="com.balsamiq.mockups::DataGrid" x="154" y="311" w="362" h="171" measuredW="376" measuredH="171" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Fun%E7%E3o%20exercida%2C%20CH%2C%20DT%20Inicio%2C%20DT%20Fim%2C%20Remover%0AFun%E7%E3o%201%2C%2030%2C%2010%5C02%5C2007%2C%2010%5C02%5C2009%2C%20%28%20%29%0AFun%E7%E3o%202%2C%2060%2C%2011%5C02%5C2009%2C%2010%5C12%5C2009%2C%20%28o%29%0AFun%E7%E3o%203%2C%2090%2C%2011%5C12%5C2009%2C%2010%5C02%5C2011%2C%20%28%20%29%0AFun%E7%E3o%204%2C%20100%2C%2011%5C02%5C2011%2C%2010%5C02%5C2013%2C%20%28%20%29%0AFun%E7%E3o%205%2C%2080%2C%2010%5C02%5C2013%2C%20%2C%20%28%20%29</text>
+        <text>Fun%E7%E3o%20exercida%2C%20CH%2C%20DT%20Inicio%20v%2C%20DT%20Fim%20v%2C%20T%E9rmino%0AFun%E7%E3o%201%2C%2030%2C%2010%5C02%5C2007%2C%2010%5C02%5C2009%2C%20%28%20%29%0AFun%E7%E3o%202%2C%2060%2C%2011%5C02%5C2009%2C%2010%5C12%5C2009%2C%20%28%20%29%0AFun%E7%E3o%203%2C%2090%2C%2011%5C12%5C2009%2C%2010%5C02%5C2011%2C%20%28%20%29%0AFun%E7%E3o%204%2C%20100%2C%2011%5C02%5C2011%2C%2010%5C02%5C2013%2C%20%28%20%29%0AFun%E7%E3o%205%2C%2080%2C%2010%5C02%5C2013%2C%20%2C%20%28o%29</text>
       </controlProperties>
     </control>
   </controls>
