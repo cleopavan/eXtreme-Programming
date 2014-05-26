@@ -140,16 +140,67 @@
 		return $r;
 	}
 	
-	function chamaCadastroNivelCursos(){
+	function chamaCadastroNivelCursos($nivel){
+		$r = getIdTabelaNivelCursos();
+		$id = 0;
+		echo "Nivel Cursos -> ". mysql_num_rows($r) . "<br/>";
+		if(mysql_num_rows($r) > 0){
+			while($row = mysql_fetch_assoc($r)){
+				$id = $row['idNivelCursos'];
+			}
+		}
 		
+		$id = $id + 1;
+		$dados = Array();
+		$dados['id'] = $id;
+		$dados['nivel'] = addslashes($nivel);
+		$dados['regValido'] = 1;
+		
+		$r = cadastroNivelCursos($dados);
+		
+		return $r;
 	}
 	
-	function chamaCadastroCursos(){
+	function chamaCadastroCursos($nome, $idNivelCursos){//******************************VERIFICAR
+		$r = getIdTabelaCursos();
+		$id = 0;
+		echo "Cursos -> ". mysql_num_rows($r) . "<br/>";
+		if(mysql_num_rows($r) > 0){
+			while($row = mysql_fetch_assoc($r)){
+				$id = $row['codCursos'];
+			}
+		}
 		
+		$id = $id + 1;
+		$dados = Array();
+		$dados['id'] = $id;
+		$dados['nivel'] = addslashes($nivel);
+		$dados['regValido'] = 1;
+		
+		$r = cadastroNivelCursos($dados);
+		
+		return $r;
 	}
 	
-	function chamaCadastroDominios(){
+	function chamaCadastroDominios($dominio){
+		$r = getIdTabelaDominios();
+		$id = 0;
+		echo "Dominio -> ". mysql_num_rows($r) . "<br/>";
+		if(mysql_num_rows($r) > 0){
+			while($row = mysql_fetch_assoc($r)){
+				$id = $row['idDominio'];
+			}
+		}
 		
+		$id = $id + 1;
+		$dados = Array();
+		$dados['id'] = $id;
+		$dados['dominio'] = addslashes($dominio);
+		$dados['regValido'] = 1;
+		
+		$r = cadastroDominios($dados);
+		
+		return $r;
 	}
 	
 	function chamaCadastroCcrs(){
@@ -202,11 +253,11 @@
 		$dados['idNivelServidor'] = addslashes($idNivelServidor);
 		$dados['regValido'] = 1;
 		$dados['senha'] = geraSenha(8, true, true, false);
-
+	
+		echo "Servidores<br/>";
 		$r = cadastroServidores($dados);
 		
 		return $r;
-		
 	}
 	
 	function popularTabelas(){
@@ -219,6 +270,8 @@
 		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", '1999-12-15 15:13:15', '1999-12-16 20:13:15');
 		chamaCadastroNivelServidor("Cadastro de Nivel Servidor");
 		chamaCadastroServidores(geraSenha(7, false, true, false), 'Fulano', 'Fonseca', 'Observacao', 'quemSubs', 1, 2, 3, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 2);
+		chamaCadastroNivelCursos("Nivel Cursos");
+		chamaCadastroDominios("Dominio");
 		return true;
 	}
 	

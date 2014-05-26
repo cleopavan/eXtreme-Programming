@@ -154,4 +154,42 @@
 		
 		return $r;
 	}
+	
+	function getIdTabelaNivelCursos(){
+		$sql = "SELECT idNivelCursos FROM nivelcursos ORDER BY idNivelCursos DESC LIMIT 1";
+		
+		$r = dbConsulta($sql);
+		return $r;
+	}
+	
+	function cadastroNivelCursos($dados){
+		$id = $dados['id'];
+		$nivel = $dados['nivel'];
+		$regValido = $dados['regValido'];
+		
+		$sql = "INSERT INTO nivelcursos (idNivelCursos, nivel, regValido) VALUES ($id, '$nivel', $regValido)";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function getIdTabelaDominios(){
+		$sql = "SELECT idDominio FROM dominios ORDER BY idDominio DESC LIMIT 1";
+		
+		$r = dbConsulta($sql);
+		return $r;
+	}
+	
+	function cadastroDominios($dados){
+		$id = $dados['id'];
+		$dominio = $dados['dominio'];
+		$regValido = $dados['regValido'];
+		
+		$sql = "INSERT INTO dominios (idDominio, dominio, regValido) VALUES ($id, '$dominio', $regValido)";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
 ?>
