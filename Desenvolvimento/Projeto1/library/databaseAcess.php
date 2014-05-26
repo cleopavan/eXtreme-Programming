@@ -96,14 +96,59 @@
 		$regValido = $dados['regValido'];
 		
 		if(empty($dataEntrada) && empty($dataSaida)){
-			$sql = "INSERT INTO situacaoservidor (idSituacaoServidor, situacao, dataEntrada, dataSaida, regValido) VALUES ($id, '$situacao', NULL, NULL, 1)";
+			$sql = "INSERT INTO situacaoservidor (idSituacaoServidor, situacao, dataEntrada, dataSaida, regValido) VALUES ($id, '$situacao', NULL, NULL, $regValido)";
 		}else if(empty($dataEntrada)){
-			$sql = "INSERT INTO situacaoservidor (idSituacaoServidor, situacao, dataEntrada, dataSaida, regValido) VALUES ($id, '$situacao', NULL, '$dataSaida', 1)";
+			$sql = "INSERT INTO situacaoservidor (idSituacaoServidor, situacao, dataEntrada, dataSaida, regValido) VALUES ($id, '$situacao', NULL, '$dataSaida', $regValido)";
 		}else if(empty($dataSaida)){
-			$sql = "INSERT INTO situacaoservidor (idSituacaoServidor, situacao, dataEntrada, dataSaida, regValido) VALUES ($id, '$situacao', '$dataEntrada', NULL, 1)";
+			$sql = "INSERT INTO situacaoservidor (idSituacaoServidor, situacao, dataEntrada, dataSaida, regValido) VALUES ($id, '$situacao', '$dataEntrada', NULL, $regValido)";
 		}else{
-			$sql = "INSERT INTO situacaoservidor (idSituacaoServidor, situacao, dataEntrada, dataSaida, regValido) VALUES ($id, '$situacao', '$dataEntrada', '$dataSaida', 1)";
+			$sql = "INSERT INTO situacaoservidor (idSituacaoServidor, situacao, dataEntrada, dataSaida, regValido) VALUES ($id, '$situacao', '$dataEntrada', '$dataSaida', $regValido)";
 		}
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function getIdTabelaNivelServidor(){
+		$sql = "SELECT idNivelServidor FROM nivelservidor ORDER BY idNivelServidor DESC LIMIT 1";
+		
+		$r = dbConsulta($sql);
+		return $r;
+	}
+	
+	function cadastroNivelServidor($dados){
+		$id = $dados['id'];
+		$nivel = $dados['nivel'];
+		$regValido = $dados['regValido'];
+		
+		$sql = "INSERT INTO nivelservidor (idNivelServidor, nivel, regValido) VALUES ($id, '$nivel', $regValido)";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function cadastroServidores($dados){
+		$siape = $dados['siape'];
+		$nome = $dados['nome'];
+		$sobrenome = $dados['sobrenome'];
+		$observacao = $dados['observacao'];
+		$quemSubstitui = $dados['quemSubistitui'];
+		$idCargo = $dados['idCargo'];
+		$idJornada = $dados['idJornada'];
+		$idSituacaoServidor = $dados['idSituacaoServidor'];
+		$email = $dados['email'];
+		$fone1 = $dados['fone1'];
+		$fone2 = $dados['fone2'];
+		$endereco = $dados['endereco'];
+		$cidade = $dados['cidade'];
+		$idNivelServidor = $dados['idNivelServidor'];
+		$regValido = $dados['regValido'];
+		$senha = $dados['senha'];
+		
+		$sql = "INSERT INTO servidores (siape, nome, sobrenome, observacao, quemSubstitui, idCargo, idJornada, idSituacaoServidor, email, fone1, fone2, endereco, cidade, senha, idNivelServidor, regValido)
+		VALUES ('$siape', '$nome', '$sobrenome', '$observacao', '$quemSubstitui', $idCargo, $idJornada, $idSituacaoServidor, '$email', '$fone1', '$fone2', '$endereco', '$cidade', '$senha', $idNivelServidor, $regValido)";
 		
 		$r = dbConsulta($sql);
 		

@@ -119,8 +119,25 @@
 		return $r;
 	}
 	
-	function chamaCadastroNivelServidor(){
+	function chamaCadastroNivelServidor($nivel){
+		$r = getIdTabelaNivelServidor();
+		$id = 0;
+		echo "Nivel Servidor -> ". mysql_num_rows($r) . "<br/>";
+		if(mysql_num_rows($r) > 0){
+			while($row = mysql_fetch_assoc($r)){
+				$id = $row['idNivelServidor'];
+			}
+		}
 		
+		$id = $id + 1;
+		$dados = Array();
+		$dados['id'] = $id;
+		$dados['nivel'] = addslashes($nivel);
+		$dados['regValido'] = 1;
+		
+		$r = cadastroNivelServidor($dados);
+		
+		return $r;
 	}
 	
 	function chamaCadastroNivelCursos(){
@@ -167,7 +184,28 @@
 		
 	}
 	
-	function chamaCadastroServidores(){
+	function chamaCadastroServidores($siape, $nome, $sobrenome, $observacao, $quemSubstitui, $idCargo, $idJornada, $idSituacaoServidor, $email, $fone1, $fone2, $endereco, $cidade, $idNivelServidor){
+		$dados = Array();
+		$dados['siape'] = addslashes($siape);
+		$dados['nome'] = addslashes($nome);
+		$dados['sobrenome'] = addslashes($sobrenome);
+		$dados['observacao'] = addslashes($observacao);
+		$dados['quemSubistitui'] = addslashes($quemSubstitui);
+		$dados['idCargo'] = addslashes($idCargo);
+		$dados['idJornada'] = addslashes($idJornada);
+		$dados['idSituacaoServidor'] = addslashes($idSituacaoServidor);
+		$dados['email'] = addslashes($email);
+		$dados['fone1'] = addslashes($fone1);
+		$dados['fone2'] = addslashes($fone2);
+		$dados['endereco'] = addslashes($endereco);
+		$dados['cidade'] = addslashes($cidade);
+		$dados['idNivelServidor'] = addslashes($idNivelServidor);
+		$dados['regValido'] = 1;
+		$dados['senha'] = geraSenha(8, true, true, false);
+
+		$r = cadastroServidores($dados);
+		
+		return $r;
 		
 	}
 	
@@ -175,11 +213,48 @@
 		chamaCadastroFuncao("Cadastro de Funcao");
 		chamaCadastroCargos("Cadastro de Cargos");
 		chamaCadastroJornada("Cadastro de Jornada");
-		//chamaCadastroServidoresFuncao(2, 'charDe7', '1999-12-15 00:00:00', 40);
 		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", NULL, NULL);
 		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", '1999-12-15 12:13:15', NULL);
 		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", NULL, '1999-12-15 12:13:15');
 		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", '1999-12-15 15:13:15', '1999-12-16 20:13:15');
+		chamaCadastroNivelServidor("Cadastro de Nivel Servidor");
+		chamaCadastroServidores(geraSenha(7, false, true, false), 'Fulano', 'Fonseca', 'Observacao', 'quemSubs', 1, 2, 3, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 2);
 		return true;
 	}
+	
+	function geraSenha($tamanho, $maiusculas, $numeros, $simbolos){
+		/**
+		* Função para gerar senhas aleatórias
+		*
+		* @author    Thiago Belem <contato@thiagobelem.net>
+		*
+		* @param integer $tamanho Tamanho da senha a ser gerada
+		* @param boolean $maiusculas Se terá letras maiúsculas
+		* @param boolean $numeros Se terá números
+		* @param boolean $simbolos Se terá símbolos
+		*
+		* @return string A senha gerada
+		*/
+		$lmin = 'abcdefghijklmnopqrstuvwxyz';
+		$lmai = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$num = '1234567890';
+		$simb = '!@#$%*-';
+		$retorno = '';
+		$caracteres = '';
+		$caracteres .= $lmin;
+		
+		if ($maiusculas) $caracteres .= $lmai;
+		if ($numeros) $caracteres .= $num;
+		if ($simbolos) $caracteres .= $simb;
+		$len = strlen($caracteres);
+		for ($n = 1; $n <= $tamanho; $n++) {
+			$rand = mt_rand(1, $len);
+			$retorno .= $caracteres[$rand-1];
+		}
+		return $retorno;
+	}
+
+	
+	
+	
 ?>
