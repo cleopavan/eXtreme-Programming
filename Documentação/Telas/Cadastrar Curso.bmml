@@ -67,31 +67,36 @@
         <text>Selecionar</text>
       </controlProperties>
     </control>
-    <control controlID="69" controlTypeID="com.balsamiq.mockups::FieldSet" x="214" y="336" w="232" h="142" measuredW="200" measuredH="170" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="69" controlTypeID="com.balsamiq.mockups::FieldSet" x="227" y="359" w="232" h="142" measuredW="200" measuredH="170" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <text>N%EDvel</text>
       </controlProperties>
     </control>
-    <control controlID="70" controlTypeID="com.balsamiq.mockups::Title" x="262" y="346" w="165" h="-1" measuredW="148" measuredH="31" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="70" controlTypeID="com.balsamiq.mockups::Title" x="275" y="369" w="165" h="-1" measuredW="148" measuredH="31" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <size>28</size>
         <text>Incluir%20N%EDvel</text>
       </controlProperties>
     </control>
-    <control controlID="71" controlTypeID="com.balsamiq.mockups::TextInput" x="300" y="382" w="60" h="-1" measuredW="79" measuredH="26" zOrder="15" locked="false" isInGroup="-1"/>
-    <control controlID="72" controlTypeID="com.balsamiq.mockups::Label" x="247" y="385" w="45" h="-1" measuredW="34" measuredH="21" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="71" controlTypeID="com.balsamiq.mockups::TextInput" x="313" y="405" w="60" h="-1" measuredW="79" measuredH="26" zOrder="15" locked="false" isInGroup="-1"/>
+    <control controlID="72" controlTypeID="com.balsamiq.mockups::Label" x="260" y="408" w="45" h="-1" measuredW="34" measuredH="21" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Nome</text>
       </controlProperties>
     </control>
-    <control controlID="73" controlTypeID="com.balsamiq.mockups::Button" x="384" y="427" w="38" h="20" measuredW="47" measuredH="27" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="73" controlTypeID="com.balsamiq.mockups::Button" x="397" y="450" w="38" h="20" measuredW="47" measuredH="27" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Sair</text>
       </controlProperties>
     </control>
-    <control controlID="74" controlTypeID="com.balsamiq.mockups::Button" x="240" y="427" w="84" h="20" measuredW="60" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="74" controlTypeID="com.balsamiq.mockups::Button" x="253" y="450" w="84" h="20" measuredW="60" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Salvar</text>
+      </controlProperties>
+    </control>
+    <control controlID="75" controlTypeID="com.balsamiq.mockups::Label" x="229" y="688" w="-1" h="-1" measuredW="191" measuredH="21" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Curso%20cadastrado%20com%20sucesso%21</text>
       </controlProperties>
     </control>
   </controls>

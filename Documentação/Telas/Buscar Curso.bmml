@@ -11,53 +11,58 @@
       </controlProperties>
     </control>
     <control controlID="2" controlTypeID="com.balsamiq.mockups::Canvas" x="60" y="91" w="541" h="55" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1"/>
-    <control controlID="3" controlTypeID="com.balsamiq.mockups::TabBar" x="136" y="146" w="465" h="569" measuredW="191" measuredH="100" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::TabBar" x="136" y="146" w="465" h="569" measuredW="215" measuredH="100" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <backgroundAlpha>1</backgroundAlpha>
         <color>16777215</color>
-        <text>Editar%2C%20Cadastrar</text>
+        <text>Pesquisar%2C%20Cadastrar</text>
       </controlProperties>
     </control>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="75" y="107" w="225" h="-1" measuredW="143" measuredH="23" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="75" y="107" w="225" h="-1" measuredW="179" measuredH="23" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <size>20</size>
-        <text>Curso%20-%3E%20Editar</text>
+        <text>Curso%20-%3E%20Pesquisar</text>
       </controlProperties>
     </control>
-    <control controlID="5" controlTypeID="com.balsamiq.mockups::SubTitle" x="151" y="195" w="132" h="-1" measuredW="128" measuredH="31" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::SubTitle" x="157" y="195" w="132" h="-1" measuredW="79" measuredH="31" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <size>28</size>
-        <text>Pesquisar</text>
+        <text>Busca</text>
       </controlProperties>
     </control>
-    <control controlID="9" controlTypeID="com.balsamiq.mockups::TextInput" x="151" y="255" w="383" h="-1" measuredW="79" measuredH="26" zOrder="6" locked="false" isInGroup="-1"/>
-    <control controlID="45" controlTypeID="com.balsamiq.mockups::Button" x="157" y="330" w="106" h="27" measuredW="109" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::TextInput" x="157" y="278" w="287" h="-1" measuredW="59" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Curso%201</text>
+      </controlProperties>
+    </control>
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::Button" x="444" y="278" w="106" h="27" measuredW="109" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>SearchIcon%7Csmall</icon>
         <text>Pesquisar</text>
       </controlProperties>
     </control>
-    <control controlID="51" controlTypeID="com.balsamiq.mockups::Button" x="555" y="255" w="-1" h="-1" measuredW="31" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="51" controlTypeID="com.balsamiq.mockups::Button" x="557" y="278" w="-1" h="-1" measuredW="31" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <text>+</text>
       </controlProperties>
     </control>
-    <control controlID="54" controlTypeID="com.balsamiq.mockups::RadioButton" x="157" y="293" w="-1" h="-1" measuredW="50" measuredH="22" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="54" controlTypeID="com.balsamiq.mockups::RadioButton" x="157" y="241" w="-1" h="-1" measuredW="50" measuredH="22" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
+        <state>selected</state>
         <text>Nome</text>
       </controlProperties>
     </control>
-    <control controlID="55" controlTypeID="com.balsamiq.mockups::RadioButton" x="239" y="294" w="-1" h="-1" measuredW="59" measuredH="22" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="55" controlTypeID="com.balsamiq.mockups::RadioButton" x="224" y="241" w="-1" h="-1" measuredW="59" measuredH="22" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <text>C%F3digo</text>
       </controlProperties>
     </control>
-    <control controlID="56" controlTypeID="com.balsamiq.mockups::RadioButton" x="334" y="294" w="-1" h="-1" measuredW="45" measuredH="22" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="56" controlTypeID="com.balsamiq.mockups::RadioButton" x="300" y="241" w="-1" h="-1" measuredW="45" measuredH="22" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <text>N%EDvel</text>
       </controlProperties>
     </control>
-    <control controlID="58" controlTypeID="com.balsamiq.mockups::DataGrid" x="151" y="388" w="437" h="235" measuredW="305" measuredH="171" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="58" controlTypeID="com.balsamiq.mockups::DataGrid" x="157" y="345" w="437" h="235" measuredW="305" measuredH="171" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Nome%20do%20Curso%20v%2C%20C%F3digo%20%5E%2C%20N%EDvel%20%5E%2C%20Editar%20%0ACurso%201%2C%20cod1%2C%20nvl1%2C%20%28o%29%0ACurso%202%2C%20cod2%2C%20nvl2%2C%20%28%29%0ACurso%203%2C%20cod3%2C%20nvl1%2C%20%28%29%0ACurso%204%2C%20cod4%2C%20nvl2%2C%20%28%29%0ACurso%205%2C%20cod5%2C%20nvl1%2C%20%28%29%0A%7B65L%2C%200R%2C%2035%2C%200C%7D</text>
         <verticalScrollbar>true</verticalScrollbar>

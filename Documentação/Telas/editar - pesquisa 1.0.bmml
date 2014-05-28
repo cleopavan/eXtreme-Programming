@@ -11,22 +11,22 @@
       </controlProperties>
     </control>
     <control controlID="2" controlTypeID="com.balsamiq.mockups::Canvas" x="60" y="91" w="474" h="55" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1"/>
-    <control controlID="3" controlTypeID="com.balsamiq.mockups::TabBar" x="136" y="143" w="398" h="574" measuredW="307" measuredH="100" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::TabBar" x="136" y="143" w="398" h="574" measuredW="331" measuredH="100" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <backgroundAlpha>1</backgroundAlpha>
         <color>16777215</color>
-        <text>Editar%2C%20Cadastrar%2C%20Fun%E7%E3o%20do%20Servidor</text>
+        <text>Pesquisar%2C%20Cadastrar%2C%20Fun%E7%E3o%20do%20Servidor</text>
       </controlProperties>
     </control>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="75" y="107" w="225" h="-1" measuredW="168" measuredH="23" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="75" y="107" w="225" h="-1" measuredW="203" measuredH="23" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <size>20</size>
-        <text>Servidor%20-%3E%20Editar</text>
+        <text>Servidor%20-%3E%20Pesquisar</text>
       </controlProperties>
     </control>
-    <control controlID="5" controlTypeID="com.balsamiq.mockups::SubTitle" x="151" y="181" w="-1" h="-1" measuredW="110" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::SubTitle" x="151" y="181" w="-1" h="-1" measuredW="68" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Pesquisar</text>
+        <text>Busca</text>
       </controlProperties>
     </control>
     <control controlID="9" controlTypeID="com.balsamiq.mockups::TextInput" x="151" y="252" w="279" h="-1" measuredW="79" measuredH="26" zOrder="6" locked="false" isInGroup="-1"/>
