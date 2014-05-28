@@ -1,12 +1,14 @@
 <?php
 	require_once dirname(__FILE__).'/databaseAcess.php';//banco de dados
+	define("SAL", 'CadCCrs');
 	
 	function in($title){//função do cabeçalho
 		echo '<!DOCTYPE html>';
 		echo '<html>';
 		echo '	<head>';
-		//echo '		<meta http-equiv="content-type" content="text/html; charset=UTF-8">';
 		echo '		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-15">';
+		echo '		<script src="js/cadu.js"></script>';
+		echo '		<link type="text/css" rel="stylesheet" href="css/style.css"/>';
 		echo '		<title>'.$title.'</title>';//alterar para passar o nome da pagina
 		echo '	</head>';
 		echo '	<body>';
@@ -26,7 +28,6 @@
 	function chamaCadastroFuncao($funcao){
 		$r = getIdTabelaFuncao();
 		$id = 0;
-		echo "Funcao -> ". mysql_num_rows($r) . "<br/>";
 		if(mysql_num_rows($r) > 0){
 			while($row = mysql_fetch_assoc($r)){
 				$id = $row['idFuncao'];
@@ -57,7 +58,6 @@
 	function chamaCadastroCargos($cargo){
 		$r = getIdTabelaCargos();
 		$id = 0;
-		echo "Cargos -> ". mysql_num_rows($r) . "<br/>";
 		if(mysql_num_rows($r) > 0){
 			while($row = mysql_fetch_assoc($r)){
 				$id = $row['idCargos'];
@@ -78,7 +78,6 @@
 	function chamaCadastroSituacaoServidor($situacao, $dataEntrada, $dataSaida){
 		$r = getIdTabelaSituacaoServidor();
 		$id = 0;
-		echo "SituacaoServidor -> ". mysql_num_rows($r) . "<br/>";
 		if(mysql_num_rows($r) > 0){
 			while($row = mysql_fetch_assoc($r)){
 				$id = $row['idSituacaoServidor'];
@@ -101,7 +100,6 @@
 	function chamaCadastroJornada($jornada){
 		$r = getIdTabelaJornada();
 		$id = 0;
-		echo "Jornada -> ". mysql_num_rows($r) . "<br/>";
 		if(mysql_num_rows($r) > 0){
 			while($row = mysql_fetch_assoc($r)){
 				$id = $row['idJornada'];
@@ -122,7 +120,6 @@
 	function chamaCadastroNivelServidor($nivel){
 		$r = getIdTabelaNivelServidor();
 		$id = 0;
-		echo "Nivel Servidor -> ". mysql_num_rows($r) . "<br/>";
 		if(mysql_num_rows($r) > 0){
 			while($row = mysql_fetch_assoc($r)){
 				$id = $row['idNivelServidor'];
@@ -143,7 +140,6 @@
 	function chamaCadastroNivelCursos($nivel){
 		$r = getIdTabelaNivelCursos();
 		$id = 0;
-		echo "Nivel Cursos -> ". mysql_num_rows($r) . "<br/>";
 		if(mysql_num_rows($r) > 0){
 			while($row = mysql_fetch_assoc($r)){
 				$id = $row['idNivelCursos'];
@@ -161,20 +157,11 @@
 		return $r;
 	}
 	
-	function chamaCadastroCursos($nome, $idNivelCursos){//******************************VERIFICAR
-		$r = getIdTabelaCursos();
-		$id = 0;
-		echo "Cursos -> ". mysql_num_rows($r) . "<br/>";
-		if(mysql_num_rows($r) > 0){
-			while($row = mysql_fetch_assoc($r)){
-				$id = $row['codCursos'];
-			}
-		}
-		
-		$id = $id + 1;
+	function chamaCadastroCursos($codCurso, $nome, $idNivelCursos){		
 		$dados = Array();
-		$dados['id'] = $id;
-		$dados['nivel'] = addslashes($nivel);
+		$dados['codCurso'] = addslashes($codCurso);
+		$dados['nome'] = addslashes($nome);
+		$dados['nivel'] = addslashes($idNivelCursos);
 		$dados['regValido'] = 1;
 		
 		$r = cadastroNivelCursos($dados);
@@ -185,7 +172,6 @@
 	function chamaCadastroDominios($dominio){
 		$r = getIdTabelaDominios();
 		$id = 0;
-		echo "Dominio -> ". mysql_num_rows($r) . "<br/>";
 		if(mysql_num_rows($r) > 0){
 			while($row = mysql_fetch_assoc($r)){
 				$id = $row['idDominio'];
@@ -254,7 +240,6 @@
 		$dados['regValido'] = 1;
 		$dados['senha'] = geraSenha(8, true, true, false);
 	
-		echo "Servidores<br/>";
 		$r = cadastroServidores($dados);
 		
 		return $r;
@@ -272,6 +257,7 @@
 		chamaCadastroServidores(geraSenha(7, false, true, false), 'Fulano', 'Fonseca', 'Observacao', 'quemSubs', 1, 2, 3, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 2);
 		chamaCadastroNivelCursos("Nivel Cursos");
 		chamaCadastroDominios("Dominio");
+		chamaCadastroCursos(001, "Nome do Curso", 1);
 		return true;
 	}
 	
@@ -307,7 +293,15 @@
 		return $retorno;
 	}
 
-	
+	function chamaLogin($usuario, $senha){
+		$dados = array();
+		
+		$dados['usuario'] = addslashes($usuario);
+		$dados['senha'] = md5(addslashes($senha).''. SAL );
+		
+		$r = login($dados);
+		return $r;
+	}
 	
 	
 ?>

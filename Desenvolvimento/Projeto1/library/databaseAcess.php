@@ -192,4 +192,28 @@
 		
 		return $r;
 	}
+	
+	function cadastroCursos($dados){
+		$codCurso = $dados['codCurso'];
+		$nome = $dados['nome'];
+		$idNivelCursos = $dados['idNivelCursos'];
+		$regValido = $dados['regValido'];
+		
+		$sql = "INSERT INTO cursos (codCurso, nome, idNivelCursos, regValido) VALUES ($codCurso, '$nome', $idNivelCursos, $regValido)";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function login($dados){
+		$siape = $dados['usuario'];
+		$senha = $dados['senha'];
+		
+		$sql = "SELECT siape FROM servidores WHERE (siape=$siape OR email=$siape) AND senha=$senha";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
 ?>
