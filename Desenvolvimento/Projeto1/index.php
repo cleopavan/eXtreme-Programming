@@ -1,6 +1,7 @@
 <?php
 	require_once dirname(__FILE__).'/library/library.php';//banco de dados
 	in("Index");
+	echo '<body>';
 	
 	session_start();
 	if(isset($_SESSION['logged']) && $_SESSION['logged'] == 1) header("Location: home.php");

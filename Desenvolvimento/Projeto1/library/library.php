@@ -9,19 +9,21 @@
 		echo '		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-15">';
 		echo '		<script src="js/cadu.js"></script>';
 		echo '		<link type="text/css" rel="stylesheet" href="css/style.css"/>';
+		echo '		<link type="text/css" rel="stylesheet" href="css/home.css"/>';
 		echo '		<title>'.$title.'</title>';//alterar para passar o nome da pagina
 		echo '	</head>';
-		echo '	<body>';
+		//echo '	<body>';
 	}
 	
 	function out(){
-	
-		$date = date('Y');
-		echo '		<hr>';
-		echo '		<p>';
-		echo '		© '.$date.' - All rights reserved.';
-		echo '		</p>';
 		echo '	</body>';
+		//echo '<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>';
+		//echo '<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>';
+		echo '<script src="js/jquery.js"></script>';
+		echo '<script src="js/CADU.js"></script>';
+		echo '<script src="js/CADU.ui.js"></script>';
+		echo '<script src="js/actions/CADU.actions.curso.js"></script>';
+		echo '<script src="js/actions/CADU.actions.logout.js"></script>';
 		echo '</html>';
 	}
 	
@@ -161,10 +163,10 @@
 		$dados = Array();
 		$dados['codCurso'] = addslashes($codCurso);
 		$dados['nome'] = addslashes($nome);
-		$dados['nivel'] = addslashes($idNivelCursos);
+		$dados['idNivelCursos'] = addslashes($idNivelCursos);
 		$dados['regValido'] = 1;
 		
-		$r = cadastroNivelCursos($dados);
+		$r = cadastroCursos($dados);
 		
 		return $r;
 	}
@@ -189,20 +191,28 @@
 		return $r;
 	}
 	
-	function chamaCadastroCcrs(){
+	function chamaCadastroCcrs($codCcr, $nome, $cHoraria, $idDominio){
 		$dados = Array();
-		$dados['codCurso'] = addslashes($codCurso);
+		$dados['codCcr'] = addslashes($codCcr);
 		$dados['nome'] = addslashes($nome);
-		$dados['nivel'] = addslashes($idNivelCursos);
+		$dados['cHoraria'] = addslashes($cHoraria);
+		$dados['idDominio'] = addslashes($idDominio);
 		$dados['regValido'] = 1;
 		
-		$r = cadastroNivelCursos($dados);
+		$r = cadastroCcrs($dados);
 		
 		return $r;
 	}
 	
-	function chamaCadastroCursosCcrs(){
+	function chamaCadastroCursosCcrs($codCcr, $codCurso){
+		$dados = array();
+		$dados['codCcr'] = addslashes($codCcr);
+		$dados['codCurso'] = addslashes($codCurso);
+		$dados['regValido'] = 1;
 		
+		$r = cadastroCursosCcrs($dados);
+		
+		return $r;
 	}
 	
 	function chamaCadastroDiaSemana(){
@@ -246,7 +256,9 @@
 		$dados['cidade'] = addslashes($cidade);
 		$dados['idNivelServidor'] = addslashes($idNivelServidor);
 		$dados['regValido'] = 1;
-		$dados['senha'] = geraSenha(8, true, true, false);
+		//$dados['senha'] = md5(addslashes('123456'.''.SAL));
+		//$dados['senha'] = md5(addslashes(geraSenha(8, true, true, false).''.SAL));
+		$dados['senha'] = '123456';
 	
 		$r = cadastroServidores($dados);
 		
@@ -262,10 +274,11 @@
 		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", NULL, '1999-12-15 12:13:15');
 		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", '1999-12-15 15:13:15', '1999-12-16 20:13:15');
 		chamaCadastroNivelServidor("Cadastro de Nivel Servidor");
-		chamaCadastroServidores(geraSenha(7, false, true, false), 'Fulano', 'Fonseca', 'Observacao', 'quemSubs', 1, 2, 3, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 2);
+		//chamaCadastroServidores('10', 'Fulano', 'Fonseca', 'Observacao', 'quemSubs', 1, 2, 3, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 2);
+		//chamaCadastroServidores(geraSenha(7, false, true, false), 'Fulano', 'Fonseca', 'Observacao', 'quemSubs', 1, 2, 3, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 2);
 		chamaCadastroNivelCursos("Nivel Cursos");
 		chamaCadastroDominios("Dominio");
-		chamaCadastroCursos(001, "Nome do Curso", 1);
+		//chamaCadastroCursos(001, "Nome do Curso", 1);
 		return true;
 	}
 	
@@ -305,10 +318,15 @@
 		$dados = array();
 		
 		$dados['usuario'] = addslashes($usuario);
-		$dados['senha'] = md5(addslashes($senha).''. SAL );
+		$dados['senha'] = addslashes($senha);
+		//$dados['senha'] = md5(addslashes($senha).''. SAL );
 		
 		$r = login($dados);
 		return $r;
+	}
+	
+	function chamaBuscaCurso($campo, $filtro){
+		
 	}
 	
 	

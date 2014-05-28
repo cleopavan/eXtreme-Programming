@@ -206,11 +206,37 @@
 		return $r;
 	}
 	
+	function cadastroCcrs($dados){
+		$codCcr = $dados['codCcr'];
+		$nome = $dados['nome'];
+		$cHoraria = $dados['cHoraria'];
+		$idDominio = $dados['idDominio'];
+		$regValido = $dados['regValido'];
+		
+		$sql = "INSERT INTO ccrs (codCcr, nome, cHoraria, idDominio, regValido) VALUES ($codCcr, '$nome', $cHoraria, $idDominio, $regValido)";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function cadastroCursosCcrs($dados){
+		$codCcr = $dados['codCcr'];
+		$codCurso = $dados['codCurso'];
+		$regValido = $dados['regValido'];
+		
+		$sql = "INSERT INTO cursosccrs (codCcr, codCurso, regValido) VALUES ($codCcr, $codCurso, $regValido)";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
 	function login($dados){
-		$siape = $dados['usuario'];
+		$user = $dados['usuario'];
 		$senha = $dados['senha'];
 		
-		$sql = "SELECT siape FROM servidores WHERE (siape=$siape OR email=$siape) AND senha=$senha";
+		$sql = "SELECT siape FROM servidores WHERE (siape=$user OR email=$user) AND senha=$senha";
 		
 		$r = dbConsulta($sql);
 		
