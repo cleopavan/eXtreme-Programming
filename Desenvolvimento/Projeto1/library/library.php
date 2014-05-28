@@ -190,7 +190,15 @@
 	}
 	
 	function chamaCadastroCcrs(){
+		$dados = Array();
+		$dados['codCurso'] = addslashes($codCurso);
+		$dados['nome'] = addslashes($nome);
+		$dados['nivel'] = addslashes($idNivelCursos);
+		$dados['regValido'] = 1;
 		
+		$r = cadastroNivelCursos($dados);
+		
+		return $r;
 	}
 	
 	function chamaCadastroCursosCcrs(){
