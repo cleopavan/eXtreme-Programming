@@ -38,6 +38,7 @@
     </control>
     <control controlID="9" controlTypeID="com.balsamiq.mockups::TextInput" x="308" y="205" w="172" h="-1" measuredW="60" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
+        <state>up</state>
         <text>962231</text>
       </controlProperties>
     </control>
@@ -60,6 +61,7 @@
         <backgroundAlpha>0.25</backgroundAlpha>
         <borderColor>0</borderColor>
         <color>16777215</color>
+        <state>up</state>
         <text>Professor1</text>
       </controlProperties>
     </control>
@@ -68,6 +70,7 @@
         <backgroundAlpha>0.25</backgroundAlpha>
         <borderColor>0</borderColor>
         <color>16777215</color>
+        <state>up</state>
         <text>Sobrenome2</text>
       </controlProperties>
     </control>
