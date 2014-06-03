@@ -17,14 +17,14 @@ CADU.ui = new function() {
 		$('#id-insert').on('click', CADU.ui.insert);
 	};
 	
-	this.registerAction = function(button){ // insere as funcionalidades de uma ação já definida.
+	this.registerAction = function(button){ // insere as funcionalidades de uma a����o j�� definida.
 		//console.log('registerAction ' + button.data.id);
 		//console.log(button.data.click);
 		var buttonName = button.data.id.replace('button-', ' ');
 		
 		$('#id-action-panel').html($('#id-action-panel').html() +
 			'<div class="buttons" id=' +button.data.id +' onclick=' + button.data.click +'>'
-			+ '<h1>'+ buttonName +'</h1>'
+			+ '<h1>'+ button.data.name +'</h1>'
 			+ '</div>'
 		);
 	}
@@ -34,7 +34,7 @@ CADU.ui = new function() {
 		$('#id-search').css('background-color', 'white');
 		$('#id-search-form').show();
 		
-		var searchFilters = '<p>'; // variavel com os filtros de pesquisa de acordo com cada ação
+		var searchFilters = '<p>'; // variavel com os filtros de pesquisa de acordo com cada a����o
 		
 		for(var i in CADU.ui.activeAction.data.searchFilters){
 			console.log(CADU.ui.activeAction.data.searchFilters[i]);

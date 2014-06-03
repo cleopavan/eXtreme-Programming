@@ -35,6 +35,8 @@
 	echo '<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>';
 	echo '<script src="js/CADU.js"></script>';
 	echo '<script src="js/CADU.ui.js"></script>';
-	echo '<script src="js/actions/CADU.actions.curso.js"></script>';
-	echo '<script src="js/actions/CADU.actions.logout.js"></script>';
+	echo '<script src="js/actions/CADU.actions.horarios.js"></script>';
+	echo '<script src="js/actions/CADU.actions.status.js"></script>';
+	echo '<script src="js/actions/CADU.actions.perfil.js"></script>';
+	echo '<script src="js/actions/CADU.actions.sair.js"></script>';
 ?>

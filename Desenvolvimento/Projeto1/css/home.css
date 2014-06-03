@@ -4,9 +4,13 @@ body{
 .action_panel{
 	height: 82%;
 	width: 25%;
-	background-color: black;
+	background-color: #F1F1F1;
 	position: absolute;
 	top: 10%;
+	border-width: 1px;
+	border-style: inset;
+	border-color: #A8A8A8;
+	z-index: 1;
 }
 
 .footer{
@@ -14,13 +18,13 @@ body{
 	height: 8%;
 	position: absolute;
 	background-color: gray;
-	bottom: 0%;	
+	bottom: 0%;
 }
 
 .content{
 	height: 82%;
 	width: 75%;
-	background-color: green;
+	background-color: #F1F1F1;
 	position: absolute;
 	margin-left: 25%;
 	top: 10%;
@@ -28,18 +32,27 @@ body{
 .buttons{
 	width: 90%;
 	background-color: aqua;
-	height: 10%;
+	height: 6%;
 	float: left;
 	margin-left: 3%;
 	margin-top: 10%;
 	cursor: pointer;
+	background-image: linear-gradient(to bottom, #F2F2F2, #C4C4D4);
+	border-width: 1px;
+	border-style: inset;
+	border-color: #A8A8D8;	
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+	
 }
 .buttons h1{
 	text-align: center;
+	font-Size: 17px;
 }
 .title_action{
 	height: 10%;
-	background-color: red;
+	background-image: linear-gradient(to bottom, #7EA37E, #ABD4AB);
 	width: 100%;
 	position: absolute;
 	top: 0%;
@@ -49,7 +62,10 @@ body{
 	position: relative;
 	width: 100%;
 	height: 8%;
-	background-color: yellow;	
+	background-image: linear-gradient(to bottom, #F2F2F9, #C4C4D4);
+	border-width: 1px;
+	border-style: inset;
+	border-color: #A8A8A8;	
 }
 
 .button_options{
