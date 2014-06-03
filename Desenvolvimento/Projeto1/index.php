@@ -1,5 +1,5 @@
 <?php
-	require_once dirname(__FILE__).'/library/library.php';//banco de dados
+	require_once dirname(__FILE__).'/library/library.php';//acesso as bibliotecas do sistema
 	in("Index");
 	echo '<body>';
 	

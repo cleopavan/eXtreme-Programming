@@ -236,10 +236,30 @@
 		$user = $dados['usuario'];
 		$senha = $dados['senha'];
 		
-		$sql = "SELECT siape FROM servidores WHERE (siape=$user OR email=$user) AND senha=$senha";
+		$sql = "SELECT siape FROM servidores WHERE (siape=$user OR email=$user) AND senha='$senha'";
 		
 		$r = dbConsulta($sql);
 		
 		return $r;
+	}
+	
+	function consultaSql($dados){
+		$tabela = $dados['tabela'];
+		$filtro = $dados['filtro'];
+		$valor = $dados['valor'];
+		$tipo = $dados['tipo'];
+		
+		if($tipo == 0){
+			$sql = "SELECT * FROM '$tabela' WHERE '$filtro' = $valor";
+		}else if($tipo == 1){
+			$sql = "SELECT * FROM '$tabela' WHERE '$filtro' = '$valor'";
+		}else{
+			return -1;
+		}
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+		
 	}
 ?>

@@ -6,7 +6,8 @@
 		echo '<!DOCTYPE html>';
 		echo '<html>';
 		echo '	<head>';
-		echo '		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-15">';
+		echo '		<meta http-equiv="content-type" content="text/html; charset=utf-8">';
+		//echo '		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-15">';
 		echo '		<script src="js/cadu.js"></script>';
 		echo '		<link type="text/css" rel="stylesheet" href="css/style.css"/>';
 		echo '		<link type="text/css" rel="stylesheet" href="css/home.css"/>';
@@ -256,9 +257,9 @@
 		$dados['cidade'] = addslashes($cidade);
 		$dados['idNivelServidor'] = addslashes($idNivelServidor);
 		$dados['regValido'] = 1;
-		//$dados['senha'] = md5(addslashes('123456'.''.SAL));
-		//$dados['senha'] = md5(addslashes(geraSenha(8, true, true, false).''.SAL));
-		$dados['senha'] = '123456';
+		$senha = geraSenha(8, true, true, false);
+		$senhaCodificada = md5($senha . '' . SAL);
+		$dados['senha'] = $senhaCodificada;
 	
 		$r = cadastroServidores($dados);
 		
@@ -272,21 +273,18 @@
 		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", NULL, NULL);
 		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", '1999-12-15 15:13:15', '1999-12-16 20:13:15');
 		chamaCadastroNivelServidor("Cadastro de Nivel Servidor");
-		chamaCadastroServidores('1111111', 'Fulano', 'Fonseca', 'Observacao', 'quemSubs', 1, 2, 3, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 2);
-		chamaCadastroServidores('2222222', 'Fulano', 'Fonseca', 'Observacao', 'quemSubs', 1, 2, 3, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 2);
+		chamaCadastroServidores(geraSenha(7, true, true, false), 'Fulano', 'Fonseca', 'Observacao', 'quemSubs', 1, 2, 3, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 2);
 		chamaCadastroNivelCursos("Nivel Cursos");
 		chamaCadastroDominios("Dominio");
-		chamaCadastroCcrs('gex015', 'Estrutura de Dados I', 40, 2);
-		chamaCadastroCcrs('gex104', 'Teoria da Computação', 40, 2);
-		chamaCadastroCcrs('gex001', 'Matematica Instrumental', 40, 2);
-		chamaCadastroCursosCcrs('001', '002');
+		chamaCadastroCcrs(rand()%999, 'Estrutura de Dados I', 40, 2);
+		chamaCadastroCursosCcrs(rand()%999, rand()%999);
 		chamaCadastroDiaSemana();
 		chamaCadastroPeriodos();
 		chamaCadastroHorarios();
 		chamaCadastroSalas();
 		chamaCadastroAlocacao();
 		chamaCadastroServidorCursoCcr();
-		chamaCadastroCursos('xxxyyy', "Nome do Curso", 1);
+		chamaCadastroCursos(rand()%999, "Nome do Curso", 1);
 		return true;
 	}
 	
@@ -326,16 +324,21 @@
 		$dados = array();
 		
 		$dados['usuario'] = addslashes($usuario);
-		$dados['senha'] = addslashes($senha);
-		//$dados['senha'] = md5(addslashes($senha).''. SAL );
+		$dados['senha'] = md5(addslashes($senha) . '' . SAL);
 		
 		$r = login($dados);
 		return $r;
 	}
 	
-	function chamaBuscaCurso($campo, $filtro){
+	function chamaConsultaSql($table, $filter, $string, $tipo){
+		$dados = array();
+		$dados['tabela'] = addslashes($table);
+		$dados['filtro'] = addslashes($filter);
+		$dados['valor'] = addslashes($string);
+		$dados['tipo'] = addslashes($tipo);
 		
+		$r = consultaSql($dados);
+		
+		return $r;
 	}
-	
-	
 ?>
