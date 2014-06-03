@@ -266,19 +266,27 @@
 	}
 	
 	function popularTabelas(){
-		chamaCadastroFuncao("Cadastro de Funcao");
-		chamaCadastroCargos("Cadastro de Cargos");
+		chamaCadastroFuncao("Nome da Funcao");
+		chamaCadastroCargos("Nome do Cargos");
 		chamaCadastroJornada("Cadastro de Jornada");
 		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", NULL, NULL);
-		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", '1999-12-15 12:13:15', NULL);
-		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", NULL, '1999-12-15 12:13:15');
 		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", '1999-12-15 15:13:15', '1999-12-16 20:13:15');
 		chamaCadastroNivelServidor("Cadastro de Nivel Servidor");
-		//chamaCadastroServidores('10', 'Fulano', 'Fonseca', 'Observacao', 'quemSubs', 1, 2, 3, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 2);
-		//chamaCadastroServidores(geraSenha(7, false, true, false), 'Fulano', 'Fonseca', 'Observacao', 'quemSubs', 1, 2, 3, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 2);
+		chamaCadastroServidores('1111111', 'Fulano', 'Fonseca', 'Observacao', 'quemSubs', 1, 2, 3, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 2);
+		chamaCadastroServidores('2222222', 'Fulano', 'Fonseca', 'Observacao', 'quemSubs', 1, 2, 3, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 2);
 		chamaCadastroNivelCursos("Nivel Cursos");
 		chamaCadastroDominios("Dominio");
-		//chamaCadastroCursos(001, "Nome do Curso", 1);
+		chamaCadastroCcrs('gex015', 'Estrutura de Dados I', 40, 2);
+		chamaCadastroCcrs('gex104', 'Teoria da Computação', 40, 2);
+		chamaCadastroCcrs('gex001', 'Matematica Instrumental', 40, 2);
+		chamaCadastroCursosCcrs('001', '002');
+		chamaCadastroDiaSemana();
+		chamaCadastroPeriodos();
+		chamaCadastroHorarios();
+		chamaCadastroSalas();
+		chamaCadastroAlocacao();
+		chamaCadastroServidorCursoCcr();
+		chamaCadastroCursos('xxxyyy', "Nome do Curso", 1);
 		return true;
 	}
 	

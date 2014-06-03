@@ -8,20 +8,20 @@
 	
 	$r = popularTabelas();
 	if($r){
-		echo 'deu certo<br/>';
+		//echo 'deu certo<br/>';
 	}else{
-		echo 'deu errado<br/>';
+		//echo 'deu errado<br/>';
 	}
 	
 	echo '<div class="sign_in" id="id-sign_in">';
 	echo '	<div class="container_logo" id="id-container_logo">';
-	echo '		<p>Projeto de zueira</p>';
+	echo '		<p>Login</p>';
 	echo '	</div>';
 	echo '	<div id="container_form" class="container_form">';
 	echo '		<form action="login.php" method="post"> </br>';
-	echo '			<input id="field_form" class="input_login" type="text" name="siape" value="" placeholder="siape"> </br></br>';
-	echo '			<input id="field_form" class="input_login" type="password" name="password" value="" placeholder="senha" > </br></br>';
-	echo '			<input id="button_form" class="button_login" type="submit" name="Signin" value="entrar">';
+	echo '			Siape: <input id="field_form" class="input_login" type="text" name="siape" value="" placeholder=" Siape"> </br></br>';
+	echo '			Senha: <input id="field_form" class="input_login" type="password" name="password" value="" placeholder=" Senha" > </br></br>';
+	echo '			<input id="button_form" class="button_login" type="submit" name="Signin" value="Entrar">';
 	echo '		</form>';
 	echo '	</div>';
 	echo '</div>';
