@@ -4,9 +4,12 @@ body{
 .action_panel{
 	height: 82%;
 	width: 25%;
-	background-color: black;
+	background-color: #F1F1F1;
 	position: absolute;
 	top: 10%;
+	border-width: 2px;
+	border-style: inset;
+	border-color: #A8A8A8;	
 }
 
 .footer{
@@ -20,7 +23,7 @@ body{
 .content{
 	height: 82%;
 	width: 75%;
-	background-color: green;
+	background-color: #F1F1F1;
 	position: absolute;
 	margin-left: 25%;
 	top: 10%;
@@ -49,7 +52,10 @@ body{
 	position: relative;
 	width: 100%;
 	height: 8%;
-	background-color: yellow;	
+	background-image: linear-gradient(to bottom, #F2F2F2, #C4C4C4);
+	border-width: 1px;
+	border-style: inset;
+	border-color: #A8A8A8;	
 }
 
 .button_options{

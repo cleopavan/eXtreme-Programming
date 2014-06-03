@@ -6,12 +6,12 @@
 	session_start();
 	if(isset($_SESSION['logged']) && $_SESSION['logged'] == 1) header("Location: home.php");
 	
-	$r = popularTabelas();
+	/*$r = popularTabelas();
 	if($r){
 		//echo 'deu certo<br/>';
 	}else{
 		//echo 'deu errado<br/>';
-	}
+	}*/
 	
 	echo '<div class="sign_in" id="id-sign_in">';
 	echo '	<div class="container_logo" id="id-container_logo">';
@@ -35,7 +35,7 @@
 	echo '	<div class="container_logo_uffs" id="id-container_logo_uffs">';
 	echo '	</div>';
 	echo '</a>';
-	echo '<p>Universidade Federal da Fronteira Sul </br> Ciência da Computação</p>';
+	echo '<p>Universidade Federal da Fronteira Sul </br> Ciï¿½ncia da Computaï¿½ï¿½o</p>';
 	echo '</div>';
 	out();
 ?>
