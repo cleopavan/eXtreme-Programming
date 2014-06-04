@@ -2,7 +2,7 @@ body{
 	overflow:hidden;
 }
 .action_panel{
-	height: 82%;
+	height: 83%;
 	width: 25%;
 	background-color: #F1F1F1;
 	position: absolute;
@@ -20,10 +20,11 @@ body{
 	position: absolute;
 	background-color: gray;
 	bottom: 0%;
+	z-index: 2;
 }
 
 .content{
-	height: 82%;
+	height: 83%;
 	width: 76%;
 	background-color: #F1F1F1;
 	position: absolute;
