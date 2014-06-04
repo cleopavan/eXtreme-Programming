@@ -1,5 +1,7 @@
 body{
-	background-image:url('img/uffs.JPG');	
+	background-image:url('img/uffs.JPG');
+	background-size: 100%;
+	background-repeat: no-repeat;
 }
 .footer{
 	width: 100%;
@@ -19,7 +21,6 @@ body{
 	width: 235px;
 	height: 245px;
 	position: absolute;
-// 	background-color: green;
 	margin-left: 7%;
 	margin-top: 4%;
 	background-color:rgba(255,255,255,0.5);
@@ -30,7 +31,6 @@ body{
 	width: 35%;
 	height: 40%;
 	position: fixed;
-//	background-color: yellow;
 	margin-left: 450px;
 	margin-top: 0px;
 	cursor: default;	
@@ -42,10 +42,7 @@ body{
 	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 .container_logo{
-	// width: 23%;
 	height: 21%;
-	// background-color: red;
-	// margin-left: 36%;
 	cursor: default;
 	text-align: center;
 }
@@ -57,24 +54,19 @@ body{
 }
 .container_logo_uffs{
 	width: 10%;
-	height: 80%;
-	//background-color: red;
+	height: 50%;
 	margin-left: 34%;		
 	position: fixed;
 	background-image:url('img/uffs_logo.PNG');
-	//background-attachment:fixed;
-	//background-position:center;
-	background-size:38% 14%;
-	background-repeat:no-repeat;
+	background-size: 27% 15%;
+	background-repeat: no-repeat;
 }
 .input_login{
-	//margin-left: 24%;
 	border: 1px solid black;
 	width: 133px;
 	height: 18px;
 }
 #button_form.button_login{
-	// margin-left: 37%;
 	border: 1px solid black;
 	width: 75px;
 	height: 26px;

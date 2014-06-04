@@ -35,7 +35,7 @@
 	echo '	<div class="container_logo_uffs" id="id-container_logo_uffs">';
 	echo '	</div>';
 	echo '</a>';
-	echo '<p>Universidade Federal da Fronteira Sul </br> Ci�ncia da Computa��o</p>';
+	echo '<p>Universidade Federal da Fronteira Sul</p>';
 	echo '</div>';
 	out();
 ?>

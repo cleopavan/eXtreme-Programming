@@ -7,19 +7,16 @@
 		echo '<html>';
 		echo '	<head>';
 		echo '		<meta http-equiv="content-type" content="text/html; charset=utf-8">';
-		//echo '		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-15">';
+		echo '		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-15">';
 		echo '		<script src="js/cadu.js"></script>';
 		echo '		<link type="text/css" rel="stylesheet" href="css/style.css"/>';
 		echo '		<link type="text/css" rel="stylesheet" href="css/home.css"/>';
 		echo '		<title>'.$title.'</title>';//alterar para passar o nome da pagina
 		echo '	</head>';
-		//echo '	<body>';
 	}
 	
 	function out(){
 		echo '	</body>';
-		//echo '<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>';
-		//echo '<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>';
 		echo '<script src="js/jquery.js"></script>';
 		echo '<script src="js/CADU.js"></script>';
 		echo '<script src="js/CADU.ui.js"></script>';
@@ -216,20 +213,47 @@
 		return $r;
 	}
 	
-	function chamaCadastroDiaSemana(){
+	function chamaCadastroDiaSemana($idSemana, $idDia, $dia, $semana){
+		$dados = array();
 		
+		$dados['idSemana'] = addslashes($idSemana);
+		$dados['idDia'] = addslashes($idDia);
+		$dados['dia'] = addslashes($dia);
+		$dados['semana'] = addslashes($semana);
+		
+		$r = cadastroDiaSemana($dados);
+		
+		return $r;
 	}
 	
-	function chamaCadastroPeriodos(){
+	function chamaCadastroPeriodos($idPeriodo, $idSubPeriodo, $periodo, $horaInicio, $horaFim){
+		$dados = array();
 		
+		$dados['idPeriodo'] = $idPeriodo;
+		$dados['idSubPeriodo'] = $idSubPeriodo;
+		$dados['periodo'] = $periodo;
+		$dados['horaInicio'] = $horaInicio;
+		$dados['horaFim'] = $horaFim;
+		
+		$r = cadastroPeriodos($dados);
+		
+		return $r;
 	}
 	
 	function chamaCadastroHorarios(){
 		
 	}
 	
-	function chamaCadastroSalas(){
+	function chamaCadastroSalas($numBloco, $numSala, $descricao){
+		$dados = array();
 		
+		$dados['numBloco'] = addslashes($numBloco);
+		$dados['numSala'] = addslashes($numSala);
+		$dados['descricao'] = addslashes($descricao);
+		
+		$r = cadastroSalas($dados);
+		
+		return $r;
 	}
 	
 	function chamaCadastroAlocacao(){
@@ -270,7 +294,7 @@
 		chamaCadastroFuncao("Nome da Funcao");
 		chamaCadastroCargos("Nome do Cargos");
 		chamaCadastroJornada("Cadastro de Jornada");
-		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", NULL, NULL);
+		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", '', '');
 		chamaCadastroSituacaoServidor("Cadastro de Situacao Servidor", '1999-12-15 15:13:15', '1999-12-16 20:13:15');
 		chamaCadastroNivelServidor("Cadastro de Nivel Servidor");
 		chamaCadastroServidores(geraSenha(7, true, true, false), 'Fulano', 'Fonseca', 'Observacao', 'quemSubs', 1, 2, 3, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 2);
@@ -281,7 +305,7 @@
 		chamaCadastroDiaSemana();
 		chamaCadastroPeriodos();
 		chamaCadastroHorarios();
-		chamaCadastroSalas();
+		chamaCadastroSalas('A', rand()%999, 'sala de aula');
 		chamaCadastroAlocacao();
 		chamaCadastroServidorCursoCcr();
 		chamaCadastroCursos(rand()%999, "Nome do Curso", 1);

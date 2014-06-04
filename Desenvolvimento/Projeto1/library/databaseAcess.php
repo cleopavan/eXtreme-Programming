@@ -232,11 +232,50 @@
 		return $r;
 	}
 	
+	function cadastroSalas($dados){
+		$numBloco = $dados['numBloco'];
+		$numSala = $dados['numSala'];
+		$descricao = $dados['descricao'];
+		
+		$sql = "INSERT INTO salas (numBloco, numSala, descricao) VALUES ('$numBloco', $numSala, '$descricao')";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function cadastroDiaSemana($dados){
+		$idSemana = $dados['idSemana'];
+		$idDia = $dados['idDia'];
+		$semana = $dados['semana'];
+		$dia = $dados['dia'];
+		
+		$sql = "INSERT INTO diaSemana (idSemana, idDia, semana, dia) VALUES ($idSemana, $idDia, '$semana', '$dia')";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function cadastroPeriodos($dados){
+		$idPeriodo = $dados['idPeriodo'];
+		$idSubPeriodo = $dados['idSubPeriodo'];
+		$periodo = $dados['periodo'];
+		$horaInicio = $dados['horaInicio'];
+		$horaFim = $dados['horaFim'];
+		
+		$sql = "INSERT INTO periodos (idPeriodo, idSubPeriodo, periodo, horaInicio, horaFim) VALUES ($idPeriodo, $idSubPeriodo, '$periodo', '$horaInicio', '$horaFim')";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
 	function login($dados){
 		$user = $dados['usuario'];
 		$senha = $dados['senha'];
 		
-		$sql = "SELECT siape FROM servidores WHERE (siape=$user OR email=$user) AND senha='$senha'";
+		$sql = "SELECT siape FROM servidores WHERE (siape=$user OR email=$user) AND senha='$senha' AND regValido=1";
 		
 		$r = dbConsulta($sql);
 		
@@ -250,9 +289,9 @@
 		$tipo = $dados['tipo'];
 		
 		if($tipo == 0){
-			$sql = "SELECT * FROM '$tabela' WHERE '$filtro' = $valor";
+			$sql = "SELECT * FROM '$tabela' WHERE '$filtro' = $valor AND regValido=1";
 		}else if($tipo == 1){
-			$sql = "SELECT * FROM '$tabela' WHERE '$filtro' = '$valor'";
+			$sql = "SELECT * FROM '$tabela' WHERE '$filtro' = '$valor' AND regValido=1";
 		}else{
 			return -1;
 		}

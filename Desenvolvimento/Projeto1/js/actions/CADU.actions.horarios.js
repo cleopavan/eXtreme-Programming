@@ -1,12 +1,16 @@
 
-
-
 CADU.actions = CADU.actions || {};
 
 CADU.actions.horarios = new function(){
 	this.click = function(){
+		/*console.log('horarios');
+		window.location.replace("horarios.php");	
+		*/
+		 
+		CADU.ui.activeAction = CADU.actions.horarios; // botão ativo
 		console.log('horarios');
-		 window.location.replace("horarios.php");	
+		$('.button_options').show();
+		$('#button-horarios').css('background-color', 'white');
 	};
 	
 	this.data = {

@@ -5,8 +5,10 @@ CADU.actions = CADU.actions || {};
 
 CADU.actions.perfil = new function(){
 	this.click = function(){
+		CADU.ui.activeAction = CADU.actions.perfil; // botão ativo
 		console.log('perfil');
-		 window.location.replace("perfil.php");	
+		$('.button_options').show();
+		$('#button-perfil').css('background-color', 'white');
 	};
 	
 	this.data = {

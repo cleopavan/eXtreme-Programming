@@ -10,7 +10,7 @@
 				
 				if($table != 'servidores'){
 					if($filtro == 'codigo'){//se o campo for codigo, o tipo é 0
-						$filtro = (int)$filtro;
+						$string = (int)$string;
 						$tipo = 0;
 					}else{//se o campo for string, o tipo é 1
 						$tipo = 1;
@@ -24,6 +24,7 @@
 					}
 				}else{
 					return -2;
+					/* echo (codigo de erro)*/
 				}
 			}
 		}

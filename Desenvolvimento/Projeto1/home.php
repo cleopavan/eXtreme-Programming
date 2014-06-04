@@ -11,19 +11,19 @@
 	
 	echo '<div  id="id-content" class="content">';
 	echo '	<div  id="id-options" class="options">';
-	echo '		<div  id="id-search" class="button_options" style="display:none">';
+	/*echo '		<div  id="id-search" class="button_options" style="display:none">';
 	echo '			<h2>Buscar</h2>';
 	echo '		</div>';
 	echo '		<div  id="id-insert" class="button_options" style="display:none">';
 	echo '			<h2>Cadastrar</h2>';
-	echo '		</div>';
+	echo '		</div>';*/
 	echo '	</div>';
-	echo '	<form id="id-check-button" class="check_button">';
+	/*echo '	<form id="id-check-button" class="check_button">';
 	echo '	</form>';
 	echo '	<form action="search.php" id="id-search-form" style="display:none" class="form_search">';
 	echo '		<input type="text" name="string" value="" style="width: 50%; height: 10%; line-height: 2;">';
 	echo '		<input type="submit" value="buscar">';
-	echo '	</form>';
+	echo '	</form>';*/
 	echo '</div>';
 	
 	
