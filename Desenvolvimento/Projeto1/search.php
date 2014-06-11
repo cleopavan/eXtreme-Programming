@@ -16,7 +16,7 @@
 						$tipo = 1;
 				}
 				
-				$r = chamaConsultaSql($table, $filtro, $string);
+				$r = chamaConsultaSql($table, $filtro, $string, $tipo);
 				
 				if($r){
 					if(mysql_num_rows($r) > 0){
