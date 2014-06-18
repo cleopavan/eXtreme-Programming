@@ -1,0 +1,85 @@
+.navbar-brand{
+	margin-top:-10px;
+}
+
+.navbar-static-top {
+  margin-bottom:20px;
+}
+
+i {
+  font-size:16px;
+}
+
+.nav > li > a {
+  color:#787878;
+}
+  
+footer {
+  margin-top:11.8%;
+  padding-top:20px;
+  padding-bottom:39px;
+  width:100%;
+  background-color:#efefef;
+  background-image: linear-gradient(to bottom, #ABD4AB, #7EA37E);
+  z-index:1;
+}
+
+footer a{
+	color:#333;
+}
+
+footer a:hover{
+	color:#FFF;
+}
+
+/* count indicator near icons */
+.nav>li .count {
+  position: absolute;
+  bottom: 12px;
+  right: 6px;
+  font-size: 10px;
+  font-weight: normal;
+  background: rgba(51,200,51,0.55);
+  color: rgba(255,255,255,0.9);
+  line-height: 1em;
+  padding: 2px 4px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+}
+
+/* indent 2nd level */
+.list-unstyled li > ul > li {
+   margin-left:10px;
+   padding:8px;
+}
+
+/* color a navbar */
+.navbar-inverse{
+	background-image: linear-gradient(to bottom, #ABD4AB, #7EA37E);
+	border-width:0px;
+}
+
+.navbar-inverse .navbar-brand{
+	color:#444;
+	text-shadow:inherit;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+	color:#444;
+	text-shadow:inherit;
+}
+
+/* color menu esquerdo*/
+.list-group-success{
+	margin-left:10px;	
+}
+.list-unstyled a{
+	color:#666;
+}
+
+.list-unstyled a:hover{
+	color:#7EA37E;
+}
