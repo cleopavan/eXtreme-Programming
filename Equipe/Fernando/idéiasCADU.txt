@@ -1,0 +1,9 @@
+Lista lateral botões
+
+1 - Teremos uma lista de botões
+2 - Esta lista (nome, link, área, visualizadoPorNivel) armazenado no BD
+3 - ADM seleciona quais niveis vão visualizar quais botões
+
+Pagina inicial
+
+1 - ADM seleciona qual pagina inicial redimencional cada nível
