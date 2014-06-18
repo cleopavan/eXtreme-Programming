@@ -77,6 +77,10 @@ footer a:hover{
 	text-shadow:inherit;
 }
 
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus{
+	background-image: linear-gradient(to top, #ABD4AB, #CCCCCC);
+}
+
 /* color menu esquerdo*/
 .list-group-success{
 	margin-left:10px;	
