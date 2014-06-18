@@ -24,8 +24,8 @@
               </a>
               <ul id="g-account-menu" class="dropdown-menu" role="menu">
                 <li><a href="#">Painel de controle</a></li>
-                <li><a href="#">Atalho para horários</a></li>
-                <li><a href="#">Atalho para alocação</a></li>
+                <li><a href="#">Atalho para hor��rios</a></li>
+                <li><a href="#">Atalho para aloca����o</a></li>
                 <li><a href="sair.php">Sair</a></li>
               </ul>
             </li>
@@ -36,16 +36,16 @@
     <!-- /Header -->  
   
     <div class="row">
-      <div class="col-md-2 topp"> <!-- 18 largura maxima mobile || 12 largura maxima desktop  (outros tamanhos são configuraveis) -->
+      <div class="col-md-2 topp"> <!-- 18 largura maxima mobile || 12 largura maxima desktop  (outros tamanhos s��o configuraveis) -->
         <div class="list-group-success">
           <a href="inicio.php" class="list-group-item leftt">Inicio</a>
           <a href="servidor.php" class="list-group-item list-group-item-success leftt">Servidor</a>
-          <a href="relatorios.php" class="list-group-item leftt">Relatórios</a>              
+          <a href="relatorios.php" class="list-group-item leftt">Relat��rios</a>              
           <a href="#" class="list-group-item leftt">Curso</a>
-          <a href="#" class="list-group-item leftt">Permissões</a>
+          <a href="#" class="list-group-item leftt">Permiss��es</a>
           <a href="#" class="list-group-item leftt">Salas</a>
-          <a href="#" class="list-group-item leftt">Horários</a>
-          <a href="#" class="list-group-item leftt">Alocação</a>
+          <a href="#" class="list-group-item leftt">Hor��rios</a>
+          <a href="#" class="list-group-item leftt">Aloca����o</a>
           <a href="sair.php" class="list-group-item leftt">Sair</a>
         </div>
       </div>
@@ -55,20 +55,20 @@
             <ul class="breadcrumb">
                 <li><a href="inicio.php">Inicio</a>
                 <li><a href="servidor.php">Servidor</a>
-                <? if((isset($_GET['op']) && $_GET['op'] =='buscar') || !isset($_GET['op']))echo "<li><a href='servidor.php?op=buscar'>Buscar</a>"; ?> 
-                <? if(isset($_GET['op']) && $_GET['op'] =='cadastrar')echo "<li><a href='servidor.php?op=cadastrar'>Cadastrar</a>"; ?> 
-                <? if(isset($_GET['op']) && $_GET['op'] =='editar')echo "<li><a href='servidor.php?op=editar'>Editar</a>"; ?> 
+                <?php if((isset($_GET['op']) && $_GET['op'] =='buscar') || !isset($_GET['op']))echo "<li><a href='servidor.php?op=buscar'>Buscar</a>"; ?> 
+                <?php if(isset($_GET['op']) && $_GET['op'] =='cadastrar')echo "<li><a href='servidor.php?op=cadastrar'>Cadastrar</a>"; ?> 
+                <?php if(isset($_GET['op']) && $_GET['op'] =='editar')echo "<li><a href='servidor.php?op=editar'>Editar</a>"; ?> 
             </ul>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">       
             <ul class="nav nav-tabs">
-              <li <? if((isset($_GET['op']) && $_GET['op'] =='buscar') || !isset($_GET['op']))echo "class='active'"; ?> >
+              <li <?php if((isset($_GET['op']) && $_GET['op'] =='buscar') || !isset($_GET['op']))echo "class='active'"; ?> >
               <a href="servidor.php?op=buscar">Buscar</a></li>
-              <li <? if(isset($_GET['op']) && $_GET['op'] =='cadastrar')echo "class='active'"; ?> >
+              <li <?php if(isset($_GET['op']) && $_GET['op'] =='cadastrar')echo "class='active'"; ?> >
               <a href="servidor.php?op=cadastrar">Cadastrar</a></li>
-              <li <? if(isset($_GET['op']) && $_GET['op'] =='editar')echo "class='active'"; ?> >
+              <li <?php if(isset($_GET['op']) && $_GET['op'] =='editar')echo "class='active'"; ?> >
               <a href="servidor.php?op=editar">Editar</a></li>
             </ul>
             <div class="panel-body">
@@ -77,7 +77,7 @@
                 //echo"<h4> Buscar servidor </h4>";
                 echo"<div class='row'>";
                 echo"<div class='col-lg-6'>";
-                //echo"	<p class='bg-success text-center'>Selecione na opção <span class='caret'></span> qual será o tipo da busca.</p>";
+                //echo"	<p class='bg-success text-center'>Selecione na op����o <span class='caret'></span> qual ser�� o tipo da busca.</p>";
                 echo"	<div class='input-group'>";
                 echo"	  <input type='text' class='form-control' placeholder='Buscar servidor'>";
                 echo"	  <div class='input-group-btn'>";
@@ -94,7 +94,7 @@
                 echo"</div>";//<!-- /.row -->
                 }
               ?>
-              <?
+              <?php
               if(isset($_GET['op']) && $_GET['op'] =='cadastrar'){
                 //echo"<h4> Cadastrar servidor </h4>";
                 echo"<div class='dashboard'>";
@@ -118,9 +118,9 @@
                 echo"	</div>";
                 echo"  </div>";
                 echo"  <div class='form-group'>";
-                echo"	<label for='inputEndereco' class='col-sm-2 control-label'>Endereço</label>";
+                echo"	<label for='inputEndereco' class='col-sm-2 control-label'>Endere��o</label>";
                 echo"	<div class='col-sm-7'>";
-                echo"	  <input type='text' class='form-control' id='inputEndereco' placeholder='Endereço'>";
+                echo"	  <input type='text' class='form-control' id='inputEndereco' placeholder='Endere��o'>";
                 echo"	</div>";
                 echo"  </div>";					
                 echo"  <div class='form-group'>";
@@ -165,11 +165,11 @@
                 echo"</div>";
               }
               ?>
-              <?
+              <?php
               if(isset($_GET['op']) && $_GET['op'] =='editar'){
                 echo"<div class='alert alert-warning alert-dismissable'>";
                 echo"  <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
-                echo"  <strong>Warning!</strong> Nada ainda foi programado nesta área.";
+                echo"  <strong>Warning!</strong> Nada ainda foi programado nesta ��rea.";
                 echo"</div>";
               }
               ?>
