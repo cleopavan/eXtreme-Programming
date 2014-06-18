@@ -24,8 +24,8 @@
 		     </a>
 		     <ul id="g-account-menu" class="dropdown-menu" role="menu">
 		       <li><a href="#">Painel de controle</a></li>
-		       <li><a href="#">Atalho para hor��rios</a></li>
-		       <li><a href="#">Atalho para aloca����o</a></li>
+		       <li><a href="#">Atalho para horários</a></li>
+		       <li><a href="#">Atalho para alocação</a></li>
 		       <li><a href="sair.php">Sair</a></li>
 		     </ul>
 		   </li>
@@ -175,9 +175,11 @@
 		</div><!-- /row --> 
 	</div><!-- /col-md-10 -->
 </div><!-- /row-->
-<!-- /Dashboard -->    
+<!-- /Dashboard -->
+
+<footer class="text-center">Universidade Federal da Fronteira Sul - <a href="http://www.uffs.edu.br"><strong>UFFS</strong></a></footer>    
   
-<footer class="text-center">Universidade Federal da Fronteira Sul - <a href="http://www.uffs.edu.br"><strong>UFFS</strong></a></footer>	
+	
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

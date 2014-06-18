@@ -15,9 +15,10 @@ i {
 }
   
 footer {
-  margin-top:11.8%;
+  position:static;
+  margin-top:10%;
   padding-top:20px;
-  padding-bottom:39px;
+  padding-bottom:20px;
   width:100%;
   background-color:#efefef;
   background-image: linear-gradient(to bottom, #ABD4AB, #7EA37E);
@@ -30,6 +31,10 @@ footer a{
 
 footer a:hover{
 	color:#FFF;
+}
+/* Divs de ALERT*/
+.alert{
+	margin-top:10px;
 }
 
 /* count indicator near icons */
