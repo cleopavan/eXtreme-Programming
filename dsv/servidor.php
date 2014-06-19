@@ -13,43 +13,7 @@
   <body>
     
 <!-- Header -->
-<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
-	<a class="navbar-brand" href="inicio.php"> <img src="img/logoUFFS.png" alt="logoUFFS" height="42"/> Cadastro de atividades dos docentes da UFFS</a>
-	<div class="container">
-	  <div class="navbar-collapse collapse">
-		 <ul class="nav navbar-nav navbar-right">
-		   <li class="dropdown">
-		     <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-		       <i class="glyphicon glyphicon-user"></i> Claunir Pavan <span class="caret"></span>
-		     </a>
-		     <ul id="g-account-menu" class="dropdown-menu" role="menu">
-		       <li><a href="#">Painel de controle</a></li>
-		       <li><a href="#">Atalho para horários</a></li>
-		       <li><a href="#">Atalho para alocação</a></li>
-		       <li><a href="sair.php">Sair</a></li>
-		     </ul>
-		   </li>
-		 </ul>
-	  </div>
-	</div><!-- /container -->
-</div><!-- /top-nav -->
-<!-- /Header -->  
 
-<!-- Dashboard -->    
-<div class="row">
-	<div class="col-md-2"> <!-- 18 largura maxima mobile || 12 largura maxima desktop  (outros tamanhos s��o configuraveis) -->
-		<div class="list-group-success">
-			<a href="inicio.php" class="list-group-item leftt">Inicio</a>
-			<a href="servidor.php" class="list-group-item list-group-item-success leftt">Servidor</a>
-			<a href="relatorios.php" class="list-group-item leftt">Relatórios</a>              
-			<a href="#" class="list-group-item leftt">Curso</a>
-			<a href="#" class="list-group-item leftt">Permissões</a>
-			<a href="#" class="list-group-item leftt">Salas</a>
-			<a href="#" class="list-group-item leftt">Horários</a>
-			<a href="#" class="list-group-item leftt">Alocação</a>
-			<a href="sair.php" class="list-group-item leftt">Sair</a>
-		</div><!-- /list-group-success -->
-	</div><!-- /col-md-2 -->
 	<div class="col-md-10">
 		<div class="row">
 			<div class="col-md-12">
@@ -176,10 +140,6 @@
 	</div><!-- /col-md-10 -->
 </div><!-- /row-->
 <!-- /Dashboard -->
-
-<footer class="text-center">Universidade Federal da Fronteira Sul - <a href="http://www.uffs.edu.br"><strong>UFFS</strong></a></footer>    
-  
-	
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

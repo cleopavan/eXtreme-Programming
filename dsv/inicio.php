@@ -37,47 +37,18 @@
     <div class="row">
       <div class="col-md-2"> <!-- 18 largura maxima mobile || 12 largura maxima desktop  (outros tamanhos são configuraveis) -->
         <div class="list-group-success">
-          <a href="inicio.php" class="list-group-item list-group-item-success leftt">Inicio</a>
-          <a href="servidor.php" class="list-group-item leftt">Servidor</a>
-          <a href="relatorios.php" class="list-group-item leftt">Relatórios</a>
-          <a href="#" class="list-group-item leftt">Curso</a>
-          <a href="#" class="list-group-item leftt">Permissões</a>
-          <a href="#" class="list-group-item leftt">Salas</a>
-          <a href="#" class="list-group-item leftt">Horários</a>
-          <a href="#" class="list-group-item leftt">Alocação</a>
-          <a href="sair.php" class="list-group-item leftt">Sair</a>
+          <a href="inicio.php" class="list-group-item list-group-item-success leftt" target="iframe-tela-meio">Inicio</a>
+          <a href="servidor.php" class="list-group-item leftt" target="iframe-tela-meio">Servidor</a>
+          <a href="relatorios.php" class="list-group-item leftt" target="iframe-tela-meio">Relatórios</a>
+          <a href="#" class="list-group-item leftt" target="iframe-tela-meio">Curso</a>
+          <a href="#" class="list-group-item leftt" target="iframe-tela-meio">Permissões</a>
+          <a href="salas.php" class="list-group-item leftt" target="iframe-tela-meio">Salas</a>
+          <a href="#" class="list-group-item leftt" target="iframe-tela-meio">Horários</a>
+          <a href="#" class="list-group-item leftt" target="iframe-tela-meio">Alocação</a>
+          <a href="sair.php" class="list-group-item leftt" target="iframe-tela-meio">Sair</a>
         </div>
       </div>
-      <div class="col-md-10">
-        <div class="row">
-          <div class="col-md-12">
-            <ul class="breadcrumb">
-                <li><a href="inicio.php">Inicio</a>
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">       
-            <div class="panel-body">
-                <h1>Bem-Vindo</h1>
-                <div class='alert alert-success alert-dismissable'>
-                  <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-                  <strong>Success!</strong> Ocorreu um sucesso.
-                </div>
-                <div class='alert alert-warning alert-dismissable'>
-                  <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-                  <strong>Warning!</strong> Ocorreu warning.
-                </div>
-                <div class='alert alert-danger alert-dismissable'>
-                  <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-                  <strong>Oops!</strong> Ocorreu erro.
-                </div>
-            </div>                
-          </div>
-        </div>
-      </div>
-    </div>
-  
+      <iframe name="iframe-tela-meio" src="inicio2.php" height="380px" width="1130px" frameborder="0"></iframe>
  	<footer class="text-center">Universidade Federal da Fronteira Sul - <a href="http://www.uffs.edu.br"><strong>UFFS</strong></a></footer>	
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -49,6 +49,7 @@
           <a href="sair.php" class="list-group-item leftt">Sair</a>
         </div>
       </div>
+      <iframe src="inicio.php" height="380px" width="1130px" frameborder="0"></iframe>
       <div class="col-md-10 topp">
         <div class="row">
           <div class="col-md-12">
@@ -71,9 +72,6 @@
         </div>
       </div>
     </div>
-  
-  <footer class="text-center">Universidade Federal da Fronteira Sul - <a href="http://www.uffs.edu.br"><strong>UFFS</strong></a></footer>	
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
