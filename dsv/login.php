@@ -1,4 +1,5 @@
 <?php
+	require_once dirname (__FILE__)."/library/library.php";
 	session_start();
 	session_destroy();
 ?>
