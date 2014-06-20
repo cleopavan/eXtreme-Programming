@@ -39,10 +39,10 @@
     <kbd>Usuario: admin</kbd>
     <kbd>Senha: admin</kbd>
 
-      <form class="form-signin" role="form" action="validaLogin.php">
+      <form class="form-signin" role="form" action="validaLogin.php" method="post">
         <h2 class="form-signin-heading">Cadastro de atividades dos docentes da UFFS</h2>
-        <input type="user" class="form-control" placeholder="Siape ou Email" required autofocus>
-        <input type="password" class="form-control" placeholder="Senha" required>
+        <input type="user" class="form-control" name="user" placeholder="Siape ou Email" required autofocus>
+        <input type="password" class="form-control" name="pass" placeholder="Senha" required>
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> Lembrar-me
         </label>
