@@ -1,7 +1,7 @@
 <?php
 	require_once dirname (__FILE__)."/library/library.php";
 	session_start();
-	session_destroy();
+	session_destroy();	
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -39,6 +39,9 @@
     <div class="container">
     <kbd>Usuario: admin</kbd>
     <kbd>Senha: admin</kbd>
+    <?php echo md5(addslashes(1234) . '' . SAL);
+
+?>
 
       <form class="form-signin" role="form" action="validaLogin.php" method="post">
         <h2 class="form-signin-heading">Cadastro de atividades dos docentes da UFFS</h2>

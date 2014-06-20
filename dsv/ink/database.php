@@ -1,25 +1,21 @@
 <?php
 
-	/*
-	$host = "ftp.projeto1.comxa.com";
-=======
+	$banco = 'local';
+	//$banco = 'server';
 
-	$host = "mysql9.000webhost.com"; // local
->>>>>>> 42c0404362be589b7b54a4f4bd16e69009c9a13d
-	$user = "a6233819_000web";
-	$pass = "000webhost";
-	$app = "a6233819_000web"; // db
+	if($banco == 'server'){
+		$host = "mysql.hostinger.com.br";
+		$user = "u454558226_cadu";
+		$pass = "t3051696";
+	}
 
-	*/
-	$host = "localhost";
-	$user = "root";
-	$pass = "";
+	if($banco == 'local'){
+		$host = "localhost";
+		$user = "root";
+		$pass = "";
+	}
 
-	$app = "controleacademico";
-
-	/*
-	$app = "projeto1";
-	*/
+	$app = "u454558226_cadu";
 
 	mysql_connect($host, $user, $pass);
 	

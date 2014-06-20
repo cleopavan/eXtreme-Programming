@@ -466,7 +466,7 @@
 		$user = $data['user'];
 		$pass = $data['pass'];
 		
-		$sql = "SELECT siape FROM servidores WHERE (siape='$user' OR email='$user') AND senha='$pass' AND regValido=1";
+		$sql = "SELECT siape FROM servidor WHERE (siape='$user' OR email='$user') AND senha='$pass' AND regValido=1";
 		
 		$r = dbConsulta($sql);
 		
@@ -490,4 +490,15 @@
 		return $r;
 		
 	}
+	
+/*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
+	function selectServidor(){
+		$sql = "SELECT * FROM servidor";
+		
+		$r=dbConsulta($sql);
+		return $r;
+	}
+	
+/*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
+	
 ?>

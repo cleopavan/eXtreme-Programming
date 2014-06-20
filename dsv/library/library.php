@@ -416,4 +416,15 @@
 		
 		return $r;
 	}
+
+/*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
+	function selectServidor(){
+		$sql = "SELECT * FROM servidor";
+		
+		$r=dbConsulta($sql);
+		return $r;
+	}
+	
+/*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
+	
 ?>
