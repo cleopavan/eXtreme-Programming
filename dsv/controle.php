@@ -4,6 +4,9 @@
 	if($_SESSION['logado'] != TRUE){
 		header('Location: login.php');
 	}
+	if($_SESSION['idNivelServidor'] != 0){
+		header('Location: semPermissao.php');
+	}
 ?>
 
 <!DOCTYPE html>
@@ -31,9 +34,9 @@
                 <i class="glyphicon glyphicon-user"></i> <?php echo $_SESSION['nomeCompleto'];?> <span class="caret"></span>
               </a>
               <ul id="g-account-menu" class="dropdown-menu" role="menu">
-              	<?php
-			  	if($_SESSION['idNivelServidor'] == 0)
-                echo '<li><a href="controle.php">Area do administrador</a></li>';
+              <?php
+			  if($_SESSION['idNivelServidor'] == 0)
+                echo '<li><a href="index.php">Inicio</a></li>';
 				?>
                 <li><a href="sair.php">Sair</a></li>
               </ul>
@@ -46,11 +49,14 @@
     <!-- Principal -->  
     <div class="row">
       <div class="col-md-2"> <!-- 18 largura maxima mobile || 12 largura maxima desktop  (outros tamanhos são configuraveis) -->
-      	<?php listarMenu($_SESSION['idNivelServidor']);?>        
+      	<div class="list-group-success">
+          <a href="index.php" class="list-group-item list-group-item-success leftt">Inicio</a>		
+          <a href="sair.php" class="list-group-item leftt">Sair</a>
+        </div>        
       </div>
       <div class="col-md-10">
           <!------------------------- área designinada para os iframe ----------------------------->
-          <iframe name="iframe-tela-meio" src="inicio.php" height="450px" width="100%" frameborder="0"></iframe>
+          <iframe name="iframe-tela-meio" src="inicioControle.php" height="450px" width="100%" frameborder="0"></iframe>
           <!------------------------- área designinada para os iframe ----------------------------->      
       </div><!-- /col-md-10 -->
     </div><!-- /row -->
