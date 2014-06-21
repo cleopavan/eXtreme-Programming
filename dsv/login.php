@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <meta charset="utf-8">
+    <meta charset="iso-8859-1"> <!-- charset=utf-8">-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -35,13 +35,22 @@
       </div><!-- /container -->
     </div>
     <!-- /Header -->
+    <?php
+		echo '<div class="fixada">';		
+		listarServidor();				
+		echo '</div>';
+		
+		echo '<div class="alerta">';
+		if(isset($_SESSION['error']) && $_SESSION['error']==5){
+			echo '<div class="alert alert-danger alert-dismissable text-center">';
+			echo '	  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+			echo '	  <strong>Erro!</strong> Senha ou usuario incorretos.';
+			echo '</div>';
+		}
+		echo '</div>';
+	?>
     
-    <div class="container">
-    <kbd>Usuario: admin</kbd>
-    <kbd>Senha: admin</kbd>
-    <?php echo md5(addslashes(1234) . '' . SAL);
-
-?>
+    <div class="container">    
 
       <form class="form-signin" role="form" action="validaLogin.php" method="post">
         <h2 class="form-signin-heading">Cadastro de atividades dos docentes da UFFS</h2>
@@ -51,7 +60,7 @@
           <input type="checkbox" value="remember-me"> Lembrar-me
         </label>
         <button class="btn btn-lg btn-success btn-block" type="submit">Continuar</button>
-      </form>
+      </form>            
 
     </div> <!-- /container -->
 	

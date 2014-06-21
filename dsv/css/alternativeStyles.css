@@ -16,7 +16,7 @@ i {
   
 footer {
   position:static;
-  margin-top:10%;
+  margin-top:3.5%;
   padding-top:20px;
   padding-bottom:20px;
   width:100%;
@@ -91,4 +91,8 @@ footer a:hover{
 
 .list-unstyled a:hover{
 	color:#7EA37E;
+}
+
+.row{	
+	width:100%; /*criado para arrumar os iframe*/
 }

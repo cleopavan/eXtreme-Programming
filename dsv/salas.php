@@ -4,7 +4,7 @@
 		header('Location: login.php');
 	}
 	if($_SESSION['idNivelServidor'] != 1){/* implementar aqui os casos em que TAL NIVEL NÃO PODE VISUALIZAR ESTA PAGINA*/
-		header('Location: semPermissao.php');
+		//header('Location: semPermissao.php');
 	}
 ?>
 <!DOCTYPE html>

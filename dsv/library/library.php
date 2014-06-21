@@ -418,11 +418,28 @@
 	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
-	function selectServidor(){
-		$sql = "SELECT * FROM servidor";
-		
-		$r=dbConsulta($sql);
-		return $r;
+	function listarServidor(){
+		$resultado = selectServidor();
+			echo' <kbd>Usuários TESTE existentes:</kbd></br></br>';	
+		while ($row = mysql_fetch_array($resultado)) {
+			echo 'Nome: '.$row['nome'].' '.$row['sobrenome'].'</br>';
+			echo 'Siape: <kbd>'.$row['siape'].'</kbd></br>';
+			echo 'Email: <kbd>'.$row['email'].'</kbd></br>';
+			echo 'Senha: <kbd>1234</kbd></br>';
+			echo 'Nível: '.$row['nivel'].'</br>';
+			echo '</br></br>';
+		}
+	}
+	
+	function listarMenu($nivel){		
+		$resultado = selectMenu($nivel);
+		echo '<div class="list-group-success">';
+        echo '  <a href="inicio.php" class="list-group-item list-group-item-success leftt" target="iframe-tela-meio">Inicio</a>';
+		while ($row = mysql_fetch_array($resultado)) {
+        echo '  <a href="'.$row['linkAreaMenu'].'" class="list-group-item leftt" target="iframe-tela-meio">'.$row['descricaoAreaMenu'].'</a>';
+		}		
+        echo '  <a href="sair.php" class="list-group-item leftt">Sair</a>';
+        echo '</div>';
 	}
 	
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/

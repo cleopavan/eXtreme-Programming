@@ -466,7 +466,14 @@
 		$user = $data['user'];
 		$pass = $data['pass'];
 		
-		$sql = "SELECT siape FROM servidor WHERE (siape='$user' OR email='$user') AND senha='$pass' AND regValido=1";
+		$sql = "SELECT nome, 
+		               sobrenome,
+					   nivelServidor.idNivelServidor
+			 	  FROM servidor
+				  JOIN nivelServidor using(idNivelServidor)
+				 WHERE (siape='$user' OR email='$user')
+				   AND senha='$pass'
+				   AND servidor.regValido=1";
 		
 		$r = dbConsulta($sql);
 		
@@ -493,8 +500,21 @@
 	
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 	function selectServidor(){
-		$sql = "SELECT * FROM servidor";
+		$sql = "SELECT *
+		          FROM servidor
+				  JOIN nivelServidor using(idNivelServidor)";
 		
+		$r=dbConsulta($sql);
+		return $r;
+	}
+	
+	function selectMenu($nivel){
+		$sql = "SELECT nomeAreaMenu,
+		               descricaoAreaMenu,
+					   linkAreaMenu
+		          FROM areaMenu
+				  JOIN nivelServidor_areaMenu using(idAreaMenu)
+				  where nivelServidor_areaMenu.idNivelServidor = ".$nivel."";		
 		$r=dbConsulta($sql);
 		return $r;
 	}
