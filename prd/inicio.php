@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col-md-12">
             <ul class="breadcrumb">
-                <li><a href="index.php">Inicio</a>
+                <li><a >Inicio</a>
             </ul>
           </div>
         </div><!-- /row -->
