@@ -1,4 +1,4 @@
-**Sempre fazer "PULL" antes de editar os arquivos.**
+﻿**Sempre fazer "PULL" antes de editar os arquivos.**
 
 Andrey teste ;)
 
@@ -19,3 +19,5 @@ Isac: 4,75 (14/04) - Bis Branco
 		+0,8 cents
 Patrick : :)
 Thiago: 4,75 (28/04) - Bis Branco
+
+Teste
