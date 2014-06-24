@@ -1,1 +1,7 @@
-teste geral...
+Alterar na tabela nivelCurso o campo idNivelCursos para idNivelCurso
+Alterar na tabela curso o campo idNivelCursos para idNivelCurso
+
+Colocar auto_incremento na tabela statusAlocacao
+
+Duvidas em relação a incompatibilidade entre a imagem (png) do banco com a estrutura que está implementada no banco.
+(Caso especial tabela periodo)

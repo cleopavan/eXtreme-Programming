@@ -1,7 +1,7 @@
 <?php
 	require_once dirname (__FILE__)."/library/library.php";
 	session_start();
-	session_destroy();	
+	session_destroy();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

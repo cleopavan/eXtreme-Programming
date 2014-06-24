@@ -7,256 +7,226 @@
 		$r=dbConsulta($sql);
 		return $r;
 	}
-	
-	function getIdTableFuncao(){	
-		$sql = "SELECT idFuncao FROM funcao ORDER BY idFuncao DESC LIMIT 1";
-		
-		$r = dbConsulta($sql);
-		return $r;
-	}
-	
+
+	/****************************************************Inicio das funções de inserção****************************************/
 	function insertFuncao($data){
-		$id = $data['id'];
-		$function = $data['function'];
-		$regValid = $data['regValid'];
+		$funcao = $data['funcao'];
+		$regValido = $data['regValido'];
 		
-		if(empty($function)){
-			$sql = "INSERT INTO funcao (idFuncao, funcao, regValido) VALUES ($id, NULL, $regValid)";
+		$sql = "INSERT INTO funcao (regValido, funcao) VALUES (regValido";
+		
+		if(empty($funcao)){
+			$sql = $sql .", NULL";
 		}else{
-			$sql = "INSERT INTO funcao (idFuncao, funcao, regValido) VALUES ($id, '$function', $regValid)";
+			$sql = $sql .", '$funcao'";
 		}
+		$sql = $sql . ")";
 		
 		$r = dbConsulta($sql);
 		
 		return $r;
 	}
 	
-	function getIdTableCargos(){
-		$sql = "SELECT idCargos FROM cargos ORDER BY idCargos DESC LIMIT 1";
+	function insertServidorFuncao($data){
+		$idFuncao = $data['idFuncao'];
+		$siape = $data['siape'];
+		$dataInicio = $data['dataInicio'];
+		$dataSaida = $data['dataSaida'];
+		$cargaHoraria = $data['cargaHoraria'];
+		$regValido = $data['regValido'];
 		
-		$r = dbConsulta($sql);
-		return $r;
-	}
-	
-	function insertCargos($data){
-		$id = $data['id'];
-		$role = $data['role'];
-		$regValid = $data['regValid'];
-		
-		if(empty($role)){
-			$sql = "INSERT INTO cargos (idCargos, cargo, regValido) VALUES ($id, NULL, $regValid)";
+		$sql = "INSERT INTO servidorfuncao (idFuncao, siape, dataInicio, cargaHoraria, regValido, dataSaida) 
+				VALUES ($idFuncao, '$siape', '$dataInicio', $cargaHoraria, $regValido";
+		if(empty($dataSaida)){
+			$sql = $sql . ", NULL";
 		}else{
-			$sql = "INSERT INTO cargos (idCargos, cargo, regValido) VALUES ($id, '$role', $regValid)";
+			$sql = $sql . ", '$dataSaida'";
 		}
+		$sql = $sql . ")";
 		
 		$r = dbConsulta($sql);
 		
 		return $r;
 	}
 	
-	function getIdTableJornada(){
-		$sql = "SELECT idJornada FROM jornada ORDER BY idJornada DESC LIMIT 1";
+	function insertCargo($data){
+		$cargo = $data['cargo'];
+		$regValido = $data['regValido'];
+		
+		$sql = "INSERT INTO cargo (regValido, cargo) VALUES ($regValido";
+		
+		if(empty($cargo)){
+			$sql = $sql . ", NULL";
+		}else{
+			$sql = $sql . ", '$cargo'";
+		}
+		$sql = $sql . ")";
 		
 		$r = dbConsulta($sql);
+		
 		return $r;
 	}
 	
 	function insertJornada($data){
-		$id = $data['id'];
-		$run = $data['run'];
-		$regValid = $data['regValid'];
+		$jornada = $data['jornada'];
+		$regValido = $data['regValido'];
 		
-		if(empty($run)){
-			$sql = "INSERT INTO jornada (idJornada, jornada, regValido) VALUES ($id, NULL, $regValid)";
+		$sql = "INSERT INTO jornada (regValido, jornada) VALUES ($regValido";
+		if(empty($jornada)){
+			$sql = $sql . ", NULL";
 		}else{
-			$sql = "INSERT INTO jornada (idJornada, jornada, regValido) VALUES ($id, '$run', $regValid)";
+			$sql = $sql . ", '$jornada'";
 		}
+		$sql = $sql . ")";
 		
 		$r = dbConsulta($sql);
 		
 		return $r;
 	}
-	
-	function getIdTableHorarios(){
-		$sql = "SELECT idHorario FROM horarios ORDER BY idHorario DESC LIMIT 1";
 		
-		$r = dbConsulta($sql);
-		return $r;
-	}
-	
-	function insertHorarios($data){
-		//$id = $data['id'];
-		$idWeek = $data['idWeek'];
-		$idDay = $data['idDay'];
-		$idPeriod = $data['idPeriod'];
-		$idSubPeriod = $data['idSubPeriod'];
-		
-		/*$sql = "INSERT INTO horarios (idJornada, idSemana, idDia, idPeriodo, idSubPeriodo)
-				VALUES ($id, '$idWeek', '$idDay', '$idPeriod', '$idSubPeriod')";*/ //Verificar a existencia de auto-increment
-		
-		$sql = "INSERT INTO horarios (idSemana, idDia, idPeriodo, idSubPeriodo)
-				VALUES ($idWeek, $idDay, $idPeriod, $idSubPeriod)";
-		$r = dbConsulta($sql);
-		
-		return $r;
-	}
-	
-	function getIdTableAlocacao(){
-		$sql = "SELECT idAlocacao FROM alocacao ORDER BY idAlocacao DESC LIMIT 1";
-		
-		$r = dbConsulta($sql);
-		return $r;
-	}
-	
-	function insertAlocacao($data){
-		//$id = $data['id'];
-		$numBlock = $data['numBlock'];
-		$numClass = $data['numClass'];
-		$idHorary = $data['idHorary'];
-		$regValid = $data['regValid'];
-		
-		/*$sql = "INSERT INTO alocacao (numBloco, numSala, idHorario, regValido)
-				VALUES ('$numBlock', '$numClass', '$idHorary', $regValid)";*/ //Verificar a existencia de auto-increment
-		
-		$sql = "INSERT INTO alocacao (numBloco, numSala, idHorario, regValido)
-				VALUES ('$numBlock', $numClass, $idHorary, $regValid)";
-		$r = dbConsulta($sql);
-		
-		return $r;
-	}
-	
-	function insertServidoresFuncao($data){
-		$idFunction = $data['idFunction'];
-		$siape = $data['siape'];
-		$startDate = $data['startDate'];
-		$endDate = $data['endDate'];
-		$hours = $data['hours'];
-		$regValid = $data['regValid'];
-		
-		if(empty($endDate)){
-			$sql = "INSERT INTO servidoresfuncao (idFuncao, siape, dataInicio, dataSaida, cargaHoraria, regValido) 
-				VALUES ($idFunction, '$siape', '$startDate', NULL, $hours, $regValid)";
-		}else{
-			$sql = "INSERT INTO servidoresfuncao (idFuncao, siape, dataInicio, dataSaida, cargaHoraria, regValido) 
-				VALUES ($idFunction, '$siape', '$startDate', '$endDate', $hours, $regValid)";
-		}
-		
-		$r = dbConsulta($sql);
-		
-		return $r;
-	}
-	
-	function getIdTableSituacaoServidor(){
-		$sql = "SELECT idSituacaoServidor FROM situacaoservidor ORDER BY idSituacaoServidor DESC LIMIT 1";
-		
-		$r = dbConsulta($sql);
-		return $r;
-	}
-	
 	function insertSituacaoServidor($data){
-		$id = $data['id'];
-		$situation = $data['situation'];
-		$startDate = $data['startDate'];
-		$endDate = $data['endDate'];
-		$regValid = $data['regValid'];
+		$situacao = $data['situacao'];
+		$dataEntrada = $data['dataEntrada'];
+		$dataSaida = $data['dataSaida'];
+		$regValido = $data['regValido'];
 		
-		if(empty($startDate) && empty($endDate)){
-			$sql = "INSERT INTO situacaoservidor (idSituacaoServidor, situacao, dataEntrada, dataSaida, regValido)
-					VALUES ($id, '$situation', NULL, NULL, $regValid)";
-		}else if(empty($startDate)){
-			$sql = "INSERT INTO situacaoservidor (idSituacaoServidor, situacao, dataEntrada, dataSaida, regValido)
-					VALUES ($id, '$situation', NULL, '$endDate', $regValid)";
-		}else if(empty($endDate)){
-			$sql = "INSERT INTO situacaoservidor (idSituacaoServidor, situacao, dataEntrada, dataSaida, regValido)
-					VALUES ($id, '$situation', '$startDate', NULL, $regValid)";
+		$sql = "INSERT INTO situacaoservidor (regValido, situacao, dataEntrada, dataSaida)
+					VALUES ($regValido";
+		if(empty($situacao)){
+			$sql = $sql . ", NULL";
 		}else{
-			$sql = "INSERT INTO situacaoservidor (idSituacaoServidor, situacao, dataEntrada, dataSaida, regValido)
-					VALUES ($id, '$situation', '$startDate', '$endDate', $regValid)";
+			$sql = $sql . ", '$situacao'";
 		}
+		if(empty($dataEntrada)){
+			$sql = $sql . ", NULL";
+		}else{
+			$sql = $sql . ", '$dataEntrada'";
+		}
+		if(empty($dataSaida)){
+			$sql = $sql . ", NULL";
+		}else{
+			$sql = $sql . ", '$dataSaida'";
+		}
+		$sql = $sql . ")";
 		
 		$r = dbConsulta($sql);
 		
-		return $r;
-	}
-	
-	function getIdTableNivelServidor(){
-		$sql = "SELECT idNivelServidor FROM nivelservidor ORDER BY idNivelServidor DESC LIMIT 1";
-		
-		$r = dbConsulta($sql);
 		return $r;
 	}
 	
 	function insertNivelServidor($data){
-		$id = $data['id'];
 		$nivel = $data['nivel'];
-		$regValid = $data['regValid'];
+		$regValido = $data['regValido'];
+		
+		$sql = "INSERT INTO nivelservidor (regValido, nivel) VALUES ($regValido";
 		
 		if(empty($nivel)){
-			$sql = "INSERT INTO nivelservidor (idNivelServidor, nivel, regValido) VALUES ($id, NULL, $regValid)";
+			$sql = $sql . ", NULL";
 		}else{
-			$sql = "INSERT INTO nivelservidor (idNivelServidor, nivel, regValido) VALUES ($id, '$nivel', $regValid)";
+			$sql = $sql . ", '$nivel'";
 		}
+		$sql = $sql . ")";
 		
 		$r = dbConsulta($sql);
 		
 		return $r;
 	}
 	
-	function insertServidores($data){
+	function insertAreaMenu($data){
+		$nomeAreaMenu = $data['nomeAreaMenu'];
+		$descricaoAreaMenu = $data['descricaoAreaMenu'];
+		$linkAreaMenu = $data['linkAreaMenu'];
+		
+		$sql = "INSERT INTO areamenu (nomeAreaMenu, descricaoAreaMenu, linkAreaMenu) VALUES (";
+		
+		if(empty($nomeAreaMenu)){
+			$sql = $sql . ", NULL";
+		}else{
+			$sql = $sql . ", '$nomeAreaMenu'";
+		}
+		if(empty($descricaoAreaMenu)){
+			$sql = $sql . ", NULL";
+		}else{
+			$sql = $sql . ", '$descricaoAreaMenu'";
+		}
+		if(empty($linkAreaMenu)){
+			$sql = $sql . ", NULL";
+		}else{
+			$sql = $sql . ", '$linkAreaMenu'";
+		}
+		$sql = $sql . ")";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function insertNivelServidorAreaMenu($data){
+		$idNivelServidor = $data['idNivelServidor'];
+		$idAreaMenu = $data['idAreaMenu'];
+		
+		$sql = "INSERT INTO nivelservidor_areamenu (idNivelServidor, idAreaMenu) VALUES ($idNivelServidor, $idAreaMenu)";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function insertServidor($data){
 		$siape = $data['siape'];
-		$firstName = $data['firstName'];
-		$lastName = $data['lastName'];
-		$observation = $data['observation'];
-		$replace = $data['replace'];
+		$nome = $data['nome'];
+		$sobrenome = $data['sobrenome'];
+		$observacao = $data['observacao'];
+		$quemSubstitui = $data['quemSubstitui'];
 		$idCargo = $data['idCargo'];
 		$idJornada = $data['idJornada'];
 		$idSituacaoServidor = $data['idSituacaoServidor'];
 		$email = $data['email'];
-		$phone1 = $data['phone1'];
-		$phone2 = $data['phone2'];
-		$address = $data['address'];
-		$city = $data['city'];
+		$fone1 = $data['fone1'];
+		$fone2 = $data['fone2'];
+		$endereco = $data['endereco'];
+		$cidade = $data['cidade'];
 		$idNivelServidor = $data['idNivelServidor'];
-		$regValid = $data['regValid'];
+		$regValido = $data['regValido'];
 		$pass = $data['pass'];
 		
 		$sql = "INSERT INTO servidores (siape, nome, sobrenome, idCargo, idJornada, idSituacaoServidor, idNivelServidor, regValido, observacao, quemSubstitui, email, fone1, fone2, endereco, cidade, senha)
-				VALUES ('$siape', '$firstName', '$lastName', $idCargo, $idJornada, $idSituacaoServidor, $idNivelServidor, $regValid";
+				VALUES ('$siape', '$nome', '$sobrenome', $idCargo, $idJornada, $idSituacaoServidor, $idNivelServidor, $regValido";
 				
-		if(empty($observation)){
+		if(empty($observacao)){
 			$sql = $sql . ", NULL";
 		}else{
-			$sql = $sql . ", '$observation'";
+			$sql = $sql . ", '$observacao'";
 		}
-		if(empty($replace)){
+		if(empty($quemSubstitui)){
 			$sql = $sql . ", NULL";
 		}else{
-			$sql = $sql . ", '$replace'";
+			$sql = $sql . ", '$quemSubstitui'";
 		}
 		if(empty($email)){
 			$sql = $sql . ", NULL";
 		}else{
 			$sql = $sql . ", '$email'";
 		}
-		if(empty($phone1)){
+		if(empty($fone1)){
 			$sql = $sql . ", NULL";
 		}else{
-			$sql = $sql . ", '$phone1'";
+			$sql = $sql . ", '$fone1'";
 		}
-		if(empty($phone2)){
+		if(empty($fone2)){
 			$sql = $sql . ", NULL";
 		}else{
-			$sql = $sql . ", '$phone2'";
+			$sql = $sql . ", '$fone2'";
 		}
-		if(empty($address)){
+		if(empty($endereco)){
 			$sql = $sql . ", NULL";
 		}else{
-			$sql = $sql . ", '$address'";
+			$sql = $sql . ", '$endereco'";
 		}
-		if(empty($city)){
+		if(empty($cidade)){
 			$sql = $sql . ", NULL";
 		}else{
-			$sql = $sql . ", '$city'";
+			$sql = $sql . ", '$cidade'";
 		}
 		if(empty($pass)){
 			$sql = $sql . ", NULL";
@@ -269,141 +239,138 @@
 		return $r;
 	}
 	
-	function getIdTableNivelCursos(){
-		$sql = "SELECT idNivelCursos FROM nivelcursos ORDER BY idNivelCursos DESC LIMIT 1";
-		
-		$r = dbConsulta($sql);
-		return $r;
-	}
-	
-	function insertNivelCursos($data){
-		$id = $data['id'];
+	function insertNivelCurso($data){
 		$nivel = $data['nivel'];
-		$regValid = $data['regValid'];
+		$regValido = $data['regValido'];
+		
+		$sql = "INSERT INTO nivelcursos (regValido, nomeNivelCurso) VALUES ($regValido";
 		
 		if(empty($nivel)){
-			$sql = "INSERT INTO nivelcursos (idNivelCursos, nivel, regValido) VALUES ($id, NULL, $regValid)";
+			$sql = $sql . ", NULL";
 		}else{
-			$sql = "INSERT INTO nivelcursos (idNivelCursos, nivel, regValido) VALUES ($id, '$nivel', $regValid)";
+			$sql = $sql . ", '$nivel'";
 		}
+		$sql = $sql . ")";
 		
 		$r = dbConsulta($sql);
 		
 		return $r;
 	}
 	
-	function getIdTableDominios(){
-		$sql = "SELECT idDominio FROM dominios ORDER BY idDominio DESC LIMIT 1";
+	function insertCurso($data){
+		$codCurso = $data['codCurso'];
+		$nome = $data['nome'];
+		$idNivelCurso = $data['idNivelCurso'];
+		$regValido = $data['regValido'];
 		
-		$r = dbConsulta($sql);
-		return $r;
-	}
-	
-	function insertDominios($data){
-		$id = $data['id'];
-		$domain = $data['domain'];
-		$regValid = $data['regValid'];
+		$sql = "INSERT INTO curso (codCurso, idNivelCursos, regValido, nomeCurso) VALUES ($codCurso, $idNivelCurso, $regValido";
 		
-		if(empty($domain)){
-			$sql = "INSERT INTO dominios (idDominio, dominio, regValido) VALUES ($id, NULL, $regValid)";
+		if(empty($nome)){
+			$sql = $sql . ", NULL";
 		}else{
-			$sql = "INSERT INTO dominios (idDominio, dominio, regValido) VALUES ($id, '$domain', $regValid)";
+			$sql = $sql . ", '$nome'";
 		}
+		$sql = $sql . ")";
 		
 		$r = dbConsulta($sql);
 		
 		return $r;
 	}
 	
-	function insertCursos($data){
-		$codCourse = $data['codCourse'];
-		$name = $data['name'];
-		$idNivelCourse = $data['idNivelCourse'];
-		$regValid = $data['regValid'];
+	function insertDominio($data){
+		$dominio = $data['dominio'];
+		$regValido = $data['regValido'];
+		
+		$sql = "INSERT INTO dominio (regValido, nomeDominio) VALUES ($regValido";
+		
+		if(empty($dominio)){
+			$sql = $sql . ", NULL";
+		}else{
+			$sql = $sql . ", '$dominio'";
+		}
+		$sql = $sql . ")";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function insertCcr($data){
+		$codCcr = $data['codCcr'];
+		$nome = $data['nome'];
+		$cHoraria = $data['cHoraria'];
+		$idDominio = $data['idDominio'];
+		$regValido = $data['regValido'];
+		
+		$sql = "INSERT INTO ccrs (codCcr, idDominio, regValido, nomeCcr, cHoraria) VALUES ($codCcr, $idDominio, $regValido";
 		
 		if(empty($name)){
-			$sql = "INSERT INTO cursos (codCurso, nome, idNivelCursos, regValido) VALUES ($codCourse, NULL, $idNivelCourse, $regValid)";
+			$sql = $sql . ", NULL";
 		}else{
-			$sql = "INSERT INTO cursos (codCurso, nome, idNivelCursos, regValido) VALUES ($codCourse, '$name', $idNivelCourse, $regValid)";
+			$sql = $sql . ", '$name'";
 		}
-		
-		$r = dbConsulta($sql);
-		
-		return $r;
-	}
-	
-	function insertCcrs($data){
-		$codCcr = $data['codCcr'];
-		$name = $data['name'];
-		$hours = $data['hours'];
-		$idDomain = $data['idDomain'];
-		$regValid = $data['regValid'];
-		
-		if(empty($name) && empty($hours)){
-			$sql = "INSERT INTO ccrs (codCcr, nome, cHoraria, idDominio, regValido) VALUES ($codCcr, NULL, NULL, $idDomain, $regValid)";
-		}else if(empty($name)){
-			$sql = "INSERT INTO ccrs (codCcr, nome, cHoraria, idDominio, regValido) VALUES ($codCcr, NULL, $hours, $idDomain, $regValid)";
-		}else if(empty($hours)){
-			$sql = "INSERT INTO ccrs (codCcr, nome, cHoraria, idDominio, regValido) VALUES ($codCcr, '$name', NULL, $idDomain, $regValid)";
+		if(empty($cHoraria)){
+			$sql = $sql . ", NULL";
 		}else{
-			$sql = "INSERT INTO ccrs (codCcr, nome, cHoraria, idDominio, regValido) VALUES ($codCcr, '$name', $hours, $idDomain, $regValid)";
+			$sql = $sql . ", $cHoraria";
 		}
+		$sql = $sql . ")";
 		
 		$r = dbConsulta($sql);
 		
 		return $r;
 	}
 	
-	function insertCursosCcrs($data){
+	function insertCursoCcr($data){
 		$codCcr = $data['codCcr'];
-		$codCourse = $data['codCourse'];
-		$regValid = $data['regValid'];
+		$codCurso = $data['codCurso'];
+		$regValido = $data['regValido'];
 		
-		$sql = "INSERT INTO cursosccrs (codCcr, codCurso, regValido) VALUES ($codCcr, $codCourse, $regValid)";
+		$sql = "INSERT INTO cursoccr (codCcr, codCurso, regValido) VALUES ($codCcr, $codCurso, $regValido)";
 		
 		$r = dbConsulta($sql);
 		
 		return $r;
 	}
-	
-	function insertSalas($dados){
+/*******************daqui
+	function insertSala($dados){
 		$numBlock = $dados['numBlock'];
 		$numClass = $dados['numClass'];
 		$descrition = $dados['descrition'];
+
+		$sql = "INSERT INTO sala (numBloco, numSala, descricaoSala) VALUES ('$numBlock', $numClass";
 		
 		if(empty($descrition)){
-			$sql = "INSERT INTO salas (numBloco, numSala, descricao) VALUES ('$numBlock', $numClass, NULL)";
+			$sql = $sql . ", NULL";
 		}else{
-			$sql = "INSERT INTO salas (numBloco, numSala, descricao) VALUES ('$numBlock', $numClass, '$descrition')";
+			$sql = $sql . ", '$description'";
 		}
+		$sql = $sql . ")";
 		
 		$r = dbConsulta($sql);
 		
 		return $r;
 	}
 	
-	function insertDiaSemana($data){
-		$idWeek = $data['idWeek'];
-		$idDay = $data['idDay'];
-		$week = $data['week'];
-		$day = $data['day'];
+	function insertStatusAlocacao($dados){
+		$id = $data['id'];
+		$description = $data['descrition'];
+
+		$sql = "INSERT INTO statusalocacao (idStatusAlocacao, descricaoStatusAlocacao) VALUES ($id";
 		
-		if(empty($week) && empty($day)){
-			$sql = "INSERT INTO diasemana (idSemana, idDia, semana, dia) VALUES ($idWeek, $idDay, NULL, NULL)";
-		}else if(empty($week)){
-			$sql = "INSERT INTO diasemana (idSemana, idDia, semana, dia) VALUES ($idWeek, $idDay, NULL, '$day')";
-		}else if(empty($day)){
-			$sql = "INSERT INTO diasemana (idSemana, idDia, semana, dia) VALUES ($idWeek, $idDay, '$week', NULL)";
+		if(empty($descrition)){
+			$sql = $sql . ", NULL";
 		}else{
-			$sql = "INSERT INTO diasemana (idSemana, idDia, semana, dia) VALUES ($idWeek, $idDay, '$week', '$day')";
+			$sql = $sql . ", '$description'";
 		}
+		$sql = $sql . ")";
 		
 		$r = dbConsulta($sql);
 		
 		return $r;
 	}
 	
-	function insertPeriodos($data){
+	function insertPeriodo($data){
 		$idPeriod = $data['idPeriod'];
 		$idSubPeriod = $data['idSubPeriod'];
 		$period = $data['period'];
@@ -434,6 +401,30 @@
 		return $r;
 	}
 	
+	function getIdTableAlocacao(){
+		$sql = "SELECT idAlocacao FROM alocacao ORDER BY idAlocacao DESC LIMIT 1";
+		
+		$r = dbConsulta($sql);
+		return $r;
+	}
+	
+	function insertAlocacao($data){
+		//$id = $data['id'];
+		$numBlock = $data['numBlock'];
+		$numClass = $data['numClass'];
+		$idHorary = $data['idHorary'];
+		$regValido = $data['regValido'];
+		
+		/*$sql = "INSERT INTO alocacao (numBloco, numSala, idHorario, regValido)
+				VALUES ('$numBlock', '$numClass', '$idHorary', $regValido)";//Verificar a existencia de auto-increment
+		
+		$sql = "INSERT INTO alocacao (numBloco, numSala, idHorario, regValido)
+				VALUES ('$numBlock', $numClass, $idHorary, $regValido)";
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
 	function insertServidorCursoCcr($data){
 		$semesterYear = $data['semesterYear'];
 		$codCcr = $data['codCcr'];
@@ -441,73 +432,51 @@
 		$siape = $data['siape'];
 		$alocation = $data['alocation'];
 		$observation = $data['observation'];
-		$regValid = $data['regValid'];
+		$regValido = $data['regValido'];
 		
 		if(empty($observation) && empty($alocation)){
 			$sql = "INSERT INTO servidorCursoCcr (anoSemestre, codCcr, codCurso, siape, alocacao, observacoes, regValido) 
-				VALUES ('$semesterYear', $codCcr, $codCourse, '$siape', NULL, NULL, $regValid)";
+				VALUES ('$semesterYear', $codCcr, $codCourse, '$siape', NULL, NULL, $regValido)";
 		}else if(empty($observation)){
 			$sql = "INSERT INTO servidorCursoCcr (anoSemestre, codCcr, codCurso, siape, alocacao, observacoes, regValido) 
-				VALUES ('$semesterYear', $codCcr, $codCourse, '$siape', $alocation, NULL, $regValid)";
+				VALUES ('$semesterYear', $codCcr, $codCourse, '$siape', $alocation, NULL, $regValido)";
 		}else if(empty($alocation)){
 			$sql = "INSERT INTO servidorCursoCcr (anoSemestre, codCcr, codCurso, siape, alocacao, observacoes, regValido) 
-				VALUES ('$semesterYear', $codCcr, $codCourse, '$siape', NULL, '$observation', $regValid)";
+				VALUES ('$semesterYear', $codCcr, $codCourse, '$siape', NULL, '$observation', $regValido)";
 		}else{
 			$sql = "INSERT INTO servidorCursoCcr (anoSemestre, codCcr, codCurso, siape, alocacao, observacoes, regValido) 
-				VALUES ('$semesterYear', $codCcr, $codCourse, '$siape', $alocation, '$observation', $regValid)";
+				VALUES ('$semesterYear', $codCcr, $codCourse, '$siape', $alocation, '$observation', $regValido)";
 		}
 		
 		$r = dbConsulta($sql);
 		
 		return $r;
 	}
+*******************************até aqui/
+/****************************************************Fim das funções de inserção****************************************/
+/**/
+/****************************************************Inicio das funções de alteração****************************************/
 	
 	function login($data){
 		$user = $data['user'];
 		$pass = $data['pass'];
 		
-		$sql = "SELECT nome, 
-		               sobrenome,
-					   nivelServidor.idNivelServidor
-			 	  FROM servidor
-				  JOIN nivelServidor using(idNivelServidor)
-				 WHERE (siape='$user' OR email='$user')
-				   AND senha='$pass'
-				   AND servidor.regValido=1";
+		$sql = "SELECT siape FROM servidores WHERE (siape='$user' OR email='$user') AND senha='$pass' AND regValido=1";
 		
 		$r = dbConsulta($sql);
 		
 		return $r;
 	}
-	
-	function consultaSql($dados){
-		$tabela = $dados['tabela'];
-		$filtro = $dados['filtro'];
-		$valor = $dados['valor'];
-		$tipo = $dados['tipo'];
-		
-		if($tipo == 0){
-			$sql = "SELECT * FROM $tabela WHERE $filtro = $valor AND regValido = 1";
-		}else if($tipo == 1){
-			$sql = "SELECT * FROM $tabela WHERE $filtro = '$valor' AND regValido = 1";
-		}else return 0;
-		
-		$r = dbConsulta($sql);
-		
-		return $r;
-		
-	}
-	
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 	function selectServidor(){
 		$sql = "SELECT *
 		          FROM servidor
 				  JOIN nivelServidor using(idNivelServidor)";
-		
+
 		$r=dbConsulta($sql);
 		return $r;
 	}
-	
+
 	function selectMenu($nivel){
 		$sql = "SELECT nomeAreaMenu,
 		               descricaoAreaMenu,
@@ -518,7 +487,6 @@
 		$r=dbConsulta($sql);
 		return $r;
 	}
-	
+
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
-	
 ?>
