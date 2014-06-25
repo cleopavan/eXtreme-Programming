@@ -5,9 +5,9 @@
         <text>Admin%20Page%0Ahttp%3A//admin.php</text>
       </controlProperties>
     </control>
-    <control controlID="1" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="60" y="131" w="474" h="347" measuredW="200" measuredH="212" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="60" y="131" w="474" h="347" measuredW="200" measuredH="242" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Relat%F3rios%0AServidor%0ACurso%0APermisso%F5s%0ASair</text>
+        <text>Relat%F3rios%0AServidor%0ACurso%0ACCR%0APermisso%F5s%0ASair</text>
       </controlProperties>
     </control>
     <control controlID="2" controlTypeID="com.balsamiq.mockups::Canvas" x="60" y="91" w="474" h="55" measuredW="100" measuredH="70" zOrder="3" locked="false" isInGroup="-1"/>
@@ -38,7 +38,6 @@
     </control>
     <control controlID="9" controlTypeID="com.balsamiq.mockups::TextInput" x="308" y="205" w="172" h="-1" measuredW="60" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
-        <state>up</state>
         <text>962231</text>
       </controlProperties>
     </control>
@@ -61,7 +60,6 @@
         <backgroundAlpha>0.25</backgroundAlpha>
         <borderColor>0</borderColor>
         <color>16777215</color>
-        <state>up</state>
         <text>Professor1</text>
       </controlProperties>
     </control>
@@ -70,7 +68,6 @@
         <backgroundAlpha>0.25</backgroundAlpha>
         <borderColor>0</borderColor>
         <color>16777215</color>
-        <state>up</state>
         <text>Sobrenome2</text>
       </controlProperties>
     </control>

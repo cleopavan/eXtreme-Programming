@@ -5,9 +5,9 @@
         <text>Admin%20Page%0Ahttp%3A//admin.php</text>
       </controlProperties>
     </control>
-    <control controlID="1" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="60" y="131" w="474" h="347" measuredW="200" measuredH="212" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="60" y="131" w="474" h="347" measuredW="200" measuredH="242" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Relat%F3rios%0AServidor%0ACurso%0APermisso%F5s%0ASair</text>
+        <text>Relat%F3rios%0AServidor%0ACurso%0ACCR%0APermisso%F5s%0ASair</text>
       </controlProperties>
     </control>
     <control controlID="2" controlTypeID="com.balsamiq.mockups::Canvas" x="60" y="91" w="474" h="55" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1"/>

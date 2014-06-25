@@ -6,14 +6,14 @@
       </controlProperties>
     </control>
     <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="60" y="91" w="474" h="55" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1"/>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="60" y="131" w="474" h="347" measuredW="200" measuredH="212" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="60" y="131" w="474" h="347" measuredW="200" measuredH="242" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Relat%F3rios%0AServidor%0ACurso%0APermisso%F5s%0ASair</text>
+        <text>Relat%F3rios%0AServidor%0ACurso%0ACCR%0APermisso%F5s%0ASair</text>
       </controlProperties>
     </control>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::TabBar" x="136" y="153" w="398" h="451" measuredW="313" measuredH="100" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::TabBar" x="136" y="153" w="398" h="451" measuredW="331" measuredH="100" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Buscar%2C%20Cadastrar%2C%20Fun%E7%E3o%20do%20Servidor</text>
+        <text>Pesquisar%2C%20Cadastrar%2C%20Fun%E7%E3o%20do%20Servidor</text>
       </controlProperties>
     </control>
     <control controlID="6" controlTypeID="com.balsamiq.mockups::Title" x="75" y="107" w="225" h="-1" measuredW="205" measuredH="23" zOrder="4" locked="false" isInGroup="-1">

@@ -11,11 +11,11 @@
       </controlProperties>
     </control>
     <control controlID="2" controlTypeID="com.balsamiq.mockups::Canvas" x="60" y="91" w="541" h="55" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1"/>
-    <control controlID="3" controlTypeID="com.balsamiq.mockups::TabBar" x="136" y="143" w="465" h="574" measuredW="197" measuredH="100" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::TabBar" x="136" y="143" w="465" h="574" measuredW="215" measuredH="100" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <backgroundAlpha>1</backgroundAlpha>
         <color>16777215</color>
-        <text>Buscar%2C%20Cadastrar</text>
+        <text>Pesquisar%2C%20Cadastrar</text>
       </controlProperties>
     </control>
     <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="75" y="107" w="225" h="-1" measuredW="181" measuredH="23" zOrder="4" locked="false" isInGroup="-1">
