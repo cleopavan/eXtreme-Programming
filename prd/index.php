@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <meta charset="iso-8859-1"> <!-- charset=utf-8">-->
+    <meta charset="iso-8859-1"> <!-- charset="utf-8">-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Inicio</title>
@@ -30,10 +30,7 @@
               <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
                 <i class="glyphicon glyphicon-user"></i> <?php echo $_SESSION['nomeCompleto'];?> <span class="caret"></span>
               </a>
-              <ul id="g-account-menu" class="dropdown-menu" role="menu">
-                <li><a href="#">Painel de controle</a></li>
-                <li><a href="#">Atalho para horários</a></li>
-                <li><a href="#">Atalho para alocação</a></li>
+              <ul id="g-account-menu" class="dropdown-menu" role="menu">              	
                 <li><a href="sair.php">Sair</a></li>
               </ul>
             </li>
@@ -49,7 +46,12 @@
       </div>
       <div class="col-md-10">
           <!------------------------- área designinada para os iframe ----------------------------->
-          <iframe name="iframe-tela-meio" src="inicio.php" height="450px" width="100%" frameborder="0"></iframe>
+          <?php
+			  	if($_SESSION['idNivelServidor'] == 0)
+				echo' <iframe name="iframe-tela-meio" src="inicio.php" height="450px" width="100%" frameborder="0"></iframe>';
+				else
+				echo' <iframe name="iframe-tela-meio" src="inicio.php" height="450px" width="100%" frameborder="0"></iframe>';
+		   ?>          
           <!------------------------- área designinada para os iframe ----------------------------->      
       </div><!-- /col-md-10 -->
     </div><!-- /row -->

@@ -2,234 +2,183 @@
 	require_once dirname(__FILE__).'/databaseAcess.php';//banco de dados
 	require_once dirname(__FILE__).'/constant.php';//constantes
 	
-	function buildDataInsertFuncao($function){
-		$r = getIdTableFuncao();//pega o ultimo ID da tabela 'funcao'
-		$id = 0;
-
-		if(mysql_num_rows($r) > 0){
-			while($row = mysql_fetch_assoc($r)){
-				$id = $row['idFuncao'];//id recebe o ultimo id da tabela funcao
-			}
-		}
-		
-		$id = $id + 1;//incrementa em 1 para não duplicar a chave primaria
-		
+	/****************************************************Inicio das funções de inserção****************************************/
+	function constroiDadosInsertFuncao($funcao){
 		$data = array();//inicializa um vetor de dados
-		$data['id'] = $id;//na posição 'id', é passado o atual valor de 'id'
-		$data['function'] = addslashes($function);//na posição 'function', é passado a string protegida de dados maliciosos para o banco de dados
-		$data['regValid'] = 1;//na posição 'regValid', é passado o valor 1 como padrão, significando que o dado primeiramente é valido
+		$data['funcao'] = addslashes($funcao);//na posição 'function', é passado a string protegida de dados maliciosos para o banco de dados
+		$data['regValido'] = 1;//na posição 'regValido', é passado o valor 1 como padrão, significando que o dado primeiramente é valido
 		
 		/**
 		* Por padrão colocamos o prefixo que vai nos dizer o que a função faz (insert, update, select, delete)
-		* e depois o nome da tabela (funcao, cargo, nivelServidor, cursos, etc).
+		* e depois o nome da tabela (funcao, cargo, nivelServidor, curso, etc).
 		**/
-		$r = insertFuncao($data);//r possui o retorno da função 'insertFuncao'
+		$r = insertFuncao($data);//r possui o retorno da função 'insertFuncao' que está na biblioteca 'databaseAcess.php'
 		return $r;
 	}
-	/*function chamaCadastroFuncao($funcao){
-		$r = getIdTabelaFuncao();
-		$id = 0;
-		if(mysql_num_rows($r) > 0){
-			while($row = mysql_fetch_assoc($r)){
-				$id = $row['idFuncao'];
-			}
-		}
-		
-		$id = $id + 1;
-		$dados = Array();
-		$dados['id'] = $id;
-		$dados['funcao'] = addslashes($funcao);
-		$dados['regValido'] = 1;
-		$r = cadastroFuncao($dados);
-		return $r;
-	}*/
 	
-	function buildDataInsertServidoresFuncoes($idFunction, $siape, $startDate, $endDate, $hours){
+	function constroiDadosInsertServidorFuncao($idFuncao, $siape, $dataInicio, $dataSaida, $cargaHoraria){
+		/**
+		*Formato de inserção de datas: "AAAA-MM-DD hh:mm:ss"
+		**/
 		$data = Array();
-		
-		$data['idFunction'] = addslashes($idFunction);
+		$data['idFuncao'] = addslashes($idFuncao);
 		$data['siape'] = addslashes($siape);
-		$data['startDate'] = addslashes($startDate);
-		$data['endDate'] = addslashes($endDate);
-		$data['hours'] = addslashes($hours);
-		$data['regValid'] = 1;
+		$data['dataInicio'] = addslashes($dataInicio);
+		$data['dataSaida'] = addslashes($dataSaida);
+		$data['cargaHoraria'] = addslashes($cargaHoraria);
+		$data['regValido'] = 1;
 		
-		$r = insertServidoresFuncao($data);
+		$r = insertServidorFuncao($data);
 		return $r;
 	}
 	
-	function buildDataInsertCargos($role){
-		$r = getIdTableCargos();
-		$id = 0;
-		if(mysql_num_rows($r) > 0){
-			while($row = mysql_fetch_assoc($r)){
-				$id = $row['idCargos'];
-			}
-		}
-		
-		$id = $id + 1;
+	function constroiDadosInsertCargo($cargo){
 		$data = Array();
-		$data['id'] = $id;
-		$data['role'] = addslashes($role);
-		$data['regValid'] = 1;
+		$data['cargo'] = addslashes($cargo);
+		$data['regValido'] = 1;
 		
-		$r = insertCargos($data);
+		$r = insertCargo($data);
 		
 		return $r;
 	}
 	
-	function buildDataInsertSituacaoServidor($situation, $startDate, $endDate){
-		$r = getIdTableSituacaoServidor();
-		$id = 0;
-		if(mysql_num_rows($r) > 0){
-			while($row = mysql_fetch_assoc($r)){
-				$id = $row['idSituacaoServidor'];
-			}
-		}
-		
-		$id = $id + 1;
+	function constroiDadosInsertJornada($jornada){
 		$data = Array();
-		$data['id'] = $id;
-		$data['situation'] = addslashes($situation);
-		$data['startDate'] = addslashes($startDate);
-		$data['endDate'] = addslashes($endDate);
-		$data['regValid'] = 1;
-		
-		$r = insertSituacaoServidor($data);
-		
-		return $r;
-	}
-	
-	function buildDataInsertJornada($run){
-		$r = getIdTableJornada();
-		$id = 0;
-		if(mysql_num_rows($r) > 0){
-			while($row = mysql_fetch_assoc($r)){
-				$id = $row['idJornada'];
-			}
-		}
-		
-		$id = $id + 1;
-		$data = Array();
-		$data['id'] = $id;
-		$data['run'] = addslashes($run);
-		$data['regValid'] = 1;
+		$data['jornada'] = addslashes($jornada);
+		$data['regValido'] = 1;
 		
 		$r = insertJornada($data);
 		
 		return $r;
 	}
 	
-	function buildDataInsertNivelServidor($nivel){
-		$r = getIdTableNivelServidor();
-		$id = 0;
-		if(mysql_num_rows($r) > 0){
-			while($row = mysql_fetch_assoc($r)){
-				$id = $row['idNivelServidor'];
-			}
-		}
-		
-		$id = $id + 1;
+	function constroiDadosInsertSituacaoServidor($situacao, $dataEntrada, $dataSaida){
 		$data = Array();
-		$data['id'] = $id;
+		$data['situacao'] = addslashes($situacao);
+		$data['dataEntrada'] = addslashes($dataEntrada);
+		$data['dataSaida'] = addslashes($dataSaida);
+		$data['regValido'] = 1;
+		
+		$r = insertSituacaoServidor($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosInsertNivelServidor($nivel){
+		$data = Array();
 		$data['nivel'] = addslashes($nivel);
-		$data['regValid'] = 1;
+		$data['regValido'] = 1;
 		
 		$r = insertNivelServidor($data);
 		
 		return $r;
 	}
 	
-	function buildDataInsertNivelCursos($nivel){
-		$r = getIdTableNivelCursos();
-		$id = 0;
-		if(mysql_num_rows($r) > 0){
-			while($row = mysql_fetch_assoc($r)){
-				$id = $row['idNivelCursos'];
-			}
-		}
+	function constroiDadosInsertAreaMenu($nomeAreaMenu, $descricaoAreaMenu, $linkAreaMenu){
+		$data = array();
+		$data['nomeAreaMenu'] = addslashes($nomeAreaMenu);
+		$data['descricaoAreaMenu'] = addslashes($descricaoAreaMenu);
+		$data['linkAreaMenu'] = addslashes($linkAreaMenu);
 		
-		$id = $id + 1;
+		$r = insertAreaMenu($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosInsertNivelServidorAreaMenu($idNivelServidor, $idAreaMenu){
+		$data = array();
+		$data['idNivelServidor'] = addslashes($idNivelServidor);
+		$data['idAreaMenu'] = addslashes($idAreaMenu);
+		
+		$r = insertNivelServidorAreaMenu($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosInsertServidor($siape, $nome, $sobrenome, $observacao, $quemSubstitui, $idCargo, $idJornada, $idSituacaoServidor, $email, $fone1, $fone2, $endereco, $cidade, $idNivelServidor){
 		$data = Array();
-		$data['id'] = $id;
+		$data['siape'] = addslashes($siape);
+		$data['nome'] = addslashes($nome);
+		$data['sobrenome'] = addslashes($sobrenome);
+		$data['observacao'] = addslashes($observacao);
+		$data['quemSubstitui'] = addslashes($quemSubstitui);
+		$data['idCargo'] = addslashes($idCargo);
+		$data['idJornada'] = addslashes($idJornada);
+		$data['idSituacaoServidor'] = addslashes($idSituacaoServidor);
+		$data['email'] = addslashes($email);
+		$data['fone1'] = addslashes($fone1);
+		$data['fone2'] = addslashes($fone2);
+		$data['endereco'] = addslashes($endereco);
+		$data['cidade'] = addslashes($cidade);
+		$data['idNivelServidor'] = addslashes($idNivelServidor);
+		$data['regValido'] = 1;
+		$pass = geraSenha(8, true, true, false);
+		$encryptedPassword = md5($pass . '' . SAL);
+		$data['pass'] = $encryptedPassword;
+	
+		$r = insertServidor($data);
+		
+		return $r;
+	}
+
+	function constroiDadosInsertNivelCurso($nivel){
+		$data = Array();
 		$data['nivel'] = addslashes($nivel);
-		$data['regValid'] = 1;
+		$data['regValido'] = 1;
 		
-		$r = insertNivelCursos($data);
+		$r = insertNivelCurso($data);
 		
 		return $r;
 	}
 	
-	function buildDataInsertCursos($codCourse, $name, $idNivelCourse){
+	function constroiDadosInsertCurso($codCurso, $nome, $idNivelCurso){
 		$data = Array();
-		$data['codCourse'] = addslashes($codCourse);
-		$data['name'] = addslashes($name);
-		$data['idNivelCourse'] = addslashes($idNivelCourse);
-		$data['regValid'] = 1;
+		$data['codCurso'] = addslashes($codCurso);
+		$data['nome'] = addslashes($nome);
+		$data['idNivelCurso'] = addslashes($idNivelCurso);
+		$data['regValido'] = 1;
 		
-		$r = insertCursos($data);
+		$r = insertCurso($data);
 		
 		return $r;
 	}
 	
-	function buildDataInsertDominios($domain){
-		$r = getIdTableDominios();
-		$id = 0;
-		if(mysql_num_rows($r) > 0){
-			while($row = mysql_fetch_assoc($r)){
-				$id = $row['idDominio'];
-			}
-		}
-		
-		$id = $id + 1;
+	function constroiDadosInsertDominio($dominio){
 		$data = Array();
-		$data['id'] = $id;
-		$data['domain'] = addslashes($domain);
-		$data['regValid'] = 1;
+		$data['dominio'] = addslashes($dominio);
+		$data['regValido'] = 1;
 		
-		$r = insertDominios($data);
+		$r = insertDominio($data);
 		
 		return $r;
 	}
 	
-	function buildDataInsertCcrs($codCcr, $name, $hours, $idDomain){
+	function constroiDadosInsertCcr($codCcr, $nome, $cHoraria, $idDominio){
 		$data = Array();
 		$data['codCcr'] = addslashes($codCcr);
-		$data['name'] = addslashes($name);
-		$data['hours'] = addslashes($hours);
-		$data['idDomain'] = addslashes($idDomain);
-		$data['regValid'] = 1;
+		$data['nome'] = addslashes($nome);
+		$data['cHoraria'] = addslashes($cHoraria);
+		$data['idDominio'] = addslashes($idDominio);
+		$data['regValido'] = 1;
 		
-		$r = insertCcrs($data);
+		$r = insertCcr($data);
 		
 		return $r;
 	}
 	
-	function buildDataInsertCursosCcrs($codCcr, $codCourse){
+	function constroiDadosInsertCursoCcr($codCcr, $codCurso){
 		$data = array();
 		$data['codCcr'] = addslashes($codCcr);
-		$data['codCourse'] = addslashes($codCourse);
-		$data['regValid'] = 1;
+		$data['codCurso'] = addslashes($codCurso);
+		$data['regValido'] = 1;
 		
-		$r = insertCursosCcrs($data);
-		
-		return $r;
-	}
-	
-	function buildDataInsertDiaSemana($idWeek, $idDay, $week, $day){
-		$data = array();
-		
-		$data['idWeek'] = addslashes($idWeek);
-		$data['idDay'] = addslashes($idDay);
-		$data['week'] = addslashes($week);
-		$data['day'] = addslashes($day);
-		
-		$r = insertDiaSemana($data);
+		$r = insertCursoCcr($data);
 		
 		return $r;
 	}
 	
-	function buildDataInsertPeriodos($idPeriod, $idSubPeriod, $period, $startHour, $endHour){
+/**alterar daqui
+	function constroiDadosInsertPeriodo($idPeriod, $idSubPeriod, $period, $startHour, $endHour){//********VERIFICAR
 		$data = array();
 		
 		$data['idPeriod'] = $idPeriod;
@@ -238,53 +187,41 @@
 		$data['startHour'] = $startHour;
 		$data['endHour'] = $endHour;
 		
-		$r = insertPeriodos($data);
+		$r = insertPeriodo($data);
 		
 		return $r;
 	}
-	
-	function buildDataInsertHorarios($idWeek, $idDay, $idPeriod, $idSubPeriod){
-		//$r = getIdTableHorarios();
-		//$id = 0;
-		/*if(mysql_num_rows($r) > 0){
-			while($row = mysql_fetch_assoc($r)){
-				$id = $row['idHorario'];
-			}
-		}*/
-		
-		//$id = $id + 1;
-		$data = Array();
-		//$data['id'] = $id;
-		$data['idWeek'] = addslashes($idWeek);
-		$data['idDay'] = addslashes($idDay);
-		$data['idPeriod'] = addslashes($idPeriod);
-		$data['idSubPeriod'] = addslashes($idSubPeriod);
-		
-		$r = insertHorarios($data);
-		
-		return $r;
-	}
-	
-	function buildDataInsertSalas($numBlock, $numClass, $descrition){
+
+	function constroiDadosInsertSala($numBloco, $numSala, $descricao){
 		$data = array();
 		
-		$data['numBlock'] = addslashes($numBlock);
-		$data['numClass'] = addslashes($numClass);
-		$data['descrition'] = addslashes($descrition);
+		$data['numBloco'] = addslashes($numBloco);
+		$data['numSala'] = addslashes($numSala);
+		$data['descricao'] = addslashes($descricao);
 		
-		$r = insertSalas($data);
+		$r = insertSala($data);
 		
 		return $r;
 	}
 	
-	function buildDataInsertAlocacao($numBlock, $numClass, $idHorary){
+	function constroiDadosInsertStatusAlocacao($id, $descricao){
+		$data = array();
+		$data['id'] = addslashes($id);
+		$data['descricao'] = addslashes($descricao);
+		
+		$r = insertStatusAlocacao($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosInsertAlocacao($numBloco, $numSala, $idHorary){
 		//$r = getIdTableAlocacao();
 		//$id = 0;
 		/*if(mysql_num_rows($r) > 0){
 			while($row = mysql_fetch_assoc($r)){
 				$id = $row['idAlocacao'];
 			}
-		}*/
+		}
 		
 		//$id = $id + 1;
 		$data = Array();
@@ -292,14 +229,14 @@
 		$data['numBlock'] = addslashes($numBlock);
 		$data['numClass'] = addslashes($numClass);
 		$data['idHorary'] = addslashes($idHorary);
-		$data['regValid'] = 1;
+		$data['regValido'] = 1;
 		
 		$r = insertAlocacao($data);
 		
 		return $r;
 	}
 	
-	function buildDataInsertServidorCursoCcr($semesterYear, $codCcr, $codCourse, $siape, $alocation, $observation){
+	function constroiDadosInsertServidorCursoCcr($semesterYear, $codCcr, $codCourse, $siape, $alocation, $observation){
 		$data = array();
 		$data['semesterYear'] = addslashes($semesterYear);
 		$data['codCcr'] = addslashes($codCcr);
@@ -307,60 +244,23 @@
 		$data['siape'] = addslashes($siape);
 		$data['alocation'] = addslashes($alocation);
 		$data['observation'] = addslashes($observation);
-		$data['regValid'] = 1;
+		$data['regValido'] = 1;
 		
 		$r = insertServidorCursoCcr($data);
 		
 		return $r;
 	}
+Até aqui*******************************************************/
+	/****************************************************Fim das funções de inserção****************************************/
+	/**/
+	/****************************************************Inicio das funções de alteração****************************************/
+	function constroiDadosUpdateFuncao(){
 	
-	function buildDataInsertServidores($siape, $firstName, $lastName, $observation, $replace, $idCargo, $idJornada, $idSituacaoServidor, $email, $phone1, $phone2, $address, $city, $idNivelServidor){
-		$data = Array();
-		$data['siape'] = addslashes($siape);
-		$data['firstName'] = addslashes($firstName);
-		$data['lastName'] = addslashes($lastName);
-		$data['observation'] = addslashes($observation);
-		$data['replace'] = addslashes($replace);
-		$data['idCargo'] = addslashes($idCargo);
-		$data['idJornada'] = addslashes($idJornada);
-		$data['idSituacaoServidor'] = addslashes($idSituacaoServidor);
-		$data['email'] = addslashes($email);
-		$data['phone1'] = addslashes($phone1);
-		$data['phone2'] = addslashes($phone2);
-		$data['address'] = addslashes($address);
-		$data['city'] = addslashes($city);
-		$data['idNivelServidor'] = addslashes($idNivelServidor);
-		$data['regValid'] = 1;
-		$pass = geraSenha(8, true, true, false);
-		$encryptedPassword = md5($pass . '' . SAL);
-		$data['pass'] = $encryptedPassword;
-	
-		$r = insertServidores($data);
-		
-		return $r;
 	}
-	
+	/****************************************************Fim das funções de alteração****************************************/
+	/**/
 	function popularTabelas(){
-		buildDataInsertFuncao("Nome da Funcao nova");
-		buildDataInsertCargos("Nome do Cargo novo");
-		buildDataInsertJornada("Nome da Jornada nova");
-		buildDataInsertNivelServidor("Nome do NivelServidor novo");
-		buildDataInsertSituacaoServidor("Nome da SituacaoServidor novo", '1999-12-15 15:13:15', '1999-12-15 15:13:15');
-		buildDataInsertServidores(geraSenha(7, true, true, false), 'Fulano', 'Fonseca', 'Observacao', 'siapeQm', 1, 1, 1, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 1);
-		buildDataInsertServidores(geraSenha(7, true, true, false), 'Ciclano', 'Fonseca', 'Observacao', 'siapeQm', 1, 1, 1, 'email', 'fone1', 'fone2', 'endereco', 'cidade', 1);
-		buildDataInsertNivelCursos("Nome do NivelCursos novo");
-		buildDataInsertCursos(rand()%999, "Nome do Curso novo", 1);
-		buildDataInsertDominios("Nome do Dominio novo");
-		buildDataInsertCcrs(rand()%999, 'Estrutura de Dados I', 40, 1);
-		buildDataInsertCursosCcrs(rand()%999, rand()%999);
-		buildDataInsertDiaSemana(rand()%999, rand()%999, 'Semana', 'Dia');
-		//buildDataInsertPeriodos(rand()%999, rand()%999, 'Periodo', '1999-12-15 15:13:15', '1999-12-15 15:13:15'); VERIFICAR INSERÇÃO DE HORAS SEM DIA
-		buildDataInsertPeriodos(rand()%999, rand()%999, 'Periodo', NULL, NULL);
-		//buildDataInsertHorarios(rand()%999, rand()%999, rand()%999, rand()%999); PROBLEMA, ENCONTRAR O ERRO E RESOLVER
-		buildDataInsertSalas('1', rand()%999, 'Descricao da Sala');
-		//buildDataInsertAlocacao('1', rand()%999, rand()%999);
-		buildDataInsertServidorCursoCcr(geraSenha(8, true, false, false), rand()%999, rand()%999, geraSenha(7, true, false, false), NULL, NULL);
-		return true;
+		return false;
 	}
 	
 	function geraSenha($tamanho, $maiusculas, $numeros, $simbolos){
@@ -395,7 +295,7 @@
 		return $retorno;
 	}
 
-	function buildDataLogin($user, $pass){
+	function constroiDadosLogin($user, $pass){
 		$data = array();
 		
 		$data['user'] = addslashes($user);
@@ -404,37 +304,27 @@
 		$r = login($data);
 		return $r;
 	}
-	
-	function chamaConsultaSql($table, $filter, $string, $type){
-		$dados = array();
-		$dados['tabela'] = addslashes($table);
-		$dados['filtro'] = addslashes($filter);
-		$dados['valor'] = addslashes($string);
-		$dados['tipo'] = addslashes($type);
-		
-		$r = consultaSql($dados);
-		
-		return $r;
-	}
-
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 	function listarServidor(){
 		$resultado = selectServidor();
 			echo' <kbd>Usuários TESTE existentes:</kbd></br></br>';	
 		while ($row = mysql_fetch_array($resultado)) {
-			echo 'Nome: '.$row['nome'].' '.$row['sobrenome'].'</br>';
+			echo '<kbd>Nome:</kbd> '.$row['nome'].' '.$row['sobrenome'].'</br>';
 			echo 'Siape: <kbd>'.$row['siape'].'</kbd></br>';
 			echo 'Email: <kbd>'.$row['email'].'</kbd></br>';
 			echo 'Senha: <kbd>1234</kbd></br>';
-			echo 'Nível: '.$row['nivel'].'</br>';
-			echo '</br></br>';
+			echo 'Nível: <kbd>'.$row['nivel'].'</kbd></br>';
+			echo '</br>';
 		}
 	}
-	
+
 	function listarMenu($nivel){		
 		$resultado = selectMenu($nivel);
 		echo '<div class="list-group-success">';
+		if($nivel == 0)
         echo '  <a href="inicio.php" class="list-group-item list-group-item-success leftt" target="iframe-tela-meio">Inicio</a>';
+		else
+		echo '  <a href="inicio.php" class="list-group-item list-group-item-success leftt" target="iframe-tela-meio">Inicio</a>';
 		while ($row = mysql_fetch_array($resultado)) {
         echo '  <a href="'.$row['linkAreaMenu'].'" class="list-group-item leftt" target="iframe-tela-meio">'.$row['descricaoAreaMenu'].'</a>';
 		}		
@@ -442,6 +332,43 @@
         echo '</div>';
 	}
 	
+	function listarAreas(){
+		$resultado = selectAreas();	
+		$cont = 0;
+		echo' <h3> Selecione as áreas visiveis por cada Nível </h3>';
+		echo' <div class="row">';		
+		while ($rowArea = mysql_fetch_array($resultado)) {
+			
+			if($cont == 0){
+			echo' <div class="row">';
+			echo'<div class="col-md-2 text-right"> <h5>'.$rowArea['descricaoAreaMenu'].'</h5> </div>';
+			echo'<div class="col-md-10">';
+			echo'<form action="salvaArea.php" method=GET">';
+			echo'<input type="hidden" name="nomeAreaMenu" value="'.$rowArea['nomeAreaMenu'].'">';
+			echo'<input type="hidden" name="idAreaMenu" value="'.$rowArea['idAreaMenu'].'">';
+			}
+			
+			//echo' <div class="btn-group" data-toggle="buttons">';
+			echo' <label class="btn btn-default'; if($rowArea['visivel'] ==1)echo' active'; echo'">';
+			echo' 	<input type="checkbox" name=check[] value='.$rowArea['idNivelServidor'].' ';
+			if($rowArea['visivel'] ==1)echo'CHECKED'; echo '>'; 
+			echo' '.$rowArea['nivel'].'';
+			echo' </label>';
+			//echo' </div>';
+						
+			$cont++;
+			if($cont == 4){
+		    echo' <input type="submit" value="Salvar">';
+			echo' </form>';				  
+			echo' </div>';// fecha btn-group
+			echo' ';// fecha col-md-10
+			echo' </div>';// fecha row	
+			$cont = 0;
+			}
+		
+		}		
+	}
+
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 	
 ?>

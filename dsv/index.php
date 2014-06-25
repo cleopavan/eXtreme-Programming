@@ -30,11 +30,7 @@
               <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
                 <i class="glyphicon glyphicon-user"></i> <?php echo $_SESSION['nomeCompleto'];?> <span class="caret"></span>
               </a>
-              <ul id="g-account-menu" class="dropdown-menu" role="menu">
-              	<?php
-			  	if($_SESSION['idNivelServidor'] == 0)
-                echo '<li><a href="controle.php">Area do administrador</a></li>';
-				?>
+              <ul id="g-account-menu" class="dropdown-menu" role="menu">              	
                 <li><a href="sair.php">Sair</a></li>
               </ul>
             </li>
@@ -50,7 +46,12 @@
       </div>
       <div class="col-md-10">
           <!------------------------- área designinada para os iframe ----------------------------->
-          <iframe name="iframe-tela-meio" src="inicio.php" height="450px" width="100%" frameborder="0"></iframe>
+          <?php
+			  	if($_SESSION['idNivelServidor'] == 0)
+				echo' <iframe name="iframe-tela-meio" src="inicio.php" height="450px" width="100%" frameborder="0"></iframe>';
+				else
+				echo' <iframe name="iframe-tela-meio" src="inicio.php" height="450px" width="100%" frameborder="0"></iframe>';
+		   ?>          
           <!------------------------- área designinada para os iframe ----------------------------->      
       </div><!-- /col-md-10 -->
     </div><!-- /row -->

@@ -309,24 +309,64 @@ Até aqui*******************************************************/
 		$resultado = selectServidor();
 			echo' <kbd>Usuários TESTE existentes:</kbd></br></br>';	
 		while ($row = mysql_fetch_array($resultado)) {
-			echo 'Nome: '.$row['nome'].' '.$row['sobrenome'].'</br>';
+			echo '<kbd>Nome:</kbd> '.$row['nome'].' '.$row['sobrenome'].'</br>';
 			echo 'Siape: <kbd>'.$row['siape'].'</kbd></br>';
 			echo 'Email: <kbd>'.$row['email'].'</kbd></br>';
 			echo 'Senha: <kbd>1234</kbd></br>';
-			echo 'Nível: '.$row['nivel'].'</br>';
-			echo '</br></br>';
+			echo 'Nível: <kbd>'.$row['nivel'].'</kbd></br>';
+			echo '</br>';
 		}
 	}
 
 	function listarMenu($nivel){		
 		$resultado = selectMenu($nivel);
 		echo '<div class="list-group-success">';
+		if($nivel == 0)
         echo '  <a href="inicio.php" class="list-group-item list-group-item-success leftt" target="iframe-tela-meio">Inicio</a>';
+		else
+		echo '  <a href="inicio.php" class="list-group-item list-group-item-success leftt" target="iframe-tela-meio">Inicio</a>';
 		while ($row = mysql_fetch_array($resultado)) {
         echo '  <a href="'.$row['linkAreaMenu'].'" class="list-group-item leftt" target="iframe-tela-meio">'.$row['descricaoAreaMenu'].'</a>';
 		}		
         echo '  <a href="sair.php" class="list-group-item leftt">Sair</a>';
         echo '</div>';
+	}
+	
+	function listarAreas(){
+		$resultado = selectAreas();	
+		$cont = 0;
+		echo' <h3> Selecione as áreas visiveis por cada Nível </h3>';
+		echo' <div class="row">';		
+		while ($rowArea = mysql_fetch_array($resultado)) {
+			
+			if($cont == 0){
+			echo' <div class="row">';
+			echo'<div class="col-md-2 text-right"> <h5>'.$rowArea['descricaoAreaMenu'].'</h5> </div>';
+			echo'<div class="col-md-10">';
+			echo'<form action="salvaArea.php" method=GET">';
+			echo'<input type="hidden" name="nomeAreaMenu" value="'.$rowArea['nomeAreaMenu'].'">';
+			echo'<input type="hidden" name="idAreaMenu" value="'.$rowArea['idAreaMenu'].'">';
+			}
+			
+			//echo' <div class="btn-group" data-toggle="buttons">';
+			echo' <label class="btn btn-default'; if($rowArea['visivel'] ==1)echo' active'; echo'">';
+			echo' 	<input type="checkbox" name=check[] value='.$rowArea['idNivelServidor'].' ';
+			if($rowArea['visivel'] ==1)echo'CHECKED'; echo '>'; 
+			echo' '.$rowArea['nivel'].'';
+			echo' </label>';
+			//echo' </div>';
+						
+			$cont++;
+			if($cont == 4){
+		    echo' <input type="submit" value="Salvar">';
+			echo' </form>';				  
+			echo' </div>';// fecha btn-group
+			echo' ';// fecha col-md-10
+			echo' </div>';// fecha row	
+			$cont = 0;
+			}
+		
+		}		
 	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/

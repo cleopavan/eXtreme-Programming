@@ -461,7 +461,14 @@
 		$user = $data['user'];
 		$pass = $data['pass'];
 		
-		$sql = "SELECT siape FROM servidores WHERE (siape='$user' OR email='$user') AND senha='$pass' AND regValido=1";
+		$sql = "SELECT nome, 
+		               sobrenome,
+					   nivelServidor.idNivelServidor
+			 	  FROM servidor
+				  JOIN nivelServidor using(idNivelServidor)
+				 WHERE (siape='$user' OR email='$user')
+				   AND senha='$pass'
+				   AND servidor.regValido=1";
 		
 		$r = dbConsulta($sql);
 		
@@ -471,7 +478,8 @@
 	function selectServidor(){
 		$sql = "SELECT *
 		          FROM servidor
-				  JOIN nivelServidor using(idNivelServidor)";
+				  JOIN nivelServidor using(idNivelServidor)
+				  ORDER BY idNivelServidor";
 
 		$r=dbConsulta($sql);
 		return $r;
@@ -482,10 +490,57 @@
 		               descricaoAreaMenu,
 					   linkAreaMenu
 		          FROM areaMenu
-				  JOIN nivelServidor_areaMenu using(idAreaMenu)
-				  where nivelServidor_areaMenu.idNivelServidor = ".$nivel."";		
+				  JOIN nivelServidor_areaMenu using(idAreaMenu)				  
+				  WHERE visivel = 1
+				  AND nivelServidor_areaMenu.idNivelServidor = ".$nivel."
+			 ORDER BY descricaoAreaMenu";		
 		$r=dbConsulta($sql);
 		return $r;
+	}
+	
+	function selectAreas(){
+		$sql = "SELECT nivelServidor_areaMenu.idAreaMenu,
+					   areaMenu.descricaoAreaMenu,
+					   areaMenu.nomeAreaMenu,
+		               nivelServidor_areaMenu.idNivelServidor,
+					   nivelServidor.nivel,
+					   visivel
+		          FROM nivelServidor_areaMenu
+				 JOIN nivelServidor using(idNivelServidor)
+				 JOIN areaMenu using(idAreaMenu)
+			 ORDER BY areaMenu.descricaoAreaMenu, nivelServidor.nivel";		
+		$r=dbConsulta($sql);
+		return $r;
+	}
+	
+	function setarArea($area, $nivel, $set){
+		$sql = "UPDATE nivelServidor_areaMenu set visivel=".$set." WHERE idNivelServidor=".$nivel." AND idAreaMenu=".$area." ";
+		$r=dbConsulta($sql);
+		return $r;
+	}
+	
+	function insertArea($nome, $descricao, $link){
+		$sql = "INSERT INTO areaMenu (idAreaMenu, nomeAreaMenu, descricaoAreaMenu, linkAreaMenu)
+		VALUES (NULL, '".$nome."', '".$descricao."', '".$link."')";
+		$r=dbConsulta($sql);
+		
+		$sql = "SELECT max(idAreaMenu) as idAreaMenu FROM areaMenu";
+		$r=dbConsulta($sql);
+		$row = mysql_fetch_array($r);
+		
+		$sql = "INSERT INTO nivelServidor_areaMenu (idAreaMenu, idNivelServidor, visivel) VALUES ('".$row['idAreaMenu']."', '0', '0')";
+		$r=dbConsulta($sql);
+		
+		$sql = "INSERT INTO nivelServidor_areaMenu (idAreaMenu, idNivelServidor, visivel) VALUES ('".$row['idAreaMenu']."', '1', '0')";
+		$r=dbConsulta($sql);
+		
+		$sql = "INSERT INTO nivelServidor_areaMenu (idAreaMenu, idNivelServidor, visivel) VALUES ('".$row['idAreaMenu']."', '2', '0')";
+		$r=dbConsulta($sql);
+		
+		$sql = "INSERT INTO nivelServidor_areaMenu (idAreaMenu, idNivelServidor, visivel) VALUES ('".$row['idAreaMenu']."', '3', '0')";
+		$r=dbConsulta($sql);
+		
+		return $r;		
 	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/

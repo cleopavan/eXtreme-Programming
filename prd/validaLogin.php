@@ -6,7 +6,7 @@
 		$user = addslashes($_POST['user']);
 		$pass = addslashes($_POST['pass']);
 		
-		$r=buildDataLogin($user, $pass);
+		$r=constroiDadosLogin($user, $pass);
 		
 		if(mysql_num_rows($r) == 0){
 			$_SESSION['error'] = 5;
@@ -17,8 +17,7 @@
 			$row = mysql_fetch_array($r);
 			$_SESSION['idNivelServidor'] = 1; /*FIXADO 1 (Somente para testes do menu dinamico) futuramente receberá id correto*/
 			$_SESSION['nomeCompleto'] = $row['nome'].' '.$row['sobrenome'];
-			$_SESSION['idNivelServidor'] = $row['idNivelServidor'];
-			//header("Location: home.php");
+			$_SESSION['idNivelServidor'] = $row['idNivelServidor'];			
 			header('Location: index.php');
 		}
 	}
