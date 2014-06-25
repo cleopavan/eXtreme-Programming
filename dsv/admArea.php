@@ -35,25 +35,73 @@
         	<button class="btn btn-success" data-toggle="modal" data-target=".criar">Criar nova area</button>
             <button class="btn btn-danger" data-toggle="modal" data-target=".excluir">Excluir area existente</button>
 
-            <div class="modal fade criar" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-sm">
-                <div class="modal-content text-center">
+            <div class="modal fade criar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content"></br>
+		             <div class="tab-pane" id="cadastrar">	
+		                 <form class="form-horizontal" role="form" action="cadastraArea.php" method="get">
+		                     <div class="form-group">
+		                         <label for="inputNome" class="col-sm-offset-2 col-sm-2 control-label">Nome da area</label>
+		                         <div class="col-sm-3">
+		                             <input type="text" class="form-control" id="inputNome" name=nome placeholder="exemplo: modelo1">
+		                         </div>
+		                     </div>
+                           <div class="form-group">
+		                          <label for="inputDescricao" class="col-sm-offset-2 col-sm-2 control-label">Descricao da area</label>
+		                         <div class="col-sm-3">
+		                             <input type="text" class="form-control" id="inputDescricao" name=descricao placeholder="exemplo: Modelo 1">
+		                         </div>
+		                     </div>
+                           <div class="form-group">
+		                         <label for="inputLink" class="col-sm-offset-2 col-sm-2 control-label">Link da area</label>
+		                         <div class="col-sm-3">
+		                             <input type="text" class="form-control" id="inputLink" name=link placeholder="exemplo: modelo1.php">
+		                         </div>
+		                     </div>
+		                     <div class="form-group">
+		                         <div class="col-sm-offset-3 col-sm-10">
+		                             <button type="submit" class="btn btn-success">Cadastrar</button>
+		                         </div>
+                           </div>
+		                  </form>
+		             </div><!-- /tab-pane cadastrar -->    
+                
+                <!--
                   <form action="cadastraArea.php" method="get"> 
                   	Nome area: ex(modelo1)</br><input type=text name=nome></br> 
                     Descricao area: ex(Modelo 1)</br><input type=text name=descricao></br>
                     Link area: ex(modelo1.php)</br><input type=text name=link></br>
                     <input type=submit value="Cadastrar">
                   </form>
+                  -->
                 </div>
               </div>
-            </div>
-            <div class="modal fade excluir" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                  ...
+            </div><!-- /modal fade criar -->
+            <div class="modal fade excluir" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content"></br>
+                  <div class="tab-pane" id="excluir">	
+		                 <form class="form-horizontal" role="form" action="#" method="get">
+		                     <div class="form-group">
+		                         <label for="inputNome" class="col-sm-offset-2 col-sm-2 control-label">Selecione: </label>
+		                         <div class="col-sm-3">
+		                         	<select name="mydropdown">
+											<option value="op1">Op 1</option>
+											<option value="op2">Op 2</option>
+											<option value="op3">Op 3</option>
+											</select>
+		                         </div>
+		                     </div>
+		                     <div class="form-group">
+		                         <div class="col-sm-offset-3 col-sm-10">
+		                             <button type="submit" class="btn btn-danger">Excluir</button>
+		                         </div>
+                           </div>
+		                     </form>
+		             </div><!-- /tab-pane cadastrar -->   
                 </div>
               </div>
-            </div>
+            </div><!-- /modal fade excluir -->
             <?php
 				listarAreas();
 			?>    
