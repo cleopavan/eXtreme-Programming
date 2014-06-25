@@ -71,9 +71,9 @@
                     <h4> Cadastrar ccr </h4>
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
-                            <label for="inputSiape" class="col-sm-2 control-label">Siape</label>
+                            <label for="inputSiape" class="col-sm-2 control-label">Código</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="inputSiape" placeholder="Siape">
+                                <input type="text" class="form-control" id="inputCod" placeholder="Código">
                             </div>
                         </div>
                         <div class="form-group">
@@ -83,45 +83,19 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputSobrenome" class="col-sm-2 control-label">Sobrenome</label>
+                            <label for="inputCH" class="col-sm-2 control-label">Carga Horária</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputSobrenome" placeholder="Sobrenome">
+                                <input type="text" class="form-control" id="inputCH" placeholder="Carga Horária">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputEndereco" class="col-sm-2 control-label">Endereço</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputEndereco" placeholder="Endereço">
-                            </div>
-                        </div>					
-                        <div class="form-group">
-                            <label for="inputCidade" class="col-sm-2 control-label">Cidade</label>
-                            <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputCidade" placeholder="Cidade">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputTelefone" class="col-sm-2 control-label">Telefone</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control" id="inputTelefone" placeholder="Telefone">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputCelular" class="col-sm-2 control-label">Celular</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control" id="inputCelular" placeholder="Celular">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputCargo" class="col-sm-2 control-label">Cargo</label>
+                            <label for="inputDominio" class="col-sm-2 control-label">Domínio</label>
                             <div class="col-sm-3">
                                 <select class="form-control">
-                                    <option>Cargo 1</option>
-                                    <option>Cargo 2</option>
-                                    <option>Cargo 3</option>
-                                    <option>Cargo 4</option>
-                                    <option>Cargo 5</option>
-                                </select>
+                                    <option>Comum</option>
+                                    <option>Específico</option>
+                                    <option>Conexo</option>
+								</select>
                             </div>
                             <div class="col-sm-3">
                                 <a class="btn btn-success" type="submit">+</a>
