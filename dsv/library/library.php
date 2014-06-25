@@ -335,7 +335,7 @@ Até aqui*******************************************************/
 	function listarAreas(){
 		$resultado = selectAreas();	
 		$cont = 0;
-		echo' <h3> Selecione as áreas visiveis por cada Nível </h3>';
+		echo' <h3> Selecione as areas visiveis por cada Nivel </h3>';
 		echo' <div class="row">';		
 		while ($rowArea = mysql_fetch_array($resultado)) {
 			
