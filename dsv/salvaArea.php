@@ -14,7 +14,7 @@
 	
 	if(isset($_GET["check"])) {				
 		foreach($_GET["check"] as $check) {
-			echo "- " . $check . "</br>";
+			//echo "- " . $check . "</br>";
 			if($check == 0)
 				$serv0 = 1;
 			if($check == 1)
