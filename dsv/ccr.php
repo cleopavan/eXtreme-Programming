@@ -42,19 +42,16 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div class="tab-pane active" id="inicial">
-                    <div class='alert alert-success alert-dismissable'>
-                       <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-                       <strong>Success!</strong> Alerta que um evento ocorreu com sucesso.
-                    </div>
+                  
                 </div><!-- /tab-pane inicial -->
                 <div class="tab-pane" id="buscar">
-                    <h4> Buscar ccr </h4>
+                    <h4> Buscar CCR </h4>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Buscar ccr">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Buscar por</button>
+                                <div class="input-group-btn" >
+                                    <button class="btn btn-default" type="button" >Buscar por</button>
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span></button>
                                     <ul class="dropdown-menu pull-right">
                                         <li><a href="#">Siape</a></li>
