@@ -15,14 +15,15 @@ i {
 }
   
 footer {
-  position:static;
-  margin-top:3.5%;
+  position:absolute;
   padding-top:20px;
   padding-bottom:20px;
   width:100%;
   background-color:#efefef;
   background-image: linear-gradient(to bottom, #ABD4AB, #7EA37E);
   z-index:1;
+  bottom:0%;
+  
 }
 
 footer a{
