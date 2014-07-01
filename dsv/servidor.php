@@ -121,6 +121,7 @@
                                     <option>Cargo 3</option>
                                     <option>Cargo 4</option>
                                     <option>Cargo 5</option>
+                                    <option>Cargo 6</option>
                                 </select>
                             </div>
                             <div class="col-sm-3">
