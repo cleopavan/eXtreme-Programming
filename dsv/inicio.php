@@ -14,7 +14,6 @@
     
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/alternativeStyles.css" rel="stylesheet">
-
   </head>
         <div class="row">
           <div class="col-md-12">

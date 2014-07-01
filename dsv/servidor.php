@@ -226,8 +226,28 @@
 <!-- /Principal -->
 	
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/validateMask.js"></script>
+	<script type="text/javascript">
+		  $(document).ready(function(){
+		  	  $('#inputTelefone').mask('(99) 9999-9999');
+		  	  $('#inputCelular').mask('(99) 9999-9999');
+		  	  
+		  	  
+			  function validateField(field){
+			  $('#'+field).focusout(function(){
+			    if($('#'+field).val()==''){
+			 	   $('#'+field).css('border-color', 'red');
+			    }else{
+			       $('#'+field).css('border', '1px solid #ccc');
+			    }
+			  }); 
+		  	 }
+		  	 validateField('inputNome');
+		  	 
+		  });
+	</script>
 </html>
