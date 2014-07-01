@@ -302,12 +302,12 @@
 		$idDominio = $data['idDominio'];
 		$regValido = $data['regValido'];
 		
-		$sql = "INSERT INTO ccrs (codCcr, idDominio, regValido, nomeCcr, cHoraria) VALUES ($codCcr, $idDominio, $regValido";
+		$sql = "INSERT INTO ccr (codCcr, idDominio, regValido, nomeCcr, cHoraria) VALUES ($codCcr, $idDominio, $regValido";
 		
-		if(empty($name)){
+		if(empty($nome)){
 			$sql = $sql . ", NULL";
 		}else{
-			$sql = $sql . ", '$name'";
+			$sql = $sql . ", '$nome'";
 		}
 		if(empty($cHoraria)){
 			$sql = $sql . ", NULL";
@@ -456,6 +456,286 @@
 /****************************************************Fim das funções de inserção****************************************/
 /**/
 /****************************************************Inicio das funções de alteração****************************************/
+	function updateFuncao($data){
+		$id = $data['id'];
+		$funcao = $data['funcao'];
+		
+		$sql = "UPDATE funcao SET idFuncao=$id, funcao=";
+		if(empty($funcao)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$funcao'";
+		}
+		$sql = $sql . " WHERE idFuncao=$id AND regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function updateServidorFuncao($data){
+		$idFuncao = $data['idFuncao'];
+		$siape = $data['siape'];
+		$dataInicio = $data['dataInicio'];
+		$dataSaida = $data['dataSaida'];
+		$cargaHoraria = $data['cargaHoraria'];
+		
+		$sql = "UPDATE servidorfuncao SET idFuncao=$id, siape=$siape, dataInicio='$dataInicio', dataSaida=";
+		if(empty($dataSaida)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$dataSaida'";
+		}
+		$sql = $sql . ", cargaHoraria=$cargaHoraria WHERE idFuncao=$idFuncao AND siape='$siape' AND dataInicio='$dataInicio' AND regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function updateCargo($data){
+		$id = $data['id'];
+		$cargo = $data['cargo'];
+		
+		$sql = "UPDATE cargo SET idCargo=$id, cargo=";
+		
+		if(empty($cargo)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$cargo'";
+		}
+		$sql = $sql . " WHERE idCargo=$id AND regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function updateJornada($data){
+		$id = $data['id'];
+		$jornada = $data['jornada'];
+		
+		$sql = "UPDATE jornada SET idJornada=$id, jornada=";
+		if(empty($jornada)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$jornada'";
+		}
+		$sql = $sql . " WHERE idJornada=$id AND regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function updateSituacaoServidor($data){
+		$id = $data['id'];
+		$situacao = $data['situacao'];
+		$dataEntrada = $data['dataEntrada'];
+		$dataSaida = $data['dataSaida'];
+		
+		$sql = "UPDATE situacaoservidor SET idSituacaoServidor=$id, situacao=";
+		if(empty($situacao)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$situacao'";
+		}
+		$sql = $sql . ", dataEntrada=";
+		if(empty($dataEntrada)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$dataEntrada'";
+		}
+		$sql = $sql . ", dataSaida=";
+		if(empty($dataSaida)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$dataSaida'";
+		}
+		$sql = $sql . " WHERE idSituacaoServidor=$id AND regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function updateNivelServidor($data){
+		$id = $data['id'];
+		$nivel = $data['nivel'];
+		
+		$sql = "UPDATE nivelservidor SET idNivelServidor=$id, nivel=";
+		
+		if(empty($nivel)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$nivel'";
+		}
+		$sql = $sql . " WHERE idNivelServidor=$id AND regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function updateServidor($data){
+		$siape = $data['siape'];
+		$nome = $data['nome'];
+		$sobrenome = $data['sobrenome'];
+		$observacao = $data['observacao'];
+		$quemSubstitui = $data['quemSubstitui'];
+		$idCargo = $data['idCargo'];
+		$idJornada = $data['idJornada'];
+		$idSituacaoServidor = $data['idSituacaoServidor'];
+		$email = $data['email'];
+		$fone1 = $data['fone1'];
+		$fone2 = $data['fone2'];
+		$endereco = $data['endereco'];
+		$cidade = $data['cidade'];
+		$idNivelServidor = $data['idNivelServidor'];
+		
+		$sql = "UPDATE servidor SET siape='$siape', nome='$nome', sobrenome='$sobrenome', idCargo=$idCargo,
+				idJornada=$idJornada, idSituacaoServidor=$idSituacaoServidor, idNivelServidor=idNivelServidor, observacao=";
+		
+		if(empty($observacao)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$observacao'";
+		}
+		$sql = $sql . ", quemSubstitui=";
+		if(empty($quemSubstitui)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$quemSubstitui'";
+		}
+		$sql = $sql . ", email=";
+		if(empty($email)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$email'";
+		}
+		$sql = $sql . ", fone1=";
+		if(empty($fone1)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$fone1'";
+		}
+		$sql = $sql . ", fone2=";
+		if(empty($fone2)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$fone2'";
+		}
+		$sql = $sql . ", endereco=";
+		if(empty($endereco)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$endereco'";
+		}
+		$sql = $sql . ", cidade=";
+		if(empty($cidade)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$cidade'";
+		}
+		$sql = $sql . " WHERE siape='$siape' AND regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function updateNivelCurso($data){
+		$id = $data['id'];
+		$nivel = $data['nivel'];
+		
+		$sql = "UPDATE nivelcurso SET idNivelCurso=$id, nomeNivelCurso=";
+		
+		if(empty($nivel)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$nivel'";
+		}
+		$sql = $sql . " WHERE idNivelCurso=$id AND regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function updateCurso($data){
+		$codCurso = $data['codCurso'];
+		$nome = $data['nome'];
+		$idNivelCurso = $data['idNivelCurso'];
+		
+		$sql = "UPDATE curso SET codCurso=$codCurso, idNivelCurso=$idNivelCurso, nomeCurso="
+		
+		if(empty($nome)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$nome'";
+		}
+		$sql = $sql . " WHERE codCurso=$codCurso AND regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function updateDominio($data){
+		$id = $data['id'];
+		$dominio = $data['dominio'];
+		
+		$sql = "UPDATE dominio SET idDominio=$id, nomeDominio="
+		
+		if(empty($dominio)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$dominio'";
+		}
+		$sql = $sql . " WHERE idDominio=$id AND regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function updateCcr($data){
+		$codCcr = $data['codCcr'];
+		$nome = $data['nome'];
+		$cHoraria = $data['cHoraria'];
+		$idDominio = $data['idDominio'];
+		
+		$sql = "UPDATE ccr SET codCcr=$codCcr, idDominio=$idDominio, nomeCcr="
+		
+		if(empty($nome)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$nome'";
+		}
+		$sql = $sql . ", cHoraria=";
+		if(empty($cHoraria)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "$cHoraria";
+		}
+		$sql = $sql . " WHERE codCcr=$codCcr AND regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function updateCursoCcr($data){
+		$codCcr = $data['codCcr'];
+		$codCurso = $data['codCurso'];
+		
+		$sql = "UPDATE cursoccr SET codCcr=$codCcr, codCurso=$codCurso WHERE codCcr=$codCcr AND codCurso=$codCurso AND regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+/****************************************************Fim das funções de alteração****************************************/
 	
 	function login($data){
 		$user = $data['user'];
