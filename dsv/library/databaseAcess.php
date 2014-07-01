@@ -302,12 +302,12 @@
 		$idDominio = $data['idDominio'];
 		$regValido = $data['regValido'];
 		
-		$sql = "INSERT INTO ccrs (codCcr, idDominio, regValido, nomeCcr, cHoraria) VALUES ($codCcr, $idDominio, $regValido";
+		$sql = "INSERT INTO ccr (codCcr, idDominio, regValido, nomeCcr, cHoraria) VALUES ($codCcr, $idDominio, $regValido";
 		
-		if(empty($name)){
+		if(empty($nome)){
 			$sql = $sql . ", NULL";
 		}else{
-			$sql = $sql . ", '$name'";
+			$sql = $sql . ", '$nome'";
 		}
 		if(empty($cHoraria)){
 			$sql = $sql . ", NULL";
