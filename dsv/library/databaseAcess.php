@@ -667,7 +667,7 @@
 		$nome = $data['nome'];
 		$idNivelCurso = $data['idNivelCurso'];
 		
-		$sql = "UPDATE curso SET codCurso=$codCurso, idNivelCurso=$idNivelCurso, nomeCurso="
+		$sql = "UPDATE curso SET codCurso=$codCurso, idNivelCurso=$idNivelCurso, nomeCurso=";
 		
 		if(empty($nome)){
 			$sql = $sql . "NULL";
@@ -685,7 +685,7 @@
 		$id = $data['id'];
 		$dominio = $data['dominio'];
 		
-		$sql = "UPDATE dominio SET idDominio=$id, nomeDominio="
+		$sql = "UPDATE dominio SET idDominio=$id, nomeDominio=";
 		
 		if(empty($dominio)){
 			$sql = $sql . "NULL";
@@ -705,7 +705,7 @@
 		$cHoraria = $data['cHoraria'];
 		$idDominio = $data['idDominio'];
 		
-		$sql = "UPDATE ccr SET codCcr=$codCcr, idDominio=$idDominio, nomeCcr="
+		$sql = "UPDATE ccr SET codCcr=$codCcr, idDominio=$idDominio, nomeCcr=";
 		
 		if(empty($nome)){
 			$sql = $sql . "NULL";
