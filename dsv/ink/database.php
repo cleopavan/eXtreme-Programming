@@ -2,6 +2,7 @@
 
 	$banco = 'local';
 	//$banco = 'server';
+	//$banco = 'jacson';
 
 	if($banco == 'server'){
 		$host = "mysql.hostinger.com.br";
@@ -13,6 +14,12 @@
 		$host = "localhost";
 		$user = "root";
 		$pass = "";
+	}
+	
+	if($banco == 'jacson'){
+		$host = "localhost";
+		$user = "root";
+		$pass = "NOVASENHA";
 	}
 
 	$app = "u454558226_cadu";

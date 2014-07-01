@@ -254,9 +254,69 @@ Até aqui*******************************************************/
 	/****************************************************Fim das funções de inserção****************************************/
 	/**/
 	/****************************************************Inicio das funções de alteração****************************************/
-	function constroiDadosUpdateFuncao(){
-	
+	function constroiDadosUpdateFuncao($idFuncao, $funcao){
+		$data = array();
+		$data['id'] = addslashes($idFuncao);
+		$data['funcao'] = addslashes($funcao);
+		
+		$r = updateFuncao($data);
+		
+		return $r;
 	}
+	
+	function constroiDadosUpdateServidorFuncao($idFuncao, $siape, $dataInicio, $dataSaida, $cargaHoraria){
+		/**
+		*Formato de inserção de datas: "AAAA-MM-DD hh:mm:ss"
+		**/
+		$data = Array();
+		$data['idFuncao'] = addslashes($idFuncao);
+		$data['siape'] = addslashes($siape);
+		$data['dataInicio'] = addslashes($dataInicio);
+		$data['dataSaida'] = addslashes($dataSaida);
+		$data['cargaHoraria'] = addslashes($cargaHoraria);
+		
+		$r = updateServidorFuncao($data);
+		return $r;
+	}
+	
+	function constroiDadosUpdateCargo($idCargo, $cargo){
+		$data = Array();
+		$data['id'] = addslashes($idCargo);
+		$data['cargo'] = addslashes($cargo);
+		
+		$r = updateCargo($data);
+		return $r;
+	}
+	
+	function constroiDadosUpdateJornada($idJornada, $jornada){
+		$data = Array();
+		$data['id'] = addslashes($idJornada);
+		$data['jornada'] = addslashes($jornada);
+		
+		$r = updateJornada($data);
+		return $r;
+	}
+	
+	function constroiDadosUpdateSituacaoServidor($idSituacaoServidor, $situacao, $dataEntrada, $dataSaida){
+		$data = Array();
+		$data['id'] = addslashes($idSituacaoServidor);
+		$data['situacao'] = addslashes($situacao);
+		$data['dataEntrada'] = addslashes($dataEntrada);
+		$data['dataSaida'] = addslashes($dataSaida);
+		
+		$r = updateSituacaoServidor($data);
+		return $r;
+	}
+	
+	function constroiDadosUpdateNivelServidor($idNivelServidor, $nivel){
+		$data = Array();
+		$data['id'] = addslashes($idNivelServidor);
+		$data['nivel'] = addslashes($nivel);
+		
+		$r = updateNivelServidor($data);
+		return $r;
+	}
+	
 	/****************************************************Fim das funções de alteração****************************************/
 	/**/
 	function popularTabelas(){

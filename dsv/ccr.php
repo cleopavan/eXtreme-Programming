@@ -66,29 +66,29 @@
     
                 <div class="tab-pane" id="cadastrar">			  
                     <h4> Cadastrar ccr </h4>
-                    <form class="form-horizontal" role="form">
+                    <form action="conectBD.php" method="post" class="form-horizontal" role="form">
                         <div class="form-group">
-                            <label for="inputSiape" class="col-sm-2 control-label">Código</label>
+                            <label for="inputCod" class="col-sm-2 control-label">Código</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="inputCod" placeholder="Código">
+                                <input type="text" name="cod" class="form-control" id="inputCod" placeholder="Código">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputNome" class="col-sm-2 control-label">Nome</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="inputNome" placeholder="Nome">
+                                <input type="text" class="form-control" name="nome" id="inputNome" placeholder="Nome">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputCH" class="col-sm-2 control-label">Carga Horária</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputCH" placeholder="Carga Horária">
+                                <input type="text" class="form-control" name="ch" id="inputCH" placeholder="Carga Horária">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputDominio" class="col-sm-2 control-label">Domínio</label>
                             <div class="col-sm-3">
-                                <select class="form-control">
+                                <select class="form-control" name="dominio">
                                     <option>Comum</option>
                                     <option>Específico</option>
                                     <option>Conexo</option>
@@ -100,7 +100,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">Cadastrar</button>
+                                <button type="submit" class="btn btn-default" >Cadastrar</button>
                             </div>
                         </div>
                     </form>
