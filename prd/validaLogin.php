@@ -15,7 +15,7 @@
 		else if(mysql_num_rows($r) == 1){
 			$_SESSION['logado'] = TRUE;
 			$row = mysql_fetch_array($r);
-			$_SESSION['idNivelServidor'] = 1; /*FIXADO 1 (Somente para testes do menu dinamico) futuramente receberá id correto*/
+			
 			$_SESSION['nomeCompleto'] = $row['nome'].' '.$row['sobrenome'];
 			$_SESSION['idNivelServidor'] = $row['idNivelServidor'];			
 			header('Location: index.php');

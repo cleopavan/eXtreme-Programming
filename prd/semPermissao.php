@@ -3,6 +3,9 @@
 	if($_SESSION['logado'] != TRUE){
 		header('Location: login.php');
 	}
+	if(!isset($_SESSION['idNivelServidor'])){//verifica se existe um servidor passando por SESSION
+		header('Location: login.php');
+	}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -21,7 +24,7 @@
       <div class="col-md-12">
         <ul class="breadcrumb">
             <li><a href="inicio.php">Inicio</a>
-            <li><a href="semPermissao.php">Sem permissão</a>
+            <li class="active">Sem permissão
         </ul>
       </div>
     </div>
@@ -31,6 +34,7 @@
             <div class='alert alert-danger alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <strong>Sem premisão!</strong> Atenção você não tem permissão para acessar esta área.
+              </br></br></br><strong>Em caso de dúvida contate o administrador.</strong>
             </div>
         </div><!-- /panel-body -->                
       </div><!-- /col-md-12 -->                 

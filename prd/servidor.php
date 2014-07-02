@@ -4,8 +4,13 @@
 	if($_SESSION['logado'] != TRUE){
 		header('Location: login.php');
 	}
-	if($_SESSION['idNivelServidor'] != 1){/* implementar aqui os casos em que TAL NIVEL NÃO PODE VISUALIZAR ESTA PAGINA*/
-		//header('Location: semPermissao.php');
+	if(!isset($_SESSION['idNivelServidor'])){//verifica se existe um servidor passando por SESSION
+		header('Location: login.php');
+	}
+	//@parametros (string, integer);
+	//@parametros (nome da pagina, id do nivel do servidor)
+	if(acessoRecusado('servidor.php', $_SESSION['idNivelServidor']) == FALSE){/* Excessão no caso do servidor não ter acesso a esta área*/
+		header('Location: index.php?i=semPermissao');
 	}
 ?>
 <!DOCTYPE html>
@@ -26,7 +31,7 @@
         <div class="col-md-12">
             <ul class="breadcrumb">
             <li><a href="inicio.php">Inicio</a>
-            <li><a href="servidor.php">Servidor</a>
+            <li class="active">Servidor
             </ul>
         </div><!-- /col-md-12 -->
     </div><!-- /row -->
@@ -89,6 +94,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-3">
+                                <input type="email" class="form-control" id="inputEmail" placeholder="exemplo@mail.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="inputEndereco" class="col-sm-2 control-label">Endereço</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" id="inputEndereco" placeholder="Endereço">
@@ -121,11 +132,84 @@
                                     <option>Cargo 3</option>
                                     <option>Cargo 4</option>
                                     <option>Cargo 5</option>
+                                    <option>Cargo 6</option>
                                 </select>
                             </div>
                             <div class="col-sm-3">
                                 <a class="btn btn-success" type="submit">+</a>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputJornada" class="col-sm-2 control-label">Jornada</label>
+                            <div class="col-sm-3">
+                                <select class="form-control">
+                                    <option>Jornada 1</option>
+                                    <option>Jornada 2</option>
+                                    <option>Jornada 3</option>
+                                    <option>Jornada 4</option>
+                                    <option>Jornada 5</option>
+                                    <option>Jornada 6</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <a class="btn btn-success" type="submit">+</a>
+                            </div>
+                         </div>
+                         <div class="form-group">
+                            <label for="inputSituacao" class="col-sm-2 control-label">Situação</label>
+                            <div class="col-sm-3">
+                                <select class="form-control">
+                                    <option>Situação 1</option>
+                                    <option>Situação 2</option>
+                                    <option>Situação 3</option>
+                                    <option>Situação 4</option>
+                                    <option>Situação 5</option>
+                                    <option>Situação 6</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <a class="btn btn-success" type="submit">+</a>
+                            </div>
+                         </div>
+                         <div class="form-group">
+                            <label for="inputDataEntrada" class="col-sm-2 control-label">Data de Entrada</label>
+                            <div class="col-sm-3">
+                                <input type="date" class="form-control" id="inputDataEntrada" placeholder="Data de Entrada">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDataSaida" class="col-sm-2 control-label">Data de Saída</label>
+                            <div class="col-sm-3">
+                                <input type="date" class="form-control" id="inputDataSaida" placeholder="Data de Saída">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputNivel" class="col-sm-2 control-label">Nível</label>
+                            <div class="col-sm-3">
+                                <select class="form-control">
+                                    <option>Nível 1</option>
+                                    <option>Nível 2</option>
+                                    <option>Nível 3</option>
+                                    <option>Nível 4</option>
+                                    <option>Nível 5</option>
+                                    <option>Nível 6</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <a class="btn btn-success" type="submit">+</a>
+                            </div>
+                         </div>
+                         <div class="form-group">
+                            <label for="inputSubstituto" class="col-sm-2 control-label">Substituto</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="inputSubstituto" placeholder="Substituto">
+                            </div>
+                        </div>
+                       <div class="form-group">
+                            <label for="inputObservacao" class="col-sm-2 control-label">Observação</label>
+                        	<div class="col-sm-3">
+                        		<textarea type="text" class="form-control" id="Observacao" rows="3"></textarea>
+                        	</div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
@@ -147,8 +231,28 @@
 <!-- /Principal -->
 	
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/validateMask.js"></script>
+	<script type="text/javascript">
+		  $(document).ready(function(){
+		  	  $('#inputTelefone').mask('(99) 9999-9999');
+		  	  $('#inputCelular').mask('(99) 9999-9999');
+		  	  
+		  	  
+			  function validateField(field){
+			  $('#'+field).focusout(function(){
+			    if($('#'+field).val()==''){
+			 	   $('#'+field).css('border-color', 'red');
+			    }else{
+			       $('#'+field).css('border', '1px solid #ccc');
+			    }
+			  }); 
+		  	 }
+		  	 validateField('inputNome');
+		  	 
+		  });
+	</script>
 </html>
