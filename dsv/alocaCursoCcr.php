@@ -12,6 +12,23 @@
 	if(acessoRecusado('alocaCursoCcr.php', $_SESSION['idNivelServidor']) == FALSE){/* Excessão no caso do servidor não ter acesso a esta área*/
 		header('Location: index.php?i=semPermissao');
 	}
+	if(isset($_POST['desfazer'])){
+		$_SESSION['siape'] = NULL;
+		$_SESSION['servidorSiape'] = NULL;
+	}
+	if(isset($_POST['validar'])){
+		if(isset($_POST['siape']) && !isset($_SESSION['siape'])){
+			//validarsiape
+			$_SESSION['siape'] = $_POST['siape'];
+			$_SESSION['servidorSiape'] = "Teste Teste";
+		}
+		elseif(isset($_POST['siape']) && isset($_SESSION['siape'])){
+			//validarsiape
+			$_SESSION['siape'] = $_POST['siape'];
+			$_SESSION['servidorSiape'] = "Teste Teste";
+		}
+	}
+		
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -38,19 +55,34 @@
     <div class="row">
         <div class="col-md-12">
             <!-- CODIGO DEVE SER IMPLEMENTADO NESTA AREA -->
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" enctype="multipart/form-data" method="post" action="alocaCursoCcr.php">
             	<div class="form-group">
-                	<label for="inputEmail3" class="col-sm-2 control-label">Siape</label>
+                	<label for="inputSiape" class="col-sm-2 control-label">Siape</label>
                 	<div class="col-sm-3">
-                  	<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                  	<input name="siape" <?php if(isset($_SESSION['siape'])) echo "value='".$_SESSION['siape']."'"; ?> type="number" class="form-control" id="inputSiapeText" placeholder="Siape">
                 	</div>
-                    <button type="submit" class="btn btn-default">Validar Siape</button>
+                    <?php
+						if(isset($_SESSION['servidorSiape'])){
+							echo "<label for='siapeValidado' class='col-sm-2 control-label'>".$_SESSION['servidorSiape']." ativo!</label>";
+							echo "<button name='desfazer' value='1' type='submit' class='btn btn-default'>Desfazer</button>";
+						}
+						else{
+							echo "<button name='validar' value='1' type='submit' class='btn btn-default'>Validar Siape</button>";
+						}
+                    ?>
               	</div>  
-            
+				
             	<div class="form-group">
                 	<label for="inputEmail3" class="col-sm-2 control-label">Ano/Semestre</label>
                 	<div class="col-sm-3">
-                	  <select class="form-control" name="anoSemestre">
+						<?php 
+							if(isset($_SESSION['siape'])){
+								echo '<select class="form-control" name="anoSemestre">';
+							}
+							else{
+								echo '<select class="form-control" name="anoSemestre" disabled="disabled">';
+							}
+						?>
                   		  <option value="">Selecione</option>	
                     	  <option value="2014/1">2014/1</option>
                     	  <option value="2014/2">2014/2</option>
@@ -62,13 +94,48 @@
                     	  <option value="2017/2">2017/2</option>
                     	</select>
                 	</div>
-              	</div> 
-            
-                          
-              
-              <div class="form-group">
-                
-              </div>
+              	</div>
+              	<div class="form-group">
+					<label for="curso" class="col-sm-2 control-label">Curso</label>
+                	<div class="col-sm-3">
+						<?php 
+							if(isset($_SESSION['siape'])){
+								echo '<select class="form-control" name="codCurso">';
+							}
+							else{
+								echo '<select class="form-control" name="codCurso" disabled="disabled">';
+							}
+						?>
+                  		  <option value="">Selecione</option>	
+                    	  <option value="1001">Ciência da Computação</option>
+                    	  <option value="1002">Enfermagem</option>
+                    	  <option value="1003">Agronomia</option>
+                    	  <option value="1004">Matemática</option>
+                    	</select>
+                    </div>
+              	</div>
+              	<div class="form-group">
+					<label for="ccr" class="col-sm-2 control-label">CCR</label>
+                	<div class="col-sm-3">
+						<?php 
+							if(isset($_SESSION['siape'])){
+								echo '<select class="form-control" name="codCcr">';
+							}
+							else{
+								echo '<select class="form-control" name="codCcr" disabled="disabled">';
+							}
+						?>
+                  		  <option value="">Selecione</option>	
+                    	  <option value="100">Redes</option>
+                    	  <option value="101">Computação Gráfica</option>
+                    	  <option value="200">Leitura e Produção Textual I</option>
+                    	  <option value="201">Leitura e Produção Textual II</option>
+                    	</select>
+                    </div>   
+              	</div>
+              	<div class="col-sm-4">
+					<button name='alocar' value='1' type='submit' class='btn btn-default'>Alocar</button>
+				</div>
             </form>
 
 		<!-- CODIGO DEVE SER IMPLEMENTADO NESTA AREA -->
