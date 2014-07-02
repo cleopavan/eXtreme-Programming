@@ -848,6 +848,31 @@
 		$r=dbConsulta($sql);		
 		return $r;				
 	}
+	
+	function selectListaNivelCurso(){
+		$sql = "SELECT *
+		          FROM nivelCurso";
+		$r=dbConsulta($sql);		
+		return $r;				
+	}
+	
+	function selectListaCurso($idNivelCurso){
+		$sql = "SELECT *
+		          FROM curso
+                  JOIN nivelCurso using(idNivelCurso)
+				 WHERE nivelCurso.idNivelCurso = $idNivelCurso";
+		$r=dbConsulta($sql);		
+		return $r;				
+	}
+	
+	function selectCcr($codCurso){
+		$sql = "SELECT *
+		          FROM cursoCcr 
+				 JOIN ccr using (codCcr)
+				 WHERE cursoCcr.codCurso = $codCurso";
+		$r=dbConsulta($sql);		
+		return $r;				
+	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 ?>
