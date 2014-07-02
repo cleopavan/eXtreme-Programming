@@ -440,6 +440,15 @@ Até aqui*******************************************************/
 		}else
 		return FALSE;	
 	}
+	
+	function mostraServidorSelecionado($siape){
+		$resultado = selectUmServidor($siape);
+		
+		$rowServidor = mysql_fetch_array($resultado);
+		
+		echo $rowServidor['nome'].' '.$rowServidor['sobrenome'].' está selecionado';
+			
+	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 	
