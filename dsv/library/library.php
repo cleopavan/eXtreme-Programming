@@ -444,9 +444,14 @@ Até aqui*******************************************************/
 	function mostraServidorSelecionado($siape){
 		$resultado = selectUmServidor($siape);
 		
-		$rowServidor = mysql_fetch_array($resultado);
+		echo $resultado;
+			
 		
-		echo $rowServidor['nome'].' '.$rowServidor['sobrenome'].' está selecionado';
+		//$rowServidor = mysql_fetch_array($resultado);
+		
+		//if($rowServidor
+		//return $rowServidor;
+		return TRUE;
 			
 	}
 
