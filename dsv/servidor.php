@@ -46,12 +46,16 @@
     
             <!-- Tab panes -->
             <div class="tab-content">
-                <div class="tab-pane active" id="inicial">
-                    <div class='alert alert-success alert-dismissable'>
-                       <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-                       <strong>Success!</strong> Alerta que um evento ocorreu com sucesso.
-                    </div>
-                </div><!-- /tab-pane inicial -->
+                <?php
+                if(isset($_POST["inputSiape"])){
+	                echo '<div class="tab-pane active" id="inicial">
+	                    <div class="alert alert-success alert-dismissable">
+	                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	                       Cadastro realizado com sucesso.
+	                    </div>
+	                </div> ';
+                }
+                ?>
                 <div class="tab-pane" id="buscar">
                     <h4> Buscar servidor </h4>
                     <div class="row">
@@ -74,59 +78,59 @@
     
                 <div class="tab-pane" id="cadastrar">			  
                     <h4> Cadastrar servidor </h4>
-                    <form class="form-horizontal" role="form">
+                    <form action="servidor.php" method="post" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label for="inputSiape" class="col-sm-2 control-label">Siape</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="inputSiape" placeholder="Siape">
+                                <input type="text" class="form-control" id="inputSiape" placeholder="Siape" name="inputSiape">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputNome" class="col-sm-2 control-label">Nome</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="inputNome" placeholder="Nome">
+                                <input type="text" class="form-control" id="inputNome" placeholder="Nome"name="inputNome" >
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputSobrenome" class="col-sm-2 control-label">Sobrenome</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputSobrenome" placeholder="Sobrenome">
+                                <input type="text" class="form-control" id="inputSobrenome" placeholder="Sobrenome" name="inputSobrenome">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                             <div class="col-sm-3">
-                                <input type="email" class="form-control" id="inputEmail" placeholder="exemplo@mail.com">
+                                <input type="email" class="form-control" id="inputEmail" placeholder="exemplo@mail.com" name="inputEmail">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEndereco" class="col-sm-2 control-label">Endereço</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputEndereco" placeholder="Endereço">
+                                <input type="text" class="form-control" id="inputEndereco" placeholder="Endereço" name="inputEndereco">
                             </div>
                         </div>					
                         <div class="form-group">
                             <label for="inputCidade" class="col-sm-2 control-label">Cidade</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputCidade" placeholder="Cidade">
+                                <input type="text" class="form-control" id="inputCidade" placeholder="Cidade" name="inputCidade">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputTelefone" class="col-sm-2 control-label">Telefone</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="inputTelefone" placeholder="Telefone">
+                                <input type="text" class="form-control" id="inputTelefone" placeholder="Telefone" name="inputTelefone">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputCelular" class="col-sm-2 control-label">Celular</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="inputCelular" placeholder="Celular">
+                                <input type="text" class="form-control" id="inputCelular" placeholder="Celular" name="inputCelular">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputCargo" class="col-sm-2 control-label">Cargo</label>
                             <div class="col-sm-3">
-                                <select class="form-control">
+                                <select class="form-control" name="inputCargo">
                                     <option>Cargo 1</option>
                                     <option>Cargo 2</option>
                                     <option>Cargo 3</option>
@@ -142,7 +146,7 @@
                         <div class="form-group">
                             <label for="inputJornada" class="col-sm-2 control-label">Jornada</label>
                             <div class="col-sm-3">
-                                <select class="form-control">
+                                <select class="form-control" name="inputJornada">
                                     <option>Jornada 1</option>
                                     <option>Jornada 2</option>
                                     <option>Jornada 3</option>
@@ -158,7 +162,7 @@
                          <div class="form-group">
                             <label for="inputSituacao" class="col-sm-2 control-label">Situação</label>
                             <div class="col-sm-3">
-                                <select class="form-control">
+                                <select class="form-control" name="inputSituacao">
                                     <option>Situação 1</option>
                                     <option>Situação 2</option>
                                     <option>Situação 3</option>
@@ -174,19 +178,19 @@
                          <div class="form-group">
                             <label for="inputDataEntrada" class="col-sm-2 control-label">Data de Entrada</label>
                             <div class="col-sm-3">
-                                <input type="date" class="form-control" id="inputDataEntrada" placeholder="Data de Entrada">
+                                <input type="date" class="form-control" id="inputDataEntrada" placeholder="Data de Entrada" name="inputDataEntrada">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputDataSaida" class="col-sm-2 control-label">Data de Saída</label>
                             <div class="col-sm-3">
-                                <input type="date" class="form-control" id="inputDataSaida" placeholder="Data de Saída">
+                                <input type="date" class="form-control" id="inputDataSaida" placeholder="Data de Saída" name="inputDataSaida">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputNivel" class="col-sm-2 control-label">Nível</label>
                             <div class="col-sm-3">
-                                <select class="form-control">
+                                <select class="form-control" name="inputNivel">
                                     <option>Nível 1</option>
                                     <option>Nível 2</option>
                                     <option>Nível 3</option>
@@ -202,13 +206,13 @@
                          <div class="form-group">
                             <label for="inputSubstituto" class="col-sm-2 control-label">Substituto</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="inputSubstituto" placeholder="Substituto">
+                                <input type="text" class="form-control" id="inputSubstituto" placeholder="Substituto" name="inputSubstituto">
                             </div>
                         </div>
                        <div class="form-group">
                             <label for="inputObservacao" class="col-sm-2 control-label">Observação</label>
                         	<div class="col-sm-3">
-                        		<textarea type="text" class="form-control" id="Observacao" rows="3"></textarea>
+                        		<textarea type="text" class="form-control" id="Observacao" rows="3" name="inputObservacao"></textarea>
                         	</div>
                         </div>
                         <div class="form-group">
@@ -231,6 +235,8 @@
 <!-- /Principal -->
 	
 
+
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -252,7 +258,12 @@
 			  }); 
 		  	 }
 		  	 validateField('inputNome');
-		  	 
+		  	 validateField('inputSiape');
+		  	 validateField('inputSobrenome');
+		  	 validateField('inputEmail');
+		  	 validateField('inputEndereco');
+		  	 validateField('inputCidade');
+		  	 validateField('inputDataEntrada');	  	 
 		  });
 	</script>
 </html>
