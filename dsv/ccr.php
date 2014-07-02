@@ -12,6 +12,20 @@
 	if(acessoRecusado('ccr.php', $_SESSION['idNivelServidor']) == FALSE){/* Excessão no caso do servidor não ter acesso a esta área*/
 		header('Location: index.php?i=semPermissao');
 	}
+	if(isset($_SESSION['sucessInsert']) && $_SESSION['sucessInsert']){
+		echo "<div class='alert alert-success alert-dismissable'>
+					   <button type='button' class='close' onClick='updateSession()' data-dismiss='alert' aria-hidden='true'>&times;</button>
+					   <strong>Sucesso!</strong>
+					</div> ";
+	}
+	
+	if (isset($_SESSION['erro']) && $_SESSION['erro']){
+		echo "<div class='alert alert-danger alert-dismissable'>
+					   <button type='button' class='close' onClick='updateSession()' data-dismiss='alert' aria-hidden='true'>&times;</button>
+					   <strong>Erro!</strong>
+					</div> ";
+	}
+	
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -71,7 +85,7 @@
     
                 <div class="tab-pane" id="cadastrar">			  
                     <h4> Cadastrar ccr </h4>
-                    <form action="conectBD.php" method="post" class="form-horizontal" role="form">
+                    <form action="cadastraCcr.php" method="post" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label for="inputCod" class="col-sm-2 control-label">Código</label>
                             <div class="col-sm-3">
@@ -122,6 +136,18 @@
     </div><!-- /row --> 
 <!-- /Principal -->
 	
+
+	<script>
+		
+		function updateSession(){
+			<?php
+				$_SESSION['sucessInsert'] = false;
+				$_SESSION['erro'] = false;
+			?>
+		}
+		
+	</script>
+
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
