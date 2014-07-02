@@ -4,6 +4,12 @@
 	if($_SESSION['logado'] != TRUE){
 		header('Location: login.php');
 	}
+	if(!isset($_SESSION['nomeCompleto'])){
+		header('Location: login.php');
+	}
+	if(!isset($_SESSION['idNivelServidor'])){
+		header('Location: login.php');
+	}
 ?>
 
 <!DOCTYPE html>
@@ -47,8 +53,8 @@
       <div class="col-md-10">
           <!------------------------- área designinada para os iframe ----------------------------->
           <?php
-			  	if($_SESSION['idNivelServidor'] == 0)
-				echo' <iframe name="iframe-tela-meio" src="inicio.php" height="450px" width="100%" frameborder="0"></iframe>';
+			  	if(isset($_GET['i']) && $_GET['i'] == 'semPermissao')
+				echo' <iframe name="iframe-tela-meio" src="semPermissao.php" height="450px" width="100%" frameborder="0"></iframe>';
 				else
 				echo' <iframe name="iframe-tela-meio" src="inicio.php" height="450px" width="100%" frameborder="0"></iframe>';
 		   ?>          

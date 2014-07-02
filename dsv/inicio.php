@@ -3,6 +3,9 @@
 	if($_SESSION['logado'] != TRUE){
 		header('Location: login.php');
 	}
+	if(!isset($_SESSION['idNivelServidor'])){//verifica se existe um servidor passando por SESSION
+		header('Location: login.php');
+	}
 ?>
 
 <!DOCTYPE html>

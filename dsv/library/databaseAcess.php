@@ -822,6 +822,22 @@
 		
 		return $r;		
 	}
+	
+	//@parametros (string, integer);
+	//@parametros (nome da pagina, id do nivel do servidor)
+	//@retorno respectivos IDs e parametro visivel(TRUE ou FALSE)
+	function selectAcessoRecusado($areaMenu, $idNivelServidor){
+		$sql = "SELECT nivelServidor_areaMenu.idAreaMenu,
+					   nivelServidor_areaMenu.idNivelServidor,					   
+					   nivelServidor_areaMenu.visivel,
+					   areaMenu.linkAreaMenu
+		          FROM nivelServidor_areaMenu
+				  JOIN areaMenu using(idAreaMenu)
+				 WHERE areaMenu.linkAreaMenu = '$areaMenu'
+				   AND idNivelServidor = $idNivelServidor";
+		$r=dbConsulta($sql);		
+		return $r;				
+	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 ?>

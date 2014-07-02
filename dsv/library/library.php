@@ -428,6 +428,18 @@ Até aqui*******************************************************/
 		
 		}		
 	}
+	
+	//@parametros (string, integer);
+	//@parametros (nome da pagina, id do nivel do servidor)
+	function acessoRecusado($areaMenu, $idNivelServidor){
+		$resultado = selectAcessoRecusado($areaMenu, $idNivelServidor);
+		
+		$rowAcess = mysql_fetch_array($resultado);
+		if($rowAcess['visivel']){
+			return TRUE;
+		}else
+		return FALSE;	
+	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 	

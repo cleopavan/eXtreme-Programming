@@ -4,8 +4,13 @@
 	if($_SESSION['logado'] != TRUE){
 		header('Location: login.php');
 	}
-	if($_SESSION['idNivelServidor'] != 1){/* implementar aqui os casos em que TAL NIVEL NÃƒO PODE VISUALIZAR ESTA PAGINA*/
-		//header('Location: semPermissao.php');
+	if(!isset($_SESSION['idNivelServidor'])){//verifica se existe um servidor passando por SESSION
+		header('Location: login.php');
+	}
+	//@parametros (string, integer);
+	//@parametros (nome da pagina, id do nivel do servidor)
+	if(acessoRecusado('admArea.php', $_SESSION['idNivelServidor']) == FALSE){/* Excessão no caso do servidor não ter acesso a esta área*/
+		header('Location: index.php?i=semPermissao');
 	}
 ?>
 <!DOCTYPE html>
@@ -26,7 +31,7 @@
         <div class="col-md-12">
             <ul class="breadcrumb">
             <li><a href="inicio.php">Inicio</a>
-            <li><a href="admArea.php">Administrar areas</a>
+            <li class="active">Administrar areas
             </ul>
         </div><!-- /col-md-12 -->
     </div><!-- /row -->
