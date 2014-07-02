@@ -317,7 +317,218 @@ Até aqui*******************************************************/
 		return $r;
 	}
 	
+	function constroiDadosUpdateServidor($siape, $nome, $sobrenome, $observacao, $quemSubstitui, $idCargo, $idJornada, $idSituacaoServidor, $email, $fone1, $fone2, $endereco, $cidade, $idNivelServidor){
+		$data = Array();
+		$data['siape'] = addslashes($siape);
+		$data['nome'] = addslashes($nome);
+		$data['sobrenome'] = addslashes($sobrenome);
+		$data['observacao'] = addslashes($observacao);
+		$data['quemSubstitui'] = addslashes($quemSubstitui);
+		$data['idCargo'] = addslashes($idCargo);
+		$data['idJornada'] = addslashes($idJornada);
+		$data['idSituacaoServidor'] = addslashes($idSituacaoServidor);
+		$data['email'] = addslashes($email);
+		$data['fone1'] = addslashes($fone1);
+		$data['fone2'] = addslashes($fone2);
+		$data['endereco'] = addslashes($endereco);
+		$data['cidade'] = addslashes($cidade);
+		$data['idNivelServidor'] = addslashes($idNivelServidor);
+				
+		$r = updateServidor($data);
+		return $r;
+	}
+	
+	function constroiDadosUpdateNivelCurso($id, $nivel){
+		$data = Array();
+		$data['id'] = addslashes($id);
+		$data['nivel'] = addslashes($nivel);
+				
+		$r = updateNivelCurso($data);
+		return $r;
+	}
+	
+	function constroiDadosCurso($codCurso, $nome, $idNivelCurso){
+		$data = Array();
+		$data['codCurso'] = addslashes($codCurso);
+		$data['nome'] = addslashes($nome);
+		$data['idNivelCurso'] = addslashes($idNivelCurso);
+
+		$r = updateCurso($data);
+		return $r;
+	}
+	
+	function constroiDadosUpdateDominio($id, $dominio){
+		$data = Array();
+		$data['id'] = addslashes($id);
+		$data['dominio'] = addslashes($dominio);
+		
+		$r = updateDominio($data);
+		return $r;
+	}
+	
+	function constroiDadosUpdateCcr($codCcr, $nome, $cHoraria, $idDominio){
+		$data = Array();
+		$data['codCcr'] = addslashes($codCcr);
+		$data['nome'] = addslashes($nome);
+		$data['cHoraria'] = addslashes($cHoraria);
+		$data['idDominio'] = addslashes($idDominio);
+		
+		$r = updateCcr($data);
+		return $r;
+	}
+	
+	function constroiDadosUpdateCursoCcr($codCcr, $codCurso){
+		$data = Array();
+		$data['codCcr'] = addslashes($codCcr);
+		$data['codCurso'] = addslashes($codCurso);
+		
+		$r = updateCursoCcr($data);
+		return $r;
+	}
+	
+	function constroiDadosUpdateUsuarioServidor($siape, $email, $fone1, $fone2, $endereco, $cidade){//Função que o servidor altera seus dados.
+		$data = array();
+		$data['siape'] = addslashes($siape);
+		$data['email'] = addslashes($email);
+		$data['fone1'] = addslashes($fone1);
+		$data['fone2'] = addslashes($fone2);
+		$data['endereco'] = addslashes($endereco);
+		$data['cidade'] = addslashes($cidade);
+		
+		$r = updateUsuarioServidor($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosEsqueciMinhaSenha($siape){//Gera uma senha e envia para o email ************INSIRIR FUNÇÃO PARA ENVIAR PARA O EMAIL**********
+		$data = array();
+		$data['siape'] = addslashes($siape);
+		$senha = geraSenha(8, true, true, false);
+		$encryptedPassword = md5($senha . '' . SAL);
+		$data['senha'] = $encryptedPassword;
+		
+		$r = esqueciMinhaSenha($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosUpdateSenhaServidor($siape, $senha){
+		$data = array();
+		$data['siape'] = addslashes($siape);
+		$data['senha'] = addslashes($senha);
+		
+		$r = esqueciMinhaSenha($data);
+		
+		return $r;
+	}
 	/****************************************************Fim das funções de alteração****************************************/
+	/**/
+	/****************************************************Inicio das funções de delete****************************************/
+	function constroiDadosDeleteFuncao($id){
+		$data = array();
+		$data['id'] = addslashes($id);
+		
+		$r = deleteFuncao($data);
+		
+		return $r;
+	
+	}
+	
+	function constroiDadosDeleteServidorFuncao($idFuncao, $siape, $dataInicio){
+		$data = array();
+		$data['idFuncao'] = addslashes($idFuncao);
+		$data['siape'] = addslashes($siape);
+		$data['dataInicio'] = addslashes($dataInicio);
+		
+		$r = deleteServidorFuncao($data);
+		
+		return $r;
+	
+	}
+	
+	function constroiDadosDeleteCargo($id){
+		$data = array();
+		$data['id'] = addslashes($id);
+		
+		$r = deleteCargo($data);
+		
+		return $r;
+	
+	}
+	
+	function constroiDadosDeleteJornada($id){
+		$data = array();
+		$data['id'] = addslashes($id);
+		
+		$r = deleteJornada($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosDeleteNivelServidor($id){
+		$data = array();
+		$data['id'] = addslashes($id);
+		
+		$r = deleteNivelServidor($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosDeleteServidor($siape){
+		$data = array();
+		$data['siape'] = addslashes($siape);
+		
+		$r = deleteServidor($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosDeleteNivelCurso($id){
+		$data = array();
+		$data['id'] = addslashes($id);
+		
+		$r = deleteNivelCurso($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosDeleteCurso($codCurso){
+		$data = array();
+		$data['codCurso'] = addslashes($codCurso);
+		
+		$r = deleteCurso($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosDeleteDominio($id){
+		$data = array();
+		$data['id'] = addslashes($id);
+		
+		$r = deleteDominio($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosDeleteCcr($codCcr){
+		$data = array();
+		$data['codCcr'] = addslashes($codCcr);
+		
+		$r = deleteCcr($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosDeleteCursoCcr($codCcr, $codCurso){
+		$data = array();
+		$data['codCcr'] = addslashes($codCcr);
+		$data['codCurso'] = addslashes($codCurso);
+		
+		$r = deleteCursoCcr($data);
+		
+		return $r;
+	}
+	/****************************************************Fim das funções de delete****************************************/
 	/**/
 	function popularTabelas(){
 		return false;
@@ -444,9 +655,14 @@ Até aqui*******************************************************/
 	function mostraServidorSelecionado($siape){
 		$resultado = selectUmServidor($siape);
 		
-		$rowServidor = mysql_fetch_array($resultado);
+		echo $resultado;
+			
 		
-		echo $rowServidor['nome'].' '.$rowServidor['sobrenome'].' está selecionado';
+		//$rowServidor = mysql_fetch_array($resultado);
+		
+		//if($rowServidor
+		//return $rowServidor;
+		return TRUE;
 			
 	}
 

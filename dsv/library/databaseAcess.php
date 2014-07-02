@@ -735,7 +735,179 @@
 		
 		return $r;
 	}
+	
+	function updateUsuarioServidor($data){//Função que o servidor altera seus dados.
+		$siape = $data['siape'];
+		$email = $data['email'];
+		$fone1 = $data['fone1'];
+		$fone2 = $data['fone2'];
+		$endereco = $data['endereco'];
+		$cidade = $data['cidade'];
+		
+		$sql = "UPDATE servidor SET email=";
+		if(empty($email)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$email'";
+		}
+		$sql = $sql . ", fone1=";
+		if(empty($fone1)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$fone1'";
+		}
+		$sql = $sql . ", fone2=";
+		if(empty($fone2)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$fone2'";
+		}
+		$sql = $sql . ", endereco=";
+		if(empty($endereco)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$endereco'";
+		}
+		$sql = $sql . ", cidade=";
+		if(empty($cidade)){
+			$sql = $sql . "NULL";
+		}else{
+			$sql = $sql . "'$cidade'";
+		}
+		$sql = $sql . " WHERE siape='$siape' AND regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function esqueciMinhaSenha($data){//Altera a senha do servidor
+		$siape = $data['siape'];
+		$senha = $data['senha'];
+		
+		$sql = "UPDATE servidor SET senha='$senha' WHERE siape='$siape' AND regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
 /****************************************************Fim das funções de alteração****************************************/
+/**/
+/****************************************************Inicio das funções de delete****************************************/
+	function deleteFuncao($data){
+		$id = $data['id'];
+		
+		$sql = "UPDATE funcao SET regValido=0 WHERE idFuncao=$id";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function deleteServidorFuncao($data){
+		$idFuncao = $data['idFuncao'];
+		$siape = $data['siape'];
+		$dataInicio = $data['dataInicio'];
+		
+		$sql = "UPDATE servidorfuncao SET regValido=0 WHERE idFuncao=$idFuncao AND siape='$siape' AND dataInicio='$dataInicio'";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function deleteCargo($data){
+		$id = $data['id'];
+		
+		$sql = "UPDATE cargo SET regValido=0 WHERE idCargo=$id";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function deleteJornada($data){
+		$id = $data['id'];
+		
+		$sql = "UPDATE jornada SET regValido=0 WHERE idJornada=$id";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function deleteSituacaoServidor($data){
+		$id = $data['id'];
+		
+		$sql = "UPDATE situacaoservidor SET regValido=0 WHERE idSituacaoServidor=$id";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function deleteNivelServidor($data){
+		$id = $data['id'];
+		
+		$sql = "UPDATE nivelservidor SET regValido=0 WHERE idNivelServidor=$id";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function deleteServidor($data){
+		$siape = $data['siape'];
+		
+		$sql = "UPDATE servidor SET regValido=0 WHERE siape='$siape'";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function deleteNivelCurso($data){
+		$id = $data['id'];
+		
+		$sql = "UPDATE nivelcurso SET regValido=0 WHERE idNivelCurso=$id";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function deleteDominio($data){
+		$id = $data['id'];
+		
+		$sql = "UPDATE dominio SET regValido=0 WHERE idDominio=$id";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function deleteCcr($data){
+		$codCcr = $data['codCcr'];
+		
+		$sql = "UPDATE ccr SET regValido=0 WHERE codCcr=$codCcr";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+	
+	function deleteCursoCcr($data){
+		$codCcr = $data['codCcr'];
+		$codCurso = $data['codCurso'];
+		
+		$sql = "UPDATE cursoccr SET regValido=0 WHERE codCcr=$codCcr AND codCurso=$codCurso";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+/****************************************************Fim das funções de delete****************************************/
+/**/
 	
 	function login($data){
 		$user = $data['user'];
