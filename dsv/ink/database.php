@@ -4,6 +4,7 @@
 	//$banco = 'server';
 	//$banco = 'jacson';
 
+
 	if($banco == 'server'){
 		$host = "mysql.hostinger.com.br";
 		$user = "u454558226_cadu";

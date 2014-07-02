@@ -12,6 +12,20 @@
 	if(acessoRecusado('ccr.php', $_SESSION['idNivelServidor']) == FALSE){/* Excessão no caso do servidor não ter acesso a esta área*/
 		header('Location: index.php?i=semPermissao');
 	}
+	if(isset($_SESSION['sucessInsert']) && $_SESSION['sucessInsert']){
+		echo "<div class='alert alert-success alert-dismissable'>
+					   <button type='button' class='close' onClick='updateSession()' data-dismiss='alert' aria-hidden='true'>&times;</button>
+					   <strong>Sucesso!</strong>
+					</div> ";
+	}
+	
+	if (isset($_SESSION['erro']) && $_SESSION['erro']){
+		echo "<div class='alert alert-danger alert-dismissable'>
+					   <button type='button' class='close' onClick='updateSession()' data-dismiss='alert' aria-hidden='true'>&times;</button>
+					   <strong>Erro!</strong>
+					</div> ";
+	}
+	
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -53,17 +67,22 @@
                     <h4> Buscar CCR </h4>
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Buscar ccr">
-                                <div class="input-group-btn" >
-                                    <button class="btn btn-default" type="button" >Buscar por</button>
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span></button>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="#">Siape</a></li>
-                                        <li><a href="#">Nome</a></li>
-                                        <li><a href="#">Email</a></li>
-                                    </ul>
+                            <form action="test.php">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Buscar ccr">
+									<div class="input-group-btn"  >
+										<div class="form-group">
+											<button type="submit" class="btn btn-default" >Cadastrar</button>
+												<div class="radio">
+												<label>
+													<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+													Option one is this and that&mdash;be sure to include why it's great
+												</label>
+											</div>
+											
+										</div>
                                 </div><!-- /input-group-btn -->
+							</form>			
                             </div><!-- /input-group -->
                         </div><!-- /col-lg-6 -->
                     </div><!-- /row -->
@@ -71,7 +90,7 @@
     
                 <div class="tab-pane" id="cadastrar">			  
                     <h4> Cadastrar ccr </h4>
-                    <form action="conectBD.php" method="post" class="form-horizontal" role="form">
+                    <form action="cadastraCcr.php" method="post" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label for="inputCod" class="col-sm-2 control-label">Código</label>
                             <div class="col-sm-3">
@@ -123,8 +142,29 @@
 <!-- /Principal -->
 	
 
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
+
+
+	<script>
+	
+		function updateSession(){
+			<?php
+				$_SESSION['sucessInsert'] = false;
+				$_SESSION['erro'] = false;
+			?>
+		}
+		
+		$("#filtro").on('click', function(){
+			console.log('teste ', this);
+		});
+		
+	</script>
+
+
+
+
 </html>
