@@ -651,6 +651,20 @@ Até aqui*******************************************************/
 		}else
 		return FALSE;	
 	}
+	
+	function mostraServidorSelecionado($siape){
+		$resultado = selectUmServidor($siape);
+		
+		echo $resultado;
+			
+		
+		//$rowServidor = mysql_fetch_array($resultado);
+		
+		//if($rowServidor
+		//return $rowServidor;
+		return TRUE;
+			
+	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 	

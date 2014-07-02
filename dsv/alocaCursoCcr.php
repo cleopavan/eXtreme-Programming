@@ -9,16 +9,18 @@
 	}
 	//@parametros (string, integer);
 	//@parametros (nome da pagina, id do nivel do servidor)
-	if(acessoRecusado('alocaCursoCcr.php', $_SESSION['idNivelServidor']) == FALSE){/* Excess�o no caso do servidor n�o ter acesso a esta �rea*/
+	if(acessoRecusado('alocaCursoCcr.php', $_SESSION['idNivelServidor']) == FALSE){/* Excessão no caso do servidor não ter acesso a esta área*/
 		header('Location: index.php?i=semPermissao');
 	}
+	
 	if(isset($_POST['desfazer'])){
 		$_SESSION['siape'] = NULL;
 		$_SESSION['servidorSiape'] = NULL;
 	}
 	if(isset($_POST['validar'])){
 		if(isset($_POST['siape']) && !isset($_SESSION['siape'])){
-			//validarsiape
+			$servidor = mostraServidorSelecionado($_POST['siape']);
+			
 			$_SESSION['siape'] = $_POST['siape'];
 			$_SESSION['servidorSiape'] = "Teste Teste";
 		}
@@ -28,7 +30,6 @@
 			$_SESSION['servidorSiape'] = "Teste Teste";
 		}
 	}
-		
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -45,7 +46,7 @@
    
 <!-- Principal -->    
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12"> <!-- mudar para col-md-12-->
             <ul class="breadcrumb">
             <li><a href="inicio.php">Inicio</a>
             <li class="active">Servidor / CursoCcr
@@ -53,91 +54,283 @@
         </div><!-- /col-md-12 -->
     </div><!-- /row -->
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12"> <!-- mudar para col-md-12-->      
             <!-- CODIGO DEVE SER IMPLEMENTADO NESTA AREA -->
-            <form class="form-horizontal" role="form" enctype="multipart/form-data" method="post" action="alocaCursoCcr.php">
-            	<div class="form-group">
-                	<label for="inputSiape" class="col-sm-2 control-label">Siape</label>
-                	<div class="col-sm-3">
-                  	<input name="siape" <?php if(isset($_SESSION['siape'])) echo "value='".$_SESSION['siape']."'"; ?> type="number" class="form-control" id="inputSiapeText" placeholder="Siape">
-                	</div>
-                    <?php
-						if(isset($_SESSION['servidorSiape'])){
-							echo "<label for='siapeValidado' class='col-sm-2 control-label'>".$_SESSION['servidorSiape']." ativo!</label>";
-							echo "<button name='desfazer' value='1' type='submit' class='btn btn-default'>Desfazer</button>";
-						}
-						else{
-							echo "<button name='validar' value='1' type='submit' class='btn btn-default'>Validar Siape</button>";
-						}
-                    ?>
-              	</div>  
-				
-            	<div class="form-group">
-                	<label for="inputEmail3" class="col-sm-2 control-label">Ano/Semestre</label>
-                	<div class="col-sm-3">
-						<?php 
-							if(isset($_SESSION['siape'])){
-								echo '<select class="form-control" name="anoSemestre">';
-							}
-							else{
-								echo '<select class="form-control" name="anoSemestre" disabled="disabled">';
-							}
-						?>
-                  		  <option value="">Selecione</option>	
-                    	  <option value="2014/1">2014/1</option>
-                    	  <option value="2014/2">2014/2</option>
-                    	  <option value="2015/1">2015/1</option>
-                    	  <option value="2015/2">2015/2</option>
-                    	  <option value="2016/1">2016/1</option>
-                    	  <option value="2016/2">2016/2</option>
-                    	  <option value="2017/1">2017/1</option>
-                    	  <option value="2017/2">2017/2</option>
-                    	</select>
-                	</div>
-              	</div>
-              	<div class="form-group">
-					<label for="curso" class="col-sm-2 control-label">Curso</label>
-                	<div class="col-sm-3">
-						<?php 
-							if(isset($_SESSION['siape'])){
-								echo '<select class="form-control" name="codCurso">';
-							}
-							else{
-								echo '<select class="form-control" name="codCurso" disabled="disabled">';
-							}
-						?>
-                  		  <option value="">Selecione</option>	
-                    	  <option value="1001">Ci�ncia da Computa��o</option>
-                    	  <option value="1002">Enfermagem</option>
-                    	  <option value="1003">Agronomia</option>
-                    	  <option value="1004">Matem�tica</option>
-                    	</select>
-                    </div>
-              	</div>
-              	<div class="form-group">
-					<label for="ccr" class="col-sm-2 control-label">CCR</label>
-                	<div class="col-sm-3">
-						<?php 
-							if(isset($_SESSION['siape'])){
-								echo '<select class="form-control" name="codCcr">';
-							}
-							else{
-								echo '<select class="form-control" name="codCcr" disabled="disabled">';
-							}
-						?>
-                  		  <option value="">Selecione</option>	
-                    	  <option value="100">Redes</option>
-                    	  <option value="101">Computa��o Gr�fica</option>
-                    	  <option value="200">Leitura e Produ��o Textual I</option>
-                    	  <option value="201">Leitura e Produ��o Textual II</option>
-                    	</select>
-                    </div>   
-              	</div>
-              	<div class="col-sm-4">
-					<button name='alocar' value='1' type='submit' class='btn btn-default'>Alocar</button>
-				</div>
-            </form>
+            <!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+				  <li class="active"><a href="#alocar" role="tab" data-toggle="tab">Alocar servidor ao Ccr</a></li>
+				  <li><a href="#listServidor" role="tab" data-toggle="tab">Listar servidores alocados</a></li>
+				  <li><a href="#listCcr" role="tab" data-toggle="tab">Listar Ccrs alocadas</a></li>
+				</ul>
 
+				<!-- Tab panes -->
+				<div class="tab-content">
+				  <div class="tab-pane active" id="alocar"></br>				  					   
+										  	
+							<div class="form-group">
+							 	<label for="inputSiape" class="col-sm-4 text-center">Servidor <hr></label>
+							 	<button class="btn btn-success col-sm-4" data-toggle="modal" data-target=".bs-example-modal-lg">Buscar servidor</button>
+							 	<label for="inputSiape" class="col-sm-4 text-center">CursoCcr <hr></label>
+							</div>
+							<form action="alocaCursoCcr.php" class="form-horizontal" role="form" enctype="multipart/form-data" method="post">
+							
+							<div class="row">
+								<div class="col-sm-4"><!-- /col-sm-4 1º -->
+									<div class="col-sm-7">
+										<input type="number" name="siape" <?php if(isset($_SESSION['siape'])) echo "value='".$_SESSION['siape']."'"; ?> class="form-control" id="inputSiape" placeholder="Siape">
+									</div>
+										<?php						 	
+											if(isset($_SESSION['servidorSiape'])){
+												echo "<button name='desfazer' value='1' type='submit' class='btn btn-default'>Desfazer</button>";
+											}
+											else{
+												echo "<button name='validar' value='1' type='submit' class='btn btn-default'>Validar Siape</button>";
+											}
+										?>
+									
+								</div>
+								<div class="col-sm-4"><!-- /col-sm-4 2º --></div>
+								<div class="col-sm-4">
+									<?php 
+										if(isset($_SESSION['siape'])){
+											echo '<select class="form-control" name="nivelCurso">';
+										}
+										else{
+											echo '<select class="form-control" name="nivelCurso" disabled="disabled">';
+										}
+									?>
+									  <option value="">Selecione: Nivel curso</option>	
+								  	  <option value="1">1 - Graduação</option>
+								  	  <option value="2">2 - Doutorado</option>
+								  	</select>
+								</div><!-- /col-sm-4 3º -->							
+							</div><!-- /row 1º -->
+							
+							<div class="row">
+								<div class="col-sm-4"><!-- /col-sm-4 1º --></div>
+								<div class="col-sm-4"><!-- /col-sm-4 2º --></div>
+								<div class="col-sm-4">
+									<?php 
+										if(isset($_SESSION['siape'])){
+											echo '<select class="form-control" name="curso">';
+										}
+										else{
+											echo '<select class="form-control" name="curso" disabled="disabled">';
+										}
+									?>
+									  <option value="">Selecione: Curso</option>	
+								  	  <option value="1">101 - Ciência da computação</option>
+								  	  <option value="2">102 - Agronomia</option>
+								  	</select>
+								</div><!-- /col-sm-4 3º -->							
+							</div><!-- /row 2º -->
+							
+							<div class="row">
+								<div class="col-sm-4"><!-- /col-sm-4 1º --></div>
+								<div class="col-sm-4"><!-- /col-sm-4 2º --></div>
+								<div class="col-sm-4">
+									 <?php 
+										if(isset($_SESSION['siape'])){
+											echo '<select class="form-control" name="ccr">';
+										}
+										else{
+											echo '<select class="form-control" name="ccr" disabled="disabled">';
+										}
+									?>
+									  <option value="">Selecione: Ccr</option>	
+								  	  <option value="1">1010 - Redes</option>
+								  	  <option value="2">1011 - Banco de dados I</option>
+								  	  <option value="2">1012 - Banco de dados II</option>	
+								  	  <option value="2">1013 - Computação gráfica</option>								  	  							  	  
+								  	</select>
+								</div><!-- /col-sm-4 3º -->							
+							</div><!-- /row 3º -->
+							
+							<div class="row">
+								<div class="col-sm-4"><!-- /col-sm-4 1º --></div>
+								<div class="col-sm-4 text-center"><!-- /col-sm-4 2º -->
+									<?php
+										if(isset($_SESSION['servidorSiape'])){
+											echo $_SESSION['servidorSiape']." ativo!<br>";
+										}
+										else{
+											echo "Descrição dos dados do servidor após ser selecionado.";
+										}										
+									?>
+									</br></br></br></br></br>
+								</div>
+								<div class="col-sm-4"><!-- /col-sm-4 3º --></div>							
+							</div><!-- /row 4º -->
+							
+							<div class="row">
+								<div class="col-sm-4"><!-- /col-sm-4 1º -->
+									<?php 
+										if(isset($_SESSION['siape'])){
+											echo '<select class="form-control" name="anoSemestre">';
+										}
+										else{
+											echo '<select class="form-control" name="anoSemestre" disabled="disabled">';
+										}
+										
+										echo "<option value=''>Selecione ano/semestre</option>";
+										for($dataAtual = date('Y');$dataAtual <= date('Y')+2;$dataAtual++){ 
+											echo "<option value='".$dataAtual."/1'>".$dataAtual."/1</option>";
+											echo "<option value='".$dataAtual."/2'>".$dataAtual."/2</option>";
+										}
+										echo "</select>";
+								  	?>
+								</div>
+								<div class="col-sm-4"><!-- /col-sm-4 2º -->
+								<button type="submit" class="btn btn-success col-sm-4 col-md-offset-4">Alocar servidor</button>
+								</div>
+								<div class="col-sm-4"><!-- /col-sm-4 3º --></div>															
+							</div><!-- /row 5º -->                
+						</form>
+				  
+				  </div><!-- /Aba alocar -->
+				  <div class="tab-pane" id="listServidor"></br>
+				  		<div class="form-group">
+							 	<label for="inputSiape" class="col-sm-4 text-center">Selecione servidor <hr></label>
+							 	<button class="btn btn-success col-sm-4" data-toggle="modal" data-target=".bs-example-modal-lg">Buscar servidor</button>
+							 	<label for="inputSiape" class="col-sm-4 text-center">Selecione ano/semestre<hr></label>
+							</div>
+							<form action="alocarServidor.php" class="form-horizontal" role="form">
+							<div class="row">
+								<div class="col-sm-4"><!-- /col-sm-4 1º -->
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="inputSiape" placeholder="Siape">
+							 		</div>							 	
+									<button type="submit col-sm-2" class="btn btn-default">Validar Siape</button>
+								</div>
+								<div class="col-sm-4"><!-- /col-sm-4 2º --></div>
+								<div class="col-sm-4">
+									 <select class="form-control" name="anoSemestre">
+									  <option value="">Selecione ano/semestre</option>	
+								  	  <option value="2014/1">2014/1</option>
+								  	  <option value="2014/2">2014/2</option>
+								  	  <option value="2015/1">2015/1</option>
+								  	  <option value="2015/2">2015/2</option>
+								  	  <option value="2016/1">2016/1</option>
+								  	  <option value="2016/2">2016/2</option>
+								  	  <option value="2017/1">2017/1</option>
+								  	  <option value="2017/2">2017/2</option>
+								  	</select>
+								</div><!-- /col-sm-4 3º -->							
+							</div><!-- /row 1º -->
+							<div class="row">
+								<div class="col-sm-4"><!-- /col-sm-4 1º --></div>
+								<div class="col-sm-4"><!-- /col-sm-4 2º -->
+								<button type="submit" class="btn btn-success col-sm-4 col-md-offset-4">Atualizar tabela</button><hr>
+								</div>
+								<div class="col-sm-4"><!-- /col-sm-4 3º --></div>															
+							</div><!-- /row 5º -->
+							
+							</form>
+				  		<table class="table table-bordered">
+				  			<tr class="success text-center">
+				  				<td><strong>Titulo</strong></td>
+				  				<td><strong>Titulo</strong></td>
+				  				<td><strong>Titulo</strong></td>
+				  				<td><strong>Titulo</strong></td>
+				  				<td><strong>Titulo</strong></td>
+				  			</tr>
+							<tr class="active">
+				  				<td>...</td>
+				  				<td>...</td>
+				  				<td>...</td>
+				  				<td>...</td>
+				  				<td>...</td>
+				  			</tr>
+				  			<tr class="success">
+				  				<td>...</td>
+				  				<td>...</td>
+				  				<td>...</td>
+				  				<td>...</td>
+				  				<td>...</td>
+				  			</tr>
+				  			<tr class="active"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+				  			<tr class="success"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+				  			<tr class="active"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+				  			<tr class="success"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+				  			<tr class="active"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+				  			<tr class="success"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+						</table>
+				  </div><!-- /Aba listServidor -->
+				  <div class="tab-pane" id="listCcr"></br>
+				  		<div class="form-group">
+							 	<label for="inputSiape" class="col-sm-4 text-center">Selecione Curso <hr></label>
+							 	<label for="inputSiape" class="col-sm-4 text-center"> - <hr></label>
+							 	<label for="inputSiape" class="col-sm-4 text-center">Selecione ano/semestre<hr></label>
+							</div>
+							<form action="alocarServidor.php" class="form-horizontal" role="form">
+							<div class="row">
+								<div class="col-sm-4"><!-- /col-sm-4 1º -->
+									<select class="form-control" name="nivelCurso">
+									  <option value="">Selecione: Nivel curso</option>	
+								  	  <option value="1">1 - Graduação</option>
+								  	  <option value="2">2 - Doutorado</option>
+								  	</select>
+									<select class="form-control" name="curso">
+									  <option value="">Selecione: Curso</option>	
+								  	  <option value="1">101 - Ciência da computação</option>
+								  	  <option value="2">102 - Agronomia</option>
+								  	</select>
+								</div>
+								<div class="col-sm-4"><!-- /col-sm-4 2º --></div>
+								<div class="col-sm-4">
+									 <select class="form-control" name="anoSemestre">
+									  <option value="">Selecione ano/semestre</option>	
+								  	  <option value="2014/1">2014/1</option>
+								  	  <option value="2014/2">2014/2</option>
+								  	  <option value="2015/1">2015/1</option>
+								  	  <option value="2015/2">2015/2</option>
+								  	  <option value="2016/1">2016/1</option>
+								  	  <option value="2016/2">2016/2</option>
+								  	  <option value="2017/1">2017/1</option>
+								  	  <option value="2017/2">2017/2</option>
+								  	</select>
+								</div><!-- /col-sm-4 3º -->							
+							</div><!-- /row 1º -->
+							<div class="row">
+								<div class="col-sm-4"><!-- /col-sm-4 1º --></div>
+								<div class="col-sm-4"><!-- /col-sm-4 2º -->
+								<button type="submit" class="btn btn-success col-sm-4 col-md-offset-4">Atualizar tabela</button><hr>
+								</div>
+								<div class="col-sm-4"><!-- /col-sm-4 3º --></div>															
+							</div><!-- /row 5º -->
+							
+							</form>
+				  		<table class="table table-bordered">
+				  			<tr class="success text-center">
+				  				<td><strong>Titulo</strong></td>
+				  				<td><strong>Titulo</strong></td>
+				  				<td><strong>Titulo</strong></td>
+				  				<td><strong>Titulo</strong></td>
+				  				<td><strong>Titulo</strong></td>
+				  			</tr>
+							<tr class="active">
+				  				<td>...</td>
+				  				<td>...</td>
+				  				<td>...</td>
+				  				<td>...</td>
+				  				<td>...</td>
+				  			</tr>
+				  			<tr class="success">
+				  				<td>...</td>
+				  				<td>...</td>
+				  				<td>...</td>
+				  				<td>...</td>
+				  				<td>...</td>
+				  			</tr>
+				  			<tr class="active"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+				  			<tr class="success"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+				  			<tr class="active"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+				  			<tr class="success"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+				  			<tr class="active"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+				  			<tr class="success"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+						</table>
+				  </div><!-- /Aba listCcr -->
+				</div>            
 		<!-- CODIGO DEVE SER IMPLEMENTADO NESTA AREA -->
         </div><!-- /col-md-12 -->                 
     </div><!-- /row --> 
@@ -149,3 +342,11 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
 </html>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>

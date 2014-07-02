@@ -1010,6 +1010,16 @@
 		$r=dbConsulta($sql);		
 		return $r;				
 	}
+	
+	function selectUmServidor($siape){
+		$sql = "SELECT siape,
+					   nome,
+					   sobrenome
+		          FROM servidor
+				 WHERE siape = $siape";
+		$r=dbConsulta($sql);		
+		return $r;				
+	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 ?>
