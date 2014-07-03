@@ -2,23 +2,23 @@
 	require_once dirname(__FILE__).'/databaseAcess.php';//banco de dados
 	require_once dirname(__FILE__).'/constant.php';//constantes
 	
-	/****************************************************Inicio das funções de inserção****************************************/
+	/****************************************************Inicio das funï¿½ï¿½es de inserï¿½ï¿½o****************************************/
 	function constroiDadosInsertFuncao($funcao){
 		$data = array();//inicializa um vetor de dados
-		$data['funcao'] = addslashes($funcao);//na posição 'function', é passado a string protegida de dados maliciosos para o banco de dados
-		$data['regValido'] = 1;//na posição 'regValido', é passado o valor 1 como padrão, significando que o dado primeiramente é valido
+		$data['funcao'] = addslashes($funcao);//na posiï¿½ï¿½o 'function', ï¿½ passado a string protegida de dados maliciosos para o banco de dados
+		$data['regValido'] = 1;//na posiï¿½ï¿½o 'regValido', ï¿½ passado o valor 1 como padrï¿½o, significando que o dado primeiramente ï¿½ valido
 		
 		/**
-		* Por padrão colocamos o prefixo que vai nos dizer o que a função faz (insert, update, select, delete)
+		* Por padrï¿½o colocamos o prefixo que vai nos dizer o que a funï¿½ï¿½o faz (insert, update, select, delete)
 		* e depois o nome da tabela (funcao, cargo, nivelServidor, curso, etc).
 		**/
-		$r = insertFuncao($data);//r possui o retorno da função 'insertFuncao' que está na biblioteca 'databaseAcess.php'
+		$r = insertFuncao($data);//r possui o retorno da funï¿½ï¿½o 'insertFuncao' que estï¿½ na biblioteca 'databaseAcess.php'
 		return $r;
 	}
 	
 	function constroiDadosInsertServidorFuncao($idFuncao, $siape, $dataInicio, $dataSaida, $cargaHoraria){
 		/**
-		*Formato de inserção de datas: "AAAA-MM-DD hh:mm:ss"
+		*Formato de inserï¿½ï¿½o de datas: "AAAA-MM-DD hh:mm:ss"
 		**/
 		$data = Array();
 		$data['idFuncao'] = addslashes($idFuncao);
@@ -250,10 +250,10 @@
 		
 		return $r;
 	}
-Até aqui*******************************************************/
-	/****************************************************Fim das funções de inserção****************************************/
+Atï¿½ aqui*******************************************************/
+	/****************************************************Fim das funï¿½ï¿½es de inserï¿½ï¿½o****************************************/
 	/**/
-	/****************************************************Inicio das funções de alteração****************************************/
+	/****************************************************Inicio das funï¿½ï¿½es de alteraï¿½ï¿½o****************************************/
 	function constroiDadosUpdateFuncao($idFuncao, $funcao){
 		$data = array();
 		$data['id'] = addslashes($idFuncao);
@@ -266,7 +266,7 @@ Até aqui*******************************************************/
 	
 	function constroiDadosUpdateServidorFuncao($idFuncao, $siape, $dataInicio, $dataSaida, $cargaHoraria){
 		/**
-		*Formato de inserção de datas: "AAAA-MM-DD hh:mm:ss"
+		*Formato de inserï¿½ï¿½o de datas: "AAAA-MM-DD hh:mm:ss"
 		**/
 		$data = Array();
 		$data['idFuncao'] = addslashes($idFuncao);
@@ -386,7 +386,7 @@ Até aqui*******************************************************/
 		return $r;
 	}
 	
-	function constroiDadosUpdateUsuarioServidor($siape, $email, $fone1, $fone2, $endereco, $cidade){//Função que o servidor altera seus dados.
+	function constroiDadosUpdateUsuarioServidor($siape, $email, $fone1, $fone2, $endereco, $cidade){//Funï¿½ï¿½o que o servidor altera seus dados.
 		$data = array();
 		$data['siape'] = addslashes($siape);
 		$data['email'] = addslashes($email);
@@ -400,7 +400,7 @@ Até aqui*******************************************************/
 		return $r;
 	}
 	
-	function constroiDadosEsqueciMinhaSenha($siape){//Gera uma senha e envia para o email ************INSIRIR FUNÇÃO PARA ENVIAR PARA O EMAIL**********
+	function constroiDadosEsqueciMinhaSenha($siape){//Gera uma senha e envia para o email ************INSIRIR FUNï¿½ï¿½O PARA ENVIAR PARA O EMAIL**********
 		$data = array();
 		$data['siape'] = addslashes($siape);
 		$senha = geraSenha(8, true, true, false);
@@ -421,9 +421,9 @@ Até aqui*******************************************************/
 		
 		return $r;
 	}
-	/****************************************************Fim das funções de alteração****************************************/
+	/****************************************************Fim das funï¿½ï¿½es de alteraï¿½ï¿½o****************************************/
 	/**/
-	/****************************************************Inicio das funções de delete****************************************/
+	/****************************************************Inicio das funï¿½ï¿½es de delete****************************************/
 	function constroiDadosDeleteFuncao($id){
 		$data = array();
 		$data['id'] = addslashes($id);
@@ -528,7 +528,7 @@ Até aqui*******************************************************/
 		
 		return $r;
 	}
-	/****************************************************Fim das funções de delete****************************************/
+	/****************************************************Fim das funï¿½ï¿½es de delete****************************************/
 	/**/
 	function popularTabelas(){
 		return false;
@@ -536,14 +536,14 @@ Até aqui*******************************************************/
 	
 	function geraSenha($tamanho, $maiusculas, $numeros, $simbolos){
 		/**
-		* Função para gerar senhas aleatórias
+		* Funï¿½ï¿½o para gerar senhas aleatï¿½rias
 		*
 		* @author    Thiago Belem <contato@thiagobelem.net>
 		*
 		* @param integer $tamanho Tamanho da senha a ser gerada
-		* @param boolean $maiusculas Se terá letras maiúsculas
-		* @param boolean $numeros Se terá números
-		* @param boolean $simbolos Se terá símbolos
+		* @param boolean $maiusculas Se terï¿½ letras maiï¿½sculas
+		* @param boolean $numeros Se terï¿½ nï¿½meros
+		* @param boolean $simbolos Se terï¿½ sï¿½mbolos
 		*
 		* @return string A senha gerada
 		*/
@@ -578,13 +578,13 @@ Até aqui*******************************************************/
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 	function listarServidor(){
 		$resultado = selectServidor();
-			echo' <kbd>Usuários TESTE existentes:</kbd></br></br>';	
+			echo' <kbd>Usuï¿½rios TESTE existentes:</kbd></br></br>';	
 		while ($row = mysql_fetch_array($resultado)) {
 			echo '<kbd>Nome:</kbd> '.$row['nome'].' '.$row['sobrenome'].'</br>';
 			echo 'Siape: <kbd>'.$row['siape'].'</kbd></br>';
 			echo 'Email: <kbd>'.$row['email'].'</kbd></br>';
 			echo 'Senha: <kbd>1234</kbd></br>';
-			echo 'Nível: <kbd>'.$row['nivel'].'</kbd></br>';
+			echo 'Nï¿½vel: <kbd>'.$row['nivel'].'</kbd></br>';
 			echo '</br>';
 		}
 	}
@@ -667,5 +667,40 @@ Até aqui*******************************************************/
 	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
+	
+/*INICIO FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/
+	ini_set( 'default_charset', 'utf-8');
+	function listaCargos(){
+		$resultado=buscaCargos();
+		while ($rowArea = mysql_fetch_array($resultado)) {
+			echo '<option>'.utf8_encode($rowArea['cargo']).'</option>';
+		}
+	}
+	
+	function listaJornadas(){
+		$resultado=buscaJornadas();
+		while ($rowArea = mysql_fetch_array($resultado)) {
+			echo '<option>'.utf8_encode($rowArea['jornada']).'</option>';
+		}
+	}
+	
+	function listaSituacoes(){
+		$resultado=buscaSituacoes();
+		while ($rowArea = mysql_fetch_array($resultado)) {
+			echo '<option>'.utf8_encode($rowArea['situacao']).'</option>';
+		}
+	}
+	
+	function listaNiveis(){
+		$resultado=buscaNiveis();
+		while ($rowArea = mysql_fetch_array($resultado)) {
+			echo '<option>'.utf8_encode($rowArea['nivel']).'</option>';
+		}
+	}
+
+	//function insereServidor($siape,$nome,$email,$endereco,$cidade,$telefone,$celular,$cargo,$jornada,$situacao,$dataEntrada,$dataSaida,$nivel,$substituto,$observacao){
+	//}
+
+/*FIM FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/	
 	
 ?>

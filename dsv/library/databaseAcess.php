@@ -8,7 +8,7 @@
 		return $r;
 	}
 
-	/****************************************************Inicio das funções de inserção****************************************/
+	/****************************************************Inicio das funï¿½ï¿½es de inserï¿½ï¿½o****************************************/
 	function insertFuncao($data){
 		$funcao = $data['funcao'];
 		$regValido = $data['regValido'];
@@ -452,10 +452,10 @@
 		
 		return $r;
 	}
-*******************************até aqui/
-/****************************************************Fim das funções de inserção****************************************/
+*******************************atï¿½ aqui/
+/****************************************************Fim das funï¿½ï¿½es de inserï¿½ï¿½o****************************************/
 /**/
-/****************************************************Inicio das funções de alteração****************************************/
+/****************************************************Inicio das funï¿½ï¿½es de alteraï¿½ï¿½o****************************************/
 	function updateFuncao($data){
 		$id = $data['id'];
 		$funcao = $data['funcao'];
@@ -736,7 +736,7 @@
 		return $r;
 	}
 	
-	function updateUsuarioServidor($data){//Função que o servidor altera seus dados.
+	function updateUsuarioServidor($data){//Funï¿½ï¿½o que o servidor altera seus dados.
 		$siape = $data['siape'];
 		$email = $data['email'];
 		$fone1 = $data['fone1'];
@@ -791,9 +791,9 @@
 		
 		return $r;
 	}
-/****************************************************Fim das funções de alteração****************************************/
+/****************************************************Fim das funï¿½ï¿½es de alteraï¿½ï¿½o****************************************/
 /**/
-/****************************************************Inicio das funções de delete****************************************/
+/****************************************************Inicio das funï¿½ï¿½es de delete****************************************/
 	function deleteFuncao($data){
 		$id = $data['id'];
 		
@@ -906,7 +906,7 @@
 		
 		return $r;
 	}
-/****************************************************Fim das funções de delete****************************************/
+/****************************************************Fim das funï¿½ï¿½es de delete****************************************/
 /**/
 	
 	function login($data){
@@ -1047,4 +1047,32 @@
 	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
+
+/*INICIO FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/
+
+	function buscaCargos(){
+		$sql = "SELECT cargo, idCargo FROM cargo WHERE regValido=1";
+		$r=dbConsulta($sql);		
+		return $r;	
+	}
+	
+	function buscaJornadas(){
+		$sql = "SELECT jornada, idJornada FROM jornada WHERE regValido=1";
+		$r=dbConsulta($sql);		
+		return $r;	
+	}
+	
+	function buscaSituacoes(){
+		$sql = "SELECT situacao, idSituacaoServidor FROM situacaoServidor WHERE regValido=1";
+		$r=dbConsulta($sql);		
+		return $r;	
+	}
+	
+	function buscaNiveis(){
+		$sql = "SELECT nivel, idNivelServidor FROM nivelServidor WHERE regValido=1";
+		$r=dbConsulta($sql);		
+		return $r;	
+	}
+
+/*FIM FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/
 ?>

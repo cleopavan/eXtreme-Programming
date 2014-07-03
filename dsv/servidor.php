@@ -48,6 +48,7 @@
             <div class="tab-content">
                 <?php
                 if(isset($_POST["inputSiape"])){
+                	 //insereServidor($_POST["inputSiape"],$_POST["inputNome"],$_POST["inputEmail"],$_POST["inputEndereco"],$_POST["inputCidade"],$_POST["inputTelefone"],$_POST["inputCelular"],$_POST["inputCargo"],$_POST["inputJornada"],$_POST["inputSituacao"],$_POST["inputDataEntrada"],$_POST["inputDataSaida"],$_POST["inputNivel"],$_POST["inputSubstituto"],$_POST["inputObservacao"]);
 	                echo '<div class="tab-pane active" id="inicial">
 	                    <div class="alert alert-success alert-dismissable">
 	                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -131,49 +132,43 @@
                             <label for="inputCargo" class="col-sm-2 control-label">Cargo</label>
                             <div class="col-sm-3">
                                 <select class="form-control" name="inputCargo">
-                                    <option>Cargo 1</option>
-                                    <option>Cargo 2</option>
-                                    <option>Cargo 3</option>
-                                    <option>Cargo 4</option>
-                                    <option>Cargo 5</option>
-                                    <option>Cargo 6</option>
+                                    <?php listaCargos(); ?>
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                <a class="btn btn-success" type="submit">+</a>
-                            </div>
+	                            <a href=""  data-toggle="modal" data-target=".maisCargo">  
+	                            	<button class="btn btn-success" data-toggle="modal" data-target=".maisCargo">+</button>
+	                            </a>
+	                       </div>
                         </div>
                         <div class="form-group">
                             <label for="inputJornada" class="col-sm-2 control-label">Jornada</label>
                             <div class="col-sm-3">
                                 <select class="form-control" name="inputJornada">
-                                    <option>Jornada 1</option>
-                                    <option>Jornada 2</option>
-                                    <option>Jornada 3</option>
-                                    <option>Jornada 4</option>
-                                    <option>Jornada 5</option>
-                                    <option>Jornada 6</option>
+                                    <?php listaJornadas(); ?>
                                 </select>
                             </div>
-                            <div class="col-sm-3">
-                                <a class="btn btn-success" type="submit">+</a>
-                            </div>
+                         
+                                <div class="col-sm-3">
+	                            <a href=""  data-toggle="modal" data-target=".maisJornada">  
+	                            	<button class="btn btn-success" data-toggle="modal" data-target=".maisJornada">+</button>
+	                            </a>
+	                       </div>
+                           
                          </div>
                          <div class="form-group">
                             <label for="inputSituacao" class="col-sm-2 control-label">Situação</label>
                             <div class="col-sm-3">
                                 <select class="form-control" name="inputSituacao">
-                                    <option>Situação 1</option>
-                                    <option>Situação 2</option>
-                                    <option>Situação 3</option>
-                                    <option>Situação 4</option>
-                                    <option>Situação 5</option>
-                                    <option>Situação 6</option>
+                                    <?php listaSituacoes(); ?>
                                 </select>
                             </div>
-                            <div class="col-sm-3">
-                                <a class="btn btn-success" type="submit">+</a>
-                            </div>
+                           
+                                <div class="col-sm-3">
+	                            <a href=""  data-toggle="modal" data-target=".maisSituacao">  
+	                            	<button class="btn btn-success" data-toggle="modal" data-target=".maisSituacao">+</button>
+	                            </a>
+	                       </div>
                          </div>
                          <div class="form-group">
                             <label for="inputDataEntrada" class="col-sm-2 control-label">Data de Entrada</label>
@@ -191,17 +186,16 @@
                             <label for="inputNivel" class="col-sm-2 control-label">Nível</label>
                             <div class="col-sm-3">
                                 <select class="form-control" name="inputNivel">
-                                    <option>Nível 1</option>
-                                    <option>Nível 2</option>
-                                    <option>Nível 3</option>
-                                    <option>Nível 4</option>
-                                    <option>Nível 5</option>
-                                    <option>Nível 6</option>
+                                    <?php listaNiveis(); ?>
                                 </select>
                             </div>
-                            <div class="col-sm-3">
-                                <a class="btn btn-success" type="submit">+</a>
-                            </div>
+                            
+                               <div class="col-sm-3">
+	                            <a href=""  data-toggle="modal" data-target=".maisNivel">  
+	                            	<button class="btn btn-success" data-toggle="modal" data-target=".maisNivel">+</button>
+	                            </a>
+	                       </div>
+                            
                          </div>
                          <div class="form-group">
                             <label for="inputSubstituto" class="col-sm-2 control-label">Substituto</label>
@@ -234,7 +228,38 @@
     </div><!-- /row --> 
 <!-- /Principal -->
 	
+<div class="modal fade maisCargo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
 
+<div class="modal fade maisJornada" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
+
+<div class="modal fade maisSituacao" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade maisNivel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
