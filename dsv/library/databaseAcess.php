@@ -1037,7 +1037,7 @@
 		return $r;				
 	}
 	
-	function selectCcr($codCurso){
+	function selectListaCcr($codCurso){
 		$sql = "SELECT *
 		          FROM cursoCcr 
 				 JOIN ccr using (codCcr)
