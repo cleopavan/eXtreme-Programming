@@ -1073,6 +1073,23 @@
 		$r=dbConsulta($sql);		
 		return $r;	
 	}
-
+	function sqlInsereServidor($siape,$nome,$email,$endereco,$cidade,$telefone,$celular,$cargo,$jornada,$situacao,$dataEntrada,$dataSaida,$nivel,$substituto,$observacao){
+		$sql = "SELECT idNivelServidor FROM nivelServidor WHERE nivel='$nivel' AND regValido=1";
+		$r=dbConsulta($sql);
+		$sql1 = "SELECT idSituacaoServidor FROM situacaoServidor WHERE situacao='$situacao' AND regValido=1";
+		$r1=dbConsulta($sql1);
+		$sql2 = "SELECT idJornada FROM jornada WHERE jornada='$jornada' AND regValido=1";
+		$r2=dbConsulta($sql2);
+		$sql3 = "SELECT idCargo FROM cargo WHERE cargo='$cargo' AND regValido=1";
+		$r3=dbConsulta($sql3);
+		$rNivel = mysql_fetch_row($r);
+		$rSituacao = mysql_fetch_row($r1);
+		$rJornada = mysql_fetch_row($r2);
+		$rCargo = mysql_fetch_row($r3);
+		$sql4 = "INSERT INTO servidor(siape, nome, sobrenome, observacao, quemSubstitui, idCargo, idJornada, idSituacaoServidor, email, fone1, fone2, endereco, cidade, senha, idNivelServidor, regValido) 
+		VALUES ('$siape', '$nome', '$sobrenome', '$observacao', '$substituto', '$rCargo[0]', '$rJornada[0]', '$rSituacao[0]', '$email', '$telefone', '$celular', '$endereco', '$cidade', '$senha', '$rNivel[0]', 1)" ;
+		$r4=dbConsulta($sql4);
+		return $r4;
+	}
 /*FIM FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/
 ?>
