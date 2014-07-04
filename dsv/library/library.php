@@ -699,7 +699,8 @@ At� aqui*******************************************************/
 	}
 
 	function insereServidor($siape,$nome, $sobrenome, $email,$senha,$endereco,$cidade,$telefone,$celular,$cargo,$jornada,$situacao,$dataEntrada,$dataSaida,$nivel,$substituto,$observacao){
-		sqlInsereServidor(addslashes($siape),addslashes($nome),addslashes($sobrenome),addslashes($email),addslashes($senha),addslashes($endereco),addslashes($cidade),$telefone,$celular,$cargo,$jornada,$situacao,$dataEntrada,$dataSaida,$nivel,addslashes($substituto),addslashes($observacao));
+		$nivel=sqlInsereServidor($siape,$nome, $sobrenome, $email,$senha,$endereco,$cidade,$telefone,$celular,$cargo,$jornada,$situacao,$dataEntrada,$dataSaida,$nivel,$substituto,$observacao);
+		return $nivel;
 	}
 
 /*FIM FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/	

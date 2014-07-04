@@ -48,11 +48,11 @@
             <div class="tab-content">
                 <?php
                 if(isset($_POST["inputSiape"])){
-                	 insereServidor($_POST["inputSiape"],$_POST["inputNome"],$_POST["inputSobrenome"], $_POST["inputEmail"],$_POST["inputSenha"],$_POST["inputEndereco"],$_POST["inputCidade"],$_POST["inputTelefone"],$_POST["inputCelular"],$_POST["inputCargo"],$_POST["inputJornada"],$_POST["inputSituacao"],$_POST["inputDataEntrada"],$_POST["inputDataSaida"],$_POST["inputNivel"],$_POST["inputSubstituto"],$_POST["inputObservacao"]);
+                	 $aux=insereServidor($_POST["inputSiape"],$_POST["inputNome"],$_POST["inputSobrenome"], $_POST["inputEmail"],$_POST["inputSenha"],$_POST["inputEndereco"],$_POST["inputCidade"],$_POST["inputTelefone"],$_POST["inputCelular"],$_POST["inputCargo"],$_POST["inputJornada"],$_POST["inputSituacao"],$_POST["inputDataEntrada"],$_POST["inputDataSaida"],$_POST["inputNivel"],$_POST["inputSubstituto"],$_POST["inputObservacao"]);
 	                echo '<div class="tab-pane active" id="inicial">
 	                    <div class="alert alert-success alert-dismissable">
 	                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	                       Cadastro realizado com sucesso.
+	                       Cadastro realizado com sucesso
 	                    </div>
 	                </div> ';
                 }
@@ -237,15 +237,124 @@
 <div class="modal fade maisCargo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      ...
-    </div>
+    <form action="servidor.php" method="post" class="form-horizontal" role="form">   
+       <div class="form-group">
+          <div class="col-sm-4" style="left:36%;">
+             <h3> Manutenção de Cargos </h3>
+          </div>
+       </div>
+       
+       <div class="form-group">
+          <div class="col-sm-3" style="left:38%;">
+              <select class="form-control" name="inputCargo">
+                   <option>Cargos Cadastrados</option>
+                   <option>Cago 2</option>
+                   <option>Cago 4</option>
+                   <option>Cago 3</option>
+              </select>
+           </div>
+       </div> 
+           <div class="col-sm-3" style="left:33%;">            
+	          	<div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-default" name="btnEditarCargo">Editar</button>
+                </div>
+	       </div>
+	       <div class="col-sm-3" style="left:22%;">
+	         <div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-default" name="btnExcluirCargo">Excluir</button>
+                </div>
+	       </div>
+	  </form>
+	  </br>
+  <form action="servidor.php" method="post" class="form-horizontal" role="form">                
+      </br>     
+     <div class="form-group">
+       <div class="col-sm-3" style="left:42%;">
+          <h3> Incluir Cargo </h3>
+       </div>
+     </div>
+     <div class="form-group">
+	   <div class="col-sm-4" style="left:35%;">
+	   	  <input type="text" class="form-control" id="inputNovoCargo" placeholder="Insira o novo cargo" name="inputNovoCargo">
+	   </div>
+	 </div>
+	 <div class="form-group">
+	   <div class="col-sm-3" style="left:30%;">            
+		 <div class="col-sm-offset-2 col-sm-10" >
+	       <button type="submit" class="btn btn-default" name="btnCadastrarCargo">Cadastrar</button>
+	     </div>
+	    </div>
+		
+		<div class="col-sm-3" style="left:29%;">            
+		  <div class="col-sm-offset-2 col-sm-10" >
+	        <button type="submit" class="btn btn-default" name="btnSair">Sair</button>
+	      </div>
+		</div>
+      </div>
+    </form>
+	  
+	 </div>
   </div>
 </div>
 
 <div class="modal fade maisJornada" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      ...
+     <form action="servidor.php" method="post" class="form-horizontal" role="form">   
+       <div class="form-group">
+          <div class="col-sm-4" style="left:36%;">
+             <h3> Manutenção de Jornadas </h3>
+          </div>
+       </div>
+       
+       <div class="form-group">
+          <div class="col-sm-3" style="left:38%;">
+              <select class="form-control" name="inputJornada">
+                   <option>Jonadas Cadastrados</option>
+                   <option>Jonadas 2</option>
+                   <option>Jonadas 4</option>
+                   <option>Jonadas 3</option>
+              </select>
+           </div>
+       </div> 
+           <div class="col-sm-3" style="left:33%;">            
+	          	<div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-default" name="btnEditarJornada">Editar</button>
+                </div>
+	       </div>
+	       <div class="col-sm-3" style="left:22%;">
+	         <div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-default" name="btnExcluirJornada">Excluir</button>
+                </div>
+	       </div>
+	  </form>
+	  </br>
+  <form action="servidor.php" method="post" class="form-horizontal" role="form">                
+      </br>     
+     <div class="form-group">
+       <div class="col-sm-3" style="left:42%;">
+          <h3> Incluir Jornada </h3>
+       </div>
+     </div>
+     <div class="form-group">
+	   <div class="col-sm-4" style="left:35%;">
+	   	  <input type="text" class="form-control" id="inputNovaJornada" placeholder="Insira a nova jornada" name="inputNovaJornada">
+	   </div>
+	 </div>
+	 <div class="form-group">
+	   <div class="col-sm-3" style="left:30%;">            
+		 <div class="col-sm-offset-2 col-sm-10" >
+	       <button type="submit" class="btn btn-default" name="btnCadastrarJornada">Cadastrar</button>
+	     </div>
+	    </div>
+		
+		<div class="col-sm-3" style="left:29%;">            
+		  <div class="col-sm-offset-2 col-sm-10" >
+	        <button type="submit" class="btn btn-default" name="btnSair">Sair</button>
+	      </div>
+		</div>
+      </div>
+    </form>
     </div>
   </div>
 </div>
@@ -253,7 +362,61 @@
 <div class="modal fade maisSituacao" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      ...
+      <form action="servidor.php" method="post" class="form-horizontal" role="form">   
+       <div class="form-group">
+          <div class="col-sm-4" style="left:36%;">
+             <h3> Manutenção de Situações </h3>
+          </div>
+       </div>
+       
+       <div class="form-group">
+          <div class="col-sm-3" style="left:38%;">
+              <select class="form-control" name="inputSituacao">
+                   <option>Niveis Cadastrados</option>
+                   <option>Nível 2</option>
+                   <option>Nível 4</option>
+                   <option>Nível 3</option>
+              </select>
+           </div>
+       </div> 
+           <div class="col-sm-3" style="left:33%;">            
+	          	<div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-default" name="btnEditarSituacao">Editar</button>
+                </div>
+	       </div>
+	       <div class="col-sm-3" style="left:22%;">
+	         <div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-default" name="btnExcluirSituacao">Excluir</button>
+                </div>
+	       </div>
+	  </form>
+	  </br>
+  <form action="servidor.php" method="post" class="form-horizontal" role="form">                
+      </br>     
+     <div class="form-group">
+       <div class="col-sm-3" style="left:42%;">
+          <h3> Incluir Situacão </h3>
+       </div>
+     </div>
+     <div class="form-group">
+	   <div class="col-sm-4" style="left:35%;">
+	   	  <input type="text" class="form-control" id="inputNovaSituacao" placeholder="Insira o nova situação" name="inputNovaSituacao">
+	   </div>
+	 </div>
+	 <div class="form-group">
+	   <div class="col-sm-3" style="left:30%;">            
+		 <div class="col-sm-offset-2 col-sm-10" >
+	       <button type="submit" class="btn btn-default" name="btnCadastrarSituacao">Cadastrar</button>
+	     </div>
+	    </div>
+		
+		<div class="col-sm-3" style="left:29%;">            
+		  <div class="col-sm-offset-2 col-sm-10" >
+	        <button type="submit" class="btn btn-default" name="btnSair">Sair</button>
+	      </div>
+		</div>
+      </div>
+    </form>
     </div>
   </div>
 </div>
@@ -262,7 +425,61 @@
 <div class="modal fade maisNivel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      ...
+      <form action="servidor.php" method="post" class="form-horizontal" role="form">   
+       <div class="form-group">
+          <div class="col-sm-4" style="left:36%;">
+             <h3> Manutenção de Niveis </h3>
+          </div>
+       </div>
+       
+       <div class="form-group">
+          <div class="col-sm-3" style="left:38%;">
+              <select class="form-control" name="inputNivel">
+                   <option>Niveis Cadastrados</option>
+                   <option>Nível 2</option>
+                   <option>Nível 4</option>
+                   <option>Nível 3</option>
+              </select>
+           </div>
+       </div> 
+           <div class="col-sm-3" style="left:33%;">            
+	          	<div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-default" name="btnEditarNivel">Editar</button>
+                </div>
+	       </div>
+	       <div class="col-sm-3" style="left:22%;">
+	         <div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-default" name="btnExcluirNivel">Excluir</button>
+                </div>
+	       </div>
+	  </form>
+	  </br>
+  <form action="servidor.php" method="post" class="form-horizontal" role="form">                
+      </br>     
+     <div class="form-group">
+       <div class="col-sm-3" style="left:42%;">
+          <h3> Incluir Nível </h3>
+       </div>
+     </div>
+     <div class="form-group">
+	   <div class="col-sm-4" style="left:35%;">
+	   	  <input type="text" class="form-control" id="inputNovoNivel" placeholder="Insira o novo nível" name="inputNovoNivel">
+	   </div>
+	 </div>
+	 <div class="form-group">
+	   <div class="col-sm-3" style="left:30%;">            
+		 <div class="col-sm-offset-2 col-sm-10" >
+	       <button type="submit" class="btn btn-default" name="btnCadastrarNivel">Cadastrar</button>
+	     </div>
+	    </div>
+		
+		<div class="col-sm-3" style="left:29%;">            
+		  <div class="col-sm-offset-2 col-sm-10" >
+	        <button type="submit" class="btn btn-default" name="btnSair">Sair</button>
+	      </div>
+		</div>
+      </div>
+    </form>
     </div>
   </div>
 </div>
