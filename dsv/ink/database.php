@@ -1,8 +1,8 @@
 <?php
 
 	//$banco = 'local';
-	//$banco = 'server';
-	$banco = 'jacson';
+	$banco = 'server';
+	//$banco = 'jacson';
 
 
 	if($banco == 'server'){
