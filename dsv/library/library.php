@@ -697,6 +697,51 @@ At� aqui*******************************************************/
 			echo '<option>'.utf8_encode($rowArea['nivel']).'</option>';
 		}
 	}
+	
+	function insereCargo($cargo){
+		$resultado=buscaCargo($cargo);
+		$rowArea = mysql_fetch_array($resultado);
+		if(addslashes($rowArea["cargo"])==$cargo) return 0;
+		sqlInsereCargo(addslashes($cargo));
+		return 1;
+	}
+	
+	function insereJornada($jornada){
+		$resultado=buscaCargo($jornada);
+		$rowArea = mysql_fetch_array($resultado);
+		if(addslashes($rowArea["jornada"])==$jornada) return 0;
+		sqlInsereJornada(addslashes($jornada));
+		return 1;
+	}
+	
+	function insereSituacao($situacao){
+		$resultado=buscaSituacao($situacao);
+		$rowArea = mysql_fetch_array($resultado);
+		if(addslashes($rowArea["situacao"])==$situacao) return 0;
+		sqlInsereSituacao(addslashes($situacao));
+		return 1;
+	}
+	
+	function insereNivel($nivel){
+		$resultado=buscaNivel($nivel);
+		$rowArea = mysql_fetch_array($resultado);
+		if(addslashes($rowArea["nivel"])==$nivel) return 0;
+		sqlInsereNivel(addslashes($nivel));
+		return 1;
+	}
+	
+	function excluiNivel($nivel){
+		sqlExcluiNivel(addslashes($nivel));
+	}
+	
+	function excluiJornada($jornada){
+		sqlExcluiJornada(addslashes($jornada));
+	}
+	
+	function excluiCargo($cargo){
+		sqlExcluiCargo(addslashes($cargo));
+	}
+
 
 	function insereServidor($siape,$nome, $sobrenome, $email,$senha,$endereco,$cidade,$telefone,$celular,$cargo,$jornada,$situacao,$dataEntrada,$dataSaida,$nivel,$substituto,$observacao){
 		$nivel=sqlInsereServidor($siape,$nome, $sobrenome, $email,$senha,$endereco,$cidade,$telefone,$celular,$cargo,$jornada,$situacao,$dataEntrada,$dataSaida,$nivel,$substituto,$observacao);

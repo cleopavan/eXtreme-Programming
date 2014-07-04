@@ -47,7 +47,12 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <?php
-                if(isset($_POST["inputSiape"])){
+                if(isset($_POST["inputCadastraServidor"]) && isset($_POST["inputSiape"]) && isset($_POST["inputNome"]) && 
+                isset($_POST["inputSobrenome"]) && isset($_POST["inputEmail"]) && isset($_POST["inputEmail"]) && isset($_POST["inputSenha"]) &&
+                isset($_POST["inputEndereco"]) && isset($_POST["inputCidade"]) && isset($_POST["inputTelefone"]) && isset($_POST["inputCelular"]) &&
+                isset($_POST["inputCargo"]) && isset($_POST["inputJornada"]) && isset($_POST["inputDataEntrada"]) && isset($_POST["inputDataSaida"]) &&
+                isset($_POST["inputNivel"]) && isset($_POST["inputSubstituto"]) && isset($_POST["inputObservacao"])){
+                
                 	 $aux=insereServidor($_POST["inputSiape"],$_POST["inputNome"],$_POST["inputSobrenome"], $_POST["inputEmail"],$_POST["inputSenha"],$_POST["inputEndereco"],$_POST["inputCidade"],$_POST["inputTelefone"],$_POST["inputCelular"],$_POST["inputCargo"],$_POST["inputJornada"],$_POST["inputSituacao"],$_POST["inputDataEntrada"],$_POST["inputDataSaida"],$_POST["inputNivel"],$_POST["inputSubstituto"],$_POST["inputObservacao"]);
 	                echo '<div class="tab-pane active" id="inicial">
 	                    <div class="alert alert-success alert-dismissable">
@@ -89,7 +94,7 @@
                         <div class="form-group">
                             <label for="inputNome" class="col-sm-2 control-label">Nome</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="inputNome" placeholder="Nome"name="inputNome" >
+                                <input type="text" class="form-control" id="inputNome" placeholder="Nome"name="inputNome">
                             </div>
                         </div>
                         <div class="form-group">
@@ -217,7 +222,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">Cadastrar</button>
+                                <button type="submit" class="btn btn-default" name="inputCadastraServidor">Cadastrar</button>
                             </div>
                         </div>
                     </form>
@@ -234,6 +239,115 @@
     </div><!-- /row --> 
 <!-- /Principal -->
 	
+<?php
+	if(isset($_POST["btnCadastrarCargo"])){
+		$confere=insereCargo($_POST["inputNovoCargo"]);
+		if($confere==0){
+			echo '<div class="tab-pane active" id="inicial">
+		           <div class="alert alert-danger alert-dismissable">
+		              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		              Cargo já cadastrado
+		           </div>
+		         </div> ';
+		}else{
+			echo '<div class="tab-pane active" id="inicial">
+		           <div class="alert alert-success alert-dismissable">
+		              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		              Cargo cadastrado com sucesso
+		           </div>
+		         </div> ';
+	   }
+	}
+	
+	if(isset($_POST["btnCadastrarJornada"])){
+		$resultado=insereJornada($_POST["inputNovaJornada"]);
+		if($confere==0){
+			echo '<div class="tab-pane active" id="inicial">
+		           <div class="alert alert-danger alert-dismissable">
+		              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		              Jornada já cadastrada
+		           </div>
+		         </div> ';
+		}else{
+		echo '<div class="tab-pane active" id="inicial">
+	           <div class="alert alert-success alert-dismissable">
+	              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	              Jornada cadastrada com sucesso
+	           </div>
+	         </div> ';
+	   }
+	}
+	
+	if(isset($_POST["btnCadastrarSituacao"])){
+		$confere=insereSituacao($_POST["inputNovaSituacao"]);
+		if($confere==0){
+			echo '<div class="tab-pane active" id="inicial">
+		           <div class="alert alert-danger alert-dismissable">
+		              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		              Situação já cadastrada
+		           </div>
+		         </div> ';
+		}else{
+		echo '<div class="tab-pane active" id="inicial">
+	           <div class="alert alert-success alert-dismissable">
+	              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	              Situação cadastrada com sucesso
+	           </div>
+	         </div> ';
+		}
+	}
+	
+	if(isset($_POST["btnCadastrarNivel"])){
+		$confere=insereNivel($_POST["inputNovoNivel"]);
+		if($confere==0){
+			echo '<div class="tab-pane active" id="inicial">
+		           <div class="alert alert-danger alert-dismissable">
+		              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		              Nível já cadastrada
+		           </div>
+		         </div> ';
+		}else{
+		echo '<div class="tab-pane active" id="inicial">
+	           <div class="alert alert-success alert-dismissable">
+	              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	              Nível cadastrado com sucesso
+	           </div>
+	         </div> ';
+	    }
+	}
+	
+	if(isset($_POST["btnExcluirNivel"])){
+		excluiNivel($_POST["inputNivel"]);
+		echo '<div class="tab-pane active" id="inicial">
+	           <div class="alert alert-success alert-dismissable">
+	              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	              Nível excluido com sucesso
+	           </div>
+	         </div> ';
+	}
+	
+	if(isset($_POST["btnExcluirJornada"])){
+		excluiJornada($_POST["inputJornada"]);
+		echo '<div class="tab-pane active" id="inicial">
+	           <div class="alert alert-success alert-dismissable">
+	              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	              Jornada excluido com sucesso
+	           </div>
+	         </div> ';
+	}
+	
+	if(isset($_POST["btnExcluirCargo"])){
+		excluiCargo($_POST["inputCargo"]);
+		echo '<div class="tab-pane active" id="inicial">
+	           <div class="alert alert-success alert-dismissable">
+	              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	              Cargo excluido com sucesso
+	           </div>
+	         </div> ';
+	}
+?>
+	
+	
 <div class="modal fade maisCargo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -248,9 +362,7 @@
           <div class="col-sm-3" style="left:38%;">
               <select class="form-control" name="inputCargo">
                    <option>Cargos Cadastrados</option>
-                   <option>Cago 2</option>
-                   <option>Cago 4</option>
-                   <option>Cago 3</option>
+                   <?php listaCargos(); ?>
               </select>
            </div>
        </div> 
@@ -311,9 +423,7 @@
           <div class="col-sm-3" style="left:38%;">
               <select class="form-control" name="inputJornada">
                    <option>Jonadas Cadastrados</option>
-                   <option>Jonadas 2</option>
-                   <option>Jonadas 4</option>
-                   <option>Jonadas 3</option>
+                  <?php listaJornadas(); ?>
               </select>
            </div>
        </div> 
@@ -372,10 +482,8 @@
        <div class="form-group">
           <div class="col-sm-3" style="left:38%;">
               <select class="form-control" name="inputSituacao">
-                   <option>Niveis Cadastrados</option>
-                   <option>Nível 2</option>
-                   <option>Nível 4</option>
-                   <option>Nível 3</option>
+                   <option>Situações Cadastrados</option>
+                   <?php listaSituacoes(); ?>
               </select>
            </div>
        </div> 
@@ -436,9 +544,7 @@
           <div class="col-sm-3" style="left:38%;">
               <select class="form-control" name="inputNivel">
                    <option>Niveis Cadastrados</option>
-                   <option>Nível 2</option>
-                   <option>Nível 4</option>
-                   <option>Nível 3</option>
+                   <?php listaNiveis(); ?>
               </select>
            </div>
        </div> 
@@ -498,7 +604,7 @@
 		  	  
 			  function validateField(field){
 			  $('#'+field).focusout(function(){
-			    if($('#'+field).val()==''){
+			    if($('#'+field).val() == ''){
 			 	   $('#'+field).css('border-color', 'red');
 			    }else{
 			       $('#'+field).css('border', '1px solid #ccc');

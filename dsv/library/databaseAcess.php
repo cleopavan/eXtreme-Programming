@@ -1056,14 +1056,31 @@
 		return $r;	
 	}
 	
+	function buscaCargo($cargo){
+		$sql = "SELECT cargo FROM cargo WHERE cargo='$cargo' AND regValido=1";
+		$r=dbConsulta($sql);		
+		return $r;	
+	}
+	
 	function buscaJornadas(){
 		$sql = "SELECT jornada, idJornada FROM jornada WHERE regValido=1";
 		$r=dbConsulta($sql);		
 		return $r;	
 	}
 	
+	function buscaJornada($jornada){
+		$sql = "SELECT jornada FROM jornada WHERE jornada='$jornada' AND regValido=1";
+		$r=dbConsulta($sql);		
+		return $r;	
+	}
 	function buscaSituacoes(){
-		$sql = "SELECT situacao, idSituacaoServidor FROM situacaoServidor WHERE regValido=1";
+		$sql = "SELECT situacao, idSituacaoServidor FROM situacaoServidor WHERE  regValido=1";
+		$r=dbConsulta($sql);		
+		return $r;	
+	}
+	
+	function buscaSituacao($situacao){
+		$sql = "SELECT situacao FROM situacaoServidor WHERE situacao='$situacao' AND  regValido=1";
 		$r=dbConsulta($sql);		
 		return $r;	
 	}
@@ -1073,6 +1090,48 @@
 		$r=dbConsulta($sql);		
 		return $r;	
 	}
+	
+	function buscaNivel($nivel){
+		$sql = "SELECT nivel FROM nivelServidor WHERE nivel='$nivel' AND regValido=1";
+		$r=dbConsulta($sql);		
+		return $r;	
+	}
+	
+	function sqlInsereCargo($cargo){
+		$sql="INSERT INTO cargo(cargo, regValido) VALUES ('$cargo',1)";
+		dbConsulta($sql);
+	}
+	
+	function sqlInsereJornada($jornada){
+		$sql="INSERT INTO jornada(jornada, regValido) VALUES ('$jornada',1)";
+		dbConsulta($sql);
+	}
+	
+	function sqlInsereSituacao($situacao){
+		$sql="INSERT INTO situacaoServidor(situacao, regValido) VALUES ('$situacao',1)";
+		dbConsulta($sql);
+	}
+	
+	function sqlInsereNivel($nivel){
+		$sql="INSERT INTO nivelServidor(nivel, regValido) VALUES ('$nivel',1)";
+		dbConsulta($sql);
+	}
+	
+	function sqlExcluiNivel($nivel){
+		$sql="UPDATE nivelServidor SET regValido=0 WHERE nivel='$nivel'";
+		dbConsulta($sql);
+	}
+	
+	function sqlExcluiJornada($jornada){
+		$sql="UPDATE jornada SET regValido=0 WHERE jornada='$jornada'";
+		dbConsulta($sql);
+	}
+	
+	function sqlExcluiCargo($cargo){
+		$sql="UPDATE cargo SET regValido=0 WHERE cargo='$cargo'";
+		dbConsulta($sql);
+	}
+	
 	function sqlInsereServidor($siape, $nome, $sobrenome, $email, $endereco, $cidade, $telefone, $celular, $cargo, $jornada, $situacao, $dataEntrada, $dataSaida, $nivel, $substituto, $observacao){
 		$sql = "SELECT idNivelServidor FROM nivelServidor WHERE nivel='$nivel' AND regValido=1";
 		$r=dbConsulta($sql);
