@@ -53,7 +53,11 @@
                 isset($_POST["inputCargo"]) && isset($_POST["inputJornada"]) && isset($_POST["inputDataEntrada"]) && isset($_POST["inputDataSaida"]) &&
                 isset($_POST["inputNivel"]) && isset($_POST["inputSubstituto"]) && isset($_POST["inputObservacao"])){
                 
-                	 $aux=insereServidor($_POST["inputSiape"],$_POST["inputNome"],$_POST["inputSobrenome"], $_POST["inputEmail"],$_POST["inputSenha"],$_POST["inputEndereco"],$_POST["inputCidade"],$_POST["inputTelefone"],$_POST["inputCelular"],$_POST["inputCargo"],$_POST["inputJornada"],$_POST["inputSituacao"],$_POST["inputDataEntrada"],$_POST["inputDataSaida"],$_POST["inputNivel"],$_POST["inputSubstituto"],$_POST["inputObservacao"]);
+                	 $aux=insereServidor($_POST["inputCadastraServidor"], $_POST["inputSiape"], $_POST["inputNome"], 
+                $_POST["inputSobrenome"], $_POST["inputEmail"], $_POST["inputEmail"], $_POST["inputSenha"],
+                $_POST["inputEndereco"], $_POST["inputCidade"], $_POST["inputTelefone"], $_POST["inputCelular"],
+                isset($_POST["inputCargo"]) && isset($_POST["inputJornada"]) && isset($_POST["inputDataEntrada"]) && isset($_POST["inputDataSaida"]) &&
+                isset($_POST["inputNivel"]) && isset($_POST["inputSubstituto"]) && isset($_POST["inputObservacao"]));
 	                echo '<div class="tab-pane active" id="inicial">
 	                    <div class="alert alert-success alert-dismissable">
 	                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -360,23 +364,24 @@
        
        <div class="form-group">
           <div class="col-sm-3" style="left:38%;">
-              <select class="form-control" name="inputCargo">
+              <select class="form-control" id="inputComboCargo" name="inputCargo">
                    <option>Cargos Cadastrados</option>
                    <?php listaCargos(); ?>
               </select>
            </div>
        </div> 
-           <div class="col-sm-3" style="left:33%;">            
-	          	<div class="col-sm-offset-2 col-sm-10">
-                   <button type="submit" class="btn btn-default" name="btnEditarCargo">Editar</button>
-                </div>
-	       </div>
-	       <div class="col-sm-3" style="left:22%;">
+           
+	       <div class="col-sm-3" style="left:47%;">
 	         <div class="col-sm-offset-2 col-sm-10">
                    <button type="submit" class="btn btn-default" name="btnExcluirCargo">Excluir</button>
                 </div>
 	       </div>
 	  </form>
+	  <div class="col-sm-3" style="left:8%;">            
+	          	<div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-default" id="btnEditarCargo" name="btnEditarCargo">Editar</button>
+                </div>
+	       </div>
 	  </br>
   <form action="servidor.php" method="post" class="form-horizontal" role="form">                
       </br>     
@@ -421,23 +426,24 @@
        
        <div class="form-group">
           <div class="col-sm-3" style="left:38%;">
-              <select class="form-control" name="inputJornada">
+              <select class="form-control" id="inputComboJornada" name="inputJornada">
                    <option>Jonadas Cadastrados</option>
                   <?php listaJornadas(); ?>
               </select>
            </div>
        </div> 
-           <div class="col-sm-3" style="left:33%;">            
-	          	<div class="col-sm-offset-2 col-sm-10">
-                   <button type="submit" class="btn btn-default" name="btnEditarJornada">Editar</button>
-                </div>
-	       </div>
-	       <div class="col-sm-3" style="left:22%;">
+           
+	       <div class="col-sm-3" style="left:47%;">
 	         <div class="col-sm-offset-2 col-sm-10">
                    <button type="submit" class="btn btn-default" name="btnExcluirJornada">Excluir</button>
                 </div>
 	       </div>
 	  </form>
+	  <div class="col-sm-3" style="left:8%;">            
+	          	<div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-default" id="btnEditarJornada" name="btnEditarJornada">Editar</button>
+                </div>
+	       </div>
 	  </br>
   <form action="servidor.php" method="post" class="form-horizontal" role="form">                
       </br>     
@@ -481,23 +487,24 @@
        
        <div class="form-group">
           <div class="col-sm-3" style="left:38%;">
-              <select class="form-control" name="inputSituacao">
+              <select class="form-control" id="inputComboSituacao" name="inputSituacao">
                    <option>Situações Cadastrados</option>
                    <?php listaSituacoes(); ?>
               </select>
            </div>
        </div> 
-           <div class="col-sm-3" style="left:33%;">            
-	          	<div class="col-sm-offset-2 col-sm-10">
-                   <button type="submit" class="btn btn-default" name="btnEditarSituacao">Editar</button>
-                </div>
-	       </div>
-	       <div class="col-sm-3" style="left:22%;">
+           
+	       <div class="col-sm-3" style="left:47%;">
 	         <div class="col-sm-offset-2 col-sm-10">
                    <button type="submit" class="btn btn-default" name="btnExcluirSituacao">Excluir</button>
                 </div>
 	       </div>
 	  </form>
+	  <div class="col-sm-3" style="left:8%;">            
+	          	<div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-default" id="btnEditarSituacao" name="btnEditarSituacao">Editar</button>
+                </div>
+	       </div>
 	  </br>
   <form action="servidor.php" method="post" class="form-horizontal" role="form">                
       </br>     
@@ -542,23 +549,23 @@
        
        <div class="form-group">
           <div class="col-sm-3" style="left:38%;">
-              <select class="form-control" name="inputNivel">
+              <select class="form-control" id="inputComboNivel" name="inputNivel">
                    <option>Niveis Cadastrados</option>
                    <?php listaNiveis(); ?>
               </select>
            </div>
        </div> 
-           <div class="col-sm-3" style="left:33%;">            
-	          	<div class="col-sm-offset-2 col-sm-10">
-                   <button type="submit" class="btn btn-default" name="btnEditarNivel">Editar</button>
-                </div>
-	       </div>
-	       <div class="col-sm-3" style="left:22%;">
+	       <div class="col-sm-3" style="left:47%;">
 	         <div class="col-sm-offset-2 col-sm-10">
                    <button type="submit" class="btn btn-default" name="btnExcluirNivel">Excluir</button>
                 </div>
 	       </div>
 	  </form>
+	  <div class="col-sm-3" style="left:8%;">            
+	          	<div class="col-sm-offset-2 col-sm-10">
+                   <button class="btn btn-default" id="btnEditarNivel" name="btnEditarNivel">Editar</button>
+                </div>
+	       </div>
 	  </br>
   <form action="servidor.php" method="post" class="form-horizontal" role="form">                
       </br>     
@@ -590,14 +597,23 @@
   </div>
 </div>
 
-
+    
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/validateMask.js"></script>
 	<script type="text/javascript">
+		  
+		  
 		  $(document).ready(function(){
+		  	  $('#btnEditarNivel').click(function(){ $('#inputNovoNivel').val($('#inputComboNivel').val()); });
+		  	  $('#btnEditarSituacao').click(function(){ $('#inputNovaSituacao').val($('#inputComboSituacao').val()); });
+		  	  $('#btnEditarCargo').click(function(){ $('#inputNovoCargo').val($('#inputComboCargo').val()); });
+		  	  $('#btnEditarJornada').click(function(){ $('#inputNovaJornada').val($('#inputComboJornada').val()); });
+		  	  
+		  
+		  
 		  	  $('#inputTelefone').mask('(99) 9999-9999');
 		  	  $('#inputCelular').mask('(99) 9999-9999');
 		  	  
