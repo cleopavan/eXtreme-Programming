@@ -47,18 +47,14 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <?php
-                if(isset($_POST["inputCadastraServidor"]) && isset($_POST["inputSiape"]) && isset($_POST["inputNome"]) && 
-                isset($_POST["inputSobrenome"]) && isset($_POST["inputEmail"]) && isset($_POST["inputEmail"]) && isset($_POST["inputSenha"]) &&
-                isset($_POST["inputEndereco"]) && isset($_POST["inputCidade"]) && isset($_POST["inputTelefone"]) && isset($_POST["inputCelular"]) &&
-                isset($_POST["inputCargo"]) && isset($_POST["inputJornada"]) && isset($_POST["inputDataEntrada"]) && isset($_POST["inputDataSaida"]) &&
-                isset($_POST["inputNivel"]) && isset($_POST["inputSubstituto"]) && isset($_POST["inputObservacao"])){
+                if(isset($_POST["inputCadastraServidor"])){
                 
-                	 $aux=insereServidor($_POST["inputCadastraServidor"], $_POST["inputSiape"], $_POST["inputNome"], 
-                $_POST["inputSobrenome"], $_POST["inputEmail"], $_POST["inputEmail"], $_POST["inputSenha"],
-                $_POST["inputEndereco"], $_POST["inputCidade"], $_POST["inputTelefone"], $_POST["inputCelular"],
-                isset($_POST["inputCargo"]) && isset($_POST["inputJornada"]) && isset($_POST["inputDataEntrada"]) && isset($_POST["inputDataSaida"]) &&
-                isset($_POST["inputNivel"]) && isset($_POST["inputSubstituto"]) && isset($_POST["inputObservacao"]));
-	                echo '<div class="tab-pane active" id="inicial">
+	             	insereServidor($_POST["inputSiape"], $_POST["inputNome"], 
+	                $_POST["inputSobrenome"], $_POST["inputEmail"],  $_POST["inputSenha"],
+	                $_POST["inputEndereco"], $_POST["inputCidade"], $_POST["inputTelefone"], $_POST["inputCelular"],
+	                $_POST["inputCargo"], $_POST["inputJornada"], $_POST["$inputSituacao"], $_POST["inputDataEntrada"], $_POST["inputDataSaida"],
+	                $_POST["inputNivel"], $_POST["inputSubstituto"], $_POST["inputObservacao"]);
+		            echo '<div class="tab-pane active" id="inicial">
 	                    <div class="alert alert-success alert-dismissable">
 	                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 	                       Cadastro realizado com sucesso
@@ -321,7 +317,7 @@
 	}
 	
 	if(isset($_POST["btnExcluirNivel"])){
-		excluiNivel($_POST["inputNivel"]);
+		excluiNivel($_POST["inputComboNivel"]);
 		echo '<div class="tab-pane active" id="inicial">
 	           <div class="alert alert-success alert-dismissable">
 	              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -549,7 +545,7 @@
        
        <div class="form-group">
           <div class="col-sm-3" style="left:38%;">
-              <select class="form-control" id="inputComboNivel" name="inputNivel">
+              <select class="form-control" id="inputComboNivel" name="inputComboNivel">
                    <option>Niveis Cadastrados</option>
                    <?php listaNiveis(); ?>
               </select>
@@ -582,7 +578,7 @@
 	 <div class="form-group">
 	   <div class="col-sm-3" style="left:30%;">            
 		 <div class="col-sm-offset-2 col-sm-10" >
-	       <button type="submit" class="btn btn-default" name="btnCadastrarNivel">Cadastrar</button>
+	       <button type="submit" class="btn btn-default" id="btnCadastrarNivel" name="btnCadastrarNivel">Cadastrar</button>
 	     </div>
 	    </div>
 		
@@ -603,17 +599,13 @@
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/validateMask.js"></script>
-	<script type="text/javascript">
-		  
-		  
+	<script type="text/javascript">		  
 		  $(document).ready(function(){
 		  	  $('#btnEditarNivel').click(function(){ $('#inputNovoNivel').val($('#inputComboNivel').val()); });
 		  	  $('#btnEditarSituacao').click(function(){ $('#inputNovaSituacao').val($('#inputComboSituacao').val()); });
 		  	  $('#btnEditarCargo').click(function(){ $('#inputNovoCargo').val($('#inputComboCargo').val()); });
 		  	  $('#btnEditarJornada').click(function(){ $('#inputNovaJornada').val($('#inputComboJornada').val()); });
-		  	  
-		  
-		  
+
 		  	  $('#inputTelefone').mask('(99) 9999-9999');
 		  	  $('#inputCelular').mask('(99) 9999-9999');
 		  	  

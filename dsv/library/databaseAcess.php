@@ -1132,26 +1132,33 @@
 		dbConsulta($sql);
 	}
 	
-	function sqlInsereServidor($siape, $nome, $sobrenome, $email, $endereco, $cidade, $telefone, $celular, $cargo, $jornada, $situacao, $dataEntrada, $dataSaida, $nivel, $substituto, $observacao){
-		$sql = "SELECT idNivelServidor FROM nivelServidor WHERE nivel='$nivel' AND regValido=1";
+	
+	function sqlInsereServidor($inputSiape, $inputNome,$inputSobrenome, $inputEmail, $inputSenha,
+	                		   $inputEndereco, $inputCidade, $inputTelefone, $inputCelular, $inputCargo, $inputJornada, 
+	                		   $inputSituacao, $inputDataEntrada, $inputDataSaida, $inputNivel, $inputSubstituto, $inputObservacao){
+		$sql = "SELECT idNivelServidor FROM nivelServidor WHERE nivel='$inputNivel' AND regValido=1";
 		$r=dbConsulta($sql);
-		$sql1 = "SELECT idSituacaoServidor FROM situacaoServidor WHERE situacao='$situacao' AND regValido=1";
+		$sql1 = "SELECT idSituacaoServidor FROM situacaoServidor WHERE situacao='$inputSituacao' AND regValido=1";
 		$r1=dbConsulta($sql1);
-		$sql2 = "SELECT idJornada FROM jornada WHERE jornada='$jornada' AND regValido=1";
+		$sql2 = "SELECT idJornada FROM jornada WHERE jornada='$inputJornada' AND regValido=1";
 		$r2=dbConsulta($sql2);
-		$sql3 = "SELECT idCargo FROM cargo WHERE cargo='$cargo' AND regValido=1";
+		$sql3 = "SELECT idCargo FROM cargo WHERE cargo='$inputCargo' AND regValido=1";
 		$r3=dbConsulta($sql3);
 		$rNivel = mysql_fetch_array($r);
-		$nivel=$rNivel["idNivelServidor"];
-		echo $nivel;
+		$inputNivel=$rNivel["idNivelServidor"];
 		$rSituacao = mysql_fetch_array($r1);
+		$inputJornada=$rSituacao['idSituacaoServidor'];
 		$rJornada = mysql_fetch_array($r2);
+		$inputJornada=$rJornada['idJornada'];
 		$rCargo = mysql_fetch_array($r3);
-		$senha=md5($senha);
-		$sql4 = "INSERT INTO servidor(siape, nome, sobrenome, observacao, quemSubstitui, idCargo, idJornada, idSituacaoServidor, email, fone1, fone2, endereco, cidade, senha, idNivelServidor, regValido) 
-		VALUES ('$siape', '$nome', '$sobrenome', '$observacao', '$substituto', '$rCargo[idCargo]', '$rJornada[idJornada]', '$rSituacao[idSituacaoServidor]', '$email', '$telefone', '$celular', '$endereco', '$cidade', '$senha', '$Nivel', 1)" ;
-		$r4=dbConsulta($sql4);
-		return $nivel;
+		$inputCargo=$rCargo['idCargo'];
+		$senha=md5($inputSenha);
+		
+		$sql4 = "INSERT INTO servidor(siape, nome, sobrenome, email, senha, endereco, cidade, fone1, fone2, idCargo, idJornada,  idSituacaoServidor, idNivelServidor, quemSubstitui, observacao,  regValido) 
+		VALUES ('$inputSiape', '$inputNome','$inputSobrenome', '$inputEmail', '$senha',
+	          '$inputEndereco', '$inputCidade', '$inputTelefone', '$inputCelular', '$inputCargo', '$inputJornada', 
+	       '$inputSituacao', '$inputNivel', '$inputSubstituto', '$inputObservacao', 1)" ;
+		dbConsulta($sql4);
 	}
 /*FIM FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/
 ?>
