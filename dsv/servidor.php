@@ -241,6 +241,9 @@
 	
 <?php
 	if(isset($_POST["btnCadastrarCargo"])){
+		if(isset($_POST["inputAuxC"]) && strlen($_POST["inputAuxC"])>0){
+			excluiCargo($_POST["inputAuxC"]);
+		}
 		$confere=insereCargo($_POST["inputNovoCargo"]);
 		if($confere==0){
 			echo '<div class="tab-pane active" id="inicial">
@@ -260,8 +263,11 @@
 	}
 	
 	if(isset($_POST["btnCadastrarJornada"])){
+		if(isset($_POST["inputAuxJ"]) && strlen($_POST["inputAuxJ"])>0){
+			excluiJornada($_POST["inputAuxJ"]);
+		}
 		$resultado=insereJornada($_POST["inputNovaJornada"]);
-		if($confere==0){
+		if($resultado==0){
 			echo '<div class="tab-pane active" id="inicial">
 		           <div class="alert alert-danger alert-dismissable">
 		              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -298,6 +304,9 @@
 	}
 	
 	if(isset($_POST["btnCadastrarNivel"])){
+		if(isset($_POST["inputAux"]) && strlen($_POST["inputAux"])>0){
+			excluiNivel($_POST["inputAux"]);
+		}
 		$confere=insereNivel($_POST["inputNovoNivel"]);
 		if($confere==0){
 			echo '<div class="tab-pane active" id="inicial">
@@ -391,6 +400,7 @@
 	   	  <input type="text" class="form-control" id="inputNovoCargo" placeholder="Insira o novo cargo" name="inputNovoCargo">
 	   </div>
 	 </div>
+	 <input type="text" id="inputAuxC"  name="inputAuxC" style="display:none;">
 	 <div class="form-group">
 	   <div class="col-sm-3" style="left:30%;">            
 		 <div class="col-sm-offset-2 col-sm-10" >
@@ -453,6 +463,7 @@
 	   	  <input type="text" class="form-control" id="inputNovaJornada" placeholder="Insira a nova jornada" name="inputNovaJornada">
 	   </div>
 	 </div>
+	 <input type="text" id="inputAuxJ"  name="inputAuxJ" style="display:none;">
 	 <div class="form-group">
 	   <div class="col-sm-3" style="left:30%;">            
 		 <div class="col-sm-offset-2 col-sm-10" >
@@ -575,6 +586,7 @@
 	   	  <input type="text" class="form-control" id="inputNovoNivel" placeholder="Insira o novo nível" name="inputNovoNivel">
 	   </div>
 	 </div>
+	 <input type="text" id="inputAux"  name="inputAux" style="display:none;">
 	 <div class="form-group">
 	   <div class="col-sm-3" style="left:30%;">            
 		 <div class="col-sm-offset-2 col-sm-10" >
@@ -602,9 +614,16 @@
 	<script type="text/javascript">		  
 		  $(document).ready(function(){
 		  	  $('#btnEditarNivel').click(function(){ $('#inputNovoNivel').val($('#inputComboNivel').val()); });
+		  	  $('#btnEditarNivel').click(function(){ $('#inputAux').val($('#inputComboNivel').val()); });
+		  	  
 		  	  $('#btnEditarSituacao').click(function(){ $('#inputNovaSituacao').val($('#inputComboSituacao').val()); });
+		  	  
+		  	  
 		  	  $('#btnEditarCargo').click(function(){ $('#inputNovoCargo').val($('#inputComboCargo').val()); });
+		  	  $('#btnEditarCargo').click(function(){ $('#inputAuxC').val($('#inputComboCargo').val()); });
+		  	  
 		  	  $('#btnEditarJornada').click(function(){ $('#inputNovaJornada').val($('#inputComboJornada').val()); });
+		  	  $('#btnEditarJornada').click(function(){ $('#inputAuxJ').val($('#inputComboJornada').val()); });
 
 		  	  $('#inputTelefone').mask('(99) 9999-9999');
 		  	  $('#inputCelular').mask('(99) 9999-9999');
