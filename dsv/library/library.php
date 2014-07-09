@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	require_once dirname(__FILE__).'/databaseAcess.php';//banco de dados
 	require_once dirname(__FILE__).'/constant.php';//constantes
 	
@@ -250,10 +250,34 @@
 		
 		return $r;
 	}
-At� aqui*******************************************************/
-	/****************************************************Fim das fun��es de inser��o****************************************/
+Até aqui*******************************************************/
+	/****************************************************Fim das funções de inserção****************************************/
 	/**/
-	/****************************************************Inicio das fun��es de altera��o****************************************/
+	/****************************************************Inicio das funções de seleção****************************************/
+	function constroiDadosSelectCcr($filtro, $texto){
+		$data = array();
+		$filtro = addslashes($filtro);
+		$texto = addslashes($texto);
+		
+		if($filtro == 'nome'){//string
+			$filtro = 'nomeCcr';
+		}else if($filtro == 'cod'){//int
+			$filtro = 'codCcr';
+			$texto = (int)$texto;
+		}else if($filtro = 'ch'){//int
+			$filtro = 'cHoraria';
+			$texto = (int)$texto;
+		}else if($filtro = 'domin'){//string
+			$filtro = 'idDominio';
+			//fazer busca dominio
+		}else if($filtro = 'curso'){//string
+			$filtro = 'codCurso';
+			//fazer busca
+		}
+	}
+	/****************************************************Fim das funções de seleção****************************************/
+	/**/
+	/****************************************************Inicio das funções de alteração****************************************/
 	function constroiDadosUpdateFuncao($idFuncao, $funcao){
 		$data = array();
 		$data['id'] = addslashes($idFuncao);

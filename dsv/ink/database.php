@@ -1,7 +1,7 @@
-<?php
+﻿<?php
 
-	//$banco = 'local';
-	$banco = 'server';
+	$banco = 'local';
+	//$banco = 'server';
 	//$banco = 'jacson';
 
 
