@@ -258,22 +258,45 @@ Até aqui*******************************************************/
 		$data = array();
 		$filtro = addslashes($filtro);
 		$texto = addslashes($texto);
+		$tabela = '';
 		
 		if($filtro == 'nome'){//string
 			$filtro = 'nomeCcr';
+			$tabela = 'ccr';
 		}else if($filtro == 'cod'){//int
 			$filtro = 'codCcr';
 			$texto = (int)$texto;
+			$tabela = 'ccr';
 		}else if($filtro = 'ch'){//int
 			$filtro = 'cHoraria';
 			$texto = (int)$texto;
+			$tabela = 'ccr';
 		}else if($filtro = 'domin'){//string
 			$filtro = 'idDominio';
-			//fazer busca dominio
+			$texto = (int)$texto;
+			$tabela = 'ccr';
 		}else if($filtro = 'curso'){//string
 			$filtro = 'codCurso';
-			//fazer busca
+			$texto = (int)$texto;
+			$tabela = 'curso';
 		}
+		
+		$data['filtro'] = $filtro;
+		$data['valor'] = $texto;
+		$data['tabela'] = $tabela;
+		
+		$r = selectCcr($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosSelectDominio($id){
+		$data = array();
+		$data['id'] = addslashes($id);
+		
+		$r = selectDominio($data);
+		
+		return $r;
 	}
 	/****************************************************Fim das funções de seleção****************************************/
 	/**/
