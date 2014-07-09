@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	require_once dirname (__FILE__)."/library/library.php";
 	session_start();
 	session_destroy();
@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <meta charset="iso-8859-1"> <!-- charset=utf-8">-->
+    <meta charset="utf-8"> <!-- charset=utf-8">-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
