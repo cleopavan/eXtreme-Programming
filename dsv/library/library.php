@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	require_once dirname(__FILE__).'/databaseAcess.php';//banco de dados
 	require_once dirname(__FILE__).'/constant.php';//constantes
 	
@@ -250,10 +250,57 @@
 		
 		return $r;
 	}
-At� aqui*******************************************************/
-	/****************************************************Fim das fun��es de inser��o****************************************/
+Até aqui*******************************************************/
+	/****************************************************Fim das funções de inserção****************************************/
 	/**/
-	/****************************************************Inicio das fun��es de altera��o****************************************/
+	/****************************************************Inicio das funções de seleção****************************************/
+	function constroiDadosSelectCcr($filtro, $texto){
+		$data = array();
+		$filtro = addslashes($filtro);
+		$texto = addslashes($texto);
+		$tabela = '';
+		
+		if($filtro == 'nome'){//string
+			$filtro = 'nomeCcr';
+			$tabela = 'ccr';
+		}else if($filtro == 'cod'){//int
+			$filtro = 'codCcr';
+			$texto = (int)$texto;
+			$tabela = 'ccr';
+		}else if($filtro = 'ch'){//int
+			$filtro = 'cHoraria';
+			$texto = (int)$texto;
+			$tabela = 'ccr';
+		}else if($filtro = 'domin'){//string
+			$filtro = 'idDominio';
+			$texto = (int)$texto;
+			$tabela = 'ccr';
+		}else if($filtro = 'curso'){//string
+			$filtro = 'codCurso';
+			$texto = (int)$texto;
+			$tabela = 'curso';
+		}
+		
+		$data['filtro'] = $filtro;
+		$data['valor'] = $texto;
+		$data['tabela'] = $tabela;
+		
+		$r = selectCcr($data);
+		
+		return $r;
+	}
+	
+	function constroiDadosSelectDominio($id){
+		$data = array();
+		$data['id'] = addslashes($id);
+		
+		$r = selectDominio($data);
+		
+		return $r;
+	}
+	/****************************************************Fim das funções de seleção****************************************/
+	/**/
+	/****************************************************Inicio das funções de alteração****************************************/
 	function constroiDadosUpdateFuncao($idFuncao, $funcao){
 		$data = array();
 		$data['id'] = addslashes($idFuncao);

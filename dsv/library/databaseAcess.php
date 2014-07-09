@@ -453,9 +453,45 @@
 		return $r;
 	}
 *******************************at� aqui/
-/****************************************************Fim das fun��es de inser��o****************************************/
+/****************************************************Fim das funções de inserção****************************************/
 /**/
-/****************************************************Inicio das fun��es de altera��o****************************************/
+/****************************************************Fim das funções de seleção****************************************/
+	function selectCcr($data){
+		$filtro = $data['filtro'];
+		$texto = $data['texto'];
+		$tabela = $data['tabela'];
+		
+		$sql = "SELECT * FROM cursoccr JOIN curso JOIN ccr WHERE cursoccr.regValido=1 AND curso.regValido=1 AND ccr.regValido=1 AND ";
+		
+		if($tabela == 'curso'){
+			$sql = $sql . "curso.$filtro=$texto";
+		}else if($tabela == 'ccr'){
+			if($filtro == 'nomeCcr'){
+				$sql = $sql . "ccr.$filtro='$texto'";
+			}else{
+				$sql = $sql . "ccr.$filtro=$texto";
+			}
+		}else{
+			return false;
+		}
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+		
+	}
+	
+	function selectDominio($data){
+		$id = $data['id'];
+		
+		$sql = "SELECT * FROM dominio WHERE dominio.regValido=1 AND idDominio='$id'";
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+/****************************************************Fim das funções de seleção****************************************/
+/**/
+/****************************************************Inicio das funções de alteração****************************************/
 	function updateFuncao($data){
 		$id = $data['id'];
 		$funcao = $data['funcao'];
