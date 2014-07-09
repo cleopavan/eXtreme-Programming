@@ -1,4 +1,4 @@
-﻿<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
@@ -13,9 +13,7 @@
 	if(isset($_POST['filter']) && isset($_POST['text']) && strlen($_POST['text']) > 0){
 		//echo $_POST['filter'];
 		//echo $_POST['text'];
-		
-		//constroiDadosSelectCcr($_POST['filter'], $_POST['text']);
-		
+	
 		if ($_POST['filter'] == 'nome') {
 			$t = $_POST['text'];
 			$sql = "SELECT * FROM ccr WHERE nomeCcr like '%$t%' AND regValido=1";
@@ -174,7 +172,6 @@
 		if ($_POST['filter'] == 'curso'){
 			
 		}
-		
 		
 	}else {// tratar erro
 		
