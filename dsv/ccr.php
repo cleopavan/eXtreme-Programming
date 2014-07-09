@@ -67,23 +67,36 @@
                     <h4> Buscar CCR </h4>
                     <div class="row">
                         <div class="col-lg-6">
-                            <form action="test.php">
+                            <form action="consultaCcr.php"  method="post">
 								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Buscar ccr">
+									<input type="text" class="form-control" name="text" placeholder="Buscar ccr">
 									<div class="input-group-btn"  >
-										<div class="form-group">
-											<button type="submit" class="btn btn-default" >Cadastrar</button>
-												<div class="radio">
-												<label>
-													<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-													Option one is this and that&mdash;be sure to include why it's great
-												</label>
-											</div>
+										<span class="input-group-btn">
+											<button type="submit" class="btn btn-default" >BUSCAR</button>											
 											
-										</div>
-                                </div><!-- /input-group-btn -->
+										</span>
+										
+									</div>
+								</div><!-- /input-group-btn -->
+								
+								<input type="radio" name="filter" value="nome">
+								<label for="Nome">Nome  </label>
+								
+								<input type="radio" name="filter" value="cod">
+								<label for="cod">Código  </label>
+								
+								
+								<input type="radio" name="filter" value="ch">
+								<label for="ch">Carga Horária  </label>
+								
+								
+								<input type="radio" name="filter" value="domin">
+								<label for="domin">Domínio  </label>
+								
+								
+								<input type="radio" name="filter" value="curso">
+								<label for="curso">Curso  </label>	
 							</form>			
-                            </div><!-- /input-group -->
                         </div><!-- /col-lg-6 -->
                     </div><!-- /row -->
                 </div><!-- /tab-pane buscar -->
