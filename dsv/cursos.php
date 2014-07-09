@@ -35,14 +35,48 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">           
-        <div class="panel-body">
-            <div class='alert alert-warning alert-dismissable'>
-              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <strong>Warning!</strong> Nada ainda foi programado nesta área.
-            </div>
-        </div><!-- /panel-body -->                
-      </div><!-- /col-md-12 -->                 
+        <div class="col-md-12">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+            <li><a href="#buscar" data-toggle="tab">Buscar</a></li>
+            <li><a href="#cadastrar" data-toggle="tab">Cadastrar</a></li>
+            <li><a href="#editar" data-toggle="tab">Editar</a></li>
+            </ul>
+    
+            <!-- Tab panes -->
+            <div class="tab-content">                
+                <div class="tab-pane" id="buscar">
+                	<div class="tab-pane active" id="inicial">
+                        <div class='alert alert-info alert-dismissable'>
+                           <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                           <strong>Success!</strong> EstÃ¡ Ã© apenas a pagina de modelo 1.
+                        </div>
+                	</div><!-- /tab-pane inicial -->                    
+                </div><!-- /tab-pane buscar -->
+    
+                <div class="tab-pane" id="cadastrar">			  
+                    <div class="tab-pane active" id="inicial">
+                        <?php include("cursos/cadastrar.php"); ?>
+                	</div><!-- /tab-pane inicial --> 
+                </div><!-- /tab-pane cadastrar -->
+                
+                <div class="tab-pane" id="editar">
+                   <div class="tab-pane active" id="inicial">
+                        <div class='alert alert-danger alert-dismissable'>
+                           <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                           <strong>Success!</strong> EstÃ¡ Ã© apenas a pagina de modelo 1.
+                        </div>
+                	</div><!-- /tab-pane inicial -->  		  
+                </div><!-- /tab-pane editar -->
+                
+            </div><!-- /tab-content -->
+        </div><!-- /col-md-12 -->                 
     </div><!-- /row --> 
     <!-- /Principal -->
+	
+	
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
 </html>
