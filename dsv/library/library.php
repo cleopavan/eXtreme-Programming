@@ -702,15 +702,47 @@ Até aqui*******************************************************/
 	function mostraServidorSelecionado($siape){
 		$resultado = selectUmServidor($siape);
 		
-		echo $resultado;
-			
+		$rowAcess = mysql_fetch_array($resultado);
 		
-		//$rowServidor = mysql_fetch_array($resultado);
-		
-		//if($rowServidor
-		//return $rowServidor;
-		return TRUE;
-			
+		if($rowAcess){
+			return $rowAcess;
+		}
+		else{
+			return NULL;
+		}
+	}
+	
+	function mostraTodosNiveisCurso(){
+		$resultado = selectListaNivelCurso(); 
+		$i = 0;
+		while($rowAcess = mysql_fetch_array($resultado)){
+			$lista[$i] = $rowAcess;
+			$i++;
+		}
+		$lista[$i] = NULL;
+		return $lista;
+	}
+	
+	function mostraCursoPorNivel($idNivelCurso){
+		$resultado = selectListaCurso($idNivelCurso); 
+		$i = 0;
+		while($rowAcess = mysql_fetch_array($resultado)){
+			$lista[$i] = $rowAcess;
+			$i++;
+		}
+		$lista[$i] = NULL;
+		return $lista;
+	}
+	
+	function mostraCursoPorCcr($codCurso){
+		$resultado = selectListaCcr($codCurso); 
+		$i = 0;
+		while($rowAcess = mysql_fetch_array($resultado)){
+			$lista[$i] = $rowAcess;
+			$i++;
+		}
+		$lista[$i] = NULL;
+		return $lista;
 	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
