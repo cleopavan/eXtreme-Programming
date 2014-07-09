@@ -14,8 +14,6 @@
 	}
 	if(isset($_POST['nivel'])){
 		$_SESSION['nivel'] = $_POST['nivel'];
-		$_SESSION['curso'] = NULL;
-		$_SESSION['ccr'] = NULL;
 	}
 	if(isset($_POST['curso'])){
 		$_SESSION['curso'] = $_POST['curso'];
