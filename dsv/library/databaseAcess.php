@@ -1063,12 +1063,18 @@
 		$r=dbConsulta($sql);		
 		return $r;				
 	}
+	function selectListaUmNivelCurso($nivel){
+		$sql = "SELECT *
+		          FROM nivelCurso
+		         WHERE idNivelCurso = $nivel";
+		$r=dbConsulta($sql);		
+		return $r;				
+	}
 	
 	function selectListaCurso($idNivelCurso){
 		$sql = "SELECT *
 		          FROM curso
-                  JOIN nivelCurso using(idNivelCurso)
-				 WHERE nivelCurso.idNivelCurso = $idNivelCurso";
+				 WHERE idNivelCursos = '$idNivelCurso'";
 		$r=dbConsulta($sql);		
 		return $r;				
 	}
@@ -1077,8 +1083,8 @@
 		$sql = "SELECT *
 		          FROM cursoCcr 
 				 JOIN ccr using (codCcr)
-				 WHERE cursoCcr.codCurso = $codCurso";
-		$r=dbConsulta($sql);		
+				 WHERE cursoCcr.codCurso = '$codCurso'";
+		$r=dbConsulta($sql);	
 		return $r;				
 	}
 
