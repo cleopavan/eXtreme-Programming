@@ -1074,7 +1074,7 @@
 	function selectListaCurso($idNivelCurso){
 		$sql = "SELECT *
 		          FROM curso
-				 WHERE idNivelCursos = '$idNivelCurso'";
+				 WHERE idNivelCurso = '$idNivelCurso'";
 		$r=dbConsulta($sql);		
 		return $r;				
 	}
