@@ -12,16 +12,15 @@
 	if(acessoRecusado('cursos.php', $_SESSION['idNivelServidor']) == FALSE){/* Excessão no caso do servidor não ter acesso a esta área*/
 		header('Location: ./index.php?i=semPermissao');
 	}
-	
-	if(isset($_POST['codCurso']) && isset($_POST['nomeCurso']) && isset($_POST['idNivelCurso'])){
-		$query = "INSERT INTO cursos (codCurso, nomeCurso, idNivelCurso, regValido) VALUES ('".$_POST['codCurso']."', '".$_POST['nomeCurso']."', '".$_POST['idNivelCurso']."', 1)";
-		$sql = mysql_query($query);
-		if(!$sql) die(mysql_error());
-	}
 ?>
 
 <br/>
-<form class="form-horizontal" method="post" action="./cursos.php" >
+
+<div class='alert alert-danger alert-dismissable' id="status" style="display:none">
+	<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+</div>
+
+<form id="formCadastraCurso" class="form-horizontal" method="post" action="javascript:func()" >
 	<div class="form-group">
 		<label for="codCurso" class="col-sm-2 control-label">Código do curso</label>
 		<div class="col-sm-3">
@@ -35,9 +34,9 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="nvlCurso" class="col-sm-2 control-label">Nível do Curso</label>
+		<label for="idNvlCurso" class="col-sm-2 control-label">Nível do Curso</label>
 		<div class="col-sm-3">
-			<select class="form-control" name="idNivelCurso" id="nvlCurso">
+			<select class="form-control" name="idNvlCurso" id="idNvlCurso">
 				<?php
 					$query = "SELECT * FROM nivelcurso WHERE regValido = 1";
 					$sql = mysql_query($query);
