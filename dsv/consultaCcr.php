@@ -18,9 +18,9 @@
 		
 		if ($_POST['filter'] == 'nome') {
 			$t = $_POST['text'];
-			$sql = "SELECT * FROM ccr WHERE nomeCcr='Redes' AND regValido=1";
+			$sql = "SELECT * FROM ccr WHERE nomeCcr like '%$t%' AND regValido=1";
 			$retorno = dbConsulta($sql);
-			$retornoArray = mysql_fetch_array($retorno);
+			//$retornoArray = mysql_fetch_array($retorno);
 			//echo mysql_num_rows($retorno);
 			
 			echo '
@@ -37,29 +37,15 @@
 					  <td>Domínio</td>
 					</tr> 
 					<tr>
-					  <td>teste</td>
-					  <td>teste</td> 
-					  <td>teste</td>
-					  <td>teste</td>
 					</tr>';
 					if (mysql_num_rows($retorno) > 0) {
 						while($row = mysql_fetch_assoc($retorno)){
-						//for ($i = 0; $i < mysql_num_rows($retorno); $i++){
-							
-							//$row = mysql_fetch_array($retorno);
-							echo '<tr>';
-							$nome = $row['nomeCcr'];
-							
-							echo "<td>$nome</td>";
-							echo "<td>$nome</td>";
-							echo "<td>$nome</td>";
-							echo "<td>$nome</td>";
-							/*echo "<tr> 
+							echo "<tr> 
 								<td>".$row['nomeCcr']."</td>	
 								<td>".$row['codCcr']."</td>	
 								<td>".$row['cHoraria']."</td>	
 								<td>".$row['idDominio']."</td>	
-							";*/
+							";
 							echo '</tr>';
 						}
 					}
@@ -72,13 +58,118 @@
 			
 		}
 		if ($_POST['filter'] == 'cod') {
-				
+			$t = $_POST['text'];
+			$sql = "SELECT * FROM ccr WHERE codCcr='$t' AND regValido=1";
+			$retorno = dbConsulta($sql);
+			//$retornoArray = mysql_fetch_array($retorno);
+			//echo mysql_num_rows($retorno);
+			
+			echo '
+			<div class="panel panel-default">
+				  <!-- Default panel contents -->
+				  <div class="panel-heading">Resultado</div>
+
+				  <!-- Table -->
+				  <table class="table"> 
+					 <tr>
+					  <td>Nome</td>
+					  <td>Código</td> 
+					  <td>Carga Horária</td>
+					  <td>Domínio</td>
+					</tr> 
+					<tr>
+					</tr>';
+					if (mysql_num_rows($retorno) > 0) {
+						while($row = mysql_fetch_assoc($retorno)){
+							echo "<tr> 
+								<td>".$row['nomeCcr']."</td>	
+								<td>".$row['codCcr']."</td>	
+								<td>".$row['cHoraria']."</td>	
+								<td>".$row['idDominio']."</td>	
+							";
+							echo '</tr>';
+						}
+					}
+			echo '	  
+					</table>
+				</div>
+			';	
 		}
 		if ($_POST['filter'] == 'ch'){
+			$t = $_POST['text'];
+			$sql = "SELECT * FROM ccr WHERE cHoraria='$t' AND regValido=1";
+			$retorno = dbConsulta($sql);
+			//$retornoArray = mysql_fetch_array($retorno);
+			//echo mysql_num_rows($retorno);
 			
+			echo '
+			<div class="panel panel-default">
+				  <!-- Default panel contents -->
+				  <div class="panel-heading">Resultado</div>
+
+				  <!-- Table -->
+				  <table class="table"> 
+					 <tr>
+					  <td>Nome</td>
+					  <td>Código</td> 
+					  <td>Carga Horária</td>
+					  <td>Domínio</td>
+					</tr> 
+					<tr>
+					</tr>';
+					if (mysql_num_rows($retorno) > 0) {
+						while($row = mysql_fetch_assoc($retorno)){
+							echo "<tr> 
+								<td>".$row['nomeCcr']."</td>	
+								<td>".$row['codCcr']."</td>	
+								<td>".$row['cHoraria']."</td>	
+								<td>".$row['idDominio']."</td>	
+							";
+							echo '</tr>';
+						}
+					}
+			echo '	  
+					</table>
+				</div>
+			';
 		}
 		if ($_POST['filter'] == 'domin'){
+			$t = $_POST['text'];
+			$sql = "SELECT * FROM ccr WHERE idDominio='$t' AND regValido=1";
+			$retorno = dbConsulta($sql);
+			//$retornoArray = mysql_fetch_array($retorno);
+			//echo mysql_num_rows($retorno);
 			
+			echo '
+			<div class="panel panel-default">
+				  <!-- Default panel contents -->
+				  <div class="panel-heading">Resultado</div>
+
+				  <!-- Table -->
+				  <table class="table"> 
+					 <tr>
+					  <td>Nome</td>
+					  <td>Código</td> 
+					  <td>Carga Horária</td>
+					  <td>Domínio</td>
+					</tr> 
+					<tr>
+					</tr>';
+					if (mysql_num_rows($retorno) > 0) {
+						while($row = mysql_fetch_assoc($retorno)){
+							echo "<tr> 
+								<td>".$row['nomeCcr']."</td>	
+								<td>".$row['codCcr']."</td>	
+								<td>".$row['cHoraria']."</td>	
+								<td>".$row['idDominio']."</td>	
+							";
+							echo '</tr>';
+						}
+					}
+			echo '	  
+					</table>
+				</div>
+			';
 		}
 		if ($_POST['filter'] == 'curso'){
 			

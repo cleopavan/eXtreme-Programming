@@ -55,7 +55,6 @@
             <ul class="nav nav-tabs">
             <li><a href="#buscar" data-toggle="tab">Buscar</a></li>
             <li><a href="#cadastrar" data-toggle="tab">Cadastrar</a></li>
-            <li><a href="#editar" data-toggle="tab">Editar</a></li>
             </ul>
     
             <!-- Tab panes -->
