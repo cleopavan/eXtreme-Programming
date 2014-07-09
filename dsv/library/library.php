@@ -743,6 +743,7 @@ Até aqui*******************************************************/
 		}
 		$lista[$i] = NULL;
 		return $lista;
+		
 	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
