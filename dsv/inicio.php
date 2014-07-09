@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	session_start();
 	if($_SESSION['logado'] != TRUE){
 		header('Location: login.php');

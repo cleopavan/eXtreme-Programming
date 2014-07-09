@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 	require_once dirname (__FILE__)."/library/library.php";
 	session_start();
 	if($_SESSION['logado'] != TRUE){
@@ -9,7 +9,7 @@
 	}
 	//@parametros (string, integer);
 	//@parametros (nome da pagina, id do nivel do servidor)
-	if(acessoRecusado('admArea.php', $_SESSION['idNivelServidor']) == FALSE){/* Excessão no caso do servidor não ter acesso a esta área*/
+	if(acessoRecusado('admArea.php', $_SESSION['idNivelServidor']) == FALSE){/* ExcessÃ£o no caso do servidor nÃ£o ter acesso a esta Ã¡rea*/
 		header('Location: index.php?i=semPermissao');
 	}
 ?>
@@ -19,7 +19,7 @@
     <meta charset="iso-8859-1"> <!-- charset="utf-8">-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Administrar Áreas</title>
+    <title>Administrar Ã¡reas</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/alternativeStyles.css" rel="stylesheet">
