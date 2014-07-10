@@ -16,7 +16,7 @@
 <html lang="pt-br">
   <head>
     <meta charset="iso-8859-1"> <!-- charset="utf-8">-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta http-equiv="content-type" content="TEXT/HTML;charset=utf-8">-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Inicio</title>
 
@@ -47,18 +47,18 @@
     <!-- /Header -->
     <!-- Principal -->  
     <div class="row">
-      <div class="col-md-2"> <!-- 18 largura maxima mobile || 12 largura maxima desktop  (outros tamanhos são configuraveis) -->
+      <div class="col-md-2"> <!-- 18 largura maxima mobile || 12 largura maxima desktop  (outros tamanhos sÃ£o configuraveis) -->
       	<?php listarMenu($_SESSION['idNivelServidor']);?>        
       </div>
       <div class="col-md-10">
-          <!------------------------- área designinada para os iframe ----------------------------->
+          <!------------------------- Ã¡rea designinada para os iframe ----------------------------->
           <?php
 			  	if(isset($_GET['i']) && $_GET['i'] == 'semPermissao')
 				echo' <iframe name="iframe-tela-meio" src="semPermissao.php" height="450px" width="100%" frameborder="0"></iframe>';
 				else
 				echo' <iframe name="iframe-tela-meio" src="inicio.php" height="450px" width="100%" frameborder="0"></iframe>';
 		   ?>          
-          <!------------------------- área designinada para os iframe ----------------------------->      
+          <!------------------------- Ã¡rea designinada para os iframe ----------------------------->      
       </div><!-- /col-md-10 -->
     </div><!-- /row -->
     <!-- /Principal -->
