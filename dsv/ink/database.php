@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 	$banco = 'local';
 	//$banco = 'server';

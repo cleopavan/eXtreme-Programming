@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	require_once dirname(__FILE__).'/../ink/database.php';//banco de dados
 
 	function test(){
@@ -8,7 +8,7 @@
 		return $r;
 	}
 
-	/****************************************************Inicio das fun��es de inser��o****************************************/
+	/****************************************************Inicio das funções de inserção****************************************/
 	function insertFuncao($data){
 		$funcao = $data['funcao'];
 		$regValido = $data['regValido'];
@@ -453,9 +453,45 @@
 		return $r;
 	}
 *******************************at� aqui/
-/****************************************************Fim das fun��es de inser��o****************************************/
+/****************************************************Fim das funções de inserção****************************************/
 /**/
-/****************************************************Inicio das fun��es de altera��o****************************************/
+/****************************************************Fim das funções de seleção****************************************/
+	function selectCcr($data){
+		$filtro = $data['filtro'];
+		$texto = $data['texto'];
+		$tabela = $data['tabela'];
+		
+		$sql = "SELECT * FROM cursoccr JOIN curso JOIN ccr WHERE cursoccr.regValido=1 AND curso.regValido=1 AND ccr.regValido=1 AND ";
+		
+		if($tabela == 'curso'){
+			$sql = $sql . "curso.$filtro=$texto";
+		}else if($tabela == 'ccr'){
+			if($filtro == 'nomeCcr'){
+				$sql = $sql . "ccr.$filtro='$texto'";
+			}else{
+				$sql = $sql . "ccr.$filtro=$texto";
+			}
+		}else{
+			return false;
+		}
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+		
+	}
+	
+	function selectDominio($data){
+		$id = $data['id'];
+		
+		$sql = "SELECT * FROM dominio WHERE dominio.regValido=1 AND idDominio='$id'";
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
+/****************************************************Fim das funções de seleção****************************************/
+/**/
+/****************************************************Inicio das funções de alteração****************************************/
 	function updateFuncao($data){
 		$id = $data['id'];
 		$funcao = $data['funcao'];
@@ -791,9 +827,9 @@
 		
 		return $r;
 	}
-/****************************************************Fim das fun��es de altera��o****************************************/
+/****************************************************Fim das funções de alteração****************************************/
 /**/
-/****************************************************Inicio das fun��es de delete****************************************/
+/****************************************************Inicio das funções de delete****************************************/
 	function deleteFuncao($data){
 		$id = $data['id'];
 		
@@ -906,7 +942,7 @@
 		
 		return $r;
 	}
-/****************************************************Fim das fun��es de delete****************************************/
+/****************************************************Fim das funções de delete****************************************/
 /**/
 	
 	function login($data){
@@ -1027,12 +1063,18 @@
 		$r=dbConsulta($sql);		
 		return $r;				
 	}
+	function selectListaUmNivelCurso($nivel){
+		$sql = "SELECT *
+		          FROM nivelCurso
+		         WHERE idNivelCurso = $nivel";
+		$r=dbConsulta($sql);		
+		return $r;				
+	}
 	
 	function selectListaCurso($idNivelCurso){
 		$sql = "SELECT *
 		          FROM curso
-                  JOIN nivelCurso using(idNivelCurso)
-				 WHERE nivelCurso.idNivelCurso = $idNivelCurso";
+				 WHERE idNivelCursos = '$idNivelCurso'";
 		$r=dbConsulta($sql);		
 		return $r;				
 	}
@@ -1041,8 +1083,8 @@
 		$sql = "SELECT *
 		          FROM cursoCcr 
 				 JOIN ccr using (codCcr)
-				 WHERE cursoCcr.codCurso = $codCurso";
-		$r=dbConsulta($sql);		
+				 WHERE cursoCcr.codCurso = '$codCurso'";
+		$r=dbConsulta($sql);	
 		return $r;				
 	}
 

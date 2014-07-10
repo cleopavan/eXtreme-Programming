@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	require_once dirname (__FILE__)."/library/library.php";
 	session_start();
 	if($_SESSION['logado'] != TRUE){
@@ -12,23 +12,44 @@
 	if(acessoRecusado('alocaCursoCcr.php', $_SESSION['idNivelServidor']) == FALSE){/* Excessão no caso do servidor não ter acesso a esta área*/
 		header('Location: index.php?i=semPermissao');
 	}
-	
+	if(isset($_POST['nivel'])){
+		$_SESSION['nivel'] = $_POST['nivel'];
+	}
+	if(isset($_POST['curso'])){
+		$_SESSION['curso'] = $_POST['curso'];
+		$_SESSION['ccr'] = NULL;
+	}
+	if(isset($_POST['ccr'])){
+		$_SESSION['ccr'] = $_POST['ccr'];
+	}
+	if(isset($_POST['anoSemestre'])){
+		$_SESSION['anoSemestre'] = $_POST['anoSemestre'];
+	}
 	if(isset($_POST['desfazer'])){
 		$_SESSION['siape'] = NULL;
 		$_SESSION['servidorSiape'] = NULL;
+		$_SESSION['nivel'] = NULL;
+		$_SESSION['ccr'] = NULL;
+		$_SESSION['anoSemestre'] = NULL;
+		$_SESSION['obs'] = NULL;
 	}
 	if(isset($_POST['validar'])){
 		if(isset($_POST['siape']) && !isset($_SESSION['siape'])){
 			$servidor = mostraServidorSelecionado($_POST['siape']);
 			
-			$_SESSION['siape'] = $_POST['siape'];
-			$_SESSION['servidorSiape'] = "Teste Teste";
+			$_SESSION['siape'] = $servidor['siape'];
+			$_SESSION['servidorSiape'] = $servidor['nome'] ." ". $servidor['sobrenome'];
 		}
-		elseif(isset($_POST['siape']) && isset($_SESSION['siape'])){
-			//validarsiape
-			$_SESSION['siape'] = $_POST['siape'];
-			$_SESSION['servidorSiape'] = "Teste Teste";
-		}
+	}
+	if(isset($_POST['alocar'])){
+		//$deuCerto = constroiDadosInsertServidorCursoCcr($_SESSION['anoSemestre'],$_SESSION['curso'],$_SESSION['ccr'],$_SESSION['siape'],$_SESSION['obs']);
+		$_SESSION['deuCerto'] = 1;
+		$_SESSION['siape'] = NULL;
+		$_SESSION['servidorSiape'] = NULL;
+		$_SESSION['nivel'] = NULL;
+		$_SESSION['ccr'] = NULL;
+		$_SESSION['anoSemestre'] = NULL;
+		$_SESSION['obs'] = NULL;
 	}
 ?>
 <!DOCTYPE html>
@@ -93,16 +114,33 @@
 								<div class="col-sm-4">
 									<?php 
 										if(isset($_SESSION['siape'])){
-											echo '<select class="form-control" name="nivelCurso">';
+											echo "<select class='form-control' name='nivel' onchange='this.form.submit()'>";
 										}
 										else{
-											echo '<select class="form-control" name="nivelCurso" disabled="disabled">';
+											echo "<select class='form-control' name='nivel' disabled='disabled'>";
 										}
-									?>
-									  <option value="">Selecione: Nivel curso</option>	
-								  	  <option value="1">1 - Graduação</option>
-								  	  <option value="2">2 - Doutorado</option>
-								  	</select>
+									
+										echo "<option value=''>Selecione: Nivel curso</option>";
+										$lista = mostraTodosNiveisCurso();
+										$i = 0;
+										while($lista[$i] != NULL){
+											if(!isset($_SESSION['nivel'])){
+												echo "<option value='".$lista[$i]['idNivelCurso']."'>".$lista[$i]['idNivelCurso']." - ". $lista[$i]['nomeNivelCurso']."</option>";
+												$i++;
+											}
+											else{
+												if($_SESSION['nivel'] == $lista[$i]['idNivelCurso']){
+													echo "<option value='".$lista[$i]['idNivelCurso']."' selected>".$lista[$i]['idNivelCurso']." - ". $lista[$i]['nomeNivelCurso']."</option>";
+													$i++;
+												}
+												else{
+													echo "<option value='".$lista[$i]['idNivelCurso']."'>".$lista[$i]['idNivelCurso']." - ". $lista[$i]['nomeNivelCurso']."</option>";
+													$i++;
+												}
+											}
+										}
+										echo "</select>";
+								  	?>
 								</div><!-- /col-sm-4 3º -->							
 							</div><!-- /row 1º -->
 							
@@ -112,16 +150,34 @@
 								<div class="col-sm-4">
 									<?php 
 										if(isset($_SESSION['siape'])){
-											echo '<select class="form-control" name="curso">';
+											echo "<select class='form-control' name='curso' onchange='this.form.submit()'>";
 										}
 										else{
-											echo '<select class="form-control" name="curso" disabled="disabled">';
+											echo "<select class='form-control' name='curso' disabled='disabled'>";
 										}
-									?>
-									  <option value="">Selecione: Curso</option>	
-								  	  <option value="1">101 - Ciência da computação</option>
-								  	  <option value="2">102 - Agronomia</option>
-								  	</select>
+										echo "<option value=''>Selecione: Curso</option>";
+										if(isset($_SESSION['nivel'])){
+											$lista = mostraCursoPorNivel($_SESSION['nivel']);
+											$i = 0;
+											while($lista[$i] != NULL){
+												if(!isset($_SESSION['curso'])){
+													echo "<option value='".$lista[$i]['codCurso']."'>".$lista[$i]['codCurso']." - ". $lista[$i]['nomeCurso']."</option>";
+													$i++;
+												}
+												else{
+													if($_SESSION['curso'] == $lista[$i]['codCurso']){
+														echo "<option value='".$lista[$i]['codCurso']."' selected>".$lista[$i]['codCurso']." - ". $lista[$i]['nomeCurso']."</option>";
+														$i++;
+													}
+													else{
+														echo "<option value='".$lista[$i]['codCurso']."'>".$lista[$i]['codCurso']." - ". $lista[$i]['nomeCurso']."</option>";
+														$i++;
+													}
+												}
+											}
+										}
+										echo "</select>";
+								  	?>
 								</div><!-- /col-sm-4 3º -->							
 							</div><!-- /row 2º -->
 							
@@ -129,20 +185,36 @@
 								<div class="col-sm-4"><!-- /col-sm-4 1º --></div>
 								<div class="col-sm-4"><!-- /col-sm-4 2º --></div>
 								<div class="col-sm-4">
-									 <?php 
+									<?php 
 										if(isset($_SESSION['siape'])){
-											echo '<select class="form-control" name="ccr">';
+											echo "<select class='form-control' name='ccr' onchange='this.form.submit()'>";
 										}
 										else{
-											echo '<select class="form-control" name="ccr" disabled="disabled">';
+											echo "<select class='form-control' name='ccr' disabled='disabled'>";
 										}
-									?>
-									  <option value="">Selecione: Ccr</option>	
-								  	  <option value="1">1010 - Redes</option>
-								  	  <option value="2">1011 - Banco de dados I</option>
-								  	  <option value="2">1012 - Banco de dados II</option>	
-								  	  <option value="2">1013 - Computação gráfica</option>								  	  							  	  
-								  	</select>
+										echo "<option value=''>Selecione: CCR</option>";
+										if(isset($_SESSION['curso'])){
+											$lista = mostraCursoPorCcr($_SESSION['curso']);
+											$i = 0;
+											while($lista[$i] != NULL){
+												if(!isset($_SESSION['ccr'])){
+													echo "<option value='".$lista[$i]['codCcr']."'>".$lista[$i]['codCcr']." - ". $lista[$i]['nomeCcr']."</option>";
+													$i++;
+												}
+												else{
+													if($_SESSION['ccr'] == $lista[$i]['codCcr']){
+														echo "<option value='".$lista[$i]['codCcr']."' selected>".$lista[$i]['codCcr']." - ". $lista[$i]['nomeCcr']."</option>";
+														$i++;
+													}
+													else{
+														echo "<option value='".$lista[$i]['codCcr']."'>".$lista[$i]['codCcr']." - ". $lista[$i]['nomeCcr']."</option>";
+														$i++;
+													}
+												}
+											}
+										}
+										echo "</select>";
+								  	?>
 								</div><!-- /col-sm-4 3º -->							
 							</div><!-- /row 3º -->
 							
@@ -159,32 +231,73 @@
 									?>
 									</br></br></br></br></br>
 								</div>
-								<div class="col-sm-4"><!-- /col-sm-4 3º --></div>							
+								<div class="col-sm-4"><!-- /col-sm-4 3º -->
+									<br>
+									<?php
+										echo "<label for='inputSiape' class='col-sm-12 text-center'>CursoCcr</label>";
+										if(isset($_SESSION['siape'])){
+											echo "<textarea class='form-control' rows='3' resize:none>";
+										}
+										else{
+											echo "<textarea class='form-control' rows='3' resize='false' disabled>";
+										}
+									?>
+									</textarea>
+								</div>							
 							</div><!-- /row 4º -->
 							
 							<div class="row">
 								<div class="col-sm-4"><!-- /col-sm-4 1º -->
+									<div class="col-sm-7">
 									<?php 
 										if(isset($_SESSION['siape'])){
-											echo '<select class="form-control" name="anoSemestre">';
+											echo "<select class='form-control' name='anoSemestre' onchange='this.form.submit()'>";
 										}
 										else{
-											echo '<select class="form-control" name="anoSemestre" disabled="disabled">';
+											echo "<select class='form-control' name='anoSemestre' disabled='disabled'>";
 										}
 										
 										echo "<option value=''>Selecione ano/semestre</option>";
-										for($dataAtual = date('Y');$dataAtual <= date('Y')+2;$dataAtual++){ 
-											echo "<option value='".$dataAtual."/1'>".$dataAtual."/1</option>";
-											echo "<option value='".$dataAtual."/2'>".$dataAtual."/2</option>";
+										if(!isset($_SESSION['anoSemestre'])){
+											for($dataAtual = date('Y');$dataAtual <= date('Y')+2;$dataAtual++){
+												echo "<option value='".$dataAtual."/1'>".$dataAtual."/1</option>";
+												echo "<option value='".$dataAtual."/2'>".$dataAtual."/2</option>";
+											}
+										}
+										else{
+											for($dataAtual = date('Y');$dataAtual <= date('Y')+2;$dataAtual++){
+												$dataAtual1 = $dataAtual."/1";
+												$dataAtual2 = $dataAtual."/2";
+												if($dataAtual1 == $_SESSION['anoSemestre']){
+													echo "<option value='".$dataAtual1."' selected>".$dataAtual1."</option>";
+													echo "<option value='".$dataAtual2."'>".$dataAtual2."</option>";
+												}
+												else{
+													if($dataAtual2 == $_SESSION['anoSemestre']){
+														echo "<option value='".$dataAtual1."'>".$dataAtual1."</option>";
+														echo "<option value='".$dataAtual2."' selected>".$dataAtual2."</option>";
+													}
+													else{
+														echo "<option value='".$dataAtual1."'>".$dataAtual1."</option>";
+														echo "<option value='".$dataAtual2."'>".$dataAtual2."</option>";
+													}
+												}
+											}
 										}
 										echo "</select>";
-								  	?>
+										echo "</div>";
+										if(isset($_SESSION['anoSemestre']) && isset($_SESSION['curso']) && isset($_SESSION['ccr']) && isset($_SESSION['siape'])){
+											echo "<button name='alocar' type='submit' class='btn btn-success'>Alocar servidor</button>";
+										}
+										else{
+											echo "<button name='alocar' type='submit' class='btn btn-success' disabled>Alocar servidor</button>";
+										}
+									?>
 								</div>
-								<div class="col-sm-4"><!-- /col-sm-4 2º -->
-								<button type="submit" class="btn btn-success col-sm-4 col-md-offset-4">Alocar servidor</button>
-								</div>
-								<div class="col-sm-4"><!-- /col-sm-4 3º --></div>															
-							</div><!-- /row 5º -->                
+								<div class="col-sm-4"><!-- /col-sm-4 3º -->
+									
+								</div>															
+							</div><!-- /row 5º -->      
 						</form>
 				  
 				  </div><!-- /Aba alocar -->
