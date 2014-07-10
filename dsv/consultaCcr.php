@@ -18,9 +18,9 @@
 		
 		if ($_POST['filter'] == 'nome') {
 			$t = $_POST['text'];
-			$sql = "SELECT * FROM ccr WHERE nomeCcr='Redes' AND regValido=1";
+			$sql = "SELECT * FROM ccr WHERE nomeCcr='$t' AND regValido=1";
 			$retorno = dbConsulta($sql);
-			$retornoArray = mysql_fetch_array($retorno);
+			//$retornoArray = mysql_fetch_array($retorno);
 			//echo mysql_num_rows($retorno);
 			
 			echo '
@@ -37,29 +37,15 @@
 					  <td>Domínio</td>
 					</tr> 
 					<tr>
-					  <td>teste</td>
-					  <td>teste</td> 
-					  <td>teste</td>
-					  <td>teste</td>
 					</tr>';
 					if (mysql_num_rows($retorno) > 0) {
 						while($row = mysql_fetch_assoc($retorno)){
-						//for ($i = 0; $i < mysql_num_rows($retorno); $i++){
-							
-							//$row = mysql_fetch_array($retorno);
-							echo '<tr>';
-							$nome = $row['nomeCcr'];
-							
-							echo "<td>$nome</td>";
-							echo "<td>$nome</td>";
-							echo "<td>$nome</td>";
-							echo "<td>$nome</td>";
-							/*echo "<tr> 
+							echo "<tr> 
 								<td>".$row['nomeCcr']."</td>	
 								<td>".$row['codCcr']."</td>	
 								<td>".$row['cHoraria']."</td>	
 								<td>".$row['idDominio']."</td>	
-							";*/
+							";
 							echo '</tr>';
 						}
 					}
