@@ -9,7 +9,7 @@
 	}
 	//@parametros (string, integer);
 	//@parametros (nome da pagina, id do nivel do servidor)
-	if(acessoRecusado('admArea.php', $_SESSION['idNivelServidor']) == FALSE){/* Excessão no caso do servidor não ter acesso a esta área*/
+	if(acessoRecusado('admArea.php', $_SESSION['idNivelServidor']) == FALSE){/* Excessao no caso do servidor não ter acesso a esta area*/
 		header('Location: index.php?i=semPermissao');
 	}
 ?>

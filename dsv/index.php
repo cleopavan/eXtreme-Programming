@@ -1,4 +1,4 @@
-﻿<?php
+﻿﻿<?php
 	require_once dirname (__FILE__)."/library/library.php";
 	session_start();
 	if($_SESSION['logado'] != TRUE){
@@ -43,23 +43,23 @@
     <!-- /Header -->
     <!-- Principal -->  
     <div class="row">
-      <div class="col-md-2"> <!-- 18 largura maxima mobile || 12 largura maxima desktop  (outros tamanhos sÃ£o configuraveis) -->
+      <div class="col-md-2"> <!-- 18 largura maxima mobile || 12 largura maxima desktop  (outros tamanhos sao configuraveis) -->
       	<?php listarMenu($_SESSION['idNivelServidor']);?>
       </div>
       <div class="col-md-10">
-          <!------------------------- Ã¡rea designinada para os iframe ----------------------------->
+          <!------------------------- area designinada para os iframe ----------------------------->
           <?php
 			  	if(isset($_GET['i']) && $_GET['i'] == 'semPermissao')
 				echo' <iframe name="iframe-tela-meio" src="semPermissao.php" height="450px" width="100%" frameborder="0"></iframe>';
 				else
 				echo' <iframe name="iframe-tela-meio" src="inicio.php" height="450px" width="100%" frameborder="0"></iframe>';
 		   ?>          
-          <!------------------------- Ã¡rea designinada para os iframe ----------------------------->      
+          <!------------------------- area designinada para os iframe ----------------------------->      
       </div><!-- /col-md-10 -->
     </div><!-- /row -->
     <!-- /Principal -->
   
- 	<footer class="text-center">Universidade Federal da Fronteira Sul - <a href="http://www.uffs.edu.br"><strong>UFFS</strong></a></footer>	
+ 	<!--<footer class="text-center">Universidade Federal da Fronteira Sul - <a href="http://www.uffs.edu.br"><strong>UFFS</strong></a></footer>	-->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
