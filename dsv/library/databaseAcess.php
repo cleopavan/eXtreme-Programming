@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	require_once dirname(__FILE__).'/../ink/database.php';//banco de dados
 
 	function test(){
@@ -467,7 +467,7 @@
 			$sql = $sql . "curso.$filtro=$texto";
 		}else if($tabela == 'ccr'){
 			if($filtro == 'nomeCcr'){
-				$sql = $sql . "ccr.$filtro='$texto'";
+				$sql = $sql . "ccr.$filtro like '$texto'";
 			}else{
 				$sql = $sql . "ccr.$filtro=$texto";
 			}
