@@ -2,23 +2,23 @@
 	require_once dirname(__FILE__).'/databaseAcess.php';//banco de dados
 	require_once dirname(__FILE__).'/constant.php';//constantes
 	
-	/****************************************************Inicio das fun��es de inser��o****************************************/
+	/****************************************************Inicio das funções de inserção****************************************/
 	function constroiDadosInsertFuncao($funcao){
-		$data = array();//inicializa um vetor de dados
-		$data['funcao'] = addslashes($funcao);//na posi��o 'function', � passado a string protegida de dados maliciosos para o banco de dados
-		$data['regValido'] = 1;//na posi��o 'regValido', � passado o valor 1 como padr�o, significando que o dado primeiramente � valido
+		$data = array();/*inicializa um vetor de dados*/
+		$data['funcao'] = addslashes($funcao);/*na posição 'function', é passado a string protegida de dados maliciosos para o banco de dados*/
+		$data['regValido'] = 1;/*na posição 'regValido', é passado o valor 1 como padrão, significando que o dado primeiramente é valido*/
 		
 		/**
-		* Por padr�o colocamos o prefixo que vai nos dizer o que a fun��o faz (insert, update, select, delete)
+		* Por padrão colocamos o prefixo que vai nos dizer o que a função faz (insert, update, select, delete)
 		* e depois o nome da tabela (funcao, cargo, nivelServidor, curso, etc).
 		**/
-		$r = insertFuncao($data);//r possui o retorno da fun��o 'insertFuncao' que est� na biblioteca 'databaseAcess.php'
+		$r = insertFuncao($data);/*r possui o retorno da função 'insertFuncao' que está na biblioteca 'databaseAcess.php'*/
 		return $r;
 	}
 	
 	function constroiDadosInsertServidorFuncao($idFuncao, $siape, $dataInicio, $dataSaida, $cargaHoraria){
 		/**
-		*Formato de inser��o de datas: "AAAA-MM-DD hh:mm:ss"
+		*Formato de inserção de datas: "AAAA-MM-DD hh:mm:ss"
 		**/
 		$data = Array();
 		$data['idFuncao'] = addslashes($idFuncao);
@@ -176,81 +176,6 @@
 		
 		return $r;
 	}
-	
-/**alterar daqui
-	function constroiDadosInsertPeriodo($idPeriod, $idSubPeriod, $period, $startHour, $endHour){//********VERIFICAR
-		$data = array();
-		
-		$data['idPeriod'] = $idPeriod;
-		$data['idSubPeriod'] = $idSubPeriod;
-		$data['period'] = $period;
-		$data['startHour'] = $startHour;
-		$data['endHour'] = $endHour;
-		
-		$r = insertPeriodo($data);
-		
-		return $r;
-	}
-
-	function constroiDadosInsertSala($numBloco, $numSala, $descricao){
-		$data = array();
-		
-		$data['numBloco'] = addslashes($numBloco);
-		$data['numSala'] = addslashes($numSala);
-		$data['descricao'] = addslashes($descricao);
-		
-		$r = insertSala($data);
-		
-		return $r;
-	}
-	
-	function constroiDadosInsertStatusAlocacao($id, $descricao){
-		$data = array();
-		$data['id'] = addslashes($id);
-		$data['descricao'] = addslashes($descricao);
-		
-		$r = insertStatusAlocacao($data);
-		
-		return $r;
-	}
-	
-	function constroiDadosInsertAlocacao($numBloco, $numSala, $idHorary){
-		//$r = getIdTableAlocacao();
-		//$id = 0;
-		/*if(mysql_num_rows($r) > 0){
-			while($row = mysql_fetch_assoc($r)){
-				$id = $row['idAlocacao'];
-			}
-		}
-		
-		//$id = $id + 1;
-		$data = Array();
-		//$data['id'] = $id;
-		$data['numBlock'] = addslashes($numBlock);
-		$data['numClass'] = addslashes($numClass);
-		$data['idHorary'] = addslashes($idHorary);
-		$data['regValido'] = 1;
-		
-		$r = insertAlocacao($data);
-		
-		return $r;
-	}
-	
-	function constroiDadosInsertServidorCursoCcr($semesterYear, $codCcr, $codCourse, $siape, $alocation, $observation){
-		$data = array();
-		$data['semesterYear'] = addslashes($semesterYear);
-		$data['codCcr'] = addslashes($codCcr);
-		$data['codCourse'] = addslashes($codCourse);
-		$data['siape'] = addslashes($siape);
-		$data['alocation'] = addslashes($alocation);
-		$data['observation'] = addslashes($observation);
-		$data['regValido'] = 1;
-		
-		$r = insertServidorCursoCcr($data);
-		
-		return $r;
-	}
-Até aqui*******************************************************/
 	/****************************************************Fim das funções de inserção****************************************/
 	/**/
 	/****************************************************Inicio das funções de seleção****************************************/
@@ -313,7 +238,7 @@ Até aqui*******************************************************/
 	
 	function constroiDadosUpdateServidorFuncao($idFuncao, $siape, $dataInicio, $dataSaida, $cargaHoraria){
 		/**
-		*Formato de inser��o de datas: "AAAA-MM-DD hh:mm:ss"
+		*Formato de inserção de datas: "AAAA-MM-DD hh:mm:ss"
 		**/
 		$data = Array();
 		$data['idFuncao'] = addslashes($idFuncao);
@@ -380,7 +305,7 @@ Até aqui*******************************************************/
 		$data['endereco'] = addslashes($endereco);
 		$data['cidade'] = addslashes($cidade);
 		$data['idNivelServidor'] = addslashes($idNivelServidor);
-				
+
 		$r = updateServidor($data);
 		return $r;
 	}
@@ -389,7 +314,7 @@ Até aqui*******************************************************/
 		$data = Array();
 		$data['id'] = addslashes($id);
 		$data['nivel'] = addslashes($nivel);
-				
+
 		$r = updateNivelCurso($data);
 		return $r;
 	}
@@ -433,7 +358,7 @@ Até aqui*******************************************************/
 		return $r;
 	}
 	
-	function constroiDadosUpdateUsuarioServidor($siape, $email, $fone1, $fone2, $endereco, $cidade){//Fun��o que o servidor altera seus dados.
+	function constroiDadosUpdateUsuarioServidor($siape, $email, $fone1, $fone2, $endereco, $cidade){//Função que o servidor altera seus dados.
 		$data = array();
 		$data['siape'] = addslashes($siape);
 		$data['email'] = addslashes($email);
@@ -447,7 +372,7 @@ Até aqui*******************************************************/
 		return $r;
 	}
 	
-	function constroiDadosEsqueciMinhaSenha($siape){//Gera uma senha e envia para o email ************INSIRIR FUN��O PARA ENVIAR PARA O EMAIL**********
+	function constroiDadosEsqueciMinhaSenha($siape){//Gera uma senha e envia para o email ************INSIRIR FUNÇÃO PARA ENVIAR PARA O EMAIL**********
 		$data = array();
 		$data['siape'] = addslashes($siape);
 		$senha = geraSenha(8, true, true, false);
@@ -468,9 +393,9 @@ Até aqui*******************************************************/
 		
 		return $r;
 	}
-	/****************************************************Fim das fun��es de altera��o****************************************/
+	/****************************************************Fim das funções de alteração****************************************/
 	/**/
-	/****************************************************Inicio das fun��es de delete****************************************/
+	/****************************************************Inicio das funções de delete****************************************/
 	function constroiDadosDeleteFuncao($id){
 		$data = array();
 		$data['id'] = addslashes($id);
@@ -575,7 +500,7 @@ Até aqui*******************************************************/
 		
 		return $r;
 	}
-	/****************************************************Fim das fun��es de delete****************************************/
+	/****************************************************Fim das funções de delete****************************************/
 	/**/
 	function popularTabelas(){
 		return false;
@@ -583,14 +508,14 @@ Até aqui*******************************************************/
 	
 	function geraSenha($tamanho, $maiusculas, $numeros, $simbolos){
 		/**
-		* Fun��o para gerar senhas aleat�rias
+		* Função para gerar senhas aleatórias
 		*
 		* @author    Thiago Belem <contato@thiagobelem.net>
 		*
 		* @param integer $tamanho Tamanho da senha a ser gerada
-		* @param boolean $maiusculas Se ter� letras mai�sculas
-		* @param boolean $numeros Se ter� n�meros
-		* @param boolean $simbolos Se ter� s�mbolos
+		* @param boolean $maiusculas Se terá letras maiúsculas
+		* @param boolean $numeros Se terá números
+		* @param boolean $simbolos Se terá símbolos
 		*
 		* @return string A senha gerada
 		*/
@@ -625,13 +550,13 @@ Até aqui*******************************************************/
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 	function listarServidor(){
 		$resultado = selectServidor();
-			echo' <kbd>Usu�rios TESTE existentes:</kbd></br></br>';	
+		echo '<kbd>Usuários TESTE existentes:</kbd></br></br>';	
 		while ($row = mysql_fetch_array($resultado)) {
 			echo '<kbd>Nome:</kbd> '.$row['nome'].' '.$row['sobrenome'].'</br>';
 			echo 'Siape: <kbd>'.$row['siape'].'</kbd></br>';
 			echo 'Email: <kbd>'.$row['email'].'</kbd></br>';
 			echo 'Senha: <kbd>1234</kbd></br>';
-			echo 'N�vel: <kbd>'.$row['nivel'].'</kbd></br>';
+			echo 'Nível: <kbd>'.$row['nivel'].'</kbd></br>';
 			echo '</br>';
 		}
 	}
@@ -644,8 +569,8 @@ Até aqui*******************************************************/
 		else
 		echo '  <a href="inicio.php" class="list-group-item list-group-item-success leftt" target="iframe-tela-meio">Inicio</a>';
 		while ($row = mysql_fetch_array($resultado)) {
-        echo '  <a href="'.$row['linkAreaMenu'].'" class="list-group-item leftt" target="iframe-tela-meio">'.$row['descricaoAreaMenu'].'</a>';
-		}		
+			echo '  <a href="'.$row['linkAreaMenu'].'" class="list-group-item leftt" target="iframe-tela-meio">'.$row['descricaoAreaMenu'].'</a>';
+		}
         echo '  <a href="sair.php" class="list-group-item leftt">Sair</a>';
         echo '</div>';
 	}
@@ -656,14 +581,13 @@ Até aqui*******************************************************/
 		echo' <h3> Selecione as areas visiveis por cada Nivel </h3>';
 		echo' <div class="row">';		
 		while ($rowArea = mysql_fetch_array($resultado)) {
-			
 			if($cont == 0){
-			echo' <div class="row">';
-			echo'<div class="col-md-2 text-right"> <h5>'.$rowArea['descricaoAreaMenu'].'</h5> </div>';
-			echo'<div class="col-md-10">';
-			echo'<form action="salvaArea.php" method=GET">';
-			echo'<input type="hidden" name="nomeAreaMenu" value="'.$rowArea['nomeAreaMenu'].'">';
-			echo'<input type="hidden" name="idAreaMenu" value="'.$rowArea['idAreaMenu'].'">';
+				echo' <div class="row">';
+				echo'<div class="col-md-2 text-right"> <h5>'.$rowArea['descricaoAreaMenu'].'</h5> </div>';
+				echo'<div class="col-md-10">';
+				echo'<form action="salvaArea.php" method=GET">';
+				echo'<input type="hidden" name="nomeAreaMenu" value="'.$rowArea['nomeAreaMenu'].'">';
+				echo'<input type="hidden" name="idAreaMenu" value="'.$rowArea['idAreaMenu'].'">';
 			}
 			
 			//echo' <div class="btn-group" data-toggle="buttons">';
@@ -673,7 +597,7 @@ Até aqui*******************************************************/
 			echo' '.$rowArea['nivel'].'';
 			echo' </label>';
 			//echo' </div>';
-						
+
 			$cont++;
 			if($cont == 4){
 		    echo' <input type="submit" value="Salvar">';
@@ -823,8 +747,6 @@ Até aqui*******************************************************/
 		sqlExcluiCargo($cargo);
 	}
 	
-
-
 	function insereServidor($inputSiape, $inputNome,$inputSobrenome, $inputEmail, $inputSenha,
 	                $inputEndereco, $inputCidade, $inputTelefone, $inputCelular,
 	                $inputCargo, $inputJornada, $inputSituacao, $inputDataEntrada, $inputDataSaida,
@@ -833,7 +755,5 @@ Até aqui*******************************************************/
 	    $inputEndereco, $inputCidade, $inputTelefone, $inputCelular, $inputCargo, $inputJornada, $inputSituacao, $inputDataEntrada,
 	    $inputDataSaida, $inputNivel, $inputSubstituto, $inputObservacao);
 	}
-
 /*FIM FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/	
-	
 ?>

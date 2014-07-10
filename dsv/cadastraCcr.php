@@ -1,7 +1,4 @@
-﻿
-
-
-<?php
+﻿<?php
 	require_once dirname (__FILE__)."/library/library.php";
 	session_start();
 	
@@ -40,7 +37,5 @@
 		
 	}else{
 		echo 'variable not set';
-	}
-	
-	
+	}	
 ?>

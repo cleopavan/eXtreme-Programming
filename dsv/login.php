@@ -5,27 +5,17 @@
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="utf-8"> <!-- charset=utf-8">-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="img/uffs.ico">
-
-    <title>Login</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/alternativeStyles.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/login.css" rel="stylesheet">
-
-  </head>
-
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" href="img/uffs.ico">
+		<title>Login</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/alternativeStyles.css" rel="stylesheet">
+		<link href="css/login.css" rel="stylesheet">
+	</head>
   <body>
-  	<!-- Header -->
     <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
     <a class="navbar-brand" href="login.php"> <img src="img/logoUFFS.png" alt="logoUFFS" height="42"/> Cadastro de atividades dos docentes da UFFS</a>
       <div class="container">
@@ -34,10 +24,9 @@
         </div>
       </div><!-- /container -->
     </div>
-    <!-- /Header -->
     <?php
-		echo '<div class="fixada">';		
-		listarServidor();				
+		echo '<div class="fixada">';
+		listarServidor();
 		echo '</div>';
 		
 		echo '<div class="alerta">';
@@ -66,6 +55,5 @@
 	
     <hr>
 	<footer class="text-center">Universidade Federal da Fronteira Sul - <a href="http://www.uffs.edu.br"><strong>UFFS</strong></a></footer>	
-
   </body>
 </html>

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	require_once dirname(__FILE__).'/../ink/database.php';//banco de dados
 
 	function test(){
@@ -332,127 +332,6 @@
 		
 		return $r;
 	}
-/*******************daqui
-	function insertSala($dados){
-		$numBlock = $dados['numBlock'];
-		$numClass = $dados['numClass'];
-		$descrition = $dados['descrition'];
-
-		$sql = "INSERT INTO sala (numBloco, numSala, descricaoSala) VALUES ('$numBlock', $numClass";
-		
-		if(empty($descrition)){
-			$sql = $sql . ", NULL";
-		}else{
-			$sql = $sql . ", '$description'";
-		}
-		$sql = $sql . ")";
-		
-		$r = dbConsulta($sql);
-		
-		return $r;
-	}
-	
-	function insertStatusAlocacao($dados){
-		$id = $data['id'];
-		$description = $data['descrition'];
-
-		$sql = "INSERT INTO statusalocacao (idStatusAlocacao, descricaoStatusAlocacao) VALUES ($id";
-		
-		if(empty($descrition)){
-			$sql = $sql . ", NULL";
-		}else{
-			$sql = $sql . ", '$description'";
-		}
-		$sql = $sql . ")";
-		
-		$r = dbConsulta($sql);
-		
-		return $r;
-	}
-	
-	function insertPeriodo($data){
-		$idPeriod = $data['idPeriod'];
-		$idSubPeriod = $data['idSubPeriod'];
-		$period = $data['period'];
-		$startHour = $data['startHour'];
-		$endHour = $data['endHour'];
-		
-		$sql = "INSERT INTO periodos (idPeriodo, idSubPeriodo, periodo, horaInicio, horaFim) 
-				VALUES ($idPeriod, $idSubPeriod";
-		if(empty($period)){
-			$sql = $sql . 'NULL,';
-		}else{
-			$sql = $sql . ", $period";
-		}
-		if(empty($startHour)){
-			$sql = $sql . ', NULL';
-		}else{
-			$sql = $sql . ", $startHour";
-		}
-		if(empty($endHour)){
-			$sql = $sql . ', NULL';
-		}else{
-			$sql = $sql . ", $endHour";
-		}
-		$sql = $sql . ")";
-		
-		$r = dbConsulta($sql);
-		
-		return $r;
-	}
-	
-	function getIdTableAlocacao(){
-		$sql = "SELECT idAlocacao FROM alocacao ORDER BY idAlocacao DESC LIMIT 1";
-		
-		$r = dbConsulta($sql);
-		return $r;
-	}
-	
-	function insertAlocacao($data){
-		//$id = $data['id'];
-		$numBlock = $data['numBlock'];
-		$numClass = $data['numClass'];
-		$idHorary = $data['idHorary'];
-		$regValido = $data['regValido'];
-		
-		/*$sql = "INSERT INTO alocacao (numBloco, numSala, idHorario, regValido)
-				VALUES ('$numBlock', '$numClass', '$idHorary', $regValido)";//Verificar a existencia de auto-increment
-		
-		$sql = "INSERT INTO alocacao (numBloco, numSala, idHorario, regValido)
-				VALUES ('$numBlock', $numClass, $idHorary, $regValido)";
-		$r = dbConsulta($sql);
-		
-		return $r;
-	}
-	
-	function insertServidorCursoCcr($data){
-		$semesterYear = $data['semesterYear'];
-		$codCcr = $data['codCcr'];
-		$codCourse = $data['codCourse'];
-		$siape = $data['siape'];
-		$alocation = $data['alocation'];
-		$observation = $data['observation'];
-		$regValido = $data['regValido'];
-		
-		if(empty($observation) && empty($alocation)){
-			$sql = "INSERT INTO servidorCursoCcr (anoSemestre, codCcr, codCurso, siape, alocacao, observacoes, regValido) 
-				VALUES ('$semesterYear', $codCcr, $codCourse, '$siape', NULL, NULL, $regValido)";
-		}else if(empty($observation)){
-			$sql = "INSERT INTO servidorCursoCcr (anoSemestre, codCcr, codCurso, siape, alocacao, observacoes, regValido) 
-				VALUES ('$semesterYear', $codCcr, $codCourse, '$siape', $alocation, NULL, $regValido)";
-		}else if(empty($alocation)){
-			$sql = "INSERT INTO servidorCursoCcr (anoSemestre, codCcr, codCurso, siape, alocacao, observacoes, regValido) 
-				VALUES ('$semesterYear', $codCcr, $codCourse, '$siape', NULL, '$observation', $regValido)";
-		}else{
-			$sql = "INSERT INTO servidorCursoCcr (anoSemestre, codCcr, codCurso, siape, alocacao, observacoes, regValido) 
-				VALUES ('$semesterYear', $codCcr, $codCourse, '$siape', $alocation, '$observation', $regValido)";
-		}
-		
-		$r = dbConsulta($sql);
-		
-		return $r;
-	}
-*******************************at� aqui/
 /****************************************************Fim das funções de inserção****************************************/
 /**/
 /****************************************************Fim das funções de seleção****************************************/
@@ -772,7 +651,7 @@
 		return $r;
 	}
 	
-	function updateUsuarioServidor($data){//Fun��o que o servidor altera seus dados.
+	function updateUsuarioServidor($data){//Função que o servidor altera seus dados.
 		$siape = $data['siape'];
 		$email = $data['email'];
 		$fone1 = $data['fone1'];
