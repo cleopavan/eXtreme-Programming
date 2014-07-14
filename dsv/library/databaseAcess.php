@@ -340,13 +340,13 @@
 		$texto = $data['texto'];
 		$tabela = $data['tabela'];
 		
-		$sql = "SELECT * FROM cursoccr JOIN curso JOIN ccr WHERE cursoccr.regValido=1 AND curso.regValido=1 AND ccr.regValido=1 AND ";
+		$sql = "SELECT DISTINCT nomeCcr, ccr.codCcr, cHoraria, idDominio FROM cursoccr JOIN curso JOIN ccr WHERE cursoccr.regValido=1 AND curso.regValido=1 AND ccr.regValido=1 AND ";
 		
 		if($tabela == 'curso'){
 			$sql = $sql . "curso.$filtro=$texto";
 		}else if($tabela == 'ccr'){
 			if($filtro == 'nomeCcr'){
-				$sql = $sql . "ccr.$filtro like '$texto'";
+				$sql = $sql . "ccr.$filtro like '%$texto%'";
 			}else{
 				$sql = $sql . "ccr.$filtro=$texto";
 			}

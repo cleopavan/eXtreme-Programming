@@ -185,6 +185,7 @@
 		$texto = addslashes($texto);
 		$tabela = '';
 		
+		echo "Filtro: $filtro ---------- Texto: $texto";
 		if($filtro == 'nome'){//string
 			$filtro = 'nomeCcr';
 			$tabela = 'ccr';
@@ -192,22 +193,22 @@
 			$filtro = 'codCcr';
 			$texto = (int)$texto;
 			$tabela = 'ccr';
-		}else if($filtro = 'ch'){//int
+		}else if($filtro == 'ch'){//int
 			$filtro = 'cHoraria';
 			$texto = (int)$texto;
 			$tabela = 'ccr';
-		}else if($filtro = 'domin'){//string
+		}else if($filtro == 'domin'){//string
 			$filtro = 'idDominio';
 			$texto = (int)$texto;
 			$tabela = 'ccr';
-		}else if($filtro = 'curso'){//string
+		}else if($filtro == 'curso'){//string
 			$filtro = 'codCurso';
 			$texto = (int)$texto;
 			$tabela = 'curso';
 		}
 		
 		$data['filtro'] = $filtro;
-		$data['valor'] = $texto;
+		$data['texto'] = $texto;
 		$data['tabela'] = $tabela;
 		
 		$r = selectCcr($data);
