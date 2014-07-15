@@ -20,7 +20,7 @@
 	<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
 </div>
 
-<form id="formCadastraCurso" class="form-horizontal" method="post" action="javascript:func()" >
+<form id="formCadastraCurso" class="form-horizontal" method="post" action="send.php" >
 	<div class="form-group">
 		<label for="codCurso" class="col-sm-2 control-label">Código do curso</label>
 		<div class="col-sm-3">
@@ -30,9 +30,10 @@
 	<div class="form-group">
 		<label for="nomeCurso" class="col-sm-2 control-label">Nome do curso</label>
 		<div class="col-sm-3">
-			<input type="text" class="form-control" id="nomeCurso" placeholder="Nome do Curso">
+			<input type="text" class="form-control" id="nomeCurso" name="nomeCurso" placeholder="Nome do Curso">
 		</div>
 	</div>
+	<input type="hidden" name="acao" value="cadastrar"/>
 	<div class="form-group">
 		<label for="idNvlCurso" class="col-sm-2 control-label">Nível do Curso</label>
 		<div class="col-sm-3">
