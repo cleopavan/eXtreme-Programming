@@ -214,6 +214,39 @@
 		
 		return $r;
 	}
+///////////////////////////////////////
+	function constroiDadosSelectServidor($filtro, $texto){
+		$data = array();
+		$filtro = addslashes($filtro);
+		$texto = addslashes($texto);
+		$tabela = '';
+		
+		if($filtro == 'siape'){//string
+			$filtro = 'siape';
+			$tabela = 'servidor';
+		}else if($filtro == 'nome'){//string
+			$filtro = 'nome';
+			$tabela = 'servidor';
+		}else if($filtro == 'curso'){//string
+			$filtro = 'codCurso';
+			$texto = (int)$texto;
+			$tabela = 'curso';
+		}else if($filtro == 'cargo'){//string
+			$filtro = 'idCargo';
+			$texto = (int)$texto;
+			$tabela = 'servidor';
+		}
+		
+		$data['filtro'] = $filtro;
+		$data['texto'] = $texto;
+		$data['tabela'] = $tabela;
+		
+		$r = selectCcr($data);
+		
+		return $r;
+	}
+//////////////////////////////////
+	
 	
 	function constroiDadosSelectDominio($id){
 		$data = array();
