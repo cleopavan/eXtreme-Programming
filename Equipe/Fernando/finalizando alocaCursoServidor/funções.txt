@@ -1,0 +1,77 @@
+function selectServidorCursoCcr($anoSemestre, $nivelCurso, $codCurso, $codCcr, $idDominio, $siape){
+
+	$sql =
+	 "SELECT scc.anoSemestre,
+				s.siape,
+				s.nome,
+				s.sobrenome,
+				ccr.codCcr,
+				ccr.nomeCcr,
+				ccr.cHoraria,
+				d.nomeDominio,
+				c.codCurso,
+				c.nomeCurso,
+				n.nomeNivelCurso
+		 FROM servidorCursoCcr scc
+		 JOIN servidor s USING(siape)
+		 JOIN cursoCcr cc USING(codCurso, codCcr)
+		 JOIN ccr ccr USING(codCcr)
+		 JOIN dominio d USING(idDominio)
+		 JOIN curso c USING(codCurso)
+		 JOIN nivelCurso n USING(idNivelCurso)
+		WHERE scc.anoSemestre = '$anoSemestre'
+		  AND (n.idNivelCurso = $nivelCurso OR $nivelCurso = 0)
+		  AND (c.codCurso = $codCurso OR $codCurso = 0)
+		  AND (ccr.codCcr = $codCcr OR $codCcr = 0)
+		  AND (d.idDominio = $idDominio OR $idDominio = 0)
+		  AND (s.siape = $siape OR $siape = 0)";
+     
+	$r = dbConsulta($sql);
+	return $r;
+}
+
+function listarServidorCursoCcr($anoSemestre, $nivelCurso, $codCurso, $codCcr, $idDominio, $siape, $buscando){
+
+	if($buscando)
+	$r = selectServidorCursoCcr($anoSemestre, $nivelCurso, $codCurso, $codCcr, $idDominio, $siape);
+
+	$linha = 0;
+	echo'<table class="table table-bordered">';
+		echo'<tr class="success text-center">';
+			echo'<td><strong>Nível</strong></td>';
+			echo'<td><strong>Curso</strong></td>';
+			echo'<td><strong>Ccr</strong></td>';
+			echo'<td><strong>Domínio</strong></td>';
+			echo'<td><strong>Siape</strong></td>';
+			echo'<td><strong>Professor</strong></td>';
+			echo'<td><strong>Carga horária</strong></td>';
+		echo'</tr>';
+	if($buscando)	
+	while($row = mySqlfatchArray($r)){
+		if(!$linha){	
+			echo'<tr class="active">';
+				echo'<td>'.$row['nomeNivelCurso'].'</td>';
+				echo'<td>'.$row['codCurso'].' - '.$row['nomeCurso'].'</td>';
+				echo'<td>'.$row['codCcr'].' - '.$row['nomeCcr'].'</td>';
+				echo'<td>'.$row['nomeDominio'].'</td>';
+				echo'<td>'.$row['siape'].'</td>';
+				echo'<td>'.$row['nome'].' '.$row['sobrenome'].'</td>';
+				echo'<td>'.$row['cHoraria'].'</td>';
+			echo'</tr>';
+			$linha = 1;
+		}else
+		if($linha){
+			echo'<tr class="success">';
+				echo'<td>'.$row['nomeNivelCurso'].'</td>';
+				echo'<td>'.$row['codCurso'].' - '.$row['nomeCurso'].'</td>';
+				echo'<td>'.$row['codCcr'].' - '.$row['nomeCcr'].'</td>';
+				echo'<td>'.$row['nomeDominio'].'</td>';
+				echo'<td>'.$row['siape'].'</td>';
+				echo'<td>'.$row['nome'].' '.$row['sobrenome'].'</td>';
+				echo'<td>'.$row['cHoraria'].'</td>';
+			echo'</tr>';
+			$linha = 0;
+		}
+	}
+	echo'</table>';						
+}
