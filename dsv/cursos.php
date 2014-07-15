@@ -48,15 +48,23 @@
             <li><a href="#cadastrar" data-toggle="tab">Cadastrar</a></li>
             <li><a href="#editar" data-toggle="tab">Editar</a></li>
             </ul>
+			
+			<?php if(isset($_GET['e']))
+			
+			echo '<div class="tab-pane active" id="inicial">
+                        <div class="alert alert-danger alert-dismissable">
+                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        '.urldecode($_GET['e']).'
+                     </div>
+            </div><!-- /tab-pane inicial -->';
+			
+			?>
     
             <!-- Tab panes -->
             <div class="tab-content">                
                 <div class="tab-pane" id="buscar">
                 	<div class="tab-pane active" id="inicial">
-                        <div class='alert alert-info alert-dismissable'>
-                           <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-                           <strong>Success!</strong> EstÃ¡ Ã© apenas a pagina de modelo 1.
-                        </div>
+                        <?php include("cursos/buscar.php"); ?>
                 	</div><!-- /tab-pane inicial -->                    
                 </div><!-- /tab-pane buscar -->
     
