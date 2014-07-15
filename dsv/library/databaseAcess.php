@@ -340,7 +340,7 @@
 		$texto = $data['texto'];
 		$tabela = $data['tabela'];
 		
-		$sql = "SELECT DISTINCT nomeCcr, ccr.codCcr, cHoraria, idDominio FROM cursoccr JOIN curso JOIN ccr WHERE cursoccr.regValido=1 AND curso.regValido=1 AND ccr.regValido=1 AND ";
+		$sql = "SELECT DISTINCT nomeCcr, ccr.codCcr, cHoraria, idDominio FROM cursoccr JOIN curso USING(codCurso) JOIN ccr USING(codCcr) WHERE cursoccr.regValido=1 AND curso.regValido=1 AND ccr.regValido=1 AND ";
 		
 		if($tabela == 'curso'){
 			$sql = $sql . "curso.$filtro=$texto";

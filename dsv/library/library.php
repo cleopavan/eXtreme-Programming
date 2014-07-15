@@ -185,7 +185,6 @@
 		$texto = addslashes($texto);
 		$tabela = '';
 		
-		echo "Filtro: $filtro ---------- Texto: $texto";
 		if($filtro == 'nome'){//string
 			$filtro = 'nomeCcr';
 			$tabela = 'ccr';
