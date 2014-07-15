@@ -715,7 +715,7 @@
 		$resultado=buscaCargo($jornada);
 		$rowArea = mysql_fetch_array($resultado);
 		if($rowArea["jornada"]==$jornada) return 0;
-		sqlInsereJornada($jornada);
+		constroiDadosInsertJornada($jornada);
 		return 1;
 	}
 	
@@ -731,7 +731,7 @@
 		$resultado=buscaNivel($nivel);
 		$rowArea = mysql_fetch_array($resultado);
 		if($rowArea["nivel"]==$nivel || $nivel=="Cargos Cadastrados") return 0;
-		sqlInsereNivel($nivel);
+		constroiDadosInsertNivelServidor($nivel);
 		return 1;
 	}
 	
