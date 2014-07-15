@@ -118,7 +118,7 @@
 		$nivel = $data['nivel'];
 		$regValido = $data['regValido'];
 		
-		$sql = "INSERT INTO nivelservidor (regValido, nivel) VALUES ($regValido";
+		$sql = "INSERT INTO nivelServidor (regValido, nivel) VALUES ($regValido";
 		
 		if(empty($nivel)){
 			$sql = $sql . ", NULL";
@@ -340,7 +340,7 @@
 		$texto = $data['texto'];
 		$tabela = $data['tabela'];
 		
-		$sql = "SELECT DISTINCT nomeCcr, ccr.codCcr, cHoraria, idDominio FROM cursoccr JOIN curso JOIN ccr WHERE cursoccr.regValido=1 AND curso.regValido=1 AND ccr.regValido=1 AND ";
+		$sql = "SELECT DISTINCT nomeCcr, ccr.codCcr, cHoraria, idDominio FROM cursoCcr JOIN curso USING(codCurso) JOIN ccr USING(codCcr) WHERE cursoCcr.regValido=1 AND curso.regValido=1 AND ccr.regValido=1 AND ";
 		
 		if($tabela == 'curso'){
 			$sql = $sql . "curso.$filtro=$texto";
@@ -764,7 +764,7 @@
 	function deleteNivelServidor($data){
 		$id = $data['id'];
 		
-		$sql = "UPDATE nivelservidor SET regValido=0 WHERE idNivelServidor=$id";
+		$sql = "UPDATE nivelServidor SET regValido=0 WHERE idNivelServidor=$id";
 		
 		$r = dbConsulta($sql);
 		
@@ -1023,20 +1023,11 @@
 		dbConsulta($sql);
 	}
 	
-	function sqlInsereJornada($jornada){
-		$sql="INSERT INTO jornada(jornada, regValido) VALUES ('$jornada',1)";
-		dbConsulta($sql);
-	}
-	
 	function sqlInsereSituacao($situacao){
 		$sql="INSERT INTO situacaoServidor(situacao, regValido) VALUES ('$situacao',1)";
 		dbConsulta($sql);
 	}
 	
-	function sqlInsereNivel($nivel){
-		$sql="INSERT INTO nivelServidor(nivel, regValido) VALUES ('$nivel',1)";
-		dbConsulta($sql);
-	}
 	
 	function sqlExcluiNivel($nivel){
 		$sql="UPDATE nivelServidor SET regValido=0 WHERE nivel='$nivel'";
