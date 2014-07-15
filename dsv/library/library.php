@@ -502,9 +502,6 @@
 	}
 	/****************************************************Fim das funções de delete****************************************/
 	/**/
-	function popularTabelas(){
-		return false;
-	}
 	
 	function geraSenha($tamanho, $maiusculas, $numeros, $simbolos){
 		/**
