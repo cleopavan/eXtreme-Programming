@@ -996,6 +996,22 @@
 		$r = dbConsulta($sql);
 		return $r;
 	}
+	
+	function insertServidorCursoCcr($data){
+		$anoSemestre = $data['anoSemestre'];
+		$codCurso = $data['codCurso'];
+		$codCcr = $data['codCcr'];
+		$siape = $data['siape'];
+		$observacoes = $data['observacoes'];
+		
+		$sql = "
+			INSERT INTO servidorCursoCcr(anoSemestre, codCurso, codCcr, siape, observacoes, regValido)
+			VALUES ('$anoSemestre', '$codCurso', '$codCcr', '$siape', '$observacoes', '1');
+			";
+		$r = dbConsulta($sql);
+		return $r;
+		
+	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 
