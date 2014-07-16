@@ -352,7 +352,7 @@
 		return $r;
 	}
 	
-	function constroiDadosCurso($codCurso, $nome, $idNivelCurso){
+	function constroiDadosUpdateCurso($codCurso, $nome, $idNivelCurso){
 		$data = Array();
 		$data['codCurso'] = addslashes($codCurso);
 		$data['nome'] = addslashes($nome);
@@ -789,4 +789,15 @@
 	    $inputDataSaida, $inputNivel, $inputSubstituto, $inputObservacao);
 	}
 /*FIM FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/	
+
+
+/* INÍCIO FUNÇÕES DESENVOLVIDAS POR ANDREI TOLEDO */
+
+	function constroiDadosSelectNivelCurso(){
+		$rertorno = selectNivelCurso();
+		
+		return $retorno;
+	}
+
+/* FIM DAS FUNÇÕES DESENVOLVIDAS POR ANDREI TOLEDO*/
 ?>

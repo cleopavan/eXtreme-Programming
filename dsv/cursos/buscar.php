@@ -18,9 +18,9 @@
 <h4> Buscar Curso </h4>
 <div class="row">
 	<div class="col-lg-6">
-		<form action="send.php"  method="post">
+		<form action="send.php"  method="post" id="buscarCurso" name="bucarCurso">
 			<div class="input-group">
-				<input type="text" class="form-control" name="text" placeholder="Buscar curso">
+				<input type="text" class="form-control" name="frase" placeholder="Buscar curso">
 				<div class="input-group-btn"  >
 					<span class="input-group-btn">
 						<button type="submit" class="btn btn-default" >BUSCAR</button>											
@@ -32,14 +32,14 @@
 			
 			<input type="hidden" name="acao" value="buscar"/>
 			
-			<input type="radio" name="filter" value="nomeCurso" checked>
-			<label for="Nome">Nome  </label>
+			<input type="radio" name="filter" value="nomeCurso" id="nomeCurso" checked />
+			<label for="nomeCurso">Nome  </label>
 			
-			<input type="radio" name="filter" value="codCurso">
-			<label for="cod">Código  </label>
+			<input type="radio" name="filter" value="codCurso" id="codCurso" />
+			<label for="codCurso">Código  </label>
 			
-			<input type="radio" name="filter" value="nivel">
-			<label for="curso">Nível  </label>
+			<input type="radio" name="filter" value="nivel" id="nivel" />
+			<label for="nivel">Nível  </label>
 		</form>			
 	</div><!-- /col-lg-6 -->
 </div><!-- /row -->

@@ -49,7 +49,9 @@
             <li><a href="#editar" data-toggle="tab">Editar</a></li>
             </ul>
 			
-			<?php if(isset($_GET['e']))
+			<?php 
+			
+			if(isset($_GET['e']))
 			
 			echo '<div class="tab-pane active" id="inicial">
                         <div class="alert alert-danger alert-dismissable">

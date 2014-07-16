@@ -1,4 +1,5 @@
 <?php
+	//INÍCIO DO HEADER
 	require_once "library/library.php";
 	if(!isset($_SESSION)) session_start();
 	if($_SESSION['logado'] != TRUE){
@@ -12,6 +13,9 @@
 	if(acessoRecusado('cursos.php', $_SESSION['idNivelServidor']) == FALSE){/* Excessão no caso do servidor não ter acesso a esta área*/
 		header('Location: index.php?i=semPermissao');
 	}
+	//FIM DO HEADER
+	
+	//cadastrar
 	if(isset($_POST['acao']) && $_POST['acao'] == 'cadastrar'){
 		$cod = $_POST['codCurso'];
 		$nome = $_POST['nomeCurso'];
@@ -37,8 +41,51 @@
 			else die(mysql_error());
 		}
 	}
-	if(isset($_POST['acao']) && $_POST['acao'] == 'buscar'){
-		$cod = $_POST['codCurso'];
 	
+	//buscar
+	if(isset($_POST['acao']) && $_POST['acao'] == 'buscar'){
+	
+		$filter = $_POST['filter'];
+		$text = $_POST['frase'];
+		
+		if($filter == "nomeCurso"){
+			$query = 	"SELECT c.CodCurso, c.nomeCurso, nc.nomeNivelCurso
+						FROM curso c
+						JOIN nivelcurso nc ON c.idNivelCurso = nc.idNivelCurso
+						WHERE c.nomeCurso LIKE '%".$texto."%' 
+						AND c.regValido =1
+						AND nc.regValido = 1";
+		}
+		if($filter == "codCurso"){
+			$query = 	"SELECT c.CodCurso, c.nomeCurso, nc.nomeNivelCurso
+						FROM curso c
+						JOIN nivelcurso nc ON c.idNivelCurso = nc.idNivelCurso
+						WHERE c.codCurso LIKE '%".$texto."%' 
+						AND c.regValido =1
+						AND nc.regValido = 1";
+		}
+		if($filter == "nivel"){
+			$query = 	"SELECT c.CodCurso, c.nomeCurso, nc.nomeNivelCurso
+						FROM curso c
+						JOIN nivelcurso nc ON c.idNivelCurso = nc.idNivelCurso
+						WHERE nc.nomeNivelCurso LIKE '%".$texto."%' 
+						AND c.regValido =1
+						AND nc.regValido = 1";
+		}
+		
+		$sql = mysql_query($sql);
+		
+		if(!$sql) header("Location: curso.php?e=".urlencode(mysql_error()));
+		
+			$retorno = "";
+		while($row = mysql_fetch_assoc($sql)){
+			$retorno = $retorno.	"<tr>
+									<td>".$row['codCurso']."</td>
+									<td>".$row['nomeCurso']."</td>
+									<td>".$row['nomeNivelCurso']."</td>
+								</tr>";
+								$retorno = 'foi';
+		}
+		header("Location:cursos/tabela.php?tab=".urlencode($retorno)."");
+	}
 ?>
-

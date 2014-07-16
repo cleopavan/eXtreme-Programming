@@ -1073,4 +1073,15 @@
 		dbConsulta($sql4);
 	}
 /*FIM FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/
+
+/* INÍCIO FUNÇÕES DESENVOLVIDAS POR ANDREI TOLEDO */
+
+	function selectNivelCurso(){
+		$sql = "SELECT * FROM nivelCurso
+				WHERE regValido = 1";
+		$retorno = dbConsulta($sql);
+		return $retorno;
+	}
+
+/* FIM DAS FUNÇÕES DESENVOLVIDAS POR ANDREI TOLEDO*/
 ?>
