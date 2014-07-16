@@ -42,7 +42,7 @@
     </div>
     <!-- /Header -->
     <!-- Principal -->  
-    <div class="row>
+    <div class="row">
       <div class="col-md-2"> <!-- 18 largura maxima mobile || 12 largura maxima desktop  (outros tamanhos sao configuraveis) -->
       	<?php listarMenu($_SESSION['idNivelServidor']);?>
       </div>
