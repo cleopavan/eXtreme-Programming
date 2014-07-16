@@ -845,5 +845,5 @@
 	    $inputEndereco, $inputCidade, $inputTelefone, $inputCelular, $inputCargo, $inputJornada, $inputSituacao, $inputDataEntrada,
 	    $inputDataSaida, $inputNivel, $inputSubstituto, $inputObservacao);
 	}
-/*FIM FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/	
+/* FIM FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/	
 ?>

@@ -48,7 +48,6 @@
             <div class="tab-content">
                 <?php
                 if(isset($_POST["inputCadastraServidor"])){
-                
 	             	insereServidor($_POST["inputSiape"], $_POST["inputNome"], 
 	                $_POST["inputSobrenome"], $_POST["inputEmail"],  $_POST["inputSenha"],
 	                $_POST["inputEndereco"], $_POST["inputCidade"], $_POST["inputTelefone"], $_POST["inputCelular"],
