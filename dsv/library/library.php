@@ -176,6 +176,20 @@
 		
 		return $r;
 	}
+	
+	function constroiDadosInsertServidorCursoCcr($anoSemestre, $codCurso, $codCcr, $siape, $observacoes){
+		$data = array();
+		
+		$data['anoSemestre'] = addslashes($anoSemestre);
+		$data['codCurso'] = (int)addslashes($codCurso);
+		$data['codCcr'] = (int)addslashes($codCcr);
+		$data['siape'] = addslashes($siape);
+		$data['observacoes'] = addslashes($observacoes);
+		
+		$r = insertServidorCursoCcr($data);
+		
+		return $r;
+	}
 	/****************************************************Fim das funções de inserção****************************************/
 	/**/
 	/****************************************************Inicio das funções de seleção****************************************/
@@ -823,14 +837,18 @@
 		sqlExcluiCargo($cargo);
 	}
 	
-	function insereServidor($inputSiape, $inputNome,$inputSobrenome, $inputEmail, $inputSenha,
+	function insereServidor($inputSiape, $inputNome,$inputSobrenome, $inputEmail,
 	                $inputEndereco, $inputCidade, $inputTelefone, $inputCelular,
 	                $inputCargo, $inputJornada, $inputSituacao, $inputDataEntrada, $inputDataSaida,
 	                $inputNivel, $inputSubstituto, $inputObservacao){
+	    $pass = geraSenha(8, true, true, false);
+		$encryptedPassword = md5($pass . '' . SAL);
+		$inputSenha=$encryptedPassword;
 		sqlInsereServidor($inputSiape, $inputNome,$inputSobrenome, $inputEmail, $inputSenha,
 	    $inputEndereco, $inputCidade, $inputTelefone, $inputCelular, $inputCargo, $inputJornada, $inputSituacao, $inputDataEntrada,
 	    $inputDataSaida, $inputNivel, $inputSubstituto, $inputObservacao);
 	}
+<<<<<<< HEAD
 /*FIM FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/	
 
 
@@ -843,4 +861,7 @@
 	}
 
 /* FIM DAS FUNÇÕES DESENVOLVIDAS POR ANDREI TOLEDO*/
+=======
+/* FIM FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/	
+>>>>>>> cdc5f819bd6a59cce9c8894490478dab45e384e6
 ?>

@@ -50,9 +50,9 @@
           <!------------------------- area designinada para os iframe ----------------------------->
           <?php
 			  	if(isset($_GET['i']) && $_GET['i'] == 'semPermissao')
-				echo' <iframe name="iframe-tela-meio" src="semPermissao.php" height="1200px" width="100%" frameborder="0"></iframe>';
+				echo' <iframe name="iframe-tela-meio" src="semPermissao.php" height="500px" width="100%" frameborder="0"></iframe>';
 				else
-				echo' <iframe name="iframe-tela-meio" src="inicio.php" height="1200px" width="100%" frameborder="0"></iframe>';
+				echo' <iframe name="iframe-tela-meio" src="inicio.php" height="500px" width="100%" frameborder="0"></iframe>';
 		   ?>          
           <!------------------------- area designinada para os iframe ----------------------------->      
       </div><!-- /col-md-10 -->

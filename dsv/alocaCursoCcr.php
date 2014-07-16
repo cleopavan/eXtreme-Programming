@@ -341,7 +341,7 @@
 							</div><!-- /row 5º -->							
 							</form>
                             
-                            <?php listarServidorCursoCcr('2014/2', 0, 0, 0, 0, 0, 1) ?>
+                            <?php listarServidorCursoCcr('2014/2', 0, 0, 0, 0, 0, 1) ?> <!-- E AGORA ISAC??-->
 				  		<!--<table class="table table-bordered">
 				  			<tr class="success text-center">
 				  				<td><strong>Titulo</strong></td>
