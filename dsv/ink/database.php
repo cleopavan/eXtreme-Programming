@@ -1,9 +1,7 @@
 ﻿<?php
-
 	$banco = 'local';
 	//$banco = 'server';
 	//$banco = 'jacson';
-
 
 	if($banco == 'server'){
 		$host = "mysql.hostinger.com.br";
