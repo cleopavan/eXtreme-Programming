@@ -222,7 +222,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default" name="inputCadastraServidor">Cadastrar</button>
+                                <button type="submit" class="btn btn-default" id="btnCadastrar" name="inputCadastraServidor">Cadastrar</button>
                             </div>
                         </div>
                     </form>
@@ -631,10 +631,13 @@
 		  	  
 			  function validateField(field){
 			  $('#'+field).focusout(function(){
-			    if($('#'+field).val() == ''){
+			    if($('#'+field).val().length < 2){
 			 	   $('#'+field).css('border-color', 'red');
+			 	   alert("Campo deve ter mais que 2 caracteres");
+			 	   $('#btnCadastrar').attr("disabled", "disabled");
 			    }else{
 			       $('#'+field).css('border', '1px solid #ccc');
+			       $('#btnCadastrar').removeAttr("disabled");
 			    }
 			  }); 
 		  	 }
