@@ -27,7 +27,7 @@
     <?php
 		
 		echo '<div class="fixada">';
-		//listarServidor();
+		listarServidor();
 		echo '</div>';
 		
 		echo '<div class="alerta">';
