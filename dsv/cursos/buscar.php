@@ -18,36 +18,31 @@
 <h4> Buscar Curso </h4>
 <div class="row">
 	<div class="col-lg-6">
-		<form action="send.php"  method="post" id="buscarCurso" name="bucarCurso">
-			<div class="input-group">
-				<input type="text" class="form-control" name="frase" placeholder="Buscar curso">
-				<div class="input-group-btn"  >
-					<span class="input-group-btn">
-						<button type="submit" class="btn btn-default" >BUSCAR</button>											
-						
-					</span>
-					
-				</div>
-			</div><!-- /input-group-btn -->
 			
-			<input type="hidden" name="acao" value="buscar"/>
-			
-			<input type="radio" name="filter" value="nomeCurso" id="nomeCurso" checked />
+			<input type="radio" name="filter" value="nomeCurso" id="filter" checked />
 			<label for="nomeCurso">Nome  </label>
 			
-			<input type="radio" name="filter" value="codCurso" id="codCurso" />
+			<input type="radio" name="filter" value="codCurso" id="filter" />
 			<label for="codCurso">Código  </label>
 			
-			<input type="radio" name="filter" value="nivel" id="nivel" />
+			<input type="radio" name="filter" value="nivel" id="filter" />
 			<label for="nivel">Nível  </label>
-		</form>			
+			
+			<input type="hidden" name="acao" id="acao" value="buscar"/>
+			
+		<div class="input-group">
+			<input type="text" class="form-control" name="frase" id="frase" placeholder="Buscar curso">
+			<div class="input-group-btn"  >
+				<span class="input-group-btn">
+					<button class="btn btn-default" onclick="mostrarBusca()">BUSCAR</button>											
+				</span>
+				
+			</div>
+		</div><!-- /input-group-btn -->
+				
 	</div><!-- /col-lg-6 -->
 </div><!-- /row -->
 
-<?
+<div class="col-lg-6" id="tabela">
 
-if(isset($_GET['retorno'])){
-	echo 'retono';
-}
-
-?>
+</div>

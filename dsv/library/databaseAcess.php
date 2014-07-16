@@ -263,7 +263,7 @@
 		$idNivelCurso = $data['idNivelCurso'];
 		$regValido = $data['regValido'];
 		
-		$sql = "INSERT INTO curso (codCurso, idNivelCursos, regValido, nomeCurso) VALUES ($codCurso, $idNivelCurso, $regValido";
+		$sql = "INSERT INTO curso (codCurso, idNivelCurso, regValido, nomeCurso) VALUES ($codCurso, $idNivelCurso, $regValido";
 		
 		if(empty($nome)){
 			$sql = $sql . ", NULL";
