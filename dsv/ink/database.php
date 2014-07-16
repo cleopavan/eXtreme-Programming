@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	$banco = 'local';
 	//$banco = 'server';
 	//$banco = 'jacson';
@@ -31,4 +31,5 @@
 		($a = mysql_query($sql)) or (die ("error: ".mysql_error()));
 		return $a;
 	}
+
 ?>
