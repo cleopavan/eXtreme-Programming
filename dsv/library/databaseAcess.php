@@ -35,7 +35,7 @@
 		$cargaHoraria = $data['cargaHoraria'];
 		$regValido = $data['regValido'];
 		
-		$sql = "INSERT INTO servidorfuncao (idFuncao, siape, dataInicio, cargaHoraria, regValido, dataSaida) 
+		$sql = "INSERT INTO servidorFuncao (idFuncao, siape, dataInicio, cargaHoraria, regValido, dataSaida) 
 				VALUES ($idFuncao, '$siape', '$dataInicio', $cargaHoraria, $regValido";
 		if(empty($dataSaida)){
 			$sql = $sql . ", NULL";
@@ -90,7 +90,7 @@
 		$dataSaida = $data['dataSaida'];
 		$regValido = $data['regValido'];
 		
-		$sql = "INSERT INTO situacaoservidor (regValido, situacao, dataEntrada, dataSaida)
+		$sql = "INSERT INTO situacaoServidor (regValido, situacao, dataEntrada, dataSaida)
 					VALUES ($regValido";
 		if(empty($situacao)){
 			$sql = $sql . ", NULL";
@@ -137,7 +137,7 @@
 		$descricaoAreaMenu = $data['descricaoAreaMenu'];
 		$linkAreaMenu = $data['linkAreaMenu'];
 		
-		$sql = "INSERT INTO areamenu (nomeAreaMenu, descricaoAreaMenu, linkAreaMenu) VALUES (";
+		$sql = "INSERT INTO areaMenu (nomeAreaMenu, descricaoAreaMenu, linkAreaMenu) VALUES (";
 		
 		if(empty($nomeAreaMenu)){
 			$sql = $sql . ", NULL";
@@ -165,7 +165,7 @@
 		$idNivelServidor = $data['idNivelServidor'];
 		$idAreaMenu = $data['idAreaMenu'];
 		
-		$sql = "INSERT INTO nivelservidor_areamenu (idNivelServidor, idAreaMenu) VALUES ($idNivelServidor, $idAreaMenu)";
+		$sql = "INSERT INTO nivelServidor_areaMenu (idNivelServidor, idAreaMenu) VALUES ($idNivelServidor, $idAreaMenu)";
 		
 		$r = dbConsulta($sql);
 		
@@ -190,7 +190,7 @@
 		$regValido = $data['regValido'];
 		$pass = $data['pass'];
 		
-		$sql = "INSERT INTO servidores (siape, nome, sobrenome, idCargo, idJornada, idSituacaoServidor, idNivelServidor, regValido, observacao, quemSubstitui, email, fone1, fone2, endereco, cidade, senha)
+		$sql = "INSERT INTO servidor (siape, nome, sobrenome, idCargo, idJornada, idSituacaoServidor, idNivelServidor, regValido, observacao, quemSubstitui, email, fone1, fone2, endereco, cidade, senha)
 				VALUES ('$siape', '$nome', '$sobrenome', $idCargo, $idJornada, $idSituacaoServidor, $idNivelServidor, $regValido";
 				
 		if(empty($observacao)){
@@ -243,7 +243,7 @@
 		$nivel = $data['nivel'];
 		$regValido = $data['regValido'];
 		
-		$sql = "INSERT INTO nivelcursos (regValido, nomeNivelCurso) VALUES ($regValido";
+		$sql = "INSERT INTO nivelCurso (regValido, nomeNivelCurso) VALUES ($regValido";
 		
 		if(empty($nivel)){
 			$sql = $sql . ", NULL";
@@ -326,7 +326,7 @@
 		$codCurso = $data['codCurso'];
 		$regValido = $data['regValido'];
 		
-		$sql = "INSERT INTO cursoccr (codCcr, codCurso, regValido) VALUES ($codCcr, $codCurso, $regValido)";
+		$sql = "INSERT INTO cursoCcr (codCcr, codCurso, regValido) VALUES ($codCcr, $codCurso, $regValido)";
 		
 		$r = dbConsulta($sql);
 		
@@ -395,7 +395,7 @@
 		$dataSaida = $data['dataSaida'];
 		$cargaHoraria = $data['cargaHoraria'];
 		
-		$sql = "UPDATE servidorfuncao SET idFuncao=$id, siape=$siape, dataInicio='$dataInicio', dataSaida=";
+		$sql = "UPDATE servidorFuncao SET idFuncao=$id, siape=$siape, dataInicio='$dataInicio', dataSaida=";
 		if(empty($dataSaida)){
 			$sql = $sql . "NULL";
 		}else{
@@ -449,7 +449,7 @@
 		$dataEntrada = $data['dataEntrada'];
 		$dataSaida = $data['dataSaida'];
 		
-		$sql = "UPDATE situacaoservidor SET idSituacaoServidor=$id, situacao=";
+		$sql = "UPDATE situacaoServidor SET idSituacaoServidor=$id, situacao=";
 		if(empty($situacao)){
 			$sql = $sql . "NULL";
 		}else{
@@ -478,7 +478,7 @@
 		$id = $data['id'];
 		$nivel = $data['nivel'];
 		
-		$sql = "UPDATE nivelservidor SET idNivelServidor=$id, nivel=";
+		$sql = "UPDATE nivelServidor SET idNivelServidor=$id, nivel=";
 		
 		if(empty($nivel)){
 			$sql = $sql . "NULL";
@@ -563,7 +563,7 @@
 		$id = $data['id'];
 		$nivel = $data['nivel'];
 		
-		$sql = "UPDATE nivelcurso SET idNivelCurso=$id, nomeNivelCurso=";
+		$sql = "UPDATE nivelCurso SET idNivelCurso=$id, nomeNivelCurso=";
 		
 		if(empty($nivel)){
 			$sql = $sql . "NULL";
@@ -644,7 +644,7 @@
 		$codCcr = $data['codCcr'];
 		$codCurso = $data['codCurso'];
 		
-		$sql = "UPDATE cursoccr SET codCcr=$codCcr, codCurso=$codCurso WHERE codCcr=$codCcr AND codCurso=$codCurso AND regValido=1";
+		$sql = "UPDATE cursoCcr SET codCcr=$codCcr, codCurso=$codCurso WHERE codCcr=$codCcr AND codCurso=$codCurso AND regValido=1";
 		
 		$r = dbConsulta($sql);
 		
@@ -724,7 +724,7 @@
 		$siape = $data['siape'];
 		$dataInicio = $data['dataInicio'];
 		
-		$sql = "UPDATE servidorfuncao SET regValido=0 WHERE idFuncao=$idFuncao AND siape='$siape' AND dataInicio='$dataInicio'";
+		$sql = "UPDATE servidorFuncao SET regValido=0 WHERE idFuncao=$idFuncao AND siape='$siape' AND dataInicio='$dataInicio'";
 		
 		$r = dbConsulta($sql);
 		
@@ -754,7 +754,7 @@
 	function deleteSituacaoServidor($data){
 		$id = $data['id'];
 		
-		$sql = "UPDATE situacaoservidor SET regValido=0 WHERE idSituacaoServidor=$id";
+		$sql = "UPDATE situacaoServidor SET regValido=0 WHERE idSituacaoServidor=$id";
 		
 		$r = dbConsulta($sql);
 		
@@ -784,7 +784,7 @@
 	function deleteNivelCurso($data){
 		$id = $data['id'];
 		
-		$sql = "UPDATE nivelcurso SET regValido=0 WHERE idNivelCurso=$id";
+		$sql = "UPDATE nivelCurso SET regValido=0 WHERE idNivelCurso=$id";
 		
 		$r = dbConsulta($sql);
 		
@@ -815,7 +815,7 @@
 		$codCcr = $data['codCcr'];
 		$codCurso = $data['codCurso'];
 		
-		$sql = "UPDATE cursoccr SET regValido=0 WHERE codCcr=$codCcr AND codCurso=$codCurso";
+		$sql = "UPDATE cursoCcr SET regValido=0 WHERE codCcr=$codCcr AND codCurso=$codCurso";
 		
 		$r = dbConsulta($sql);
 		

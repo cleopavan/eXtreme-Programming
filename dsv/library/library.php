@@ -352,7 +352,7 @@
 		return $r;
 	}
 	
-	function constroiDadosCurso($codCurso, $nome, $idNivelCurso){
+	function constroiDadosUpdateCurso($codCurso, $nome, $idNivelCurso){
 		$data = Array();
 		$data['codCurso'] = addslashes($codCurso);
 		$data['nome'] = addslashes($nome);
