@@ -626,7 +626,7 @@
 
 		  	  $('#inputTelefone').mask('(99) 9999-9999');
 		  	  $('#inputCelular').mask('(99) 9999-9999');
-		  	  
+		  	   $('#btnCadastrar').attr("disabled", "disabled");
 		  	  
 			  function validateField(field){
 			  $('#'+field).focusout(function(){
