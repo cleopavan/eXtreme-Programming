@@ -837,10 +837,13 @@
 		sqlExcluiCargo($cargo);
 	}
 	
-	function insereServidor($inputSiape, $inputNome,$inputSobrenome, $inputEmail, $inputSenha,
+	function insereServidor($inputSiape, $inputNome,$inputSobrenome, $inputEmail,
 	                $inputEndereco, $inputCidade, $inputTelefone, $inputCelular,
 	                $inputCargo, $inputJornada, $inputSituacao, $inputDataEntrada, $inputDataSaida,
 	                $inputNivel, $inputSubstituto, $inputObservacao){
+	    $pass = geraSenha(8, true, true, false);
+		$encryptedPassword = md5($pass . '' . SAL);
+		$inputSenha=$encryptedPassword;
 		sqlInsereServidor($inputSiape, $inputNome,$inputSobrenome, $inputEmail, $inputSenha,
 	    $inputEndereco, $inputCidade, $inputTelefone, $inputCelular, $inputCargo, $inputJornada, $inputSituacao, $inputDataEntrada,
 	    $inputDataSaida, $inputNivel, $inputSubstituto, $inputObservacao);

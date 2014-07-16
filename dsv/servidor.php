@@ -41,7 +41,7 @@
             <ul class="nav nav-tabs">
             <li><a href="#buscar" data-toggle="tab">Buscar</a></li>
             <li><a href="#cadastrar" data-toggle="tab">Cadastrar</a></li>
-            <li><a href="#editar" data-toggle="tab">Editar</a></li>
+            <!-- <li><a href="#editar" data-toggle="tab">Editar</a></li> -->
             </ul>
     
             <!-- Tab panes -->
@@ -49,7 +49,7 @@
                 <?php
                 if(isset($_POST["inputCadastraServidor"])){
 	             	insereServidor($_POST["inputSiape"], $_POST["inputNome"], 
-	                $_POST["inputSobrenome"], $_POST["inputEmail"],  $_POST["inputSenha"],
+	                $_POST["inputSobrenome"], $_POST["inputEmail"],
 	                $_POST["inputEndereco"], $_POST["inputCidade"], $_POST["inputTelefone"], $_POST["inputCelular"],
 	                $_POST["inputCargo"], $_POST["inputJornada"], $_POST["$inputSituacao"], $_POST["inputDataEntrada"], $_POST["inputDataSaida"],
 	                $_POST["inputNivel"], $_POST["inputSubstituto"], $_POST["inputObservacao"]);
@@ -106,12 +106,6 @@
                             <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                             <div class="col-sm-3">
                                 <input type="email" class="form-control" id="inputEmail" placeholder="exemplo@mail.com" name="inputEmail">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputSenha" class="col-sm-2 control-label">Senha</label>
-                            <div class="col-sm-3">
-                                <input type="password" class="form-control" id="inputSenha" placeholder="senha" name="inputSenha">
                             </div>
                         </div>
                         <div class="form-group">
@@ -644,7 +638,6 @@
 		  	 validateField('inputSiape');
 		  	 validateField('inputSobrenome');
 		  	 validateField('inputEmail');
-		  	 validateField('inputSenha');
 		  	 validateField('inputEndereco');
 		  	 validateField('inputCidade');
 		  	 validateField('inputDataEntrada');	  	 
