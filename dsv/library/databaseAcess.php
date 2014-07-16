@@ -966,6 +966,36 @@
 		$r=dbConsulta($sql);	
 		return $r;				
 	}
+	
+	function selectServidorCursoCcr($anoSemestre, $nivelCurso, $codCurso, $codCcr, $idDominio, $siape){
+		$sql = "SELECT scc.anoSemestre,
+					s.siape,
+					s.nome,
+					s.sobrenome,
+					ccr.codCcr,
+					ccr.nomeCcr,
+					ccr.cHoraria,
+					d.nomeDominio,
+					c.codCurso,
+					c.nomeCurso,
+					n.nomeNivelCurso
+			 FROM servidorCursoCcr scc
+			 JOIN servidor s USING(siape)
+			 JOIN cursoCcr cc USING(codCurso, codCcr)
+			 JOIN ccr ccr USING(codCcr)
+			 JOIN dominio d USING(idDominio)
+			 JOIN curso c USING(codCurso)
+			 JOIN nivelCurso n USING(idNivelCurso)
+			WHERE scc.anoSemestre = '$anoSemestre'
+			  AND (n.idNivelCurso = $nivelCurso OR $nivelCurso = 0)
+			  AND (c.codCurso = $codCurso OR $codCurso = 0)
+			  AND (ccr.codCcr = $codCcr OR $codCcr = 0)
+			  AND (d.idDominio = $idDominio OR $idDominio = 0)
+			  AND (s.siape = $siape OR $siape = 0)";
+     
+		$r = dbConsulta($sql);
+		return $r;
+	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 

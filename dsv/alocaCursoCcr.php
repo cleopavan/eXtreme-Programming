@@ -78,15 +78,19 @@
         <div class="col-md-12"> <!-- mudar para col-md-12-->      
             <!-- CODIGO DEVE SER IMPLEMENTADO NESTA AREA -->
             <!-- Nav tabs -->
+            
 				<ul class="nav nav-tabs" role="tablist">
-				  <li class="active"><a href="#alocar" role="tab" data-toggle="tab">Alocar servidor ao Ccr</a></li>
-				  <li><a href="#listServidor" role="tab" data-toggle="tab">Listar servidores alocados</a></li>
-				  <li><a href="#listCcr" role="tab" data-toggle="tab">Listar Ccrs alocadas</a></li>
+				  <li <?php if(isset($_SESSION['aba'])){}else echo 'class="active"'; ?> >
+                  <a href="#alocar" role="tab" data-toggle="tab">Alocar servidor ao Ccr</a></li>
+				  <li <?php if(isset($_SESSION['aba']) && $_SESSION['aba'] != 3) echo 'class="active"'; ?> >
+                  <a href="#listServidor" role="tab" data-toggle="tab">Listar servidores alocados</a></li>
+				  <li <?php if(isset($_SESSION['aba']) && $_SESSION['aba'] != 2) echo 'class="active"'; ?> >
+                  <a href="#listCcr" role="tab" data-toggle="tab">Listar Ccrs alocadas</a></li>
 				</ul>
 
 				<!-- Tab panes -->
 				<div class="tab-content">
-				  <div class="tab-pane active" id="alocar"></br>				  					   
+				  <div class="tab-pane <?php if(isset($_SESSION['aba'])){}else echo 'active'; ?> " id="alocar"></br>				  					   
 										  	
 							<div class="form-group">
 							 	<label for="inputSiape" class="col-sm-4 text-center">Servidor <hr></label>
@@ -223,10 +227,10 @@
 								<div class="col-sm-4 text-center"><!-- /col-sm-4 2º -->
 									<?php
 										if(isset($_SESSION['servidorSiape'])){
-											echo $_SESSION['servidorSiape']." ativo!<br>";
+											echo $_SESSION['servidorSiape']." selecionado!<br>";
 										}
 										else{
-											echo "Descrição dos dados do servidor após ser selecionado.";
+											//echo "Descrição dos dados do servidor após ser selecionado.";
 										}										
 									?>
 									</br></br></br></br></br>
@@ -301,16 +305,17 @@
 						</form>
 				  
 				  </div><!-- /Aba alocar -->
-				  <div class="tab-pane" id="listServidor"></br>
+				  <div class="tab-pane <?php if(isset($_SESSION['aba']) && $_SESSION['aba'] != 3) echo 'active'; ?> " id="listServidor"></br>
 				  		<div class="form-group">
 							 	<label for="inputSiape" class="col-sm-4 text-center">Selecione servidor <hr></label>
 							 	<button class="btn btn-success col-sm-4" data-toggle="modal" data-target=".bs-example-modal-lg">Buscar servidor</button>
 							 	<label for="inputSiape" class="col-sm-4 text-center">Selecione ano/semestre<hr></label>
 							</div>
-							<form action="alocarServidor.php" class="form-horizontal" role="form">
+							<form action="listarAlocaCursoCcr.php" class="form-horizontal" role="form">
+                            <input type="hidden" name="aba" value="2">
 							<div class="row">
 								<div class="col-sm-4"><!-- /col-sm-4 1º -->
-									<div class="col-sm-8">
+									<div class="col-sm-7">
 										<input type="text" class="form-control" id="inputSiape" placeholder="Siape">
 							 		</div>							 	
 									<button type="submit col-sm-2" class="btn btn-default">Validar Siape</button>
@@ -318,15 +323,12 @@
 								<div class="col-sm-4"><!-- /col-sm-4 2º --></div>
 								<div class="col-sm-4">
 									 <select class="form-control" name="anoSemestre">
-									  <option value="">Selecione ano/semestre</option>	
-								  	  <option value="2014/1">2014/1</option>
-								  	  <option value="2014/2">2014/2</option>
-								  	  <option value="2015/1">2015/1</option>
-								  	  <option value="2015/2">2015/2</option>
-								  	  <option value="2016/1">2016/1</option>
-								  	  <option value="2016/2">2016/2</option>
-								  	  <option value="2017/1">2017/1</option>
-								  	  <option value="2017/2">2017/2</option>
+                                     <?php
+									 	for($dataAtual = date('Y');$dataAtual <= date('Y')+2;$dataAtual++){
+											echo '<option value="'.$dataAtual.'/1">'.$dataAtual.'/1</option>';
+											echo '<option value="'.$dataAtual.'/2">'.$dataAtual.'/2</option>';
+										}
+									 ?>
 								  	</select>
 								</div><!-- /col-sm-4 3º -->							
 							</div><!-- /row 1º -->
@@ -336,10 +338,11 @@
 								<button type="submit" class="btn btn-success col-sm-4 col-md-offset-4">Atualizar tabela</button><hr>
 								</div>
 								<div class="col-sm-4"><!-- /col-sm-4 3º --></div>															
-							</div><!-- /row 5º -->
-							
+							</div><!-- /row 5º -->							
 							</form>
-				  		<table class="table table-bordered">
+                            
+                            <?php listarServidorCursoCcr('2014/2', 0, 0, 0, 0, 0, 1) ?>
+				  		<!--<table class="table table-bordered">
 				  			<tr class="success text-center">
 				  				<td><strong>Titulo</strong></td>
 				  				<td><strong>Titulo</strong></td>
@@ -367,9 +370,9 @@
 				  			<tr class="success"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
 				  			<tr class="active"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
 				  			<tr class="success"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-						</table>
+						</table> -->
 				  </div><!-- /Aba listServidor -->
-				  <div class="tab-pane" id="listCcr"></br>
+				  <div class="tab-pane <?php if(isset($_SESSION['aba']) && $_SESSION['aba'] != 2) echo 'active'; ?> " id="listCcr"></br>
 				  		<div class="form-group">
 							 	<label for="inputSiape" class="col-sm-4 text-center">Selecione Curso <hr></label>
 							 	<label for="inputSiape" class="col-sm-4 text-center"> - <hr></label>
