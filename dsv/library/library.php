@@ -176,6 +176,20 @@
 		
 		return $r;
 	}
+	
+	function constroiDadosInsertServidorCursoCcr($anoSemestre, $codCurso, $codCcr, $siape, $observacoes){
+		$data = array();
+		
+		$data['anoSemestre'] = addslashes($anoSemestre);
+		$data['codCurso'] = (int)addslashes($codCurso);
+		$data['codCcr'] = (int)addslashes($codCcr);
+		$data['siape'] = addslashes($siape);
+		$data['observacoes'] = addslashes($observacoes);
+		
+		$r = insertServidorCursoCcr($data);
+		
+		return $r;
+	}
 	/****************************************************Fim das funções de inserção****************************************/
 	/**/
 	/****************************************************Inicio das funções de seleção****************************************/
