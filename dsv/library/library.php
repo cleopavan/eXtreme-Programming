@@ -228,20 +228,20 @@
 			$filtro = 'nome';
 			$tabela = 'servidor';
 		}else if($filtro == 'curso'){//string
-			$filtro = 'codCurso';
-			$texto = (int)$texto;
+			$filtro = 'nomeCurso';
+			$texto = $texto;
 			$tabela = 'curso';
 		}else if($filtro == 'cargo'){//string
-			$filtro = 'idCargo';
-			$texto = (int)$texto;
-			$tabela = 'servidor';
+			$filtro = 'cargo';
+			$texto = $texto;
+			$tabela = 'cargo';
 		}
 		
 		$data['filtro'] = $filtro;
 		$data['texto'] = $texto;
 		$data['tabela'] = $tabela;
 		
-		$r = selectCcr($data);
+		$r = selectServidorDados($data);
 		
 		return $r;
 	}

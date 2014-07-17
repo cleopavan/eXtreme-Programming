@@ -11,8 +11,6 @@
 	session_start();
 	
 	if(isset($_POST['filter']) && isset($_POST['text']) && strlen($_POST['text']) > 0){
-		//echo $_POST['filter'];
-		//echo $_POST['text'];
 		$filtro = $_POST['filter'];
 		$texto = $_POST['text'];
 		
@@ -26,40 +24,38 @@
 				  <table class="table"> 
 					 <tr>
 					  <td>Siape</td>
-					  <td>Nome</td> 
-					  <td>Sobrenome</td>
-					  <td>Cargo</td>
-					  <td>Nível</td>
-					  <td>Jornada</td>
-					  <td>Situação</td>
-					  <td>Substituto</td>
-					  <td>Email</td>
-					  <td>Fone 1</td>
-					  <td>Fone 2</td>
-					  <td>Endereço</td>
-					  <td>Cidade</td>
-					  <td>Observação</td>
-					</tr> 
-					<tr>
+								<td>Siape</td> 
+								<td>Nome</td> 
+								<td>Sobrenome</td>
+								<td>Cargo</td>
+								<td>Jornada</td>
+								<td>Situação</td>
+								<td>Curso</td>
+								<td>Substituto</td>
+								<td>Email</td>
+								<td>Fone 1</td>
+								<td>Fone 2</td>
+								<td>Endereço</td>
+								<td>Cidade</td>
+								<td>Observação</td>
 					</tr>';
 					if (mysql_num_rows($retorno) > 0) {
 						while($row = mysql_fetch_assoc($retorno)){
-							echo "<tr> 
-								<td>".$row['siape']."</td>	
-								<td>".$row['nome']."</td>	
-								<td>".$row['sobrenome']."</td>	
-								<td>".$row['idCargo']."</td>	
-								<td>".$row['idNivelServidor']."</td>
-								<td>".$row['idJornada']."</td>
-								<td>".$row['idSituacaoServidor']."</td>
-								<td>".$row['quemSubstitui']."</td>
-								<td>".$row['email']."</td>	
-								<td>".$row['fone1']."</td>	
-								<td>".$row['fone2']."</td>	
-								<td>".$row['endereco']."</td>	
-								<td>".$row['cidade']."</td>	
-								<td>".$row['observacao']."</td>		
-							";
+							echo "<tr>";
+							echo "<td>".$row['siape']."</td>";
+							echo "<td>".$row['nome']."</td>";
+							echo "<td>".$row['sobrenome']."</td>";
+							echo "<td>".$row['cargo']."</td>";
+							echo "<td>".$row['jornada']."</td>";
+							echo "<td>".$row['situacao']."</td>";
+							echo "<td>".$row['nomeCurso']."</td>";
+							echo "<td>".$row['quemSubstitui']."</td>";
+							echo "<td>".$row['email']."</td>";
+							echo "<td>".$row['fone1']."</td>";
+							echo "<td>".$row['fone2']."</td>";
+							echo "<td>".$row['endereco']."</td>";
+							echo "<td>".$row['cidade']."</td>";
+							echo "<td>".$row['observacao']."</td>";
 							echo '</tr>';
 						}
 					}
@@ -70,7 +66,7 @@
 	}else {// tratar erro
 		
 		$_SESSION['erro'] = true;
-		header('Location: ccr.php');
+		header('Location: servidor.php');
 		exit();
 	}
 

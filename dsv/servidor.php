@@ -66,21 +66,33 @@
                     <h4> Buscar servidor </h4>
                     <div class="row">
                         <div class="col-lg-6">
+							<form action="consultaServidor.php"  method="post">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Buscar servidor">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Buscar por</button>
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span></button>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="#">Siape</a></li>
-                                        <li><a href="#">Nome</a></li>
-                                        <li><a href="#">Email</a></li>
-                                    </ul>
-                                </div><!-- /input-group-btn -->
-                            </div><!-- /input-group -->
+                                <input type="text" class="form-control" name="text" placeholder="Buscar servidor">
+									<div class="input-group-btn">
+										<span class="input-group-btn">
+											<button type="submit" class="btn btn-default" >BUSCAR</button>											
+											
+										</span>		
+									</div>
+								</div><!-- /input-group-btn -->
+								<input type="radio" name="filter" value="siape">
+								<label for="siape">Siape</label>
+								
+								<input type="radio" name="filter" value="nome">
+								<label for="nome">Nome</label>
+								
+								<input type="radio" name="filter" value="curso">
+								<label for="curso">Curso</label>
+										
+								<input type="radio" name="filter" value="cargo">
+								<label for="cargo">Cargo </label>
+							</form>			
                         </div><!-- /col-lg-6 -->
                     </div><!-- /row -->
                 </div><!-- /tab-pane buscar -->
+								
+				
     
                 <div class="tab-pane" id="cadastrar">			  
                     <h4> Cadastrar servidor </h4>

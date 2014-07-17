@@ -359,6 +359,42 @@
 		return $r;
 		
 	}
+	////////////////////////////////////////
+	function selectServidorDados($data){
+		$filtro = $data['filtro'];
+		$texto = $data['texto'];
+		$tabela = $data['tabela'];
+		
+		$sql = "SELECT DISTINCT curso.nomeCurso, servidor.siape, servidor.nome, servidor.sobrenome, servidor.observacao, servidor.quemSubstitui, cargo.cargo, jornada.jornada,
+		 situacaoServidor.situacao, servidor.email, servidor.fone1, servidor.fone2, servidor.endereco, servidor.cidade FROM servidorCursoCcr
+		 JOIN servidor USING ( siape ) JOIN jornada USING ( idJornada ) JOIN cargo USING ( idCargo ) 
+		 JOIN situacaoServidor USING ( idSituacaoServidor ) JOIN cursoCcr USING ( codCurso ) JOIN curso USING ( codCurso ) 
+		 WHERE servidor.regValido=1 AND jornada.regValido=1 AND cargo.regValido=1 AND situacaoServidor.regValido=1 AND curso.regValido = 1 AND ";
+		
+		
+		if($tabela == 'servidor'){
+			if($filtro == 'nome'){
+				$sql = $sql . "servidor.$filtro like '%$texto%' OR servidor.sobrenome like '%$texto%'";
+			}else if($filtro == 'siape'){
+				$sql = $sql . "servidor.$filtro like '%$texto%'";
+			}else{
+				//erro
+			}
+		}else if($tabela == 'cargo'){
+			$sql = $sql . "cargo.$filtro like '%$texto%'";
+		}else if($tabela == 'curso'){
+			$sql = $sql . "curso.$filtro like '%$texto%'";
+		}else{
+			return false;
+		}
+		$r = dbConsulta($sql);
+		
+		return $r;
+		
+	}
+	
+		
+	/////////////////////
 	
 	function selectDominio($data){
 		$id = $data['id'];
