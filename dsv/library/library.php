@@ -176,6 +176,20 @@
 		
 		return $r;
 	}
+	
+	function constroiDadosInsertServidorCursoCcr($anoSemestre, $codCurso, $codCcr, $siape, $observacoes){
+		$data = array();
+		
+		$data['anoSemestre'] = addslashes($anoSemestre);
+		$data['codCurso'] = (int)addslashes($codCurso);
+		$data['codCcr'] = (int)addslashes($codCcr);
+		$data['siape'] = addslashes($siape);
+		$data['observacoes'] = addslashes($observacoes);
+		
+		$r = insertServidorCursoCcr($data);
+		
+		return $r;
+	}
 	/****************************************************Fim das funções de inserção****************************************/
 	/**/
 	/****************************************************Inicio das funções de seleção****************************************/
@@ -352,7 +366,7 @@
 		return $r;
 	}
 	
-	function constroiDadosCurso($codCurso, $nome, $idNivelCurso){
+	function constroiDadosUpdateCurso($codCurso, $nome, $idNivelCurso){
 		$data = Array();
 		$data['codCurso'] = addslashes($codCurso);
 		$data['nome'] = addslashes($nome);
@@ -823,13 +837,28 @@
 		sqlExcluiCargo($cargo);
 	}
 	
-	function insereServidor($inputSiape, $inputNome,$inputSobrenome, $inputEmail, $inputSenha,
+	function insereServidor($inputSiape, $inputNome,$inputSobrenome, $inputEmail,
 	                $inputEndereco, $inputCidade, $inputTelefone, $inputCelular,
 	                $inputCargo, $inputJornada, $inputSituacao, $inputDataEntrada, $inputDataSaida,
 	                $inputNivel, $inputSubstituto, $inputObservacao){
+	    $pass = geraSenha(8, true, true, false);
+		$encryptedPassword = md5($pass . '' . SAL);
+		$inputSenha=$encryptedPassword;
 		sqlInsereServidor($inputSiape, $inputNome,$inputSobrenome, $inputEmail, $inputSenha,
 	    $inputEndereco, $inputCidade, $inputTelefone, $inputCelular, $inputCargo, $inputJornada, $inputSituacao, $inputDataEntrada,
 	    $inputDataSaida, $inputNivel, $inputSubstituto, $inputObservacao);
 	}
 /*FIM FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/	
+
+
+/* INÍCIO FUNÇÕES DESENVOLVIDAS POR ANDREI TOLEDO */
+
+	function constroiDadosSelectNivelCurso(){
+		$rertorno = selectNivelCurso();
+		
+		return $retorno;
+	}
+
+/* FIM DAS FUNÇÕES DESENVOLVIDAS POR ANDREI TOLEDO*/
+
 ?>
