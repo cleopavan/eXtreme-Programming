@@ -51,7 +51,7 @@
 	             	insereServidor($_POST["inputSiape"], $_POST["inputNome"], 
 	                $_POST["inputSobrenome"], $_POST["inputEmail"],
 	                $_POST["inputEndereco"], $_POST["inputCidade"], $_POST["inputTelefone"], $_POST["inputCelular"],
-	                $_POST["inputCargo"], $_POST["inputJornada"], $_POST["$inputSituacao"], $_POST["inputDataEntrada"], $_POST["inputDataSaida"],
+	                $_POST["inputCargo"], $_POST["inputJornada"], $_POST["inputSituacao"], $_POST["inputDataEntrada"], $_POST["inputDataSaida"],
 	                $_POST["inputNivel"], $_POST["inputSubstituto"], $_POST["inputObservacao"]);
 		            echo '<div class="tab-pane active" id="inicial">
 	                    <div class="alert alert-success alert-dismissable">
