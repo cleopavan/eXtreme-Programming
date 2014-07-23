@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	require_once dirname(__FILE__).'/../ink/database.php';//banco de dados
 
 	function test(){

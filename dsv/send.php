@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	//INÍCIO DO HEADER
 	require_once "library/library.php";
 	if(!isset($_SESSION)) session_start();
