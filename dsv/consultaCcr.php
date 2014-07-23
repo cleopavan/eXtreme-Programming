@@ -38,7 +38,7 @@
 								<td>".$row['nomeCcr']."</td>	
 								<td>".$row['codCcr']."</td>	
 								<td>".$row['cHoraria']."</td>	
-								<td>".$row['idDominio']."</td>	
+								<td>".$row['nomeDominio']."</td>	
 							";
 							echo '</tr>';
 						}
