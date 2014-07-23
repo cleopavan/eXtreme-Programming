@@ -153,15 +153,17 @@
 		return $r;
 	}
 	
-	function constroiDadosInsertCcr($codCcr, $nome, $cHoraria, $idDominio){
+	function constroiDadosInsertCcr($codCcr, $nome, $cHoraria, $idDominio, $codCurso){
 		$data = Array();
 		$data['codCcr'] = addslashes($codCcr);
 		$data['nome'] = addslashes($nome);
 		$data['cHoraria'] = addslashes($cHoraria);
 		$data['idDominio'] = addslashes($idDominio);
+		$data['codCurso'] = addslashes($codCurso);
 		$data['regValido'] = 1;
 		
 		$r = insertCcr($data);
+		$r = insertCursoCcr($data);
 		
 		return $r;
 	}
@@ -211,12 +213,12 @@
 			$texto = (int)$texto;
 			$tabela = 'ccr';
 		}else if($filtro == 'domin'){//string
-			$filtro = 'idDominio';
-			$texto = (int)$texto;
-			$tabela = 'ccr';
+			$filtro = 'nomeDominio';
+			$texto = $texto;
+			$tabela = 'dominio';
 		}else if($filtro == 'curso'){//string
-			$filtro = 'codCurso';
-			$texto = (int)$texto;
+			$filtro = 'nomeCurso';
+			$texto = $texto;
 			$tabela = 'curso';
 		}
 		
@@ -225,6 +227,11 @@
 		$data['tabela'] = $tabela;
 		
 		$r = selectCcr($data);
+		
+		return $r;
+	}
+	function constroiDadosSelectCursoInfo(){
+		$r = selectCursoInfo();
 		
 		return $r;
 	}
@@ -592,6 +599,18 @@
 		return $r;
 	}
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
+	function insereServidorCursoCcr($anoSemestre,$codCurso,$codCcr,$siape,$observacoes){
+		$dados['anoSemestre'] = $anoSemestre;
+		$dados['codCurso'] = $codCurso;
+		$dados['codCcr'] = $codCcr;
+		$dados['siape'] = $siape;
+		$dados['observacoes'] = $observacoes;
+		
+		$result = insertServidorCursoCcr($dados);
+		
+		return $result;
+	}
+	
 	function listarServidor(){
 		$resultado = selectServidor();
 		echo '<kbd>Usuários TESTE existentes:</kbd></br></br>';	
@@ -714,50 +733,11 @@
 		
 	}
 	
-	function listarServidorCursoCcr($anoSemestre, $nivelCurso, $codCurso, $codCcr, $idDominio, $siape, $buscando){
+	function listarServidorCursoCcr($anoSemestre, $nivelCurso, $codCurso, $codCcr, $idDominio, $siape){
 
-		if($buscando)
 		$resultado = selectServidorCursoCcr($anoSemestre, $nivelCurso, $codCurso, $codCcr, $idDominio, $siape);
-	
-		$linha = 0;
-		echo'<table class="table table-bordered">';
-			echo'<tr class="success text-center">';
-				echo'<td><strong>Nível</strong></td>';
-				echo'<td><strong>Curso</strong></td>';
-				echo'<td><strong>Ccr</strong></td>';
-				echo'<td><strong>Domínio</strong></td>';
-				echo'<td><strong>Siape</strong></td>';
-				echo'<td><strong>Professor</strong></td>';
-				echo'<td><strong>Carga horária</strong></td>';
-			echo'</tr>';
-		if($buscando)	
-		while($row = mysql_fetch_array($resultado)){
-			if(!$linha){	
-				echo'<tr class="active">';
-					echo'<td>'.$row['nomeNivelCurso'].'</td>';
-					echo'<td>'.$row['codCurso'].' - '.$row['nomeCurso'].'</td>';
-					echo'<td>'.$row['codCcr'].' - '.$row['nomeCcr'].'</td>';
-					echo'<td>'.$row['nomeDominio'].'</td>';
-					echo'<td>'.$row['siape'].'</td>';
-					echo'<td>'.$row['nome'].' '.$row['sobrenome'].'</td>';
-					echo'<td>'.$row['cHoraria'].'</td>';
-				echo'</tr>';
-				$linha = 1;
-			}else
-			if($linha){
-				echo'<tr class="success">';
-					echo'<td>'.$row['nomeNivelCurso'].'</td>';
-					echo'<td>'.$row['codCurso'].' - '.$row['nomeCurso'].'</td>';
-					echo'<td>'.$row['codCcr'].' - '.$row['nomeCcr'].'</td>';
-					echo'<td>'.$row['nomeDominio'].'</td>';
-					echo'<td>'.$row['siape'].'</td>';
-					echo'<td>'.$row['nome'].' '.$row['sobrenome'].'</td>';
-					echo'<td>'.$row['cHoraria'].'</td>';
-				echo'</tr>';
-				$linha = 0;
-			}
-		}
-		echo'</table>';						
+		//resultado
+		return $resultado;				
 	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/

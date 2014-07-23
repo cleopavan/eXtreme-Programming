@@ -47,7 +47,6 @@
             <ul class="nav nav-tabs">
             <li><a href="#buscar" data-toggle="tab">Buscar</a></li>
             <li><a href="#cadastrar" data-toggle="tab">Cadastrar</a></li>
-            <li><a href="#editar" data-toggle="tab">Editar</a></li>
             </ul>
 			
 			<?php 
@@ -55,7 +54,7 @@
 			if(isset($_GET['e']))
 			
 			echo '<div class="tab-pane active" id="inicial">
-                        <div class="alert alert-danger alert-dismissable">
+                        <div class="alert alert-success alert-dismissable">
                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         '.urldecode($_GET['e']).'
                      </div>
@@ -76,16 +75,6 @@
                         <?php include("cursos/cadastrar.php"); ?>
                 	</div><!-- /tab-pane inicial --> 
                 </div><!-- /tab-pane cadastrar -->
-                
-                <div class="tab-pane" id="editar">
-                   <div class="tab-pane active" id="inicial">
-                        <div class='alert alert-danger alert-dismissable'>
-                           <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-                           <strong>Success!</strong> EstÃ¡ Ã© apenas a pagina de modelo 1.
-                        </div>
-                	</div><!-- /tab-pane inicial -->  		  
-                </div><!-- /tab-pane editar -->
-                
             </div><!-- /tab-content -->
         </div><!-- /col-md-12 -->                 
     </div><!-- /row --> 

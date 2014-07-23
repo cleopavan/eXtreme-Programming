@@ -22,7 +22,7 @@
 		$nvl = $_POST['idNvlCurso'];
 				
 		if(isset($_POST['codCurso']) && isset($_POST['nomeCurso']) && isset($_POST['idNvlCurso'])){
-			
+			if(empty($cod)) header("Location: cursos.php");
 			$sql = constroiDadosInsertCurso($cod, $nome, $nvl);
 			if ($sql){
 				$retorno = "Curso cadastrado com sucesso!";
