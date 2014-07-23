@@ -340,7 +340,7 @@
 		$texto = $data['texto'];
 		$tabela = $data['tabela'];
 		
-		$sql = "SELECT DISTINCT nomeCcr, ccr.codCcr, cHoraria, idDominio FROM cursoCcr JOIN curso USING(codCurso) JOIN ccr USING(codCcr) WHERE cursoCcr.regValido=1 AND curso.regValido=1 AND ccr.regValido=1 AND ";
+		$sql = "SELECT DISTINCT nomeCcr, ccr.codCcr, cHoraria, nomeDominio FROM cursoCcr JOIN curso USING(codCurso) JOIN ccr USING(codCcr) JOIN dominio USING(idDominio) WHERE cursoCcr.regValido=1 AND curso.regValido=1 AND dominio.regValido=1 AND ccr.regValido=1 AND ";
 		
 		if($tabela == 'curso'){
 			$sql = $sql . "curso.$filtro like '%$texto%'";
@@ -350,8 +350,8 @@
 			}else{
 				$sql = $sql . "ccr.$filtro=$texto";
 			}
-		}else{
-			return false;
+		}else if($tabela == 'dominio'){
+			$sql = $sql . "dominio.$filtro like '%$texto%'";
 		}
 		
 		$r = dbConsulta($sql);

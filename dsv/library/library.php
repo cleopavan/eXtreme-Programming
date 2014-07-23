@@ -213,9 +213,9 @@
 			$texto = (int)$texto;
 			$tabela = 'ccr';
 		}else if($filtro == 'domin'){//string
-			$filtro = 'idDominio';
-			$texto = (int)$texto;
-			$tabela = 'ccr';
+			$filtro = 'nomeDominio';
+			$texto = $texto;
+			$tabela = 'dominio';
 		}else if($filtro == 'curso'){//string
 			$filtro = 'nomeCurso';
 			$texto = $texto;
