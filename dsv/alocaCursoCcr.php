@@ -14,16 +14,20 @@
 	}
 	if(isset($_POST['nivel'])){
 		$_SESSION['nivel'] = $_POST['nivel'];
+		$_SESSION['aba'] = NULL;
 	}
 	if(isset($_POST['curso'])){
 		$_SESSION['curso'] = $_POST['curso'];
 		$_SESSION['ccr'] = NULL;
+		$_SESSION['aba'] = NULL;
 	}
 	if(isset($_POST['ccr'])){
 		$_SESSION['ccr'] = $_POST['ccr'];
+		$_SESSION['aba'] = NULL;
 	}
 	if(isset($_POST['anoSemestre'])){
 		$_SESSION['anoSemestre'] = $_POST['anoSemestre'];
+		$_SESSION['aba'] = NULL;
 	}
 	if(isset($_POST['desfazer'])){
 		$_SESSION['siape'] = NULL;
@@ -32,17 +36,34 @@
 		$_SESSION['ccr'] = NULL;
 		$_SESSION['anoSemestre'] = NULL;
 		$_SESSION['obs'] = NULL;
+		$_SESSION['aba'] = NULL;
 	}
 	if(isset($_POST['validar'])){
 		if(isset($_POST['siape']) && !isset($_SESSION['siape'])){
-			$servidor = mostraServidorSelecionado($_POST['siape']);
+			if(!empty($_POST['siape'])){
+				$servidor = mostraServidorSelecionado($_POST['siape']);
 			
-			$_SESSION['siape'] = $servidor['siape'];
-			$_SESSION['servidorSiape'] = $servidor['nome'] ." ". $servidor['sobrenome'];
+				if($servidor != NULL){
+					$_SESSION['siape'] = $servidor['siape'];
+					$_SESSION['servidorSiape'] = $servidor['nome'] ." ". $servidor['sobrenome'];
+				}
+				else{
+					$_SESSION['servidorSiape'] = "Não foi possível encontrar este Siape";
+					$_SESSION['erroSiape'] = 1;
+				}
+			}
+			else{
+				$_SESSION['servidorSiape'] = "Não foi possível encontrar este Siape";
+				$_SESSION['erroSiape'] = 1;
+			}
 		}
+		$_SESSION['aba'] = NULL;
 	}
 	if(isset($_POST['alocar'])){
-		//$deuCerto = constroiDadosInsertServidorCursoCcr($_SESSION['anoSemestre'],$_SESSION['curso'],$_SESSION['ccr'],$_SESSION['siape'],$_SESSION['obs']);
+		if(isset($_POST['obs'])){
+			$_SESSION['obs'] = $_POST['obs'];
+		}
+		$deuCerto = insereServidorCursoCcr($_SESSION['anoSemestre'],$_SESSION['curso'],$_SESSION['ccr'],$_SESSION['siape'],$_SESSION['obs']);
 		$_SESSION['deuCerto'] = 1;
 		$_SESSION['siape'] = NULL;
 		$_SESSION['servidorSiape'] = NULL;
@@ -50,6 +71,23 @@
 		$_SESSION['ccr'] = NULL;
 		$_SESSION['anoSemestre'] = NULL;
 		$_SESSION['obs'] = NULL;
+		$_SESSION['aba'] = NULL;
+	}
+	if(isset($_POST['atualizar'])){
+		if(isset($_POST['atua_siape']) && !empty($_POST['atua_siape'])){
+			if(isset($_POST['atua_anosemestre']) && !empty($_POST['atua_anosemestre'])){
+				$resultado = listarServidorCursoCcr($_POST['atua_anosemestre'], 0, 0, 0, 0, $_POST['atua_siape']);
+				$_SESSION['atualizar'] = 1;
+				$_SESSION['atualizarResultado'] = $resultado;
+			}
+			else{
+				$_SESION['atualizar'] = 0;
+			}
+		}
+		else{
+			$_SESSION['atualizar'] = 0;
+		}
+		$_SESSION['aba'] = 2;
 	}
 ?>
 <!DOCTYPE html>
@@ -95,7 +133,7 @@
 							<div class="form-group">
 							 	<label for="inputSiape" class="col-sm-4 text-center">Servidor <hr></label>
 							 	<button class="btn btn-success col-sm-4" data-toggle="modal" data-target=".bs-example-modal-lg">Buscar servidor</button>
-							 	<label for="inputSiape" class="col-sm-4 text-center">CursoCcr <hr></label>
+							 	<label for="inputSiape" class="col-sm-4 text-center">Selecionar Cursos CCR <hr></label>
 							</div>
 							<form action="alocaCursoCcr.php" class="form-horizontal" role="form" enctype="multipart/form-data" method="post">
 							
@@ -105,11 +143,12 @@
 										<input type="number" name="siape" <?php if(isset($_SESSION['siape'])) echo "value='".$_SESSION['siape']."'"; ?> class="form-control" id="inputSiape" placeholder="Siape">
 									</div>
 										<?php						 	
-											if(isset($_SESSION['servidorSiape'])){
+											if(!isset($_SESSION['erroSiape']) && isset($_SESSION['servidorSiape'])){
 												echo "<button name='desfazer' value='1' type='submit' class='btn btn-default'>Desfazer</button>";
 											}
 											else{
 												echo "<button name='validar' value='1' type='submit' class='btn btn-default'>Validar Siape</button>";
+												$_SESION['erroSiape'] = NULL;
 											}
 										?>
 									
@@ -226,11 +265,15 @@
 								<div class="col-sm-4"><!-- /col-sm-4 1º --></div>
 								<div class="col-sm-4 text-center"><!-- /col-sm-4 2º -->
 									<?php
-										if(isset($_SESSION['servidorSiape'])){
+										if(!isset($_SESSION['erroSiape']) && isset($_SESSION['servidorSiape'])){
 											echo $_SESSION['servidorSiape']." selecionado!<br>";
 										}
 										else{
-											//echo "Descrição dos dados do servidor após ser selecionado.";
+											if(isset($_SESSION['erroSiape'])){
+												echo $_SESSION['servidorSiape'];
+												$_SESSION['servidorSiape'] = NULL;
+												$_SESSION['erroSiape'] = NULL;
+											}
 										}										
 									?>
 									</br></br></br></br></br>
@@ -238,12 +281,12 @@
 								<div class="col-sm-4"><!-- /col-sm-4 3º -->
 									<br>
 									<?php
-										echo "<label for='inputSiape' class='col-sm-12 text-center'>CursoCcr</label>";
+										echo "<label for='inputSiape' class='col-sm-12 text-center'>Observações</label>";
 										if(isset($_SESSION['siape'])){
-											echo "<textarea class='form-control' rows='3' resize:none>";
+											echo "<textarea name='obs' class='form-control' rows='3' resize:none>";
 										}
 										else{
-											echo "<textarea class='form-control' rows='3' resize='false' disabled>";
+											echo "<textarea name='obs' class='form-control' rows='3' resize='false' disabled>";
 										}
 									?>
 									</textarea>
@@ -263,13 +306,13 @@
 										
 										echo "<option value=''>Selecione ano/semestre</option>";
 										if(!isset($_SESSION['anoSemestre'])){
-											for($dataAtual = date('Y');$dataAtual <= date('Y')+2;$dataAtual++){
+											for($dataAtual = date('Y');$dataAtual <= date('Y');$dataAtual++){
 												echo "<option value='".$dataAtual."/1'>".$dataAtual."/1</option>";
 												echo "<option value='".$dataAtual."/2'>".$dataAtual."/2</option>";
 											}
 										}
 										else{
-											for($dataAtual = date('Y');$dataAtual <= date('Y')+2;$dataAtual++){
+											for($dataAtual = date('Y');$dataAtual <= date('Y');$dataAtual++){
 												$dataAtual1 = $dataAtual."/1";
 												$dataAtual2 = $dataAtual."/2";
 												if($dataAtual1 == $_SESSION['anoSemestre']){
@@ -307,26 +350,54 @@
 				  </div><!-- /Aba alocar -->
 				  <div class="tab-pane <?php if(isset($_SESSION['aba']) && $_SESSION['aba'] != 3) echo 'active'; ?> " id="listServidor"></br>
 				  		<div class="form-group">
-							 	<label for="inputSiape" class="col-sm-4 text-center">Selecione servidor <hr></label>
-							 	<button class="btn btn-success col-sm-4" data-toggle="modal" data-target=".bs-example-modal-lg">Buscar servidor</button>
-							 	<label for="inputSiape" class="col-sm-4 text-center">Selecione ano/semestre<hr></label>
+							 	<label for="inputSiape" class="col-sm-4 text-center">Informar servidor </label>
+							 	<!--<button class="btn btn-success col-sm-4" data-toggle="modal" data-target=".bs-example-modal-lg" disabled>Buscar servidor</button>-->
+							 	<div class="col-sm-4">
+									
+							 	</div>
+							 	<label for="inputSiape" class="col-sm-4 text-center">Ano/semestre</label>
+							 	<br>
 							</div>
-							<form action="listarAlocaCursoCcr.php" class="form-horizontal" role="form">
+							<form action="alocaCursoCcr.php" class="form-horizontal" role="form" enctype="multipart/form-data" method="post">
                             <input type="hidden" name="aba" value="2">
 							<div class="row">
 								<div class="col-sm-4"><!-- /col-sm-4 1º -->
-									<div class="col-sm-7">
-										<input type="text" class="form-control" id="inputSiape" placeholder="Siape">
+									<div class="col-sm-10">
+										<input name="atua_siape" type="text" class="form-control" id="inputSiape" placeholder="Siape">
 							 		</div>							 	
-									<button type="submit col-sm-2" class="btn btn-default">Validar Siape</button>
 								</div>
-								<div class="col-sm-4"><!-- /col-sm-4 2º --></div>
 								<div class="col-sm-4">
-									 <select class="form-control" name="anoSemestre">
+								<button type="submit" value='1' name='atualizar' class="btn btn-success col-sm-5 col-md-offset-4">Atualizar tabela</button><br>
+								</div>
+								<div class="col-sm-3 col-md-offset-1">
+									 <select class="form-control" name="atua_anosemestre">
                                      <?php
-									 	for($dataAtual = date('Y');$dataAtual <= date('Y')+2;$dataAtual++){
-											echo '<option value="'.$dataAtual.'/1">'.$dataAtual.'/1</option>';
-											echo '<option value="'.$dataAtual.'/2">'.$dataAtual.'/2</option>';
+									 	echo "<option value=''>Selecione ano/semestre</option>";
+										if(!isset($_SESSION['anoSemestre'])){
+											for($dataAtual = date('Y');$dataAtual <= date('Y');$dataAtual++){
+												echo "<option value='".$dataAtual."/1'>".$dataAtual."/1</option>";
+												echo "<option value='".$dataAtual."/2'>".$dataAtual."/2</option>";
+											}
+										}
+										else{
+											for($dataAtual = date('Y');$dataAtual <= date('Y');$dataAtual++){
+												$dataAtual1 = $dataAtual."/1";
+												$dataAtual2 = $dataAtual."/2";
+												if($dataAtual1 == $_SESSION['anoSemestre']){
+													echo "<option value='".$dataAtual1."' selected>".$dataAtual1."</option>";
+													echo "<option value='".$dataAtual2."'>".$dataAtual2."</option>";
+												}
+												else{
+													if($dataAtual2 == $_SESSION['anoSemestre']){
+														echo "<option value='".$dataAtual1."'>".$dataAtual1."</option>";
+														echo "<option value='".$dataAtual2."' selected>".$dataAtual2."</option>";
+													}
+													else{
+														echo "<option value='".$dataAtual1."'>".$dataAtual1."</option>";
+														echo "<option value='".$dataAtual2."'>".$dataAtual2."</option>";
+													}
+												}
+											}
 										}
 									 ?>
 								  	</select>
@@ -335,42 +406,80 @@
 							<div class="row">
 								<div class="col-sm-4"><!-- /col-sm-4 1º --></div>
 								<div class="col-sm-4"><!-- /col-sm-4 2º -->
-								<button type="submit" class="btn btn-success col-sm-4 col-md-offset-4">Atualizar tabela</button><hr>
 								</div>
 								<div class="col-sm-4"><!-- /col-sm-4 3º --></div>															
 							</div><!-- /row 5º -->							
 							</form>
                             
-                            <?php listarServidorCursoCcr('2014/2', 0, 0, 0, 0, 0, 1) ?> <!-- E AGORA ISAC??-->
-				  		<!--<table class="table table-bordered">
-				  			<tr class="success text-center">
-				  				<td><strong>Titulo</strong></td>
-				  				<td><strong>Titulo</strong></td>
-				  				<td><strong>Titulo</strong></td>
-				  				<td><strong>Titulo</strong></td>
-				  				<td><strong>Titulo</strong></td>
-				  			</tr>
-							<tr class="active">
-				  				<td>...</td>
-				  				<td>...</td>
-				  				<td>...</td>
-				  				<td>...</td>
-				  				<td>...</td>
-				  			</tr>
-				  			<tr class="success">
-				  				<td>...</td>
-				  				<td>...</td>
-				  				<td>...</td>
-				  				<td>...</td>
-				  				<td>...</td>
-				  			</tr>
-				  			<tr class="active"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-				  			<tr class="success"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-				  			<tr class="active"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-				  			<tr class="success"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-				  			<tr class="active"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-				  			<tr class="success"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-						</table> -->
+                            <!--<iframe name='tabela'>-->
+                            <?php
+								echo'<br>';
+								echo'<table class="table table-bordered">';
+									echo'<tr class="success text-center">';
+										echo'<td><strong>Nível</strong></td>';
+										echo'<td><strong>Curso</strong></td>';
+										echo'<td><strong>Ccr</strong></td>';
+										echo'<td><strong>Domínio</strong></td>';
+										echo'<td><strong>Siape</strong></td>';
+										echo'<td><strong>Professor</strong></td>';
+										echo'<td><strong>Carga horária</strong></td>';
+									echo'</tr>';
+									if(isset($_SESSION['atualizar']) && $_SESSION['atualizar'] == 0){
+										echo '<tr class="active text-center">';
+											echo '<td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
+										echo '</tr>';
+										echo "<h5 class='text-center'>Necessário informar os parâmetros</h5>";
+										$_SESSION['atualizar'] = NULL;
+									}
+									else{
+										$linha = 0;
+										if(isset($_SESSION['atualizar']) && $_SESSION['atualizar'] == 1){
+											$_SESSION['atualizar'] = NULL;
+											$row = mysql_fetch_array($_SESSION['atualizarResultado']);
+											if($row == NULL){
+												echo '<tr class="active text-center">';
+													echo '<td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
+												echo '</tr>';
+												echo "<h5 class='text-center'>Nenhuma CCR alocada para este Siape</h5>";
+												$_SESSION['atualizarResultado'] = NULL;
+											}
+											else{
+												do{
+													if(!$linha){	
+														echo'<tr class="active">';
+															echo'<td>'.$row['nomeNivelCurso'].'</td>';
+															echo'<td>'.$row['codCurso'].' - '.$row['nomeCurso'].'</td>';
+															echo'<td>'.$row['codCcr'].' - '.$row['nomeCcr'].'</td>';
+															echo'<td>'.$row['nomeDominio'].'</td>';
+															echo'<td>'.$row['siape'].'</td>';
+															echo'<td>'.$row['nome'].' '.$row['sobrenome'].'</td>';
+															echo'<td>'.$row['cHoraria'].'</td>';
+														echo'</tr>';
+														$linha = 1;
+													}else
+													if($linha){
+														echo'<tr class="success">';
+															echo'<td>'.$row['nomeNivelCurso'].'</td>';
+															echo'<td>'.$row['codCurso'].' - '.$row['nomeCurso'].'</td>';
+															echo'<td>'.$row['codCcr'].' - '.$row['nomeCcr'].'</td>';
+															echo'<td>'.$row['nomeDominio'].'</td>';
+															echo'<td>'.$row['siape'].'</td>';
+															echo'<td>'.$row['nome'].' '.$row['sobrenome'].'</td>';
+															echo'<td>'.$row['cHoraria'].'</td>';
+														echo'</tr>';
+														$linha = 0;
+													}
+												} while($row = mysql_fetch_array($_SESSION['atualizarResultado']));
+											}
+										}
+										else{
+											echo '<tr class="active text-center">';
+												echo '<td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
+											echo '</tr>';
+										}
+									}
+								echo'</table>';
+							?>
 				  </div><!-- /Aba listServidor -->
 				  <div class="tab-pane <?php if(isset($_SESSION['aba']) && $_SESSION['aba'] != 2) echo 'active'; ?> " id="listCcr"></br>
 				  		<div class="form-group">
