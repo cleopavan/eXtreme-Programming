@@ -66,17 +66,7 @@
                     <h4> Buscar CCR </h4>
                     <div class="row">
                         <div class="col-lg-6">
-                            <form action="consultaCcr.php"  method="post">
-								<div class="input-group">
-									<input type="text" class="form-control" name="text" placeholder="Buscar ccr">
-									<div class="input-group-btn"  >
-										<span class="input-group-btn">
-											<button type="submit" class="btn btn-default" >BUSCAR</button>											
-											
-										</span>
-										
-									</div>
-								</div><!-- /input-group-btn -->
+                            <form action="consultaCcr.php"  method="post">	
 								
 								<input type="radio" name="filter" value="nome">
 								<label for="Nome">Nome  </label>
@@ -95,6 +85,16 @@
 								
 								<input type="radio" name="filter" value="curso">
 								<label for="curso">Curso  </label>	
+								<div class="input-group">
+									<input type="text" class="form-control" name="text" placeholder="Buscar ccr">
+									<div class="input-group-btn"  >
+										<span class="input-group-btn">
+											<button type="submit" class="btn btn-default" >BUSCAR</button>											
+											
+										</span>
+										
+									</div>
+								</div><!-- /input-group-btn -->
 							</form>			
                         </div><!-- /col-lg-6 -->
                     </div><!-- /row -->
@@ -121,13 +121,31 @@
                                 <input type="text" class="form-control" name="ch" id="inputCH" placeholder="Carga Horária">
                             </div>
                         </div>
+						<div class="form-group">
+                            <label for="inputCurso" class="col-sm-2 control-label">Curso</label>
+                            <div class="col-sm-3">
+								<select class="form-control" name="curso">
+								<?php
+									$r = constroiDadosSelectCursoInfo();
+									if(mysql_num_rows($r) > 0){
+										while($row = mysql_fetch_assoc($r)){
+											echo '<option value="'.$row['codCurso'].'">'.$row["nomeCurso"].'</option>';
+										}
+									}
+								?>
+								</select>
+                            </div>
+	                        <div class="col-sm-3">
+                                <a class="btn btn-success" type="submit">+</a>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="inputDominio" class="col-sm-2 control-label">Domínio</label>
                             <div class="col-sm-3">
                                 <select class="form-control" name="dominio">
-                                    <option>Comum</option>
-                                    <option>Específico</option>
-                                    <option>Conexo</option>
+                                    <option value="1">Comum</option>
+                                    <option value="2">Específico</option>
+                                    <option value="3">Conexo</option>
 								</select>
                             </div>
                             <div class="col-sm-3">

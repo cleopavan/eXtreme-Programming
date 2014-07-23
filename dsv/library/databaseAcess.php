@@ -343,7 +343,7 @@
 		$sql = "SELECT DISTINCT nomeCcr, ccr.codCcr, cHoraria, idDominio FROM cursoCcr JOIN curso USING(codCurso) JOIN ccr USING(codCcr) WHERE cursoCcr.regValido=1 AND curso.regValido=1 AND ccr.regValido=1 AND ";
 		
 		if($tabela == 'curso'){
-			$sql = $sql . "curso.$filtro=$texto";
+			$sql = $sql . "curso.$filtro like '%$texto%'";
 		}else if($tabela == 'ccr'){
 			if($filtro == 'nomeCcr'){
 				$sql = $sql . "ccr.$filtro like '%$texto%'";
@@ -359,18 +359,35 @@
 		return $r;
 		
 	}
+	
+	function selectCursoInfo(){
+		$sql = "SELECT * FROM curso WHERE regValido=1";
+		
+		$r = dbConsulta($sql);
+		
+		return $r;
+	}
 	////////////////////////////////////////
 	function selectServidorDados($data){
 		$filtro = $data['filtro'];
 		$texto = $data['texto'];
 		$tabela = $data['tabela'];
 		
-		$sql = "SELECT DISTINCT curso.nomeCurso, servidor.siape, servidor.nome, servidor.sobrenome, servidor.observacao, servidor.quemSubstitui, cargo.cargo, jornada.jornada,
+		/*$sql = "SELECT DISTINCT curso.nomeCurso, servidor.siape, servidor.nome, servidor.sobrenome, servidor.observacao, servidor.quemSubstitui, cargo.cargo, jornada.jornada,
 		 situacaoServidor.situacao, servidor.email, servidor.fone1, servidor.fone2, servidor.endereco, servidor.cidade FROM servidorCursoCcr
 		 JOIN servidor USING ( siape ) JOIN jornada USING ( idJornada ) JOIN cargo USING ( idCargo ) 
 		 JOIN situacaoServidor USING ( idSituacaoServidor ) JOIN cursoCcr USING ( codCurso ) JOIN curso USING ( codCurso ) 
 		 WHERE servidor.regValido=1 AND jornada.regValido=1 AND cargo.regValido=1 AND situacaoServidor.regValido=1 AND curso.regValido = 1 AND ";
-		
+		*/
+		$sql = "SELECT DISTINCT * FROM servidor 
+				JOIN jornada USING ( idJornada )
+				JOIN cargo USING ( idCargo ) 
+				JOIN situacaoServidor USING ( idSituacaoServidor )
+				WHERE servidor.regValido=1
+				AND jornada.regValido=1
+				AND cargo.regValido=1
+				AND situacaoServidor.regValido=1
+				AND ";
 		
 		if($tabela == 'servidor'){
 			if($filtro == 'nome'){

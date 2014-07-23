@@ -29,7 +29,7 @@
 						<td>Cargo</td>
 						<td>Jornada</td>
 						<td>Situação</td>
-						<td>Curso</td>
+						<!-- <td>Curso</td> -->
 						<td>Substituto</td>
 						<td>Email</td>
 						<td>Fone 1</td>
@@ -47,7 +47,7 @@
 							echo "<td>".$row['cargo']."</td>";
 							echo "<td>".$row['jornada']."</td>";
 							echo "<td>".$row['situacao']."</td>";
-							echo "<td>".$row['nomeCurso']."</td>";
+							//echo "<td>".$row['nomeCurso']."</td>";
 							echo "<td>".$row['quemSubstitui']."</td>";
 							echo "<td>".$row['email']."</td>";
 							echo "<td>".$row['fone1']."</td>";

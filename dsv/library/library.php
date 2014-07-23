@@ -153,15 +153,17 @@
 		return $r;
 	}
 	
-	function constroiDadosInsertCcr($codCcr, $nome, $cHoraria, $idDominio){
+	function constroiDadosInsertCcr($codCcr, $nome, $cHoraria, $idDominio, $codCurso){
 		$data = Array();
 		$data['codCcr'] = addslashes($codCcr);
 		$data['nome'] = addslashes($nome);
 		$data['cHoraria'] = addslashes($cHoraria);
 		$data['idDominio'] = addslashes($idDominio);
+		$data['codCurso'] = addslashes($codCurso);
 		$data['regValido'] = 1;
 		
 		$r = insertCcr($data);
+		$r = insertCursoCcr($data);
 		
 		return $r;
 	}
@@ -215,8 +217,8 @@
 			$texto = (int)$texto;
 			$tabela = 'ccr';
 		}else if($filtro == 'curso'){//string
-			$filtro = 'codCurso';
-			$texto = (int)$texto;
+			$filtro = 'nomeCurso';
+			$texto = $texto;
 			$tabela = 'curso';
 		}
 		
@@ -225,6 +227,11 @@
 		$data['tabela'] = $tabela;
 		
 		$r = selectCcr($data);
+		
+		return $r;
+	}
+	function constroiDadosSelectCursoInfo(){
+		$r = selectCursoInfo();
 		
 		return $r;
 	}
