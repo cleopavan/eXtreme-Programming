@@ -40,7 +40,7 @@
 								<td>Observação</td>
 					</tr>';
 					if (mysql_num_rows($retorno) > 0) {
-						while($row = mysql_fetch_assoc($retorno)){
+						while($row = mysql_fetch_array($retorno)){
 							echo "<tr>";
 							echo "<td>".$row['siape']."</td>";
 							echo "<td>".$row['nome']."</td>";
