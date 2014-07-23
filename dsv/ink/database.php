@@ -23,9 +23,11 @@
 
 	$app = "u454558226_cadu";
 
-	@mysql_connect($host, $user, $pass);
+	$connect = @mysql_connect($host, $user, $pass);
 	
-	mysql_select_db($app);
+	mysql_select_db($app, $connect);
+	
+	mysql_set_charset('UTF8',$connect);
 
 	function dbConsulta($sql){
 		($a = mysql_query($sql)) or (die ("error: ".mysql_error()));
