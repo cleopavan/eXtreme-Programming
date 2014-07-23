@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	require_once "./library/library.php";
 	if(!isset($_SESSION)) session_start();
 	if($_SESSION['logado'] != TRUE){
@@ -19,14 +19,26 @@
 <div class="row">
 	<div class="col-lg-6">
 			
-			<input type="radio" name="filter" value="nomeCurso" id="filter" checked />
-			<label for="nomeCurso">Nome  </label>
+			<div class="radio-inline">
+				<label>
+					<input type="radio" name="filter" id="filter1" value="nomeCurso" checked />
+					Nome
+				</label>
+			</div>
 			
-			<input type="radio" name="filter" value="codCurso" id="filter" />
-			<label for="codCurso">Código  </label>
+			<div class="radio-inline">
+				<label>
+					<input type="radio" name="filter" id="filter2" value="codCurso" />
+					Código do Curso
+				</label>
+			</div>
 			
-			<input type="radio" name="filter" value="nivel" id="filter" />
-			<label for="nivel">Nível  </label>
+			<div class="radio-inline">
+				<label>
+					<input type="radio" name="filter" id="filter3" value="nivel" />
+					Nível
+				</label>
+			</div>
 			
 			<input type="hidden" name="acao" id="acao" value="buscar"/>
 			

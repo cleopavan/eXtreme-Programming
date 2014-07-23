@@ -23,21 +23,20 @@
 				  <!-- Table -->
 				  <table class="table"> 
 					 <tr>
-					  <td>Siape</td>
-								<td>Siape</td> 
-								<td>Nome</td> 
-								<td>Sobrenome</td>
-								<td>Cargo</td>
-								<td>Jornada</td>
-								<td>Situação</td>
-								<td>Curso</td>
-								<td>Substituto</td>
-								<td>Email</td>
-								<td>Fone 1</td>
-								<td>Fone 2</td>
-								<td>Endereço</td>
-								<td>Cidade</td>
-								<td>Observação</td>
+						<td>Siape</td> 
+						<td>Nome</td> 
+						<td>Sobrenome</td>
+						<td>Cargo</td>
+						<td>Jornada</td>
+						<td>Situação</td>
+						<td>Curso</td>
+						<td>Substituto</td>
+						<td>Email</td>
+						<td>Fone 1</td>
+						<td>Fone 2</td>
+						<td>Endereço</td>
+						<td>Cidade</td>
+						<td>Observação</td>
 					</tr>';
 					if (mysql_num_rows($retorno) > 0) {
 						while($row = mysql_fetch_array($retorno)){

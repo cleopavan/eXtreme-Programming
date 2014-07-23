@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	//INÍCIO DO HEADER
 	require_once "library/library.php";
 	if(!isset($_SESSION)) session_start();
@@ -70,7 +70,7 @@
 		
 		$sql = mysql_query($query);
 		
-		if(!$sql) header("Location: cursos.php?e=".urlencode(mysql_error()));
+		if(!$sql) echo mysql_error();
 			
 			echo '<h3> Resultado de busca por: <div class="italico" style="font-style:italic;">'.$texto.'</div></h3>';
 			echo '<table class="table table-hover">

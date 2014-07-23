@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	require_once dirname(__FILE__).'/databaseAcess.php';//banco de dados
 	require_once dirname(__FILE__).'/constant.php';//constantes
 	
