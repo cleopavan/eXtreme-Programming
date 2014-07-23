@@ -1056,6 +1056,7 @@
 			WHERE idNivelCurso = $nivel AND codCurso = $curso;
 			";
 		$r = dbConsulta($sql);
+		//novo
 		return $r;
 	}
 	function insertServidorCursoCcr($data){

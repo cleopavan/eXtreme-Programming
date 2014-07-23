@@ -105,6 +105,7 @@
 				$_SESSION['atualizarResultadoNovo'] = $resultado;
 				$_SESSION['cursoLista'] = NULL;
 				$_SESSION['nivelCurso'] = NULL;
+				//novo
 			}
 			else{
 				$_SESION['atualizarNovo'] = 0;

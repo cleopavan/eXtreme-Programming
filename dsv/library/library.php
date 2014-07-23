@@ -743,7 +743,9 @@
 	function listaCursoCcr($nivel,$curso){
 		$resultado = selectCursoCcr($nivel,$curso);
 		return $resultado;
+		//novo
 	}
+	
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 	
