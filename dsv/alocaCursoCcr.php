@@ -14,20 +14,20 @@
 	}
 	if(isset($_POST['nivel'])){
 		$_SESSION['nivel'] = $_POST['nivel'];
-		$_SESSION['aba'] = NULL;
+		$_SESSION['aba'] = 1;
 	}
 	if(isset($_POST['curso'])){
 		$_SESSION['curso'] = $_POST['curso'];
 		$_SESSION['ccr'] = NULL;
-		$_SESSION['aba'] = NULL;
+		$_SESSION['aba'] = 1;
 	}
 	if(isset($_POST['ccr'])){
 		$_SESSION['ccr'] = $_POST['ccr'];
-		$_SESSION['aba'] = NULL;
+		$_SESSION['aba'] = 1;
 	}
 	if(isset($_POST['anoSemestre'])){
 		$_SESSION['anoSemestre'] = $_POST['anoSemestre'];
-		$_SESSION['aba'] = NULL;
+		$_SESSION['aba'] = 1;
 	}
 	if(isset($_POST['desfazer'])){
 		$_SESSION['siape'] = NULL;
@@ -36,7 +36,7 @@
 		$_SESSION['ccr'] = NULL;
 		$_SESSION['anoSemestre'] = NULL;
 		$_SESSION['obs'] = NULL;
-		$_SESSION['aba'] = NULL;
+		$_SESSION['aba'] = 1;
 	}
 	if(isset($_POST['validar'])){
 		if(isset($_POST['siape']) && !isset($_SESSION['siape'])){
@@ -57,7 +57,7 @@
 				$_SESSION['erroSiape'] = 1;
 			}
 		}
-		$_SESSION['aba'] = NULL;
+		$_SESSION['aba'] = 1;
 	}
 	if(isset($_POST['alocar'])){
 		if(isset($_POST['obs'])){
@@ -71,7 +71,7 @@
 		$_SESSION['ccr'] = NULL;
 		$_SESSION['anoSemestre'] = NULL;
 		$_SESSION['obs'] = NULL;
-		$_SESSION['aba'] = NULL;
+		$_SESSION['aba'] = 1;
 	}
 	if(isset($_POST['atualizar'])){
 		if(isset($_POST['atua_siape']) && !empty($_POST['atua_siape'])){
@@ -88,6 +88,32 @@
 			$_SESSION['atualizar'] = 0;
 		}
 		$_SESSION['aba'] = 2;
+	}
+	if(isset($_POST['nivelCurso'])){
+		$_SESSION['nivelCurso'] = $_POST['nivelCurso'];
+		$_SESSION['aba'] = 3;
+	}
+	if(isset($_POST['cursoLista'])){
+		$_SESSION['cursoLista'] = $_POST['cursoLista'];
+		$_SESSION['aba'] = 3;
+	}
+	if(isset($_POST['atualizarNovo'])){
+		if(isset($_POST['nivelCurso']) && !empty($_POST['nivelCurso'])){
+			if(isset($_POST['cursoLista']) && !empty($_POST['cursoLista'])){
+				$resultado = listaCursoCcr($_SESSION['nivelCurso'], $_SESSION['cursoLista']);
+				$_SESSION['atualizarNovo'] = 1;
+				$_SESSION['atualizarResultadoNovo'] = $resultado;
+				$_SESSION['cursoLista'] = NULL;
+				$_SESSION['nivelCurso'] = NULL;
+			}
+			else{
+				$_SESION['atualizarNovo'] = 0;
+			}
+		}
+		else{
+			$_SESSION['atualizarNovo'] = 0;
+		}
+		$_SESSION['aba'] = 3;
 	}
 ?>
 <!DOCTYPE html>
@@ -116,23 +142,40 @@
         <div class="col-md-12"> <!-- mudar para col-md-12-->      
             <!-- CODIGO DEVE SER IMPLEMENTADO NESTA AREA -->
             <!-- Nav tabs -->
-            
+				<!--<form action="alocaCursoCcr.php" class="form-horizontal" role="form" enctype="multipart/form-data" method="post">-->
 				<ul class="nav nav-tabs" role="tablist">
-				  <li <?php if(isset($_SESSION['aba'])){}else echo 'class="active"'; ?> >
+				  <li <?php 
+							if(isset($_SESSION['aba'])){
+								if($_SESSION['aba'] == 1){
+									echo 'class="active"';
+								}
+							}
+							else{
+								echo 'class="active"'; 
+							}
+							?> >
                   <a href="#alocar" role="tab" data-toggle="tab">Alocar servidor ao Ccr</a></li>
-				  <li <?php if(isset($_SESSION['aba']) && $_SESSION['aba'] != 3) echo 'class="active"'; ?> >
+				  <li <?php if(isset($_SESSION['aba']) && $_SESSION['aba'] == 2) echo 'class="active"'; ?> >
                   <a href="#listServidor" role="tab" data-toggle="tab">Listar servidores alocados</a></li>
-				  <li <?php if(isset($_SESSION['aba']) && $_SESSION['aba'] != 2) echo 'class="active"'; ?> >
+				  <li <?php if(isset($_SESSION['aba']) && $_SESSION['aba'] == 3) echo 'class="active"'; ?> >
                   <a href="#listCcr" role="tab" data-toggle="tab">Listar Ccrs alocadas</a></li>
 				</ul>
-
+				<!--</form>-->
 				<!-- Tab panes -->
 				<div class="tab-content">
-				  <div class="tab-pane <?php if(isset($_SESSION['aba'])){}else echo 'active'; ?> " id="alocar"></br>				  					   
+				  <div class="tab-pane <?php if(isset($_SESSION['aba'])){
+												if($_SESSION['aba'] == 1){
+													echo 'active';
+												}
+											}
+											else{
+												echo 'active';
+											}
+									  ?> " id="alocar"></br>				  					   
 										  	
 							<div class="form-group">
 							 	<label for="inputSiape" class="col-sm-4 text-center">Servidor <hr></label>
-							 	<button class="btn btn-success col-sm-4" data-toggle="modal" data-target=".bs-example-modal-lg">Buscar servidor</button>
+							 	<button class="btn btn-success col-sm-4" data-toggle="modal" data-target=".bs-example-modal-lg" disabled>Buscar servidor</button>
 							 	<label for="inputSiape" class="col-sm-4 text-center">Selecionar Cursos CCR <hr></label>
 							</div>
 							<form action="alocaCursoCcr.php" class="form-horizontal" role="form" enctype="multipart/form-data" method="post">
@@ -348,7 +391,7 @@
 						</form>
 				  
 				  </div><!-- /Aba alocar -->
-				  <div class="tab-pane <?php if(isset($_SESSION['aba']) && $_SESSION['aba'] != 3) echo 'active'; ?> " id="listServidor"></br>
+				  <div class="tab-pane <?php if(isset($_SESSION['aba']) && $_SESSION['aba'] == 2) echo 'active'; ?> " id="listServidor"></br>
 				  		<div class="form-group">
 							 	<label for="inputSiape" class="col-sm-4 text-center">Informar servidor </label>
 							 	<!--<button class="btn btn-success col-sm-4" data-toggle="modal" data-target=".bs-example-modal-lg" disabled>Buscar servidor</button>-->
@@ -481,78 +524,138 @@
 								echo'</table>';
 							?>
 				  </div><!-- /Aba listServidor -->
-				  <div class="tab-pane <?php if(isset($_SESSION['aba']) && $_SESSION['aba'] != 2) echo 'active'; ?> " id="listCcr"></br>
+				  <div class="tab-pane <?php if(isset($_SESSION['aba']) && $_SESSION['aba'] == 3) echo 'active'; ?> " id="listCcr"></br>
 				  		<div class="form-group">
-							 	<label for="inputSiape" class="col-sm-4 text-center">Selecione Curso <hr></label>
-							 	<label for="inputSiape" class="col-sm-4 text-center"> - <hr></label>
-							 	<label for="inputSiape" class="col-sm-4 text-center">Selecione ano/semestre<hr></label>
-							</div>
-							<form action="alocarServidor.php" class="form-horizontal" role="form">
+							 <label for="inputSiape" class="col-sm-4 text-center">Selecione Nivel Curso</label>
+							 <div class="col-sm-4"></div>
+							 <label for="inputSiape" class="col-sm-4 text-center">Selecione Curso</label>
+							<br>
+						</div>
+							<form action="alocaCursoCcr.php" class="form-horizontal" role="form" enctype="multipart/form-data" method="post">
 							<div class="row">
 								<div class="col-sm-4"><!-- /col-sm-4 1º -->
-									<select class="form-control" name="nivelCurso">
-									  <option value="">Selecione: Nivel curso</option>	
-								  	  <option value="1">1 - Graduação</option>
-								  	  <option value="2">2 - Doutorado</option>
-								  	</select>
-									<select class="form-control" name="curso">
-									  <option value="">Selecione: Curso</option>	
-								  	  <option value="1">101 - Ciência da computação</option>
-								  	  <option value="2">102 - Agronomia</option>
-								  	</select>
+									<select class="form-control" name="nivelCurso" onchange="this.form.submit()">
+										<?php
+										  echo "<option value=''>Selecione: Nivel curso</option>";
+											$lista = mostraTodosNiveisCurso();
+											$i = 0;
+											while($lista[$i] != NULL){
+												if(!isset($_SESSION['nivelCurso'])){
+													echo "<option value='".$lista[$i]['idNivelCurso']."'>".$lista[$i]['idNivelCurso']." - ". $lista[$i]['nomeNivelCurso']."</option>";
+													$i++;
+												}
+												else{
+													if($_SESSION['nivelCurso'] == $lista[$i]['idNivelCurso']){
+														echo "<option value='".$lista[$i]['idNivelCurso']."' selected>".$lista[$i]['idNivelCurso']." - ". $lista[$i]['nomeNivelCurso']."</option>";
+														$i++;
+													}
+													else{
+														echo "<option value='".$lista[$i]['idNivelCurso']."'>".$lista[$i]['idNivelCurso']." - ". $lista[$i]['nomeNivelCurso']."</option>";
+														$i++;
+													}
+												}
+											}
+											echo "</select>";
+											
+										?>
 								</div>
-								<div class="col-sm-4"><!-- /col-sm-4 2º --></div>
 								<div class="col-sm-4">
-									 <select class="form-control" name="anoSemestre">
-									  <option value="">Selecione ano/semestre</option>	
-								  	  <option value="2014/1">2014/1</option>
-								  	  <option value="2014/2">2014/2</option>
-								  	  <option value="2015/1">2015/1</option>
-								  	  <option value="2015/2">2015/2</option>
-								  	  <option value="2016/1">2016/1</option>
-								  	  <option value="2016/2">2016/2</option>
-								  	  <option value="2017/1">2017/1</option>
-								  	  <option value="2017/2">2017/2</option>
-								  	</select>
+								<button type="submit" value='1' name='atualizarNovo' class="btn btn-success col-sm-5 col-md-offset-4">Atualizar tabela</button><br>
+								</div>
+								<div class="col-sm-4">
+									<?php
+									echo "<select class='form-control' name='cursoLista' onchange='this.form.submit()'>";
+										echo "<option value=''>Selecione: Curso</option>";
+										if(isset($_SESSION['nivelCurso'])){
+											$lista = mostraCursoPorNivel($_SESSION['nivelCurso']);
+											$i = 0;
+											while($lista[$i] != NULL){
+												if(!isset($_SESSION['cursoLista'])){
+													echo "<option value='".$lista[$i]['codCurso']."'>".$lista[$i]['codCurso']." - ". $lista[$i]['nomeCurso']."</option>";
+													$i++;
+												}
+												else{
+													if($_SESSION['cursoLista'] == $lista[$i]['codCurso']){
+														echo "<option value='".$lista[$i]['codCurso']."' selected>".$lista[$i]['codCurso']." - ". $lista[$i]['nomeCurso']."</option>";
+														$i++;
+													}
+													else{
+														echo "<option value='".$lista[$i]['codCurso']."'>".$lista[$i]['codCurso']." - ". $lista[$i]['nomeCurso']."</option>";
+														$i++;
+													}
+												}
+											}
+										}
+									?>
+									</select>
 								</div><!-- /col-sm-4 3º -->							
 							</div><!-- /row 1º -->
 							<div class="row">
 								<div class="col-sm-4"><!-- /col-sm-4 1º --></div>
 								<div class="col-sm-4"><!-- /col-sm-4 2º -->
-								<button type="submit" class="btn btn-success col-sm-4 col-md-offset-4">Atualizar tabela</button><hr>
 								</div>
 								<div class="col-sm-4"><!-- /col-sm-4 3º --></div>															
 							</div><!-- /row 5º -->
 							
 							</form>
+							<br>
 				  		<table class="table table-bordered">
 				  			<tr class="success text-center">
-				  				<td><strong>Titulo</strong></td>
-				  				<td><strong>Titulo</strong></td>
-				  				<td><strong>Titulo</strong></td>
-				  				<td><strong>Titulo</strong></td>
-				  				<td><strong>Titulo</strong></td>
+				  				<td><strong>Codigo CCR</strong></td>
+				  				<td><strong>Nome CCR</strong></td>
+				  				<td><strong>Carga Horária</strong></td>
+				  				<td><strong>Domínio</strong></td>
 				  			</tr>
-							<tr class="active">
-				  				<td>...</td>
-				  				<td>...</td>
-				  				<td>...</td>
-				  				<td>...</td>
-				  				<td>...</td>
-				  			</tr>
-				  			<tr class="success">
-				  				<td>...</td>
-				  				<td>...</td>
-				  				<td>...</td>
-				  				<td>...</td>
-				  				<td>...</td>
-				  			</tr>
-				  			<tr class="active"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-				  			<tr class="success"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-				  			<tr class="active"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-				  			<tr class="success"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-				  			<tr class="active"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-				  			<tr class="success"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+				  			<?php
+						if(isset($_SESSION['atualizarNovo']) && $_SESSION['atualizarNovo'] == 0){
+							echo '<tr class="active text-center">';
+								echo '<td></td><td></td><td></td><td></td>';
+							echo '</tr>';
+							echo "<h5 class='text-center'>Necessário informar os parâmetros</h5>";
+							$_SESSION['atualizarNovo'] = NULL;
+						}
+						else{
+							$linha = 0;
+							if(isset($_SESSION['atualizarNovo']) && $_SESSION['atualizarNovo'] == 1){
+								$_SESSION['atualizarNovo'] = NULL;
+								$row = mysql_fetch_array($_SESSION['atualizarResultadoNovo']);
+								if($row == NULL){
+									echo '<tr class="active text-center">';
+										echo '<td></td><td></td><td></td><td></td>';
+									echo '</tr>';
+									echo "<h5 class='text-center'>Nenhuma CCR alocada para este Siape</h5>";
+									$_SESSION['atualizarResultadoNovo'] = NULL;
+								}
+								else{
+									do{
+										if(!$linha){	
+											echo'<tr class="active">';
+												echo'<td>'.$row['codCcr'].'</td>';
+												echo'<td>'.$row['nomeCcr'].'</td>';
+												echo'<td>'.$row['cHoraria'].'</td>';
+												echo'<td>'.$row['nomeDominio'].'</td>';
+											echo'</tr>';
+											$linha = 1;
+										}else
+										if($linha){
+											echo'<tr class="success">';
+												echo'<td>'.$row['codCcr'].'</td>';
+												echo'<td>'.$row['nomeCcr'].'</td>';
+												echo'<td>'.$row['cHoraria'].'</td>';
+												echo'<td>'.$row['nomeDominio'].'</td>';
+											echo'</tr>';
+											$linha = 0;
+										}
+									} while($row = mysql_fetch_array($_SESSION['atualizarResultadoNovo']));
+								}
+							}
+							else{
+								echo '<tr class="active text-center">';
+									echo '<td></td><td></td><td></td><td></td>';
+								echo '</tr>';
+							}
+						}
+						?>
 						</table>
 				  </div><!-- /Aba listCcr -->
 				</div>            

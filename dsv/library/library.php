@@ -739,6 +739,11 @@
 		//resultado
 		return $resultado;				
 	}
+	
+	function listaCursoCcr($nivel,$curso){
+		$resultado = selectCursoCcr($nivel,$curso);
+		return $resultado;
+	}
 
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 	
@@ -771,7 +776,6 @@
 			echo '<option>'.utf8_encode($rowArea['nivel']).'</option>';
 		}
 	}
-
 	
 	function insereCargo($cargo){
 		$resultado=buscaCargo($cargo);

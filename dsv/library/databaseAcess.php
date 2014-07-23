@@ -1050,6 +1050,14 @@
 		return $r;
 	}
 	
+	function selectCursoCcr($nivel,$curso){
+		$sql = "
+			SELECT * FROM cursoCcr NATURAL JOIN curso NATURAL JOIN ccr NATURAL JOIN dominio
+			WHERE idNivelCurso = $nivel AND codCurso = $curso;
+			";
+		$r = dbConsulta($sql);
+		return $r;
+	}
 	function insertServidorCursoCcr($data){
 		$anoSemestre = $data['anoSemestre'];
 		$codCurso = $data['codCurso'];
