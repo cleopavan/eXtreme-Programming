@@ -186,7 +186,7 @@
 								  	?>
 								</div><!-- /col-sm-4 3º -->							
 							</div><!-- /row 1º -->
-							
+							<!--comment-->
 							<div class="row">
 								<div class="col-sm-4"><!-- /col-sm-4 1º --></div>
 								<div class="col-sm-4"><!-- /col-sm-4 2º --></div>

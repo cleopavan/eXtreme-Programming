@@ -736,7 +736,7 @@
 	function listarServidorCursoCcr($anoSemestre, $nivelCurso, $codCurso, $codCcr, $idDominio, $siape){
 
 		$resultado = selectServidorCursoCcr($anoSemestre, $nivelCurso, $codCurso, $codCcr, $idDominio, $siape);
-		
+		//resultado
 		return $resultado;				
 	}
 
