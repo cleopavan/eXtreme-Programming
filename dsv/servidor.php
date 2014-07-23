@@ -66,7 +66,15 @@
                     <div class="row">
                         <div class="col-lg-6">
 							<form action="consultaServidor.php"  method="post">
-                            <div class="input-group">
+								<input type="radio" name="filter" value="siape">
+								<label for="siape">Siape</label>
+								
+								<input type="radio" name="filter" value="nome">
+								<label for="nome">Nome</label>
+										
+								<input type="radio" name="filter" value="cargo">
+								<label for="cargo">Cargo </label>
+								<div class="input-group">
                                 <input type="text" class="form-control" name="text" placeholder="Buscar servidor">
 									<div class="input-group-btn">
 										<span class="input-group-btn">
@@ -75,17 +83,6 @@
 										</span>		
 									</div>
 								</div><!-- /input-group-btn -->
-								<input type="radio" name="filter" value="siape">
-								<label for="siape">Siape</label>
-								
-								<input type="radio" name="filter" value="nome">
-								<label for="nome">Nome</label>
-								
-								<input type="radio" name="filter" value="curso">
-								<label for="curso">Curso</label>
-										
-								<input type="radio" name="filter" value="cargo">
-								<label for="cargo">Cargo </label>
 							</form>			
                         </div><!-- /col-lg-6 -->
                     </div><!-- /row -->

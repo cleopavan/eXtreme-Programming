@@ -3,28 +3,20 @@
 	session_start();
 	
 	/*teste se as variaveis estao setadas para inserir no banco*/
-	if(isset($_POST['cod']) && isset($_POST['ch']) && isset($_POST['nome']) && isset($_POST['dominio'])){
-		/*echo $_POST['cod'];
-		echo $_POST['nome'];
-		echo $_POST['ch'];
-		echo $_POST['dominio'];
-		*/
-		$idDominio = ''; /*variavel que identifica o dominio inserido no banco*/
-		
-		if ($_POST['dominio'] == 'Comum') {
-			//echo $_POST['dominio'];
-			$idDominio = 1;
-		}
-		if ($_POST['dominio'] == 'Específico') {
-			//echo $_POST['dominio'];
-			$idDominio = 2;
-		}
-		if ($_POST['dominio'] == 'Conexo'){
-			//echo $_POST['dominio'];
-			$idDominio = 3;
+	if(isset($_POST['cod']) && isset($_POST['ch']) && isset($_POST['nome']) && isset($_POST['dominio']) && isset($_POST['curso'])){
+		$codCcr = $_POST['cod'];
+		$cHoraria = $_POST['ch'];
+		$nomeCcr = $_POST['nome'];
+		$idDominio = $_POST['dominio']; /*variavel que identifica o dominio inserido no banco*/
+		$codCurso = $_POST['curso'];
+		if(empty($codCcr)){
+			$_SESSION['erro'] = true;
+			echo "ENTROU NO IF <br/>";
+			header('Location: ccr.php');
+			exit();
 		}
 		
-		$testeRetorno = constroiDadosInsertCcr($_POST['cod'], $_POST['nome'], $_POST['ch'], $idDominio);
+		$testeRetorno = constroiDadosInsertCcr($codCcr, $nomeCcr, $cHoraria, $idDominio, $codCurso);
 		
 		 if ($testeRetorno) {
 			$_SESSION['sucessInsert'] = true;
