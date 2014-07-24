@@ -1,7 +1,7 @@
 <?php
 	include("/library/library.php");
 	$library = new library();
-	session_start();
+	session_start(); //teste
 	
 	/*teste se as variaveis estao setadas para inserir no banco*/
 	if(isset($_POST['cod']) && isset($_POST['ch']) && isset($_POST['nome']) && isset($_POST['dominio']) && isset($_POST['curso'])){

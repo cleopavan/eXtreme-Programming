@@ -600,7 +600,7 @@
 											}
 										}
 									?>
-									</select>
+									</select> <!-- /select -->
 								</div>
 								<div class="col-sm-4">
 									<button type="submit" value='1' name='atualizarNovo' class="btn btn-success col-sm-5 col-md-offset-4">Localizar </button><br>
