@@ -1,28 +1,6 @@
 <?php
-/*
- * alocaCursoCcr.php
- * 
- * Copyright 2014 Isac Haran de Almeida <isakharan@hotmail.com>
- * 
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- * 
- * 
- */
-
-	require_once dirname (__FILE__)."/library/library.php";
+	include("/library/library.php");
+	$library = new library();
 	session_start();
 	if($_SESSION['logado'] != TRUE){
 		header('Location: login.php');
@@ -32,7 +10,7 @@
 	}
 	//@parametros (string, integer);
 	//@parametros (nome da pagina, id do nivel do servidor)
-	if(acessoRecusado('alocaCursoCcr.php', $_SESSION['idNivelServidor']) == FALSE){/* Excessão no caso do servidor não ter acesso a esta área*/
+	if($library->acessoRecusado('alocaCursoCcr.php', $_SESSION['idNivelServidor']) == FALSE){/* Excessão no caso do servidor não ter acesso a esta área*/
 		header('Location: index.php?i=semPermissao');
 	}
 	if(isset($_POST['nivel'])){
@@ -64,7 +42,7 @@
 	if(isset($_POST['validar'])){
 		if(isset($_POST['siape']) && !isset($_SESSION['siape'])){
 			if(!empty($_POST['siape'])){
-				$servidor = mostraServidorSelecionado($_POST['siape']);
+				$servidor = $library->mostraServidorSelecionado($_POST['siape']);
 			
 				if($servidor != NULL){
 					$_SESSION['siape'] = $servidor['siape'];
@@ -86,7 +64,7 @@
 		if(isset($_POST['obs'])){
 			$_SESSION['obs'] = $_POST['obs'];
 		}
-		$deuCerto = insereServidorCursoCcr($_SESSION['anoSemestre'],$_SESSION['curso'],$_SESSION['ccr'],$_SESSION['siape'],$_SESSION['obs']);
+		$deuCerto = $library->insereServidorCursoCcr($_SESSION['anoSemestre'],$_SESSION['curso'],$_SESSION['ccr'],$_SESSION['siape'],$_SESSION['obs']);
 		$_SESSION['deuCerto'] = 1;
 		$_SESSION['siape'] = NULL;
 		$_SESSION['servidorSiape'] = NULL;
@@ -99,7 +77,7 @@
 	if(isset($_POST['atualizar'])){
 		if(isset($_POST['atua_siape']) && !empty($_POST['atua_siape'])){
 			if(isset($_POST['atua_anosemestre']) && !empty($_POST['atua_anosemestre'])){
-				$resultado = listarServidorCursoCcr($_POST['atua_anosemestre'], 0, 0, 0, 0, $_POST['atua_siape']);
+				$resultado = $library->listarServidorCursoCcr($_POST['atua_anosemestre'], 0, 0, 0, 0, $_POST['atua_siape']);
 				$_SESSION['atualizar'] = 1;
 				$_SESSION['atualizarResultado'] = $resultado;
 			}
@@ -123,7 +101,7 @@
 	if(isset($_POST['atualizarNovo'])){
 		if(isset($_POST['nivelCurso']) && !empty($_POST['nivelCurso'])){
 			if(isset($_POST['cursoLista']) && !empty($_POST['cursoLista'])){
-				$resultado = listaCursoCcr($_SESSION['nivelCurso'], $_SESSION['cursoLista']);
+				$resultado = $library->listaCursoCcr($_SESSION['nivelCurso'], $_SESSION['cursoLista']);
 				$_SESSION['atualizarNovo'] = 1;
 				$_SESSION['atualizarResultadoNovo'] = $resultado;
 				$_SESSION['cursoLista'] = NULL;
@@ -231,7 +209,7 @@
 										}
 									
 										echo "<option value=''>Selecione: Nivel curso</option>";
-										$lista = mostraTodosNiveisCurso();
+										$lista = $library->mostraTodosNiveisCurso();
 										$i = 0;
 										while($lista[$i] != NULL){
 											if(!isset($_SESSION['nivel'])){
@@ -267,7 +245,7 @@
 										}
 										echo "<option value=''>Selecione: Curso</option>";
 										if(isset($_SESSION['nivel'])){
-											$lista = mostraCursoPorNivel($_SESSION['nivel']);
+											$lista = $library->mostraCursoPorNivel($_SESSION['nivel']);
 											$i = 0;
 											while($lista[$i] != NULL){
 												if(!isset($_SESSION['curso'])){
@@ -304,7 +282,7 @@
 										}
 										echo "<option value=''>Selecione: CCR</option>";
 										if(isset($_SESSION['curso'])){
-											$lista = mostraCursoPorCcr($_SESSION['curso']);
+											$lista = $library->mostraCursoPorCcr($_SESSION['curso']);
 											$i = 0;
 											while($lista[$i] != NULL){
 												if(!isset($_SESSION['ccr'])){
@@ -502,7 +480,7 @@
 										$linha = 0;
 										if(isset($_SESSION['atualizar']) && $_SESSION['atualizar'] == 1){
 											$_SESSION['atualizar'] = NULL;
-											$row = mysql_fetch_array($_SESSION['atualizarResultado']);
+											$row = mysqli_fetch_array($_SESSION['atualizarResultado']);
 											if($row == NULL){
 												echo '<tr class="active text-center">';
 													echo '<td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
@@ -536,7 +514,7 @@
 														echo'</tr>';
 														$linha = 0;
 													}
-												} while($row = mysql_fetch_array($_SESSION['atualizarResultado']));
+												} while($row = mysqli_fetch_array($_SESSION['atualizarResultado']));
 											}
 										}
 										else{
@@ -561,7 +539,7 @@
 									<select class="form-control" name="nivelCurso" onchange="this.form.submit()">
 										<?php
 										  echo "<option value=''>Selecione: Nivel curso</option>";
-											$lista = mostraTodosNiveisCurso();
+											$lista = $library->mostraTodosNiveisCurso();
 											$i = 0;
 											while($lista[$i] != NULL){
 												if(!isset($_SESSION['nivelCurso'])){
@@ -591,7 +569,7 @@
 									echo "<select class='form-control' name='cursoLista' onchange='this.form.submit()'>";
 										echo "<option value=''>Selecione: Curso</option>";
 										if(isset($_SESSION['nivelCurso'])){
-											$lista = mostraCursoPorNivel($_SESSION['nivelCurso']);
+											$lista = $library->mostraCursoPorNivel($_SESSION['nivelCurso']);
 											$i = 0;
 											while($lista[$i] != NULL){
 												if(!isset($_SESSION['cursoLista'])){
@@ -642,7 +620,7 @@
 							$linha = 0;
 							if(isset($_SESSION['atualizarNovo']) && $_SESSION['atualizarNovo'] == 1){
 								$_SESSION['atualizarNovo'] = NULL;
-								$row = mysql_fetch_array($_SESSION['atualizarResultadoNovo']);
+								$row = mysqli_fetch_array($_SESSION['atualizarResultadoNovo']);
 								if($row == NULL){
 									echo '<tr class="active text-center">';
 										echo '<td></td><td></td><td></td><td></td>';
@@ -670,7 +648,7 @@
 											echo'</tr>';
 											$linha = 0;
 										}
-									} while($row = mysql_fetch_array($_SESSION['atualizarResultadoNovo']));
+									} while($row = mysqli_fetch_array($_SESSION['atualizarResultadoNovo']));
 								}
 							}
 							else{

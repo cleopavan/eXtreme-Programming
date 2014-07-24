@@ -1,13 +1,20 @@
 <?php
-	require_once dirname(__FILE__).'/../ink/database.php';//banco de dados
 
+include("/../ink/database.php");
+
+class databaseAcess{
+	public $database;
+	
+	function __construct(){
+		$this->database = new database();
+	}
+	
 	function test(){
 		$sql = "SELECT * FROM nivelServidor";
 		
-		$r=dbConsulta($sql);
+		$r=$database->dbConsulta($sql);
 		return $r;
 	}
-
 	/****************************************************Inicio das funções de inserção****************************************/
 	function insertFuncao($data){
 		$funcao = $data['funcao'];
@@ -22,7 +29,7 @@
 		}
 		$sql = $sql . ")";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -44,7 +51,7 @@
 		}
 		$sql = $sql . ")";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -62,7 +69,7 @@
 		}
 		$sql = $sql . ")";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -79,7 +86,7 @@
 		}
 		$sql = $sql . ")";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -109,7 +116,7 @@
 		}
 		$sql = $sql . ")";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -127,7 +134,7 @@
 		}
 		$sql = $sql . ")";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -156,7 +163,7 @@
 		}
 		$sql = $sql . ")";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -167,7 +174,7 @@
 		
 		$sql = "INSERT INTO nivelServidor_areaMenu (idNivelServidor, idAreaMenu) VALUES ($idNivelServidor, $idAreaMenu)";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -234,7 +241,7 @@
 			$sql = $sql . ", '$pass'";
 		}
 		$sql = $sql . ")";
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -252,7 +259,7 @@
 		}
 		$sql = $sql . ")";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -272,7 +279,7 @@
 		}
 		$sql = $sql . ")";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -290,7 +297,7 @@
 		}
 		$sql = $sql . ")";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -316,7 +323,7 @@
 		}
 		$sql = $sql . ")";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -328,7 +335,7 @@
 		
 		$sql = "INSERT INTO cursoCcr (codCcr, codCurso, regValido) VALUES ($codCcr, $codCurso, $regValido)";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -354,7 +361,7 @@
 			$sql = $sql . "dominio.$filtro like '%$texto%'";
 		}
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 		
@@ -363,7 +370,7 @@
 	function selectCursoInfo(){
 		$sql = "SELECT * FROM curso WHERE regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -404,7 +411,7 @@
 		}else{
 			return false;
 		}
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 		
@@ -417,7 +424,7 @@
 		$id = $data['id'];
 		
 		$sql = "SELECT * FROM dominio WHERE dominio.regValido=1 AND idDominio='$id'";
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -436,7 +443,7 @@
 		}
 		$sql = $sql . " WHERE idFuncao=$id AND regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -456,7 +463,7 @@
 		}
 		$sql = $sql . ", cargaHoraria=$cargaHoraria WHERE idFuncao=$idFuncao AND siape='$siape' AND dataInicio='$dataInicio' AND regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -474,7 +481,7 @@
 		}
 		$sql = $sql . " WHERE idCargo=$id AND regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -491,7 +498,7 @@
 		}
 		$sql = $sql . " WHERE idJornada=$id AND regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -522,7 +529,7 @@
 		}
 		$sql = $sql . " WHERE idSituacaoServidor=$id AND regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -540,7 +547,7 @@
 		}
 		$sql = $sql . " WHERE idNivelServidor=$id AND regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -607,7 +614,7 @@
 		}
 		$sql = $sql . " WHERE siape='$siape' AND regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -625,7 +632,7 @@
 		}
 		$sql = $sql . " WHERE idNivelCurso=$id AND regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -644,7 +651,7 @@
 		}
 		$sql = $sql . " WHERE codCurso=$codCurso AND regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -662,7 +669,7 @@
 		}
 		$sql = $sql . " WHERE idDominio=$id AND regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -688,7 +695,7 @@
 		}
 		$sql = $sql . " WHERE codCcr=$codCcr AND regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -699,7 +706,7 @@
 		
 		$sql = "UPDATE cursoCcr SET codCcr=$codCcr, codCurso=$codCurso WHERE codCcr=$codCcr AND codCurso=$codCurso AND regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -744,7 +751,7 @@
 		}
 		$sql = $sql . " WHERE siape='$siape' AND regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -755,7 +762,7 @@
 		
 		$sql = "UPDATE servidor SET senha='$senha' WHERE siape='$siape' AND regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -767,7 +774,7 @@
 		
 		$sql = "UPDATE funcao SET regValido=0 WHERE idFuncao=$id";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -779,7 +786,7 @@
 		
 		$sql = "UPDATE servidorFuncao SET regValido=0 WHERE idFuncao=$idFuncao AND siape='$siape' AND dataInicio='$dataInicio'";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -789,7 +796,7 @@
 		
 		$sql = "UPDATE cargo SET regValido=0 WHERE idCargo=$id";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -799,7 +806,7 @@
 		
 		$sql = "UPDATE jornada SET regValido=0 WHERE idJornada=$id";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -809,7 +816,7 @@
 		
 		$sql = "UPDATE situacaoServidor SET regValido=0 WHERE idSituacaoServidor=$id";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -819,7 +826,7 @@
 		
 		$sql = "UPDATE nivelServidor SET regValido=0 WHERE idNivelServidor=$id";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -829,7 +836,7 @@
 		
 		$sql = "UPDATE servidor SET regValido=0 WHERE siape='$siape'";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -839,7 +846,7 @@
 		
 		$sql = "UPDATE nivelCurso SET regValido=0 WHERE idNivelCurso=$id";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -849,7 +856,7 @@
 		
 		$sql = "UPDATE dominio SET regValido=0 WHERE idDominio=$id";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -859,7 +866,7 @@
 		
 		$sql = "UPDATE ccr SET regValido=0 WHERE codCcr=$codCcr";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -870,7 +877,7 @@
 		
 		$sql = "UPDATE cursoCcr SET regValido=0 WHERE codCcr=$codCcr AND codCurso=$codCurso";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -890,7 +897,7 @@
 				   AND senha='$pass'
 				   AND servidor.regValido=1";
 		
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;
 	}
@@ -901,7 +908,7 @@
 				  JOIN nivelServidor using(idNivelServidor)
 				  ORDER BY idNivelServidor";
 
-		$r=dbConsulta($sql);
+		$r=$this->database->dbConsulta($sql);
 		return $r;
 	}
 
@@ -914,7 +921,7 @@
 				  WHERE visivel = 1
 				  AND nivelServidor_areaMenu.idNivelServidor = ".$nivel."
 			 ORDER BY descricaoAreaMenu";		
-		$r=dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		return $r;
 	}
 	
@@ -929,36 +936,36 @@
 				 JOIN nivelServidor using(idNivelServidor)
 				 JOIN areaMenu using(idAreaMenu)
 			 ORDER BY areaMenu.descricaoAreaMenu, nivelServidor.nivel";		
-		$r=dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		return $r;
 	}
 	
 	function setarArea($area, $nivel, $set){
 		$sql = "UPDATE nivelServidor_areaMenu set visivel=".$set." WHERE idNivelServidor=".$nivel." AND idAreaMenu=".$area." ";
-		$r=dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		return $r;
 	}
 	
 	function insertArea($nome, $descricao, $link){
 		$sql = "INSERT INTO areaMenu (idAreaMenu, nomeAreaMenu, descricaoAreaMenu, linkAreaMenu)
 		VALUES (NULL, '".$nome."', '".$descricao."', '".$link."')";
-		$r=dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		$sql = "SELECT max(idAreaMenu) as idAreaMenu FROM areaMenu";
-		$r=dbConsulta($sql);
-		$row = mysql_fetch_array($r);
+		$r = $this->database->dbConsulta($sql);
+		$row = mysqli_fetch_array($r);
 		
 		$sql = "INSERT INTO nivelServidor_areaMenu (idAreaMenu, idNivelServidor, visivel) VALUES ('".$row['idAreaMenu']."', '0', '0')";
-		$r=dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		$sql = "INSERT INTO nivelServidor_areaMenu (idAreaMenu, idNivelServidor, visivel) VALUES ('".$row['idAreaMenu']."', '1', '0')";
-		$r=dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		$sql = "INSERT INTO nivelServidor_areaMenu (idAreaMenu, idNivelServidor, visivel) VALUES ('".$row['idAreaMenu']."', '2', '0')";
-		$r=dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		$sql = "INSERT INTO nivelServidor_areaMenu (idAreaMenu, idNivelServidor, visivel) VALUES ('".$row['idAreaMenu']."', '3', '0')";
-		$r=dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		
 		return $r;		
 	}
@@ -975,7 +982,7 @@
 				  JOIN areaMenu using(idAreaMenu)
 				 WHERE areaMenu.linkAreaMenu = '$areaMenu'
 				   AND idNivelServidor = $idNivelServidor";
-		$r=dbConsulta($sql);		
+		$r = $this->database->dbConsulta($sql);		
 		return $r;				
 	}
 	
@@ -985,21 +992,21 @@
 					   sobrenome
 		          FROM servidor
 				 WHERE siape = $siape";
-		$r=dbConsulta($sql);		
+		$r = $this->database->dbConsulta($sql);		
 		return $r;				
 	}
 	
 	function selectListaNivelCurso(){
 		$sql = "SELECT *
 		          FROM nivelCurso";
-		$r=dbConsulta($sql);		
+		$r = $this->database->dbConsulta($sql);		
 		return $r;				
 	}
 	function selectListaUmNivelCurso($nivel){
 		$sql = "SELECT *
 		          FROM nivelCurso
 		         WHERE idNivelCurso = $nivel";
-		$r=dbConsulta($sql);		
+		$r = $this->database->dbConsulta($sql);		
 		return $r;				
 	}
 	
@@ -1007,7 +1014,7 @@
 		$sql = "SELECT *
 		          FROM curso
 				 WHERE idNivelCurso = '$idNivelCurso'";
-		$r=dbConsulta($sql);		
+		$r = $this->database->dbConsulta($sql);		
 		return $r;				
 	}
 	
@@ -1016,7 +1023,7 @@
 		          FROM cursoCcr 
 				 JOIN ccr using (codCcr)
 				 WHERE cursoCcr.codCurso = '$codCurso'";
-		$r=dbConsulta($sql);	
+		$r = $this->database->dbConsulta($sql);	
 		return $r;				
 	}
 	
@@ -1046,7 +1053,7 @@
 			  AND (d.idDominio = $idDominio OR $idDominio = 0)
 			  AND (s.siape = $siape OR $siape = 0)";
      
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		return $r;
 	}
 	
@@ -1055,7 +1062,7 @@
 			SELECT * FROM cursoCcr NATURAL JOIN curso NATURAL JOIN ccr NATURAL JOIN dominio
 			WHERE idNivelCurso = $nivel AND codCurso = $curso;
 			";
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		//novo
 		return $r;
 	}
@@ -1070,7 +1077,7 @@
 			INSERT INTO servidorCursoCcr(anoSemestre, codCurso, codCcr, siape, observacoes, regValido)
 			VALUES ('$anoSemestre', '$codCurso', '$codCcr', '$siape', '$observacoes', '1');
 			";
-		$r = dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		return $r;
 		
 	}
@@ -1081,75 +1088,75 @@
 
 	function buscaCargos(){
 		$sql = "SELECT cargo, idCargo FROM cargo WHERE regValido=1";
-		$r=dbConsulta($sql);		
+		$r = $this->database->dbConsulta($sql);		
 		return $r;	
 	}
 	
 	function buscaCargo($cargo){
 		$sql = "SELECT cargo FROM cargo WHERE cargo='$cargo' AND regValido=1";
-		$r=dbConsulta($sql);		
+		$r = $this->database->dbConsulta($sql);		
 		return $r;	
 	}
 	
 	function buscaJornadas(){
 		$sql = "SELECT jornada, idJornada FROM jornada WHERE regValido=1";
-		$r=dbConsulta($sql);		
+		$r = $this->database->dbConsulta($sql);		
 		return $r;	
 	}
 	
 	function buscaJornada($jornada){
 		$sql = "SELECT jornada FROM jornada WHERE jornada='$jornada' AND regValido=1";
-		$r=dbConsulta($sql);		
+		$r = $this->database->dbConsulta($sql);		
 		return $r;	
 	}
 	function buscaSituacoes(){
 		$sql = "SELECT situacao, idSituacaoServidor FROM situacaoServidor WHERE  regValido=1";
-		$r=dbConsulta($sql);		
+		$r = $this->database->dbConsulta($sql);		
 		return $r;	
 	}
 	
 	function buscaSituacao($situacao){
 		$sql = "SELECT situacao FROM situacaoServidor WHERE situacao='$situacao' AND  regValido=1";
-		$r=dbConsulta($sql);		
+		$r = $this->database->dbConsulta($sql);		
 		return $r;	
 	}
 	
 	function buscaNiveis(){
 		$sql = "SELECT nivel, idNivelServidor FROM nivelServidor WHERE regValido=1";
-		$r=dbConsulta($sql);		
+		$r = $this->database->dbConsulta($sql);		
 		return $r;	
 	}
 	
 	function buscaNivel($nivel){
 		$sql = "SELECT nivel FROM nivelServidor WHERE nivel='$nivel' AND regValido=1";
-		$r=dbConsulta($sql);		
+		$r = $this->database->dbConsulta($sql);		
 		return $r;	
 	}
 	
 	function sqlInsereCargo($cargo){
 		$sql="INSERT INTO cargo(cargo, regValido) VALUES ('$cargo',1)";
-		dbConsulta($sql);
+		$this->database->dbConsulta($sql);
 	}
 	
 	function sqlInsereSituacao($situacao){
 		$sql="INSERT INTO situacaoServidor(situacao, regValido) VALUES ('$situacao',1)";
-		dbConsulta($sql);
+		$this->database->dbConsulta($sql);
 	}
 	
 	
 	function sqlExcluiNivel($nivel){
 		$sql="UPDATE nivelServidor SET regValido=0 WHERE nivel='$nivel'";
-		dbConsulta($sql);
+		$this->database->dbConsulta($sql);
 	}
 	
 	function sqlExcluiJornada($jornada){
 		$sql="UPDATE jornada SET regValido=0 WHERE jornada='$jornada'";
-		dbConsulta($sql);
+		$this->database->dbConsulta($sql);
 	}
 	
 	function sqlExcluiCargo($cargo){
 		$sql="UPDATE cargo SET regValido=0 WHERE cargo='$cargo'";
-		dbConsulta($sql);
+		$this->database->dbConsulta($sql);
 	}
 	
 	
@@ -1157,20 +1164,20 @@
 	                		   $inputEndereco, $inputCidade, $inputTelefone, $inputCelular, $inputCargo, $inputJornada, 
 	                		   $inputSituacao, $inputDataEntrada, $inputDataSaida, $inputNivel, $inputSubstituto, $inputObservacao){
 		$sql = "SELECT idNivelServidor FROM nivelServidor WHERE nivel='$inputNivel' AND regValido=1";
-		$r=dbConsulta($sql);
+		$r = $this->database->dbConsulta($sql);
 		$sql1 = "SELECT idSituacaoServidor FROM situacaoServidor WHERE situacao='$inputSituacao' AND regValido=1";
-		$r1=dbConsulta($sql1);
+		$r1 = $this->database->dbConsulta($sql1);
 		$sql2 = "SELECT idJornada FROM jornada WHERE jornada='$inputJornada' AND regValido=1";
-		$r2=dbConsulta($sql2);
+		$r2 = $this->database->dbConsulta($sql2);
 		$sql3 = "SELECT idCargo FROM cargo WHERE cargo='$inputCargo' AND regValido=1";
-		$r3=dbConsulta($sql3);
-		$rNivel = mysql_fetch_array($r);
+		$r3 = $this->database->dbConsulta($sql3);
+		$rNivel = mysqli_fetch_array($r);
 		$inputNivel=$rNivel["idNivelServidor"];
-		$rSituacao = mysql_fetch_array($r1);
+		$rSituacao = mysqli_fetch_array($r1);
 		$inputJornada=$rSituacao['idSituacaoServidor'];
-		$rJornada = mysql_fetch_array($r2);
+		$rJornada = mysqli_fetch_array($r2);
 		$inputJornada=$rJornada['idJornada'];
-		$rCargo = mysql_fetch_array($r3);
+		$rCargo = mysqli_fetch_array($r3);
 		$inputCargo=$rCargo['idCargo'];
 		$senha=md5($inputSenha);
 		
@@ -1178,7 +1185,7 @@
 		VALUES ('$inputSiape', '$inputNome','$inputSobrenome', '$inputEmail', '$senha',
 	          '$inputEndereco', '$inputCidade', '$inputTelefone', '$inputCelular', '$inputCargo', '$inputJornada', 
 	       '$inputSituacao', '$inputNivel', '$inputSubstituto', '$inputObservacao', 1)" ;
-		dbConsulta($sql4);
+		$this->database->dbConsulta($sql4);
 	}
 /*FIM FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/
 
@@ -1187,9 +1194,11 @@
 	function selectNivelCurso(){
 		$sql = "SELECT * FROM nivelCurso
 				WHERE regValido = 1";
-		$retorno = dbConsulta($sql);
+		$retorno = $this->database->dbConsulta($sql);
 		return $retorno;
 	}
 
 /* FIM DAS FUNÇÕES DESENVOLVIDAS POR ANDREI TOLEDO*/
+}
+
 ?>

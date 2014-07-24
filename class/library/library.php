@@ -1,6 +1,46 @@
 <?php
-	require_once dirname(__FILE__).'/databaseAcess.php';//banco de dados
-	require_once dirname(__FILE__).'/constant.php';//constantes
+include("/databaseAcess.php");//banco de dados
+include("/constant.php");//constantes
+
+class library{
+	public $databaseAcess;
+	
+	function __construct(){
+		$this->databaseAcess = new databaseAcess();
+	}
+	
+	function geraSenha($tamanho, $maiusculas, $numeros, $simbolos){
+		/**
+		* Função para gerar senhas aleatórias
+		*
+		* @author    Thiago Belem <contato@thiagobelem.net>
+		*
+		* @param integer $tamanho Tamanho da senha a ser gerada
+		* @param boolean $maiusculas Se terá letras maiúsculas
+		* @param boolean $numeros Se terá números
+		* @param boolean $simbolos Se terá símbolos
+		*
+		* @return string A senha gerada
+		*/
+		$lmin = 'abcdefghijklmnopqrstuvwxyz';
+		$lmai = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$num = '1234567890';
+		$simb = '!@#$%*-';
+		$retorno = '';
+		$caracteres = '';
+		$caracteres .= $lmin;
+		
+		if ($maiusculas) $caracteres .= $lmai;
+		if ($numeros) $caracteres .= $num;
+		if ($simbolos) $caracteres .= $simb;
+		$len = strlen($caracteres);
+		for ($n = 1; $n <= $tamanho; $n++) {
+			$rand = mt_rand(1, $len);
+			$retorno .= $caracteres[$rand-1];
+		}
+		return $retorno;
+	}
+
 	
 	/****************************************************Inicio das funções de inserção****************************************/
 	function constroiDadosInsertFuncao($funcao){
@@ -12,7 +52,7 @@
 		* Por padrão colocamos o prefixo que vai nos dizer o que a função faz (insert, update, select, delete)
 		* e depois o nome da tabela (funcao, cargo, nivelServidor, curso, etc).
 		**/
-		$r = insertFuncao($data);/*r possui o retorno da função 'insertFuncao' que está na biblioteca 'databaseAcess.php'*/
+		$r = $this->databaseAcess->insertFuncao($data);/*r possui o retorno da função 'insertFuncao' que está na biblioteca 'databaseAcess.php'*/
 		return $r;
 	}
 	
@@ -28,7 +68,7 @@
 		$data['cargaHoraria'] = addslashes($cargaHoraria);
 		$data['regValido'] = 1;
 		
-		$r = insertServidorFuncao($data);
+		$r = $this->databaseAcess->insertServidorFuncao($data);
 		return $r;
 	}
 	
@@ -37,7 +77,7 @@
 		$data['cargo'] = addslashes($cargo);
 		$data['regValido'] = 1;
 		
-		$r = insertCargo($data);
+		$r = $this->databaseAcess->insertCargo($data);
 		
 		return $r;
 	}
@@ -47,7 +87,7 @@
 		$data['jornada'] = addslashes($jornada);
 		$data['regValido'] = 1;
 		
-		$r = insertJornada($data);
+		$r = $this->databaseAcess->insertJornada($data);
 		
 		return $r;
 	}
@@ -59,7 +99,7 @@
 		$data['dataSaida'] = addslashes($dataSaida);
 		$data['regValido'] = 1;
 		
-		$r = insertSituacaoServidor($data);
+		$r = $this->databaseAcess->insertSituacaoServidor($data);
 		
 		return $r;
 	}
@@ -69,7 +109,7 @@
 		$data['nivel'] = addslashes($nivel);
 		$data['regValido'] = 1;
 		
-		$r = insertNivelServidor($data);
+		$r = $this->databaseAcess->insertNivelServidor($data);
 		
 		return $r;
 	}
@@ -80,7 +120,7 @@
 		$data['descricaoAreaMenu'] = addslashes($descricaoAreaMenu);
 		$data['linkAreaMenu'] = addslashes($linkAreaMenu);
 		
-		$r = insertAreaMenu($data);
+		$r = $this->databaseAcess->insertAreaMenu($data);
 		
 		return $r;
 	}
@@ -90,7 +130,7 @@
 		$data['idNivelServidor'] = addslashes($idNivelServidor);
 		$data['idAreaMenu'] = addslashes($idAreaMenu);
 		
-		$r = insertNivelServidorAreaMenu($data);
+		$r = $this->databaseAcess->insertNivelServidorAreaMenu($data);
 		
 		return $r;
 	}
@@ -112,11 +152,11 @@
 		$data['cidade'] = addslashes($cidade);
 		$data['idNivelServidor'] = addslashes($idNivelServidor);
 		$data['regValido'] = 1;
-		$pass = geraSenha(8, true, true, false);
+		$pass = $this->geraSenha(8, true, true, false);
 		$encryptedPassword = md5($pass . '' . SAL);
 		$data['pass'] = $encryptedPassword;
 	
-		$r = insertServidor($data);
+		$r = $this->databaseAcess->insertServidor($data);
 		
 		return $r;
 	}
@@ -126,7 +166,7 @@
 		$data['nivel'] = addslashes($nivel);
 		$data['regValido'] = 1;
 		
-		$r = insertNivelCurso($data);
+		$r = $this->databaseAcess->insertNivelCurso($data);
 		
 		return $r;
 	}
@@ -138,7 +178,7 @@
 		$data['idNivelCurso'] = addslashes($idNivelCurso);
 		$data['regValido'] = 1;
 		
-		$r = insertCurso($data);
+		$r = $this->databaseAcess->insertCurso($data);
 		
 		return $r;
 	}
@@ -148,7 +188,7 @@
 		$data['dominio'] = addslashes($dominio);
 		$data['regValido'] = 1;
 		
-		$r = insertDominio($data);
+		$r = $this->databaseAcess->insertDominio($data);
 		
 		return $r;
 	}
@@ -162,8 +202,8 @@
 		$data['codCurso'] = addslashes($codCurso);
 		$data['regValido'] = 1;
 		
-		$r = insertCcr($data);
-		$r = insertCursoCcr($data);
+		$r = $this->databaseAcess->insertCcr($data);
+		$r = $this->databaseAcess->insertCursoCcr($data);
 		
 		return $r;
 	}
@@ -174,7 +214,7 @@
 		$data['codCurso'] = addslashes($codCurso);
 		$data['regValido'] = 1;
 		
-		$r = insertCursoCcr($data);
+		$r = $this->databaseAcess->insertCursoCcr($data);
 		
 		return $r;
 	}
@@ -188,7 +228,7 @@
 		$data['siape'] = addslashes($siape);
 		$data['observacoes'] = addslashes($observacoes);
 		
-		$r = insertServidorCursoCcr($data);
+		$r = $this->databaseAcess->insertServidorCursoCcr($data);
 		
 		return $r;
 	}
@@ -226,12 +266,12 @@
 		$data['texto'] = $texto;
 		$data['tabela'] = $tabela;
 		
-		$r = selectCcr($data);
+		$r = $this->databaseAcess->selectCcr($data);
 		
 		return $r;
 	}
 	function constroiDadosSelectCursoInfo(){
-		$r = selectCursoInfo();
+		$r = $this->databaseAcess->selectCursoInfo();
 		
 		return $r;
 	}
@@ -262,7 +302,7 @@
 		$data['texto'] = $texto;
 		$data['tabela'] = $tabela;
 		
-		$r = selectServidorDados($data);
+		$r = $this->databaseAcess->selectServidorDados($data);
 		
 		return $r;
 	}
@@ -273,7 +313,7 @@
 		$data = array();
 		$data['id'] = addslashes($id);
 		
-		$r = selectDominio($data);
+		$r = $this->databaseAcess->selectDominio($data);
 		
 		return $r;
 	}
@@ -285,7 +325,7 @@
 		$data['id'] = addslashes($idFuncao);
 		$data['funcao'] = addslashes($funcao);
 		
-		$r = updateFuncao($data);
+		$r = $this->databaseAcess->updateFuncao($data);
 		
 		return $r;
 	}
@@ -301,7 +341,7 @@
 		$data['dataSaida'] = addslashes($dataSaida);
 		$data['cargaHoraria'] = addslashes($cargaHoraria);
 		
-		$r = updateServidorFuncao($data);
+		$r = $this->databaseAcess->updateServidorFuncao($data);
 		return $r;
 	}
 	
@@ -310,7 +350,7 @@
 		$data['id'] = addslashes($idCargo);
 		$data['cargo'] = addslashes($cargo);
 		
-		$r = updateCargo($data);
+		$r = $this->databaseAcess->updateCargo($data);
 		return $r;
 	}
 	
@@ -319,7 +359,7 @@
 		$data['id'] = addslashes($idJornada);
 		$data['jornada'] = addslashes($jornada);
 		
-		$r = updateJornada($data);
+		$r = $this->databaseAcess->updateJornada($data);
 		return $r;
 	}
 	
@@ -330,7 +370,7 @@
 		$data['dataEntrada'] = addslashes($dataEntrada);
 		$data['dataSaida'] = addslashes($dataSaida);
 		
-		$r = updateSituacaoServidor($data);
+		$r = $this->databaseAcess->updateSituacaoServidor($data);
 		return $r;
 	}
 	
@@ -339,7 +379,7 @@
 		$data['id'] = addslashes($idNivelServidor);
 		$data['nivel'] = addslashes($nivel);
 		
-		$r = updateNivelServidor($data);
+		$r = $this->databaseAcess->updateNivelServidor($data);
 		return $r;
 	}
 	
@@ -360,7 +400,7 @@
 		$data['cidade'] = addslashes($cidade);
 		$data['idNivelServidor'] = addslashes($idNivelServidor);
 
-		$r = updateServidor($data);
+		$r = $this->databaseAcess->updateServidor($data);
 		return $r;
 	}
 	
@@ -369,7 +409,7 @@
 		$data['id'] = addslashes($id);
 		$data['nivel'] = addslashes($nivel);
 
-		$r = updateNivelCurso($data);
+		$r = $this->databaseAcess->updateNivelCurso($data);
 		return $r;
 	}
 	
@@ -379,7 +419,7 @@
 		$data['nome'] = addslashes($nome);
 		$data['idNivelCurso'] = addslashes($idNivelCurso);
 
-		$r = updateCurso($data);
+		$r = $this->databaseAcess->updateCurso($data);
 		return $r;
 	}
 	
@@ -388,7 +428,7 @@
 		$data['id'] = addslashes($id);
 		$data['dominio'] = addslashes($dominio);
 		
-		$r = updateDominio($data);
+		$r = $this->databaseAcess->updateDominio($data);
 		return $r;
 	}
 	
@@ -399,7 +439,7 @@
 		$data['cHoraria'] = addslashes($cHoraria);
 		$data['idDominio'] = addslashes($idDominio);
 		
-		$r = updateCcr($data);
+		$r = $this->databaseAcess->updateCcr($data);
 		return $r;
 	}
 	
@@ -408,7 +448,7 @@
 		$data['codCcr'] = addslashes($codCcr);
 		$data['codCurso'] = addslashes($codCurso);
 		
-		$r = updateCursoCcr($data);
+		$r = $this->databaseAcess->updateCursoCcr($data);
 		return $r;
 	}
 	
@@ -421,7 +461,7 @@
 		$data['endereco'] = addslashes($endereco);
 		$data['cidade'] = addslashes($cidade);
 		
-		$r = updateUsuarioServidor($data);
+		$r = $this->databaseAcess->updateUsuarioServidor($data);
 		
 		return $r;
 	}
@@ -429,11 +469,11 @@
 	function constroiDadosEsqueciMinhaSenha($siape){//Gera uma senha e envia para o email ************INSIRIR FUNÇÃO PARA ENVIAR PARA O EMAIL**********
 		$data = array();
 		$data['siape'] = addslashes($siape);
-		$senha = geraSenha(8, true, true, false);
+		$senha = $this->geraSenha(8, true, true, false);
 		$encryptedPassword = md5($senha . '' . SAL);
 		$data['senha'] = $encryptedPassword;
 		
-		$r = esqueciMinhaSenha($data);
+		$r = $this->databaseAcess->esqueciMinhaSenha($data);
 		
 		return $r;
 	}
@@ -443,7 +483,7 @@
 		$data['siape'] = addslashes($siape);
 		$data['senha'] = addslashes($senha);
 		
-		$r = esqueciMinhaSenha($data);
+		$r = $this->databaseAcess->esqueciMinhaSenha($data);
 		
 		return $r;
 	}
@@ -454,7 +494,7 @@
 		$data = array();
 		$data['id'] = addslashes($id);
 		
-		$r = deleteFuncao($data);
+		$r = $this->databaseAcess->deleteFuncao($data);
 		
 		return $r;
 	
@@ -466,7 +506,7 @@
 		$data['siape'] = addslashes($siape);
 		$data['dataInicio'] = addslashes($dataInicio);
 		
-		$r = deleteServidorFuncao($data);
+		$r = $this->databaseAcess->deleteServidorFuncao($data);
 		
 		return $r;
 	
@@ -476,7 +516,7 @@
 		$data = array();
 		$data['id'] = addslashes($id);
 		
-		$r = deleteCargo($data);
+		$r = $this->databaseAcess->deleteCargo($data);
 		
 		return $r;
 	
@@ -486,7 +526,7 @@
 		$data = array();
 		$data['id'] = addslashes($id);
 		
-		$r = deleteJornada($data);
+		$r = $this->databaseAcess->deleteJornada($data);
 		
 		return $r;
 	}
@@ -495,7 +535,7 @@
 		$data = array();
 		$data['id'] = addslashes($id);
 		
-		$r = deleteNivelServidor($data);
+		$r = $this->databaseAcess->deleteNivelServidor($data);
 		
 		return $r;
 	}
@@ -504,7 +544,7 @@
 		$data = array();
 		$data['siape'] = addslashes($siape);
 		
-		$r = deleteServidor($data);
+		$r = $this->databaseAcess->deleteServidor($data);
 		
 		return $r;
 	}
@@ -513,7 +553,7 @@
 		$data = array();
 		$data['id'] = addslashes($id);
 		
-		$r = deleteNivelCurso($data);
+		$r = $this->databaseAcess->deleteNivelCurso($data);
 		
 		return $r;
 	}
@@ -522,7 +562,7 @@
 		$data = array();
 		$data['codCurso'] = addslashes($codCurso);
 		
-		$r = deleteCurso($data);
+		$r = $this->databaseAcess->deleteCurso($data);
 		
 		return $r;
 	}
@@ -531,7 +571,7 @@
 		$data = array();
 		$data['id'] = addslashes($id);
 		
-		$r = deleteDominio($data);
+		$r = $this->databaseAcess->deleteDominio($data);
 		
 		return $r;
 	}
@@ -540,7 +580,7 @@
 		$data = array();
 		$data['codCcr'] = addslashes($codCcr);
 		
-		$r = deleteCcr($data);
+		$r = $this->databaseAcess->deleteCcr($data);
 		
 		return $r;
 	}
@@ -550,52 +590,20 @@
 		$data['codCcr'] = addslashes($codCcr);
 		$data['codCurso'] = addslashes($codCurso);
 		
-		$r = deleteCursoCcr($data);
+		$r = $this->databaseAcess->deleteCursoCcr($data);
 		
 		return $r;
 	}
 	/****************************************************Fim das funções de delete****************************************/
 	/**/
 	
-	function geraSenha($tamanho, $maiusculas, $numeros, $simbolos){
-		/**
-		* Função para gerar senhas aleatórias
-		*
-		* @author    Thiago Belem <contato@thiagobelem.net>
-		*
-		* @param integer $tamanho Tamanho da senha a ser gerada
-		* @param boolean $maiusculas Se terá letras maiúsculas
-		* @param boolean $numeros Se terá números
-		* @param boolean $simbolos Se terá símbolos
-		*
-		* @return string A senha gerada
-		*/
-		$lmin = 'abcdefghijklmnopqrstuvwxyz';
-		$lmai = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$num = '1234567890';
-		$simb = '!@#$%*-';
-		$retorno = '';
-		$caracteres = '';
-		$caracteres .= $lmin;
-		
-		if ($maiusculas) $caracteres .= $lmai;
-		if ($numeros) $caracteres .= $num;
-		if ($simbolos) $caracteres .= $simb;
-		$len = strlen($caracteres);
-		for ($n = 1; $n <= $tamanho; $n++) {
-			$rand = mt_rand(1, $len);
-			$retorno .= $caracteres[$rand-1];
-		}
-		return $retorno;
-	}
-
 	function constroiDadosLogin($user, $pass){
 		$data = array();
 		
 		$data['user'] = addslashes($user);
 		$data['pass'] = md5(addslashes($pass) . '' . SAL);
 		
-		$r = login($data);
+		$r = $this->databaseAcess->login($data);
 		return $r;
 	}
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
@@ -606,15 +614,15 @@
 		$dados['siape'] = $siape;
 		$dados['observacoes'] = $observacoes;
 		
-		$result = insertServidorCursoCcr($dados);
+		$result = $this->databaseAcess->insertServidorCursoCcr($dados);
 		
 		return $result;
 	}
 	
 	function listarServidor(){
-		$resultado = selectServidor();
+		$resultado = $this->databaseAcess->selectServidor();
 		echo '<kbd>Usuários TESTE existentes:</kbd></br></br>';	
-		while ($row = mysql_fetch_array($resultado)) {
+		while ($row = mysqli_fetch_array($resultado)) {
 			echo '<kbd>Nome:</kbd> '.$row['nome'].' '.$row['sobrenome'].'</br>';
 			echo 'Siape: <kbd>'.$row['siape'].'</kbd></br>';
 			echo 'Email: <kbd>'.$row['email'].'</kbd></br>';
@@ -625,13 +633,13 @@
 	}
 
 	function listarMenu($nivel){		
-		$resultado = selectMenu($nivel);
+		$resultado = $this->databaseAcess->selectMenu($nivel);
 		echo '<div class="list-group-success">';
 		if($nivel == 0)
         echo '  <a href="inicio.php" class="list-group-item list-group-item-success leftt" target="iframe-tela-meio">Inicio</a>';
 		else
 		echo '  <a href="inicio.php" class="list-group-item list-group-item-success leftt" target="iframe-tela-meio">Inicio</a>';
-		while ($row = mysql_fetch_array($resultado)) {
+		while ($row = mysqli_fetch_array($resultado)) {
 			echo '  <a href="'.$row['linkAreaMenu'].'" class="list-group-item leftt" target="iframe-tela-meio">'.$row['descricaoAreaMenu'].'</a>';
 		}
         echo '  <a href="sair.php" class="list-group-item leftt">Sair</a>';
@@ -639,11 +647,11 @@
 	}
 	
 	function listarAreas(){
-		$resultado = selectAreas();	
+		$resultado = $this->databaseAcess->selectAreas();	
 		$cont = 0;
 		echo' <h3> Selecione as areas visiveis por cada Nivel </h3>';
 		echo' <div class="row">';		
-		while ($rowArea = mysql_fetch_array($resultado)) {
+		while ($rowArea = mysqli_fetch_array($resultado)) {
 			if($cont == 0){
 				echo' <div class="row">';
 				echo'<div class="col-md-2 text-right"> <h5>'.$rowArea['descricaoAreaMenu'].'</h5> </div>';
@@ -677,9 +685,9 @@
 	//@parametros (string, integer);
 	//@parametros (nome da pagina, id do nivel do servidor)
 	function acessoRecusado($areaMenu, $idNivelServidor){
-		$resultado = selectAcessoRecusado($areaMenu, $idNivelServidor);
+		$resultado = $this->databaseAcess->selectAcessoRecusado($areaMenu, $idNivelServidor);
 		
-		$rowAcess = mysql_fetch_array($resultado);
+		$rowAcess = mysqli_fetch_array($resultado);
 		if($rowAcess['visivel']){
 			return TRUE;
 		}else
@@ -687,9 +695,9 @@
 	}
 	
 	function mostraServidorSelecionado($siape){
-		$resultado = selectUmServidor($siape);
+		$resultado = $this->databaseAcess->selectUmServidor($siape);
 		
-		$rowAcess = mysql_fetch_array($resultado);
+		$rowAcess = mysqli_fetch_array($resultado);
 		
 		if($rowAcess){
 			return $rowAcess;
@@ -700,9 +708,9 @@
 	}
 	
 	function mostraTodosNiveisCurso(){
-		$resultado = selectListaNivelCurso(); 
+		$resultado = $this->databaseAcess->selectListaNivelCurso(); 
 		$i = 0;
-		while($rowAcess = mysql_fetch_array($resultado)){
+		while($rowAcess = mysqli_fetch_array($resultado)){
 			$lista[$i] = $rowAcess;
 			$i++;
 		}
@@ -711,9 +719,9 @@
 	}
 	
 	function mostraCursoPorNivel($idNivelCurso){
-		$resultado = selectListaCurso($idNivelCurso); 
+		$resultado = $this->databaseAcess->selectListaCurso($idNivelCurso); 
 		$i = 0;
-		while($rowAcess = mysql_fetch_array($resultado)){
+		while($rowAcess = mysqli_fetch_array($resultado)){
 			$lista[$i] = $rowAcess;
 			$i++;
 		}
@@ -722,9 +730,9 @@
 	}
 	
 	function mostraCursoPorCcr($codCurso){
-		$resultado = selectListaCcr($codCurso); 
+		$resultado = $this->databaseAcess->selectListaCcr($codCurso); 
 		$i = 0;
-		while($rowAcess = mysql_fetch_array($resultado)){
+		while($rowAcess = mysqli_fetch_array($resultado)){
 			$lista[$i] = $rowAcess;
 			$i++;
 		}
@@ -735,13 +743,13 @@
 	
 	function listarServidorCursoCcr($anoSemestre, $nivelCurso, $codCurso, $codCcr, $idDominio, $siape){
 
-		$resultado = selectServidorCursoCcr($anoSemestre, $nivelCurso, $codCurso, $codCcr, $idDominio, $siape);
+		$resultado = $this->databaseAcess->selectServidorCursoCcr($anoSemestre, $nivelCurso, $codCurso, $codCcr, $idDominio, $siape);
 		//resultado
 		return $resultado;				
 	}
 	
 	function listaCursoCcr($nivel,$curso){
-		$resultado = selectCursoCcr($nivel,$curso);
+		$resultado = $this->databaseAcess->selectCursoCcr($nivel,$curso);
 		return $resultado;
 		//novo
 	}
@@ -750,87 +758,86 @@
 /*FUNCOES DESENVOLVIDAS POR FERNANDONESI@GMAIL.COM*/
 	
 /*INICIO FUNCOES DESENVOLVIDAS POR JACSONMATTE@GMAIL.COM*/
-	ini_set( 'default_charset', 'utf-8');
 	function listaCargos(){
-		$resultado=buscaCargos();
-		while ($rowArea = mysql_fetch_array($resultado)) {
+		$resultado=$this->databaseAcess->buscaCargos();
+		while ($rowArea = mysqli_fetch_array($resultado)) {
 			echo '<option>'.utf8_encode($rowArea['cargo']).'</option>';
 		}
 	}
 	
 	function listaJornadas(){
-		$resultado=buscaJornadas();
-		while ($rowArea = mysql_fetch_array($resultado)) {
+		$resultado=$this->databaseAcess->buscaJornadas();
+		while ($rowArea = mysqli_fetch_array($resultado)) {
 			echo '<option>'.utf8_encode($rowArea['jornada']).'</option>';
 		}
 	}
 	
 	function listaSituacoes(){
-		$resultado=buscaSituacoes();
-		while ($rowArea = mysql_fetch_array($resultado)) {
+		$resultado=$this->databaseAcess->buscaSituacoes();
+		while ($rowArea = mysqli_fetch_array($resultado)) {
 			echo '<option>'.utf8_encode($rowArea['situacao']).'</option>';
 		}
 	}
 	
 	function listaNiveis(){
-		$resultado=buscaNiveis();
-		while ($rowArea = mysql_fetch_array($resultado)) {
+		$resultado=$this->databaseAcess->buscaNiveis();
+		while ($rowArea = mysqli_fetch_array($resultado)) {
 			echo '<option>'.utf8_encode($rowArea['nivel']).'</option>';
 		}
 	}
 	
 	function insereCargo($cargo){
-		$resultado=buscaCargo($cargo);
-		$rowArea = mysql_fetch_array($resultado);
+		$resultado=$this->databaseAcess->buscaCargo($cargo);
+		$rowArea = mysqli_fetch_array($resultado);
 		if($rowArea["cargo"]==$cargo) return 0;
-		sqlInsereCargo($cargo);
+		$this->sqlInsereCargo($cargo);
 		return 1;
 	}
 	
 	function insereJornada($jornada){
-		$resultado=buscaCargo($jornada);
-		$rowArea = mysql_fetch_array($resultado);
+		$resultado=$this->databaseAcess->buscaCargo($jornada);
+		$rowArea = mysqli_fetch_array($resultado);
 		if($rowArea["jornada"]==$jornada) return 0;
-		constroiDadosInsertJornada($jornada);
+		$this->constroiDadosInsertJornada($jornada);
 		return 1;
 	}
 	
 	function insereSituacao($situacao){
-		$resultado=buscaSituacao($situacao);
-		$rowArea = mysql_fetch_array($resultado);
+		$resultado=$this->databaseAcess->buscaSituacao($situacao);
+		$rowArea = mysqli_fetch_array($resultado);
 		if($rowArea["situacao"]==$situacao) return 0;
-		sqlInsereSituacao($situacao);
+		$this->sqlInsereSituacao($situacao);
 		return 1;
 	}
 	
 	function insereNivel($nivel){
-		$resultado=buscaNivel($nivel);
-		$rowArea = mysql_fetch_array($resultado);
+		$resultado=$this->databaseAcess->buscaNivel($nivel);
+		$rowArea = mysqli_fetch_array($resultado);
 		if($rowArea["nivel"]==$nivel || $nivel=="Cargos Cadastrados") return 0;
-		constroiDadosInsertNivelServidor($nivel);
+		$this->constroiDadosInsertNivelServidor($nivel);
 		return 1;
 	}
 	
 	function excluiNivel($nivel){
-		sqlExcluiNivel($nivel);
+		$this->databaseAcess->sqlExcluiNivel($nivel);
 	}
 	
 	function excluiJornada($jornada){
-		sqlExcluiJornada($jornada);
+		$this->databaseAcess->sqlExcluiJornada($jornada);
 	}
 	
 	function excluiCargo($cargo){
-		sqlExcluiCargo($cargo);
+		$this->databaseAcess->sqlExcluiCargo($cargo);
 	}
 	
 	function insereServidor($inputSiape, $inputNome,$inputSobrenome, $inputEmail,
 	                $inputEndereco, $inputCidade, $inputTelefone, $inputCelular,
 	                $inputCargo, $inputJornada, $inputSituacao, $inputDataEntrada, $inputDataSaida,
 	                $inputNivel, $inputSubstituto, $inputObservacao){
-	    $pass = geraSenha(8, true, true, false);
+	    $pass = $this->geraSenha(8, true, true, false);
 		$encryptedPassword = md5($pass . '' . SAL);
 		$inputSenha=$encryptedPassword;
-		sqlInsereServidor($inputSiape, $inputNome,$inputSobrenome, $inputEmail, $inputSenha,
+		$this->databaseAcess->sqlInsereServidor($inputSiape, $inputNome,$inputSobrenome, $inputEmail, $inputSenha,
 	    $inputEndereco, $inputCidade, $inputTelefone, $inputCelular, $inputCargo, $inputJornada, $inputSituacao, $inputDataEntrada,
 	    $inputDataSaida, $inputNivel, $inputSubstituto, $inputObservacao);
 	}
@@ -840,11 +847,11 @@
 /* INÍCIO FUNÇÕES DESENVOLVIDAS POR ANDREI TOLEDO */
 
 	function constroiDadosSelectNivelCurso(){
-		$rertorno = selectNivelCurso();
+		$rertorno = $this->databaseAcess->selectNivelCurso();
 		
 		return $retorno;
 	}
 
 /* FIM DAS FUNÇÕES DESENVOLVIDAS POR ANDREI TOLEDO*/
-
+}
 ?>
